@@ -51,9 +51,16 @@ requests.exceptions.SSLError: HTTPSConnectionPool(host='msft.com', port=443): Ma
 &lt;/li>
 &lt;/ul>
 &lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 135;
+flex-basis: 324px"
 >
-&lt;a href="https://blog.yuukisama.cc/0.jpg" >
-&lt;img src="https://blog.yuukisama.cc/0.jpg"
+&lt;a href="https://blog.yuukisama.cc/p/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/0.jpg" data-size="856x634">
+&lt;img src="https://blog.yuukisama.cc/p/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/0.jpg"
+width="856"
+height="634"
+srcset="https://blog.yuukisama.cc/p/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/0_hu447f7c99fcc851c5ea0844fbe3107477_295506_480x0_resize_q75_box.jpg 480w, https://blog.yuukisama.cc/p/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/0_hu447f7c99fcc851c5ea0844fbe3107477_295506_1024x0_resize_q75_box.jpg 1024w"
 loading="lazy"
 alt=" 少数正经的图">
 &lt;/a>
@@ -89,9 +96,16 @@ loading="lazy"
 &lt;del>咕咕咕&lt;/del>&lt;/li>
 &lt;/ul>
 &lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 68;
+flex-basis: 163px"
 >
-&lt;a href="https://blog.yuukisama.cc/Python.jpg" >
-&lt;img src="https://blog.yuukisama.cc/Python.jpg"
+&lt;a href="https://blog.yuukisama.cc/p/python%E5%B8%B8%E7%94%A8skill/Python.jpg" data-size="250x367">
+&lt;img src="https://blog.yuukisama.cc/p/python%E5%B8%B8%E7%94%A8skill/Python.jpg"
+width="250"
+height="367"
+srcset="https://blog.yuukisama.cc/p/python%E5%B8%B8%E7%94%A8skill/Python_hu352ea1f11ea9fa7e2381eef5b745da63_20805_480x0_resize_q75_box.jpg 480w, https://blog.yuukisama.cc/p/python%E5%B8%B8%E7%94%A8skill/Python_hu352ea1f11ea9fa7e2381eef5b745da63_20805_1024x0_resize_q75_box.jpg 1024w"
 loading="lazy"
 alt="Python娘,来源于萌娘百科">
 &lt;/a>
