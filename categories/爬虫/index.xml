@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>爬虫 on 零碎记忆</title><link>https://blog.yuukisama.cc/categories/%E7%88%AC%E8%99%AB/</link><description>Recent content in 爬虫 on 零碎记忆</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 16 Apr 2019 23:23:02 +0000</lastBuildDate><atom:link href="https://blog.yuukisama.cc/categories/%E7%88%AC%E8%99%AB/index.xml" rel="self" type="application/rss+xml"/><item><title>Python requests ssl报错</title><link>https://blog.yuukisama.cc/p/python-requests-ssl%E6%8A%A5%E9%94%99/</link><pubDate>Tue, 16 Apr 2019 23:23:02 +0000</pubDate><guid>https://blog.yuukisama.cc/p/python-requests-ssl%E6%8A%A5%E9%94%99/</guid><description>&lt;blockquote>
+&lt;h2 id="问题背景">问题背景&lt;/h2>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>这是遇到的一个天坑！ &lt;del>这么过分的坑一定要写下来！！！！&lt;/del>&lt;/li>
+&lt;li>项目需求：
+&lt;ul>
+&lt;li>爬取一个位于国外的网站，所以需要使用proxy，这里使用socks5代理&lt;/li>
+&lt;li>网站是https，所以需要ssl&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>就是在这的需求之下，代码持续爆出如下错误：
+&lt;pre tabindex="0">&lt;code>requests.exceptions.SSLError: SOCKSHTTPSConnectionPool(host='www.xxx.org', port=443): Max retries exceeded with url: /file/ (Caused by SSLError(SSLError(&amp;quot;bad handshake: SysCallError(-1, 'Unexpected EOF')&amp;quot;)))
+requests.exceptions.ConnectionError: SOCKSHTTPSConnectionPool(host='www.xxx.org', port=443): Max retries exceeded with url: /file/ (Caused by NewConnectionError('&amp;lt;urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021C585105C0&amp;gt;: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+requests.exceptions.SSLError: HTTPSConnectionPool(host='msft.com', port=443): Max retries exceeded with url: / (Caused by SSLError(&amp;quot;Can't connect to HTTPS URL because the SSL module is not available.&amp;quot;))
+......
+&lt;/code>&lt;/pre>&lt;/li>
+&lt;li>本文就来好好踩踩这些坑&lt;/li>
+&lt;/ul></description></item><item><title>高阶爬虫selenium摘记</title><link>https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/</link><pubDate>Fri, 08 Mar 2019 14:46:18 +0000</pubDate><guid>https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/</guid><description>&lt;blockquote>
+&lt;h2 id="概述">概述&lt;/h2>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>
+&lt;p>本文记录一些有关python高阶爬虫selenium+浏览器爬虫操作的踩坑记录.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>selenium&lt;/p>
+&lt;p>本质是一个为了自动化测试而诞生的工具,但没想到ta自身作为一个爬虫也是极具优势的.&lt;/p>
+&lt;p>selenium简单的说就是通过各种webdirver驱动去控制浏览器去访问网站,完成各种操作,从而达到爬取数据的目的.可以有效的规避多数反爬虫机制,列如用js动态生成的网站&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>{% asset_img selenium.jpeg null %}&lt;/p></description></item></channel></rss>

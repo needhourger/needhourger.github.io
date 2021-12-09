@@ -1,0 +1,447 @@
+<!doctype html><html lang=zh-cn>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content=" 开始前的碎碎念  为了搭建这个小站，搜索了很多资料，踩了很多坑。这里努力写点有用的东西防止后人踩坑。希望阅读的读者遇到问题时思考自己是否是符合本样例的情况。 这是一篇旨在使用linux服务器+nginx+hexo+git实现搭建个人博客的教学性质文章。
+"><title>VPS+nginx+hexo搭建个人博客</title>
+<link rel=canonical href=https://blog.yuukisama.cc/p/vps-nginx-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/>
+<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="VPS+nginx+hexo搭建个人博客">
+<meta property="og:description" content=" 开始前的碎碎念  为了搭建这个小站，搜索了很多资料，踩了很多坑。这里努力写点有用的东西防止后人踩坑。希望阅读的读者遇到问题时思考自己是否是符合本样例的情况。 这是一篇旨在使用linux服务器+nginx+hexo+git实现搭建个人博客的教学性质文章。
+">
+<meta property="og:url" content="https://blog.yuukisama.cc/p/vps-nginx-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+<meta property="og:site_name" content="零碎记忆">
+<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="小站成长日记"><meta property="article:tag" content="网站搭建"><meta property="article:published_time" content="2018-12-27T15:54:11+00:00"><meta property="article:modified_time" content="2018-12-27T15:54:11+00:00">
+<meta name=twitter:site content="@Yukiricc">
+<meta name=twitter:creator content="@Yukiricc"><meta name=twitter:title content="VPS+nginx+hexo搭建个人博客">
+<meta name=twitter:description content=" 开始前的碎碎念  为了搭建这个小站，搜索了很多资料，踩了很多坑。这里努力写点有用的东西防止后人踩坑。希望阅读的读者遇到问题时思考自己是否是符合本样例的情况。 这是一篇旨在使用linux服务器+nginx+hexo+git实现搭建个人博客的教学性质文章。
+">
+<link rel="shortcut icon" href=img/favicon.png>
+</head>
+<body class="article-page has-toc">
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<div class="container main-container flex
+extended">
+<div id=article-toolbar>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<span>返回</span>
+</a>
+</div>
+<main class="main full-width">
+<article class=main-article>
+<header class=article-header>
+<div class=article-details>
+<header class=article-category>
+<a href=/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/>
+网站搭建
+</a>
+<a href=/categories/%E5%B0%8F%E7%AB%99%E6%88%90%E9%95%BF%E6%97%A5%E8%AE%B0/>
+小站成长日记
+</a>
+</header>
+<h2 class=article-title>
+<a href=/p/vps-nginx-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/>VPS+nginx+hexo搭建个人博客</a>
+</h2>
+<footer class=article-time>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Dec 27, 2018</time>
+</div>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>
+阅读时长: 2 分钟
+</time>
+</div>
+</footer>
+</div>
+</header>
+<section class=article-content>
+<blockquote>
+<h2 id=开始前的碎碎念>开始前的碎碎念</h2>
+</blockquote>
+<h3 id=为了搭建这个小站搜索了很多资料踩了很多坑这里努力写点有用的东西防止后人踩坑希望阅读的读者遇到问题时思考自己是否是符合本样例的情况>为了搭建这个小站，搜索了很多资料，踩了很多坑。这里努力写点有用的东西防止后人踩坑。希望阅读的读者遇到问题时思考自己是否是符合本样例的情况。</h3>
+<p>这是一篇旨在使用linux服务器+nginx+hexo+git实现搭建个人博客的教学性质文章。</p>
+<blockquote>
+<h2 id=requires>requires</h2>
+</blockquote>
+<ul>
+<li>
+<p>一台服务器，本例子是linux centos,阿里的云服务器</p>
+<pre tabindex=0><code>[root@host~]# lsb_release -a
+LSB Version:    :core-4.1-amd64:core-4.1-noarch
+Distributor ID: CentOS
+Description:    CentOS Linux release 7.6.1810 (Core)
+Release:        7.6.1810
+Codename:       Core
+</code></pre></li>
+<li>
+<p>本地电脑：window 10</p>
+</li>
+<li>
+<p>nginx ; node.js ; hexo ; git ; npm</p>
+</li>
+</ul>
+<hr>
+<blockquote>
+<h2 id=本地电脑>本地电脑</h2>
+</blockquote>
+<ol>
+<li>
+<p>安装git</p>
+<ul>
+<li>
+<p>windows <a class=link href=https://git-scm.com/downloads target=_blank rel=noopener>下载</a></p>
+</li>
+<li>
+<p>linux使用包管理器安装git <del>(不了解包管理器的同学就不要看下去了吧)</del></p>
+<pre tabindex=0><code>yum install git -y
+</code></pre></li>
+<li>
+<p>更多<a class=link href=https://git-scm.com/book/zh/v1 target=_blank rel=noopener>Git基本配置工作</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>安装node.js (node.js自带npm)</p>
+<p><a class=link href=https://zh.wikipedia.org/wiki/Npm target=_blank rel=noopener>什么是npm，本垃圾觉得大概类似python的pip吧<del>什么你不知道pip是啥？？？这是wiki打不开就算了</del></a></p>
+<ul>
+<li>
+<p>windows
+<a class=link href=https://nodejs.org/zh-cn/download/ target=_blank rel=noopener>下载</a></p>
+</li>
+<li>
+<p>linux
+下载对应版本的node.js以及安装操作
+<a class=link href=https://nodejs.org/zh-cn/download/ target=_blank rel=noopener>下载</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>安装hexo</p>
+<p>使用node.js的npm安装hexo，这里windows可以先设置一下npm的默认安装目录，本强迫症表示你默认装在c盘我很难受。打开命令行，运行:</p>
+<p><strong>坑：原教程里写了路径末尾加了node_modules，事实证明并不需要，这个命令会在目标目录生成一个node_modules。我这里设置默认安装路径在node.js本体的安装路径，因为这个路径里本身就有一个用于安装npm本身的nnode_modules文件夹。当然即使这样做了，npm运行缓存还是会存在c盘，需要继续修改设置的请移步<a class=link href=https://www.jianshu.com/p/645c758d4428 target=_blank rel=noopener>这里</a></strong></p>
+<pre tabindex=0><code>npm config set prefix &quot;E:\node.js\&quot;
+</code></pre><ul>
+<li>安装hexo
+<pre tabindex=0><code>npm install -g hexo-cli
+</code></pre><strong>坑：-g意为global，全局安装就会安装到你设置的安装目录里，没有这个参数默认会安装在你npm当时命令行运行的目录里创建node_moudels并进行安装</strong></li>
+</ul>
+</li>
+<li>
+<p>搭建博客</p>
+<p><strong>后续关于博客搭建的章节可以参照<a class=link href=https://hexo.io/zh-cn/docs/setup target=_blank rel=noopener>官方教程</a></strong></p>
+<ul>
+<li>创建一个文件夹用于做博客的目录</li>
+<li>切换到这个文件夹所在目录，运行命令：
+<pre tabindex=0><code>hexo init &lt;folder name&gt;
+</code></pre></li>
+<li>进入该文件夹：
+<pre tabindex=0><code>npm install
+</code></pre></li>
+</ul>
+<p><strong>坑：以上两步必不可缺，否则会产生缺少依赖问题，列入不生成静态文件（如x.html）的问题</strong></p>
+</li>
+<li>
+<p>配置你的站点：</p>
+<ul>
+<li>修改博客目录下的_congfig.yml文件<a class=link href=https://hexo.io/zh-cn/docs/configuration target=_blank rel=noopener>官方教程</a></li>
+</ul>
+</li>
+<li>
+<p>书写你的第一篇文章：</p>
+<ul>
+<li>
+<p>在你的博客文件夹内运行命令</p>
+<pre tabindex=0><code>hexo new &quot;Hallow world&quot;
+</code></pre></li>
+<li>
+<p>会在source文件夹内的默认_posts文件夹下生成一个md文件，接下来就可以参照markdown语法愉快的敲代码了</p>
+</li>
+</ul>
+</li>
+<li>
+<p>生成你的网站：</p>
+<ul>
+<li>
+<p>在你的博客文件夹内运行命令</p>
+<pre tabindex=0><code>hexo generate
+</code></pre><p>或者使用快捷缩写</p>
+<pre tabindex=0><code>hexo g
+</code></pre></li>
+<li>
+<p>在本地预览你的博客网站</p>
+<pre tabindex=0><code>hexo server
+</code></pre><p>或者使用快捷缩写</p>
+<pre tabindex=0><code>hexo s
+</code></pre></li>
+</ul>
+<p><strong>坑：如果generate出错请检查博客文件夹下_config.yml内的配置是否正确，每一个冒号后面必须跟一个空格！！！</strong></p>
+<p><strong>坑：如果没能本地预览可能是因为缺少hexo-server，请运行npm install hexo-server &ndash;save</strong></p>
+</li>
+<li>
+<p>安装hexo-deployer-git</p>
+<p>安装该模块方便使用hexo最牛逼的推送功能</p>
+<pre tabindex=0><code>npm install hexo-deployer-git --save
+</code></pre></li>
+<li>
+<p>本地配置git生成私钥以及公钥</p>
+<p>在git安装配置没有出错的情况下，环境变量完成配置，用户信息设置完全的情况下：</p>
+<pre tabindex=0><code>ssh-keygen -t rsa -C &quot;your_email@email.com&quot;
+</code></pre><p>该命令会在c:\user(你的电脑用户名).ssh文件加下生成密钥对。id_rsa文件为私钥，id_rsa.pub为公钥。
+<strong>在后续的服务器配置过程中，我们会把公钥设置在服务器上，这样git推送的时候就可以免去密码认证</strong></p>
+</li>
+</ol>
+<hr>
+<blockquote>
+<h2 id=服务器配置linux>服务器配置（linux）</h2>
+</blockquote>
+<ol>
+<li>
+<p>安装nginx</p>
+<pre tabindex=0><code>yum install nginx -y
+</code></pre><p>你也可以使用lnmp一类的一键脚本安装web环境，这里不举例。</p>
+</li>
+<li>
+<p>配置nginx</p>
+<ul>
+<li>
+<p>基本配置</p>
+<p>找到nginx的配置文件，默认在/etc/nginx/nginx.conf编辑内容</p>
+<p>基本只需要简单的修改默认配置中的网站根目录以及域名的设置，找到如下字段</p>
+<pre tabindex=0><code>listen       80 default_server;     # 默认端口
+listen       [::]:80 default_server;
+server_name  _;                     # 你的域名，没有的话根目录即可
+root         /home/www/blog;        # 网站根目录,教程后续创建
+</code></pre></li>
+<li>
+<p>启动nginx：</p>
+<pre tabindex=0><code>service nginx start
+service nginx reload
+</code></pre></li>
+<li>
+<p>设置开机自启：</p>
+<pre tabindex=0><code>chkconfig nginx on
+</code></pre><p>或者</p>
+<pre tabindex=0><code>systemctl enable nginx.servcice
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>开放防火墙放行80端口</p>
+<ul>
+<li>
+<p>运行</p>
+<pre tabindex=0><code>iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+</code></pre></li>
+<li>
+<p>保存防火墙设置</p>
+<pre tabindex=0><code>service iptables save
+</code></pre><p><strong>坑：本人这条命令并没有执行成功，这个版本的linux似乎不支持这条命令，最后还是执行的service iptables reload</strong></p>
+</li>
+<li>
+<p>查看防火墙规则:
+出现这条内容意味着防火墙设置完成:</p>
+<pre tabindex=0><code>[root@host ~]# iptables --list -n
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:80
+</code></pre></li>
+</ul>
+<p><strong>坑：云服务器供应商还会提供安全组一类的东西，请在那里面也放行对应端口</strong></p>
+</li>
+<li>
+<p>测试nginx是否配置成功</p>
+<ul>
+<li>服务器本地访问又返回结果：
+<pre tabindex=0><code>curl 127.0.0.1
+</code></pre></li>
+<li>远程访问服务器网页端口，即在你的浏览器里输入服务器ip或者域名出现nginx默认页面即表示配置完成。</li>
+</ul>
+</li>
+<li>
+<p>配置git</p>
+<ul>
+<li>
+<p>如果服务器没有git请参照上面安装git</p>
+</li>
+<li>
+<p>新建git用户,并设置用户密码</p>
+<pre tabindex=0><code>useradd git
+passwd git
+</code></pre></li>
+<li>
+<p>新建网站目录,并修改网站根目录的用户拥有者为git用户</p>
+<pre tabindex=0><code>cd /home
+mkdir www
+cd www
+mkdir blog
+chown git:git blog
+</code></pre></li>
+<li>
+<p>切换为git用户，进入其家目录创建.ssh文件夹，并进入</p>
+<pre tabindex=0><code>su git
+cd ~
+mkdir .ssh
+cd .ssh
+</code></pre></li>
+<li>
+<p>创建authorized_keys文件，讲你本地电脑上的公钥内的文件内容复制到该文件内。</p>
+<p><del>这里怎么操作自我发挥吧，把公钥文件传上来该跟名字，或者你开心就好</del></p>
+<p>设置密钥文件只读，文件夹权限:</p>
+<pre tabindex=0><code>chmod 600 authorized_keys
+chmod 700 /home/git/.ssh
+</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li>配置ssh的配置文件/etc/ssh/sshd_config，修改如下词条</li>
+</ul>
+<pre tabindex=0><code>RSAAuthentication yes       # 开启rsa密钥认证
+PubkeyAuthentication yes    # 开启公钥认证
+AuthorizedKeysFile  .ssh/authorized_keys    # 设置存贮文件
+</code></pre><hr>
+<ul>
+<li>
+<p>在你的git用户家目录下新建你的博客仓库,并初始化为git裸仓库</p>
+<pre tabindex=0><code>mkdir blog.git
+git init --bare blog.git
+</code></pre></li>
+<li>
+<p>配置裸仓库:进入仓库文件夹，在hooks文件夹内新建post_receive。文件写下一下内容</p>
+<pre tabindex=0><code>#!/bin/bash
+git --work-tree=/home/www/blog --git-dir=/home/git/blog.git checkout -f
+</code></pre><p>这是一个linux shell规定了当接受到post请求之后的动作，把文件内容放到网站根目录里</p>
+</li>
+</ul>
+<p><strong>在你的本地！！！</strong> 测试ssh 免密码连接
+<code>ssh -T git@your_host</code>
+如果没有提示输入密码证明配置成功</p>
+</li>
+</ol>
+<hr>
+<blockquote>
+<h2 id=回到本地电脑>回到本地电脑</h2>
+</blockquote>
+<ol>
+<li>
+<p>编辑blog下的配置文件_config.yml</p>
+<pre tabindex=0><code># Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy: 
+ type: git
+ repo: git@your_host:blog.git
+ branch: master
+</code></pre></li>
+<li>
+<p>愉快的测试推送把！~ <del>或者死于bug error hhh</del></p>
+<pre tabindex=0><code>hexo deploy
+</code></pre><p>或者</p>
+<pre tabindex=0><code>hexo d
+</code></pre></li>
+</ol>
+<p><strong>坑：不安装hexo-deployer-git是不可能推送的</strong></p>
+<p><strong>坑：如果访问页面出现cantnot GET/ 请检查主题设置，网上很多教程的设置基于hexo next主题，涉及到主题文件的请看你的主题的作者自己的文档，而不是看某dn</strong></p>
+</section>
+<footer class=article-footer>
+<section class=article-tags>
+<a href=/tags/%E5%B0%8F%E7%AB%99%E6%88%90%E9%95%BF%E6%97%A5%E8%AE%B0/>小站成长日记</a>
+<a href=/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/>网站搭建</a>
+</section>
+<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span>
+</section>
+</footer>
+</article>
+<aside class=related-contents--wrapper>
+<h2 class=section-title>相关文章</h2>
+<div class=related-contents>
+<div class="flex article-list--tile">
+<article>
+<a href=/p/%E5%A4%9A%E7%BB%88%E7%AB%AF%E6%9B%B4%E6%96%B0hexo%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/>
+<div class=article-details>
+<h2 class=article-title>多终端更新hexo博客配置方法</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/%E5%B0%8F%E7%AB%99%E6%88%90%E9%95%BF%E6%97%A5%E8%AE%B0-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E5%8F%AF%E5%8F%91%E7%8E%B0/>
+<div class=article-details>
+<h2 class=article-title>小站成长日记-搜索引擎可发现</h2>
+</div>
+</a>
+</article>
+</div>
+</div>
+</aside>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
+2017 -
+2021 零碎记忆
+</section>
+<section class=powerby>
+Try to remember <br>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.5.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+<aside class="sidebar right-sidebar sticky">
+<section class="widget archives">
+<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+</div>
+<h2 class="widget-title section-title">目录</h2>
+<div class=widget--toc>
+<nav id=TableOfContents>
+<ol>
+<li><a href=#开始前的碎碎念>开始前的碎碎念</a>
+<ol>
+<li><a href=#为了搭建这个小站搜索了很多资料踩了很多坑这里努力写点有用的东西防止后人踩坑希望阅读的读者遇到问题时思考自己是否是符合本样例的情况>为了搭建这个小站，搜索了很多资料，踩了很多坑。这里努力写点有用的东西防止后人踩坑。希望阅读的读者遇到问题时思考自己是否是符合本样例的情况。</a></li>
+</ol>
+</li>
+<li><a href=#requires>requires</a></li>
+<li><a href=#本地电脑>本地电脑</a></li>
+<li><a href=#服务器配置linux>服务器配置（linux）</a></li>
+<li><a href=#回到本地电脑>回到本地电脑</a></li>
+</ol>
+</nav>
+</div>
+</section>
+</aside>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
+</html>

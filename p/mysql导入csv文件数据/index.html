@@ -1,0 +1,397 @@
+<!doctype html><html lang=zh-cn>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content=" 摘要   记录关于MySQL从csv文件导入数据的一些采坑记录  {% asset_img star.jpg %}
+"><title>MySQL导入csv文件数据</title>
+<link rel=canonical href=https://blog.yuukisama.cc/p/mysql%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/>
+<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="MySQL导入csv文件数据">
+<meta property="og:description" content=" 摘要   记录关于MySQL从csv文件导入数据的一些采坑记录  {% asset_img star.jpg %}
+">
+<meta property="og:url" content="https://blog.yuukisama.cc/p/mysql%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/">
+<meta property="og:site_name" content="零碎记忆">
+<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="数据库"><meta property="article:published_time" content="2019-05-15T15:33:28+00:00"><meta property="article:modified_time" content="2019-05-15T15:33:28+00:00">
+<meta name=twitter:site content="@Yukiricc">
+<meta name=twitter:creator content="@Yukiricc"><meta name=twitter:title content="MySQL导入csv文件数据">
+<meta name=twitter:description content=" 摘要   记录关于MySQL从csv文件导入数据的一些采坑记录  {% asset_img star.jpg %}
+">
+<link rel="shortcut icon" href=img/favicon.png>
+</head>
+<body class="article-page has-toc">
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<div class="container main-container flex
+extended">
+<div id=article-toolbar>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<span>返回</span>
+</a>
+</div>
+<main class="main full-width">
+<article class=main-article>
+<header class=article-header>
+<div class=article-details>
+<header class=article-category>
+<a href=/categories/%E8%B1%A1%E7%89%99%E5%A1%94/>
+象牙塔
+</a>
+</header>
+<h2 class=article-title>
+<a href=/p/mysql%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/>MySQL导入csv文件数据</a>
+</h2>
+<footer class=article-time>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>May 15, 2019</time>
+</div>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>
+阅读时长: 2 分钟
+</time>
+</div>
+</footer>
+</div>
+</header>
+<section class=article-content>
+<blockquote>
+<h2 id=摘要>摘要</h2>
+</blockquote>
+<ul>
+<li>记录关于MySQL从csv文件导入数据的一些采坑记录</li>
+</ul>
+<p>{% asset_img star.jpg %}</p>
+<blockquote>
+<h2 id=什么是csv文件>什么是csv文件</h2>
+</blockquote>
+<ul>
+<li>csv文件本质只是一个文本文件，它与你所见过的txt文件别无差异。（对，除了excel，你还可以用txt打开这类文件）</li>
+<li>csv文件（Comma-Separated Values）逗号分隔值文件格式，其文件以<strong>纯文本</strong>形式存储表格数据，并且以逗号分隔。</li>
+</ul>
+<blockquote>
+<h2 id=怎样将数据从csv导入到mysql>怎样将数据从csv导入到mysql</h2>
+</blockquote>
+<ul>
+<li>
+<blockquote>
+<h3 id=如果你看到如下报错>如果你看到如下报错</h3>
+</blockquote>
+<pre tabindex=0><code>The MySQL server is running with the --secure-file-priv option so it cannot execute...
+</code></pre><p>首先部分Mysql server设置中不允许你从任意路径导入数据</p>
+</li>
+</ul>
+<ol>
+<li>
+<p>解决这点，你只需要在mysql server的<strong>安装路径</strong>下修改my.ini文件，并在其中修改如下内容（划重点，安装路径！！！安装路径里必定存在bin这类似文件夹）如果你有这个文件就找到对应的地方修改，如果没有就添加（注意开头不要有井号）</p>
+<p><strong>修改文件最好备份my.ini因为如果这个文件内容错误mysql将无法启动</strong></p>
+<pre tabindex=0><code>[mysqld]
+secure-file-priv=&quot;D:/CoderLife/testMySQL&quot; 
+# 这个路径你自己可以自定义
+</code></pre><ul>
+<li>如果你的mysql安装目录下不存在这个文件，你可以尝试去C:/Program Data/MySQL/MySQL Server类似路径下寻找（Program Data文件夹是一个隐藏文件夹，请勾选显示隐藏文件以及文件夹）</li>
+<li>如果还是无法找到可以使用搜索文件功能</li>
+<li>如果完全没有这个文件(<del>作者我帮忙配置mysql的那一部分人应该是完全没有这个文件的</del>)，则在mysql server的安装路径下新建my.ini,内部基础内容如下</li>
+</ul>
+<pre tabindex=0><code>[mysqld]
+# 这里指定你想要设置的路径，必须保证这个路径存在
+secure-file-priv=&quot;E:/test&quot; 
+
+[mysql]
+default-character-set=utf8
+
+[client]
+default-character-set=utf8
+</code></pre></li>
+<li>
+<p>接下来重启mysql服务</p>
+<p>在具有<strong>管理员权限</strong>的命令行下输入如下命令</p>
+<pre tabindex=0><code>net stop mysql
+net start mysql
+</code></pre></li>
+<li>
+<p>接下来进入数据库，输入如下命令</p>
+<pre tabindex=0><code>show variables like &quot;%secure%&quot;
+</code></pre><p>如果出现的回显中包含你之前设置的路径，则表示路径修改成功过</p>
+<p>{% asset_img 1.jpg %}</p>
+</li>
+</ol>
+<ul>
+<li>
+<blockquote>
+<h3 id=文件字符编码问题>文件字符编码问题</h3>
+</blockquote>
+<p>要想成功导入文件，必须保证csv文件编码格式与数据库的编码格式相同。</p>
+<p>mysql是一个复杂的数据库，这里我们从默认编码开始修改。</p>
+</li>
+</ul>
+<ol>
+<li>
+<p>修改默认字符编码</p>
+<p>依旧是打开my.ini文件，修改文件内容（添加或者查找修改，依据你是创建的文件还是原来就有my.ini文件自行把握）</p>
+<p>修改如下三处（如果某个[xxx]标签下没有则添加）</p>
+<pre tabindex=0><code>[client]
+default-character-set=utf8
+[mysql]
+default-character-set=utf8
+[mysqld]
+character-set-server=utf8
+</code></pre></li>
+<li>
+<p>重启mysql服务</p>
+<p>具有管理员权限的命令行！
+具有管理员权限的命令行！
+具有管理员权限的命令行！</p>
+<pre tabindex=0><code>net stop mysql
+net start mysql
+</code></pre></li>
+<li>
+<p>进入数据库查看是否修改成功</p>
+<pre tabindex=0><code> mysql&gt; SHOW VARIABLES LIKE 'character%';
++--------------------------+---------------------------------------------------------+
+| Variable_name            | Value                                                   |
++--------------------------+---------------------------------------------------------+
+| character_set_client     | utf8                                                    |
+| character_set_connection | utf8                                                    |
+| character_set_database   | utf8                                                    |
+| character_set_filesystem | binary                                                  |
+| character_set_results    | utf8                                                    |
+| character_set_server     | utf8                                                    |
+| character_set_system     | utf8                                                    |
+| character_sets_dir       | C:\Program Files\MySQL\MySQL Server 5.0\share\charsets\ |
++--------------------------+---------------------------------------------------------+
+8 rows in set
+</code></pre><p>出现类似如上字样表示修改成功</p>
+</li>
+<li>
+<p>修改csv文件的编码为utf-8</p>
+<p>作者本人使用的是VScode转换的编码</p>
+<p>你也可以使用类似的其他编辑器修改(列如notepad++)</p>
+<ol>
+<li>
+<p><a class=link href=https://notepad-plus-plus.org/download/ target=_blank rel=noopener>从这里下载notepad++</a>(如果你打不开就百度瞎几把找一个吧)</p>
+</li>
+<li>
+<p>使用notepad++打开csv文件,右下角就会标注这个文件的编码</p>
+</li>
+</ol>
+<p>{% asset_img 3.jpg %}</p>
+<ol>
+<li>选择编码->选择转为UTF-8编码,最后保存退出即可</li>
+</ol>
+<p>{% asset_img 4.jpg %}</p>
+<p><strong>不建议使用txt修改，因为txt的UTF-8格式是带有BOM的，导入时依旧会报错</strong></p>
+</li>
+</ol>
+<ul>
+<li>
+<blockquote>
+<h3 id=导入命令问题>导入命令问题</h3>
+</blockquote>
+<p>仅仅使用</p>
+<pre tabindex=0><code>LOAD DATA INFILE &quot;file_name&quot; INTO TABLE tbl_name
+</code></pre><p>是无法完成插入操作的，大概率会出现如下报错</p>
+<pre tabindex=0><code>Data truncated for column xxx at row 1
+</code></pre><p>因为我们需要指定你准备导入的csv文件格式</p>
+<blockquote>
+<p>完整命令</p>
+</blockquote>
+<pre tabindex=0><code>LOAD DATA INFILE &quot;D:/CoderLife/testMySQL/test.csv&quot; -- 指定csv文件路径，路径必须是我们一开始设置的
+INTO TABLE nation -- 指定你要插入的表格
+FIELDS TERMINATED BY ',' -- 指定csv文件是以逗号为分隔符
+ENCLOSED BY '&quot;' -- 指定文本以双引号闭合
+LINES TERMINATED BY &quot;\r\n&quot;; -- 指定行按照如上格式换行
+</code></pre><ul>
+<li>
+<blockquote>
+<h3 id=拓展补充>拓展补充</h3>
+</blockquote>
+<ul>
+<li>\r 回车符</li>
+<li>\n 换行符</li>
+<li>window环境下文本文件换行多数以“\r\n”为换行符</li>
+<li>Linux环境下的文本文件换行就是以“\n”</li>
+</ul>
+</li>
+</ul>
+<p>有关这个导入命令的详解，可以移步<a class=link href=https://blog.csdn.net/haijiege/article/details/78365063 target=_blank rel=noopener>这篇文章</a></p>
+</li>
+<li>
+<blockquote>
+<h3 id=报错-duplicate-entry-for-key->报错“ Duplicate entry for key &mldr;”</h3>
+</blockquote>
+<p>这个报错是因为你之前的表内有数据导致了主键冲突，方法删除旧的表内的内容。</p>
+<pre tabindex=0><code>delete from table_name
+</code></pre></li>
+<li>
+<blockquote>
+<h3 id=报错row-does-not-contain-data-for-all-columns>报错“Row does not contain data for all columns”</h3>
+</blockquote>
+<p>这个报错是因为csv内的数据并没有包含表的所有键值，那么这就需要在我们导入数据的时候指定导入数据数据那几列
+就是在之前上面的导入代码最后加上一个括号，里面按照csv数据列的顺序依次标注其键名</p>
+<pre tabindex=0><code>LOAD DATA INFILE &quot;D:/CoderLife/testMySQL/test.csv&quot; -- 指定csv文件路径，路径必须是我们一开始设置的
+INTO TABLE nation -- 指定你要插入的表格
+FIELDS TERMINATED BY ',' -- 指定csv文件是以逗号为分隔符
+ENCLOSED BY '&quot;' -- 指定文本以双引号闭合
+LINES TERMINATED BY &quot;\r\n&quot; -- 指定行按照如上格式换行
+(key1,key2,key3); -- 指定你需要导入的键
+</code></pre></li>
+<li>
+<blockquote>
+<h3 id=报错-incorrect-integer-value-xxx>报错“ Incorrect integer value: xxx”</h3>
+</blockquote>
+<p>这个报错是因为csv文件第一行存在着表头数据，我们可以数用如下命令忽略第一行</p>
+<pre tabindex=0><code>LOAD DATA INFILE &quot;D:/CoderLife/testMySQL/test.csv&quot; -- 指定csv文件路径，路径必须是我们一开始设置的
+INTO TABLE nation -- 指定你要插入的表格
+FIELDS TERMINATED BY ',' -- 指定csv文件是以逗号为分隔符
+ENCLOSED BY '&quot;' -- 指定文本以双引号闭合
+LINES TERMINATED BY &quot;\r\n&quot; -- 指定行按照如上格式换行
+IGNORE 1 LINES -- 指定忽略第一行
+(key1,key2,key3); -- 指定你需要导入的键
+</code></pre></li>
+<li>
+<blockquote>
+<h3 id=关于字符编码问题的补充>关于字符编码问题的补充</h3>
+</blockquote>
+<p>其实可以通过指定导入的csv文件编码来保证字符编码问题，使用如下命令</p>
+<pre tabindex=0><code>LOAD DATA INFILE &quot;D:/CoderLife/testMySQL/test.csv&quot; -- 指定csv文件路径，路径必须是我们一开始设置的
+INTO TABLE nation CHARACTER SET utf8-- 指定你要插入的表格
+FIELDS TERMINATED BY ',' -- 指定csv文件是以逗号为分隔符
+ENCLOSED BY '&quot;' -- 指定文本以双引号闭合
+LINES TERMINATED BY &quot;\r\n&quot; -- 指定行按照如上格式换行
+IGNORE 1 LINES -- 指定忽略第一行
+(key1,key2,key3); -- 指定你需要导入的键
+</code></pre></li>
+<li>
+<h2 id=以上所有问题几乎都可以因为使用图形化界面而避免ㄟ---ㄏ>以上所有问题几乎都可以因为使用图形化界面而避免ㄟ( ▔, ▔ )ㄏ</h2>
+<p>意不意外，刺不刺激？？？</p>
+</li>
+</ul>
+</section>
+<footer class=article-footer>
+<section class=article-tags>
+<a href=/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
+</section>
+<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span>
+</section>
+</footer>
+</article>
+<aside class=related-contents--wrapper>
+<h2 class=section-title>相关文章</h2>
+<div class=related-contents>
+<div class="flex article-list--tile">
+<article>
+<a href=/p/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/>
+<div class=article-details>
+<h2 class=article-title>MYSQL密码重置详解</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/>
+<div class=article-details>
+<h2 class=article-title>mysql8的安装配置以及JDBC使用</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/>
+<div class=article-details>
+<h2 class=article-title>C语言基础精炼</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/>
+<div class=article-details>
+<h2 class=article-title>k-shell算法Java实现</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/>
+<div class=article-details>
+<h2 class=article-title>Dijkstra算法课设</h2>
+</div>
+</a>
+</article>
+</div>
+</div>
+</aside>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
+2017 -
+2021 零碎记忆
+</section>
+<section class=powerby>
+Try to remember <br>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.5.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+<aside class="sidebar right-sidebar sticky">
+<section class="widget archives">
+<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+</div>
+<h2 class="widget-title section-title">目录</h2>
+<div class=widget--toc>
+<nav id=TableOfContents>
+<ol>
+<li><a href=#摘要>摘要</a></li>
+<li><a href=#什么是csv文件>什么是csv文件</a></li>
+<li><a href=#怎样将数据从csv导入到mysql>怎样将数据从csv导入到mysql</a>
+<ol>
+<li><a href=#如果你看到如下报错>如果你看到如下报错</a></li>
+<li><a href=#文件字符编码问题>文件字符编码问题</a></li>
+<li><a href=#导入命令问题>导入命令问题</a></li>
+<li><a href=#拓展补充>拓展补充</a></li>
+<li><a href=#报错-duplicate-entry-for-key->报错“ Duplicate entry for key &mldr;”</a></li>
+<li><a href=#报错row-does-not-contain-data-for-all-columns>报错“Row does not contain data for all columns”</a></li>
+<li><a href=#报错-incorrect-integer-value-xxx>报错“ Incorrect integer value: xxx”</a></li>
+<li><a href=#关于字符编码问题的补充>关于字符编码问题的补充</a></li>
+</ol>
+</li>
+<li><a href=#以上所有问题几乎都可以因为使用图形化界面而避免ㄟ---ㄏ>以上所有问题几乎都可以因为使用图形化界面而避免ㄟ( ▔, ▔ )ㄏ</a></li>
+</ol>
+</nav>
+</div>
+</section>
+</aside>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on 零碎记忆</title><link>https://blog.yuukisama.cc/tags/linux/</link><description>Recent content in Linux on 零碎记忆</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 29 Dec 2018 15:51:00 +0000</lastBuildDate><atom:link href="https://blog.yuukisama.cc/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Centos 7 yum安装Mariadb</title><link>https://blog.yuukisama.cc/p/centos-7-yum%E5%AE%89%E8%A3%85mariadb/</link><pubDate>Sat, 29 Dec 2018 15:51:00 +0000</pubDate><guid>https://blog.yuukisama.cc/p/centos-7-yum%E5%AE%89%E8%A3%85mariadb/</guid><description>&lt;blockquote>
+&lt;h2 id="摘要">摘要&lt;/h2>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>Centos7 下安装mariaDB数据库的操作记录。&lt;/li>
+&lt;li>MariaDB数据库是mysql的衍生版。centos发行版在centos6之后就将默认数据库改为了mariadb。&lt;a class="link" href="https://www.zhihu.com/question/41832866" target="_blank" rel="noopener"
+>因为MySQL被甲骨文公司收购后存在闭源风险&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>{% asset_img Linux.jpg 图片来源萌娘百科 %}&lt;/p></description></item></channel></rss>

@@ -1,0 +1,298 @@
+<!doctype html><html lang=zh-cn>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content=" 摘要   很多同学在学习数据库操作的过程中，总会因为某些莫名奇妙的原因导致数据库密码变动，而到了不得不重置数据库密码的情况。本文主要讲解一下各个版本的MYSQL数据库重置密码的方法。  {% asset_img 1.jpg %}
+"><title>MYSQL密码重置详解</title>
+<link rel=canonical href=https://blog.yuukisama.cc/p/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/>
+<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="MYSQL密码重置详解">
+<meta property="og:description" content=" 摘要   很多同学在学习数据库操作的过程中，总会因为某些莫名奇妙的原因导致数据库密码变动，而到了不得不重置数据库密码的情况。本文主要讲解一下各个版本的MYSQL数据库重置密码的方法。  {% asset_img 1.jpg %}
+">
+<meta property="og:url" content="https://blog.yuukisama.cc/p/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/">
+<meta property="og:site_name" content="零碎记忆">
+<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="数据库"><meta property="article:published_time" content="2019-05-29T11:04:15+00:00"><meta property="article:modified_time" content="2019-05-29T11:04:15+00:00">
+<meta name=twitter:site content="@Yukiricc">
+<meta name=twitter:creator content="@Yukiricc"><meta name=twitter:title content="MYSQL密码重置详解">
+<meta name=twitter:description content=" 摘要   很多同学在学习数据库操作的过程中，总会因为某些莫名奇妙的原因导致数据库密码变动，而到了不得不重置数据库密码的情况。本文主要讲解一下各个版本的MYSQL数据库重置密码的方法。  {% asset_img 1.jpg %}
+">
+<link rel="shortcut icon" href=img/favicon.png>
+</head>
+<body class="article-page has-toc">
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<div class="container main-container flex
+extended">
+<div id=article-toolbar>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<span>返回</span>
+</a>
+</div>
+<main class="main full-width">
+<article class=main-article>
+<header class=article-header>
+<div class=article-details>
+<header class=article-category>
+<a href=/categories/%E8%B1%A1%E7%89%99%E5%A1%94/>
+象牙塔
+</a>
+</header>
+<h2 class=article-title>
+<a href=/p/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/>MYSQL密码重置详解</a>
+</h2>
+<footer class=article-time>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>May 29, 2019</time>
+</div>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>
+阅读时长: 1 分钟
+</time>
+</div>
+</footer>
+</div>
+</header>
+<section class=article-content>
+<blockquote>
+<h2 id=摘要>摘要</h2>
+</blockquote>
+<ul>
+<li>很多同学在学习数据库操作的过程中，总会因为某些莫名奇妙的原因导致数据库密码变动，而到了不得不重置数据库密码的情况。本文主要讲解一下各个版本的MYSQL数据库重置密码的方法。</li>
+</ul>
+<p>{% asset_img 1.jpg %}</p>
+<blockquote>
+<h2 id=如何查看mysql版本>如何查看MYSQL版本</h2>
+</blockquote>
+<ul>
+<li>
+<p>打开一个命令行，在命令行里输入如下指令（如果你的MYSQL配置了环境变量的话）</p>
+<pre tabindex=0><code>mysql --version
+</code></pre></li>
+<li>
+<p>如果你的MYSQL没有配置环境变量，你可以去到mysql的安装目录下的bin文件夹里，运行上述命令。</p>
+</li>
+<li>
+<p>如果你不知道如何改变命令行目录，可以用打开文件管理器，进入到mysql的安装目录下的bin文件夹内然后按住shift再点击鼠标右键。</p>
+</li>
+<li>
+<p>这时你可以看到右键菜单里有个“在此处打开powershell窗口”（或者也可能时在此处打开cmd窗口一类的）</p>
+</li>
+<li>
+<p>如果你连这些都不会，如果你不知道什么是环境变量。emmmmmm这个教程大概不适合你.</p>
+</li>
+</ul>
+<p><strong>以上均基于Microsoft Windows 10系统</strong></p>
+<blockquote>
+<h2 id=mysql-55>MYSQL 5.5+</h2>
+</blockquote>
+<ol>
+<li>
+<p>首先开启一个具有管理员权限的命令行，在其中输入如下指令关闭mysql服务</p>
+<pre tabindex=0><code>net stop mysql
+</code></pre></li>
+<li>
+<p>接下来进入到mysql的安装文件夹下的bin目录内（如果你配置了环境变量也可以直接在命令行里运行）</p>
+<pre tabindex=0><code>mysqld -nt --skip-grant-tables
+</code></pre><p>如果你发现命令行运行的“卡住了”，那么恭喜你可以成功进入下一步</p>
+<p>&ndash;skip-grant-tables
+你可以简单的理解为跳过密码认证</p>
+</li>
+<li>
+<p>接下来保证这个命令行界面开启状态，重新打开一个新的命令行窗口。运行如下命令</p>
+<pre tabindex=0><code>mysql -u root  -p
+</code></pre><p>出现提示输入密码直接按回车即可，你会发现你已经成功给进入到了数据库内部</p>
+</li>
+<li>
+<p>然后使用数据库命令重置密码即可</p>
+<pre tabindex=0><code>use mysql;  -- 切换到mysql数据库
+update user set password=password(&quot;123456&quot;) where user=&quot;root&quot;; --修改密码为123456
+</code></pre><p>以上命令也可以用于你知道密码的情况下想要修改密码。
+不过在正常情况下执行完上述命令之后需要再增加如下命令刷新权限才可以让数据库密码更新成功（当然这里不需要）</p>
+<pre tabindex=0><code>flush privileges;
+</code></pre></li>
+<li>
+<p>当修改命令执行成功后。输入exit退出数据库。关闭这个新的命令行，回到我们一开始启动的命令行。使用ctrl+c中止命令。然后使用如下命令重启mysql服务</p>
+<pre tabindex=0><code>net start mysql
+</code></pre></li>
+</ol>
+<p>如果不出意外，服务启动成功，那么你的密码重置就完成了。</p>
+<hr>
+<blockquote>
+<h2 id=mysql-80>MYSQL 8.0+</h2>
+</blockquote>
+<ul>
+<li>MYSQL 8下有两种方法可以重置密码</li>
+</ul>
+<blockquote>
+<h3 id=使用--init-file>使用&ndash;init-file</h3>
+</blockquote>
+<ol>
+<li>
+<p>首先依旧是打开一个具有管理员权限的命令行，使用命令停止mysql服务</p>
+<pre tabindex=0><code>net stop mysql
+</code></pre></li>
+<li>
+<p>接下来创建一个文本文件（sql.txt），指定在启动时需要执行的修改密码的命令。</p>
+<pre tabindex=0><code>ALTER USER &quot;root&quot;@&quot;localhost&quot; IDENTIFIED BY &quot;123456&quot;;
+</code></pre><p>将密码重置为123456</p>
+</li>
+<li>
+<p>最后使用如下命令启动</p>
+<pre tabindex=0><code>mysqld --init-file=E:/sql.txt --console
+</code></pre><p>启动成功之后重新开启一个新的命令行，尝试使用重置的密码（123456）登陆数据库吧。如果没有重置成功，请检查sql.txt中的sql语句语法是否出现问题。</p>
+</li>
+<li>
+<p>当你使用重置的密码登陆成功之后，关闭掉新的命令行界面，回到旧的命令行界面使用ctrl+c中止命令。最后再重新启动mysql服务</p>
+<pre tabindex=0><code>net start mysql
+</code></pre></li>
+</ol>
+<hr>
+<blockquote>
+<h3 id=使用--skip-grant-tables>使用&ndash;skip-grant-tables</h3>
+</blockquote>
+<ol>
+<li>
+<p>开启一个具有管理员权限的命令行，先关闭mysql服务</p>
+<pre tabindex=0><code>net stop mysql
+</code></pre></li>
+<li>
+<p>使用如下命令无密码启动服务</p>
+<pre tabindex=0><code>mysqld --console --skip-grant-tables --shared-memory
+</code></pre><p>这就是mysql5与mysql8的差别，mysql8想要使用skip-grant启动必须加入额外参数，否则服务无法启动</p>
+</li>
+<li>
+<p>接下来重新开启一个命令行以空密码登陆数据库</p>
+<pre tabindex=0><code>mysql -u root -p
+</code></pre><p>提示输入密码直接按下回车即可。接下来重置密码</p>
+<pre tabindex=0><code>update mysql.user set authenication_string=&quot;123456&quot; where user=&quot;root&quot; and host=&quot;localhost&quot;;
+</code></pre><p>执行成功无错误之后即表示密码重置成功</p>
+</li>
+<li>
+<p>接下来退出数据库，关闭新的命令行，回到之前的命令行使用ctrl+c中止命令，然后重新启动mysql服务</p>
+<pre tabindex=0><code>net start mysql
+</code></pre></li>
+</ol>
+</section>
+<footer class=article-footer>
+<section class=article-tags>
+<a href=/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
+</section>
+<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span>
+</section>
+</footer>
+</article>
+<aside class=related-contents--wrapper>
+<h2 class=section-title>相关文章</h2>
+<div class=related-contents>
+<div class="flex article-list--tile">
+<article>
+<a href=/p/mysql%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/>
+<div class=article-details>
+<h2 class=article-title>MySQL导入csv文件数据</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/>
+<div class=article-details>
+<h2 class=article-title>mysql8的安装配置以及JDBC使用</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/>
+<div class=article-details>
+<h2 class=article-title>C语言基础精炼</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/>
+<div class=article-details>
+<h2 class=article-title>k-shell算法Java实现</h2>
+</div>
+</a>
+</article>
+<article>
+<a href=/p/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/>
+<div class=article-details>
+<h2 class=article-title>Dijkstra算法课设</h2>
+</div>
+</a>
+</article>
+</div>
+</div>
+</aside>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
+2017 -
+2021 零碎记忆
+</section>
+<section class=powerby>
+Try to remember <br>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.5.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+<aside class="sidebar right-sidebar sticky">
+<section class="widget archives">
+<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+</div>
+<h2 class="widget-title section-title">目录</h2>
+<div class=widget--toc>
+<nav id=TableOfContents>
+<ol>
+<li><a href=#摘要>摘要</a></li>
+<li><a href=#如何查看mysql版本>如何查看MYSQL版本</a></li>
+<li><a href=#mysql-55>MYSQL 5.5+</a></li>
+<li><a href=#mysql-80>MYSQL 8.0+</a>
+<ol>
+<li><a href=#使用--init-file>使用&ndash;init-file</a></li>
+<li><a href=#使用--skip-grant-tables>使用&ndash;skip-grant-tables</a></li>
+</ol>
+</li>
+</ol>
+</nav>
+</div>
+</section>
+</aside>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
+</html>

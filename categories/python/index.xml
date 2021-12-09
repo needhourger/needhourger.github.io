@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on 零碎记忆</title><link>https://blog.yuukisama.cc/categories/python/</link><description>Recent content in Python on 零碎记忆</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 16 Apr 2019 23:23:02 +0000</lastBuildDate><atom:link href="https://blog.yuukisama.cc/categories/python/index.xml" rel="self" type="application/rss+xml"/><item><title>Python requests ssl报错</title><link>https://blog.yuukisama.cc/p/python-requests-ssl%E6%8A%A5%E9%94%99/</link><pubDate>Tue, 16 Apr 2019 23:23:02 +0000</pubDate><guid>https://blog.yuukisama.cc/p/python-requests-ssl%E6%8A%A5%E9%94%99/</guid><description>&lt;blockquote>
+&lt;h2 id="问题背景">问题背景&lt;/h2>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>这是遇到的一个天坑！ &lt;del>这么过分的坑一定要写下来！！！！&lt;/del>&lt;/li>
+&lt;li>项目需求：
+&lt;ul>
+&lt;li>爬取一个位于国外的网站，所以需要使用proxy，这里使用socks5代理&lt;/li>
+&lt;li>网站是https，所以需要ssl&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>就是在这的需求之下，代码持续爆出如下错误：
+&lt;pre tabindex="0">&lt;code>requests.exceptions.SSLError: SOCKSHTTPSConnectionPool(host='www.xxx.org', port=443): Max retries exceeded with url: /file/ (Caused by SSLError(SSLError(&amp;quot;bad handshake: SysCallError(-1, 'Unexpected EOF')&amp;quot;)))
+requests.exceptions.ConnectionError: SOCKSHTTPSConnectionPool(host='www.xxx.org', port=443): Max retries exceeded with url: /file/ (Caused by NewConnectionError('&amp;lt;urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021C585105C0&amp;gt;: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
+requests.exceptions.SSLError: HTTPSConnectionPool(host='msft.com', port=443): Max retries exceeded with url: / (Caused by SSLError(&amp;quot;Can't connect to HTTPS URL because the SSL module is not available.&amp;quot;))
+......
+&lt;/code>&lt;/pre>&lt;/li>
+&lt;li>本文就来好好踩踩这些坑&lt;/li>
+&lt;/ul></description></item><item><title>word2vec词向量训练</title><link>https://blog.yuukisama.cc/p/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/</link><pubDate>Wed, 13 Mar 2019 10:26:22 +0000</pubDate><guid>https://blog.yuukisama.cc/p/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/</guid><description>&lt;blockquote>
+&lt;h2 id="概述">概述&lt;/h2>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>
+&lt;p>最近踩坑机器学习神经网络中的文本处理,所以有了这篇博客.记录一下基于python word2vec训练中文词向量的方法(英文也同样适用)
+&lt;del>虽然事后我发现我需要的并不是词向量word2vec,而是训练获得句子向量的方法,权当做个预告吧(咕咕咕)&lt;/del>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>词向量训练:在自然语言处理中将每个单词映射到一个空间向量过程,从而获得每个词汇之间的关联性.(可能说的不太对,大概就这样吧,不是理论帝)&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>{% asset_img 0.jpg 少数正经的图 %}&lt;/p></description></item><item><title>高阶爬虫selenium摘记</title><link>https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/</link><pubDate>Fri, 08 Mar 2019 14:46:18 +0000</pubDate><guid>https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/</guid><description>&lt;blockquote>
+&lt;h2 id="概述">概述&lt;/h2>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>
+&lt;p>本文记录一些有关python高阶爬虫selenium+浏览器爬虫操作的踩坑记录.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>selenium&lt;/p>
+&lt;p>本质是一个为了自动化测试而诞生的工具,但没想到ta自身作为一个爬虫也是极具优势的.&lt;/p>
+&lt;p>selenium简单的说就是通过各种webdirver驱动去控制浏览器去访问网站,完成各种操作,从而达到爬取数据的目的.可以有效的规避多数反爬虫机制,列如用js动态生成的网站&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>{% asset_img selenium.jpeg null %}&lt;/p></description></item><item><title>Python常用Skill</title><link>https://blog.yuukisama.cc/p/python%E5%B8%B8%E7%94%A8skill/</link><pubDate>Fri, 25 Jan 2019 17:01:19 +0000</pubDate><guid>https://blog.yuukisama.cc/p/python%E5%B8%B8%E7%94%A8skill/</guid><description>&lt;blockquote>
+&lt;h2 id="python常用技能汇总">Python常用技能汇总&lt;/h2>
+&lt;p>这里是一些写python脚本时常用的小技巧,长期更新
+&lt;del>咕咕咕&lt;/del>&lt;/p>
+&lt;/blockquote>
+&lt;p>{% asset_img Python.jpg Python娘,来源于萌娘百科 %}&lt;/p></description></item></channel></rss>
