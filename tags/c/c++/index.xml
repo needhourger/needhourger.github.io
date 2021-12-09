@@ -1,14 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>C/C++ on 零碎记忆</title><link>https://blog.yuukisama.cc/tags/c/c++/</link><description>Recent content in C/C++ on 零碎记忆</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><atom:link href="https://blog.yuukisama.cc/tags/c/c++/index.xml" rel="self" type="application/rss+xml"/><item><title>C++与SQLite</title><link>https://blog.yuukisama.cc/p/c-%E4%B8%8Esqlite/</link><pubDate>Tue, 14 May 2019 08:47:25 +0000</pubDate><guid>https://blog.yuukisama.cc/p/c-%E4%B8%8Esqlite/</guid><description>&lt;blockquote>
-&lt;h2 id="摘要">摘要&lt;/h2>
-&lt;/blockquote>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>C/C++ on 零碎记忆</title><link>https://blog.yuukisama.cc/tags/c/c++/</link><description>Recent content in C/C++ on 零碎记忆</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><atom:link href="https://blog.yuukisama.cc/tags/c/c++/index.xml" rel="self" type="application/rss+xml"/><item><title>C++与SQLite</title><link>https://blog.yuukisama.cc/p/c-%E4%B8%8Esqlite/</link><pubDate>Tue, 14 May 2019 08:47:25 +0000</pubDate><guid>https://blog.yuukisama.cc/p/c-%E4%B8%8Esqlite/</guid><description>&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>本文主要讲解了C++对接sqlite3数据库的配置以及相关操作&lt;/li>
 &lt;li>IDE：Visual Studio 2017&lt;/li>
 &lt;li>SQLite3&lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img sqlite.jpg %}&lt;/p></description></item><item><title>C语言基础精炼</title><link>https://blog.yuukisama.cc/p/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/</link><pubDate>Sat, 30 Mar 2019 21:46:48 +0000</pubDate><guid>https://blog.yuukisama.cc/p/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/</guid><description>&lt;blockquote>
-&lt;h2 id="前言">前言：&lt;/h2>
-&lt;/blockquote>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/sqlite.jpg" >
+&lt;img src="https://blog.yuukisama.cc/sqlite.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p></description></item><item><title>C语言基础精炼</title><link>https://blog.yuukisama.cc/p/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/</link><pubDate>Sat, 30 Mar 2019 21:46:48 +0000</pubDate><guid>https://blog.yuukisama.cc/p/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/</guid><description>&lt;h2 id="前言">前言：&lt;/h2>
 &lt;ul>
 &lt;li>这是一篇有关C语言语法基础的精炼概述性质文章，不会涉及C语言一些有深度的内容&lt;/li>
 &lt;li>本文面向的是以大学C考试过关为目标，以计算机二级认证为目标，期望获得一个C语言最基础认识的读者&lt;/li>
@@ -36,4 +39,12 @@
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img lobei.jpg 萝卜啊！赐予我力量！ %}&lt;/p></description></item></channel></rss>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/lobei.jpg" >
+&lt;img src="https://blog.yuukisama.cc/lobei.jpg"
+loading="lazy"
+alt="萝卜啊！赐予我力量！">
+&lt;/a>
+&lt;figcaption>萝卜啊！赐予我力量！&lt;/figcaption>
+&lt;/figure>&lt;/p></description></item></channel></rss>

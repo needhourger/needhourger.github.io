@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on 零碎记忆</title><link>https://blog.yuukisama.cc/categories/python/</link><description>Recent content in Python on 零碎记忆</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 16 Apr 2019 23:23:02 +0000</lastBuildDate><atom:link href="https://blog.yuukisama.cc/categories/python/index.xml" rel="self" type="application/rss+xml"/><item><title>Python requests ssl报错</title><link>https://blog.yuukisama.cc/p/python-requests-ssl%E6%8A%A5%E9%94%99/</link><pubDate>Tue, 16 Apr 2019 23:23:02 +0000</pubDate><guid>https://blog.yuukisama.cc/p/python-requests-ssl%E6%8A%A5%E9%94%99/</guid><description>&lt;blockquote>
-&lt;h2 id="问题背景">问题背景&lt;/h2>
-&lt;/blockquote>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on 零碎记忆</title><link>https://blog.yuukisama.cc/categories/python/</link><description>Recent content in Python on 零碎记忆</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 16 Apr 2019 23:23:02 +0000</lastBuildDate><atom:link href="https://blog.yuukisama.cc/categories/python/index.xml" rel="self" type="application/rss+xml"/><item><title>Python requests ssl报错</title><link>https://blog.yuukisama.cc/p/python-requests-ssl%E6%8A%A5%E9%94%99/</link><pubDate>Tue, 16 Apr 2019 23:23:02 +0000</pubDate><guid>https://blog.yuukisama.cc/p/python-requests-ssl%E6%8A%A5%E9%94%99/</guid><description>&lt;h2 id="问题背景">问题背景&lt;/h2>
 &lt;ul>
 &lt;li>这是遇到的一个天坑！ &lt;del>这么过分的坑一定要写下来！！！！&lt;/del>&lt;/li>
 &lt;li>项目需求：
@@ -28,9 +26,15 @@ requests.exceptions.SSLError: HTTPSConnectionPool(host='msft.com', port=443): Ma
 &lt;p>词向量训练:在自然语言处理中将每个单词映射到一个空间向量过程,从而获得每个词汇之间的关联性.(可能说的不太对,大概就这样吧,不是理论帝)&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img 0.jpg 少数正经的图 %}&lt;/p></description></item><item><title>高阶爬虫selenium摘记</title><link>https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/</link><pubDate>Fri, 08 Mar 2019 14:46:18 +0000</pubDate><guid>https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/</guid><description>&lt;blockquote>
-&lt;h2 id="概述">概述&lt;/h2>
-&lt;/blockquote>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/0.jpg" >
+&lt;img src="https://blog.yuukisama.cc/0.jpg"
+loading="lazy"
+alt=" 少数正经的图">
+&lt;/a>
+&lt;figcaption>少数正经的图&lt;/figcaption>
+&lt;/figure>&lt;/p></description></item><item><title>高阶爬虫selenium摘记</title><link>https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/</link><pubDate>Fri, 08 Mar 2019 14:46:18 +0000</pubDate><guid>https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/</guid><description>&lt;h2 id="概述">概述&lt;/h2>
 &lt;ul>
 &lt;li>
 &lt;p>本文记录一些有关python高阶爬虫selenium+浏览器爬虫操作的踩坑记录.&lt;/p>
@@ -41,9 +45,31 @@ requests.exceptions.SSLError: HTTPSConnectionPool(host='msft.com', port=443): Ma
 &lt;p>selenium简单的说就是通过各种webdirver驱动去控制浏览器去访问网站,完成各种操作,从而达到爬取数据的目的.可以有效的规避多数反爬虫机制,列如用js动态生成的网站&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img selenium.jpeg null %}&lt;/p></description></item><item><title>Python常用Skill</title><link>https://blog.yuukisama.cc/p/python%E5%B8%B8%E7%94%A8skill/</link><pubDate>Fri, 25 Jan 2019 17:01:19 +0000</pubDate><guid>https://blog.yuukisama.cc/p/python%E5%B8%B8%E7%94%A8skill/</guid><description>&lt;blockquote>
-&lt;h2 id="python常用技能汇总">Python常用技能汇总&lt;/h2>
-&lt;p>这里是一些写python脚本时常用的小技巧,长期更新
-&lt;del>咕咕咕&lt;/del>&lt;/p>
-&lt;/blockquote>
-&lt;p>{% asset_img Python.jpg Python娘,来源于萌娘百科 %}&lt;/p></description></item></channel></rss>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 192;
+flex-basis: 461px"
+>
+&lt;a href="https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/selenium.jpeg" data-size="1280x666">
+&lt;img src="https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/selenium.jpeg"
+width="1280"
+height="666"
+srcset="https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/selenium_hu1a85fdc8012b385a5c1655565cef00ab_85451_480x0_resize_q75_box.jpeg 480w, https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/selenium_hu1a85fdc8012b385a5c1655565cef00ab_85451_1024x0_resize_q75_box.jpeg 1024w"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p></description></item><item><title>Python常用Skill</title><link>https://blog.yuukisama.cc/p/python%E5%B8%B8%E7%94%A8skill/</link><pubDate>Fri, 25 Jan 2019 17:01:19 +0000</pubDate><guid>https://blog.yuukisama.cc/p/python%E5%B8%B8%E7%94%A8skill/</guid><description>&lt;h2 id="python常用技能汇总">Python常用技能汇总&lt;/h2>
+&lt;ul>
+&lt;li>这里是一些写python脚本时常用的小技巧,长期更新
+&lt;del>咕咕咕&lt;/del>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/Python.jpg" >
+&lt;img src="https://blog.yuukisama.cc/Python.jpg"
+loading="lazy"
+alt="Python娘,来源于萌娘百科">
+&lt;/a>
+&lt;figcaption>Python娘,来源于萌娘百科&lt;/figcaption>
+&lt;/figure>&lt;/p></description></item></channel></rss>

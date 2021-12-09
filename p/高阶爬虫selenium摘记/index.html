@@ -1,29 +1,29 @@
 <!doctype html><html lang=zh-cn>
 <head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content=" 概述    本文记录一些有关python高阶爬虫selenium+浏览器爬虫操作的踩坑记录.
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="概述   本文记录一些有关python高阶爬虫selenium+浏览器爬虫操作的踩坑记录.
   selenium
 本质是一个为了自动化测试而诞生的工具,但没想到ta自身作为一个爬虫也是极具优势的.
 selenium简单的说就是通过各种webdirver驱动去控制浏览器去访问网站,完成各种操作,从而达到爬取数据的目的.可以有效的规避多数反爬虫机制,列如用js动态生成的网站
-  {% asset_img selenium.jpeg null %}
+   
 "><title>高阶爬虫selenium摘记</title>
 <link rel=canonical href=https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/>
 <link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="高阶爬虫selenium摘记">
-<meta property="og:description" content=" 概述    本文记录一些有关python高阶爬虫selenium+浏览器爬虫操作的踩坑记录.
+<meta property="og:description" content="概述   本文记录一些有关python高阶爬虫selenium+浏览器爬虫操作的踩坑记录.
   selenium
 本质是一个为了自动化测试而诞生的工具,但没想到ta自身作为一个爬虫也是极具优势的.
 selenium简单的说就是通过各种webdirver驱动去控制浏览器去访问网站,完成各种操作,从而达到爬取数据的目的.可以有效的规避多数反爬虫机制,列如用js动态生成的网站
-  {% asset_img selenium.jpeg null %}
+   
 ">
 <meta property="og:url" content="https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/">
 <meta property="og:site_name" content="零碎记忆">
 <meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="Python"><meta property="article:tag" content="爬虫"><meta property="article:tag" content="selenium"><meta property="article:published_time" content="2019-03-08T14:46:18+00:00"><meta property="article:modified_time" content="2019-03-08T14:46:18+00:00">
 <meta name=twitter:site content="@Yukiricc">
 <meta name=twitter:creator content="@Yukiricc"><meta name=twitter:title content="高阶爬虫selenium摘记">
-<meta name=twitter:description content=" 概述    本文记录一些有关python高阶爬虫selenium+浏览器爬虫操作的踩坑记录.
+<meta name=twitter:description content="概述   本文记录一些有关python高阶爬虫selenium+浏览器爬虫操作的踩坑记录.
   selenium
 本质是一个为了自动化测试而诞生的工具,但没想到ta自身作为一个爬虫也是极具优势的.
 selenium简单的说就是通过各种webdirver驱动去控制浏览器去访问网站,完成各种操作,从而达到爬取数据的目的.可以有效的规避多数反爬虫机制,列如用js动态生成的网站
-  {% asset_img selenium.jpeg null %}
+   
 ">
 <link rel="shortcut icon" href=img/favicon.png>
 </head>
@@ -64,9 +64,7 @@ Python
 </div>
 </header>
 <section class=article-content>
-<blockquote>
 <h2 id=概述>概述</h2>
-</blockquote>
 <ul>
 <li>
 <p>本文记录一些有关python高阶爬虫selenium+浏览器爬虫操作的踩坑记录.</p>
@@ -77,22 +75,16 @@ Python
 <p>selenium简单的说就是通过各种webdirver驱动去控制浏览器去访问网站,完成各种操作,从而达到爬取数据的目的.可以有效的规避多数反爬虫机制,列如用js动态生成的网站</p>
 </li>
 </ul>
-<p>{% asset_img selenium.jpeg null %}</p>
-<blockquote>
+<p><figure class=gallery-image style=flex-grow:192;flex-basis:461px>
+<a href=/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/selenium.jpeg data-size=1280x666>
+<img src=/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/selenium.jpeg width=1280 height=666 srcset="/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/selenium_hu1a85fdc8012b385a5c1655565cef00ab_85451_480x0_resize_q75_box.jpeg 480w, /p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/selenium_hu1a85fdc8012b385a5c1655565cef00ab_85451_1024x0_resize_q75_box.jpeg 1024w" loading=lazy>
+</a>
+</figure></p>
 <h2 id=start>Start</h2>
-</blockquote>
-<blockquote>
 <p>python version:3.5+</p>
-</blockquote>
-<blockquote>
 <p>browser:Chrome</p>
-</blockquote>
-<blockquote>
 <p>webdriver:chromedriver</p>
-</blockquote>
-<blockquote>
 <p>platform:Windows 10</p>
-</blockquote>
 <ol>
 <li>
 <p>首先安装selenium包</p>
@@ -130,10 +122,8 @@ driver.get(&quot;https://www.baidu.com/&quot;)
 <p><del>容我偷个懒</del></p>
 </li>
 </ol>
-<blockquote>
 <h2 id=advance>Advance</h2>
 <p><del>其实也就是一系列踩坑行为</del></p>
-</blockquote>
 <ol>
 <li>
 <h3 id=自定义webdriver以及浏览器可执行文件>自定义webdriver以及浏览器可执行文件</h3>

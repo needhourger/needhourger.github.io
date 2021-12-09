@@ -1,17 +1,17 @@
 <!doctype html><html lang=zh-cn>
 <head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content=" 开始前的碎碎念  为了搭建这个小站，搜索了很多资料，踩了很多坑。这里努力写点有用的东西防止后人踩坑。希望阅读的读者遇到问题时思考自己是否是符合本样例的情况。 这是一篇旨在使用linux服务器+nginx+hexo+git实现搭建个人博客的教学性质文章。
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="开始前的碎碎念 为了搭建这个小站，搜索了很多资料，踩了很多坑。这里努力写点有用的东西防止后人踩坑。希望阅读的读者遇到问题时思考自己是否是符合本样例的情况。 这是一篇旨在使用linux服务器+nginx+hexo+git实现搭建个人博客的教学性质文章。
 "><title>VPS+nginx+hexo搭建个人博客</title>
 <link rel=canonical href=https://blog.yuukisama.cc/p/vps-nginx-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/>
 <link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="VPS+nginx+hexo搭建个人博客">
-<meta property="og:description" content=" 开始前的碎碎念  为了搭建这个小站，搜索了很多资料，踩了很多坑。这里努力写点有用的东西防止后人踩坑。希望阅读的读者遇到问题时思考自己是否是符合本样例的情况。 这是一篇旨在使用linux服务器+nginx+hexo+git实现搭建个人博客的教学性质文章。
+<meta property="og:description" content="开始前的碎碎念 为了搭建这个小站，搜索了很多资料，踩了很多坑。这里努力写点有用的东西防止后人踩坑。希望阅读的读者遇到问题时思考自己是否是符合本样例的情况。 这是一篇旨在使用linux服务器+nginx+hexo+git实现搭建个人博客的教学性质文章。
 ">
 <meta property="og:url" content="https://blog.yuukisama.cc/p/vps-nginx-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
 <meta property="og:site_name" content="零碎记忆">
 <meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="小站成长日记"><meta property="article:tag" content="网站搭建"><meta property="article:published_time" content="2018-12-27T15:54:11+00:00"><meta property="article:modified_time" content="2018-12-27T15:54:11+00:00">
 <meta name=twitter:site content="@Yukiricc">
 <meta name=twitter:creator content="@Yukiricc"><meta name=twitter:title content="VPS+nginx+hexo搭建个人博客">
-<meta name=twitter:description content=" 开始前的碎碎念  为了搭建这个小站，搜索了很多资料，踩了很多坑。这里努力写点有用的东西防止后人踩坑。希望阅读的读者遇到问题时思考自己是否是符合本样例的情况。 这是一篇旨在使用linux服务器+nginx+hexo+git实现搭建个人博客的教学性质文章。
+<meta name=twitter:description content="开始前的碎碎念 为了搭建这个小站，搜索了很多资料，踩了很多坑。这里努力写点有用的东西防止后人踩坑。希望阅读的读者遇到问题时思考自己是否是符合本样例的情况。 这是一篇旨在使用linux服务器+nginx+hexo+git实现搭建个人博客的教学性质文章。
 ">
 <link rel="shortcut icon" href=img/favicon.png>
 </head>
@@ -52,14 +52,10 @@ extended">
 </div>
 </header>
 <section class=article-content>
-<blockquote>
 <h2 id=开始前的碎碎念>开始前的碎碎念</h2>
-</blockquote>
 <h3 id=为了搭建这个小站搜索了很多资料踩了很多坑这里努力写点有用的东西防止后人踩坑希望阅读的读者遇到问题时思考自己是否是符合本样例的情况>为了搭建这个小站，搜索了很多资料，踩了很多坑。这里努力写点有用的东西防止后人踩坑。希望阅读的读者遇到问题时思考自己是否是符合本样例的情况。</h3>
 <p>这是一篇旨在使用linux服务器+nginx+hexo+git实现搭建个人博客的教学性质文章。</p>
-<blockquote>
 <h2 id=requires>requires</h2>
-</blockquote>
 <ul>
 <li>
 <p>一台服务器，本例子是linux centos,阿里的云服务器</p>
@@ -78,9 +74,7 @@ Codename:       Core
 </li>
 </ul>
 <hr>
-<blockquote>
 <h2 id=本地电脑>本地电脑</h2>
-</blockquote>
 <ol>
 <li>
 <p>安装git</p>
@@ -188,9 +182,7 @@ Codename:       Core
 </li>
 </ol>
 <hr>
-<blockquote>
 <h2 id=服务器配置linux>服务器配置（linux）</h2>
-</blockquote>
 <ol>
 <li>
 <p>安装nginx</p>
@@ -315,9 +307,7 @@ git --work-tree=/home/www/blog --git-dir=/home/git/blog.git checkout -f
 </li>
 </ol>
 <hr>
-<blockquote>
 <h2 id=回到本地电脑>回到本地电脑</h2>
-</blockquote>
 <ol>
 <li>
 <p>编辑blog下的配置文件_config.yml</p>

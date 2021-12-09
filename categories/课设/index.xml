@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>课设 on 零碎记忆</title><link>https://blog.yuukisama.cc/categories/%E8%AF%BE%E8%AE%BE/</link><description>Recent content in 课设 on 零碎记忆</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 28 Dec 2018 16:11:13 +0000</lastBuildDate><atom:link href="https://blog.yuukisama.cc/categories/%E8%AF%BE%E8%AE%BE/index.xml" rel="self" type="application/rss+xml"/><item><title>mysql8的安装配置以及JDBC使用</title><link>https://blog.yuukisama.cc/p/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/</link><pubDate>Fri, 28 Dec 2018 16:11:13 +0000</pubDate><guid>https://blog.yuukisama.cc/p/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/</guid><description>&lt;blockquote>
-&lt;h2 id="摘要">摘要&lt;/h2>
-&lt;/blockquote>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>课设 on 零碎记忆</title><link>https://blog.yuukisama.cc/categories/%E8%AF%BE%E8%AE%BE/</link><description>Recent content in 课设 on 零碎记忆</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 28 Dec 2018 16:11:13 +0000</lastBuildDate><atom:link href="https://blog.yuukisama.cc/categories/%E8%AF%BE%E8%AE%BE/index.xml" rel="self" type="application/rss+xml"/><item><title>mysql8的安装配置以及JDBC使用</title><link>https://blog.yuukisama.cc/p/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/</link><pubDate>Fri, 28 Dec 2018 16:11:13 +0000</pubDate><guid>https://blog.yuukisama.cc/p/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/</guid><description>&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>基于windows下mysql 8.0.*版本安装以及配置等操作介绍
 &lt;ul>
@@ -13,15 +11,34 @@
 &lt;/li>
 &lt;li>以及书本《Java简明教程》实列代码的采坑&lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img Sqlserver.jpg 没找到mysql娘的图片 %}&lt;/p></description></item><item><title>k-shell算法Java实现</title><link>https://blog.yuukisama.cc/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/</link><pubDate>Fri, 28 Dec 2018 15:06:28 +0000</pubDate><guid>https://blog.yuukisama.cc/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/</guid><description>&lt;blockquote>
-&lt;h2 id="摘要">摘要&lt;/h2>
-&lt;/blockquote>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/Sqlserver.jpg" >
+&lt;img src="https://blog.yuukisama.cc/Sqlserver.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p></description></item><item><title>k-shell算法Java实现</title><link>https://blog.yuukisama.cc/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/</link><pubDate>Fri, 28 Dec 2018 15:06:28 +0000</pubDate><guid>https://blog.yuukisama.cc/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/</guid><description>&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>本文章是基于个人对k-shell算法的理解，若有偏颇还望指正。&lt;/li>
 &lt;li>基于java实现的k-shell算法，文末附源码，仅供学习。&lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img xiaoling.jpg 这也是位码农哦 %}&lt;/p></description></item><item><title>Dijkstra算法课设</title><link>https://blog.yuukisama.cc/p/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/</link><pubDate>Thu, 27 Dec 2018 18:35:23 +0000</pubDate><guid>https://blog.yuukisama.cc/p/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/</guid><description>&lt;blockquote>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/xiaoling.jpg" >
+&lt;img src="https://blog.yuukisama.cc/xiaoling.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p></description></item><item><title>Dijkstra算法课设</title><link>https://blog.yuukisama.cc/p/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/</link><pubDate>Thu, 27 Dec 2018 18:35:23 +0000</pubDate><guid>https://blog.yuukisama.cc/p/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/</guid><description>&lt;blockquote>
 &lt;h2 id="dijkstra算法课设">Dijkstra算法课设&lt;/h2>
 &lt;/blockquote>
 &lt;p>数据结构课程中的经典算法。我会将一些程序系统设计过程中的一些小细节问题（暂且称之为小细节把，因为我也不知道拿什么次比较准确），并在最后附上程序所有源码。作为一个曾经的苟若的算法狗（现在依旧小垃圾）,很多数据结构在实现的时候没必要照抄《数据结构》书上那套迂腐的东西，那终究是伪代码，而且反人类&lt;del>当然如果你就是十分喜欢结构体的使用的话不拦着你&lt;/del>。&lt;/p>
-&lt;p>{% asset_img miao.jpg This is an test image %}&lt;/p></description></item></channel></rss>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/miao.jpg" >
+&lt;img src="https://blog.yuukisama.cc/miao.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p></description></item></channel></rss>

@@ -1,25 +1,31 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>象牙塔 on 零碎记忆</title><link>https://blog.yuukisama.cc/categories/%E8%B1%A1%E7%89%99%E5%A1%94/</link><description>Recent content in 象牙塔 on 零碎记忆</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 29 May 2019 11:04:15 +0000</lastBuildDate><atom:link href="https://blog.yuukisama.cc/categories/%E8%B1%A1%E7%89%99%E5%A1%94/index.xml" rel="self" type="application/rss+xml"/><item><title>MYSQL密码重置详解</title><link>https://blog.yuukisama.cc/p/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/</link><pubDate>Wed, 29 May 2019 11:04:15 +0000</pubDate><guid>https://blog.yuukisama.cc/p/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/</guid><description>&lt;blockquote>
-&lt;h2 id="摘要">摘要&lt;/h2>
-&lt;/blockquote>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>象牙塔 on 零碎记忆</title><link>https://blog.yuukisama.cc/categories/%E8%B1%A1%E7%89%99%E5%A1%94/</link><description>Recent content in 象牙塔 on 零碎记忆</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 29 May 2019 11:04:15 +0000</lastBuildDate><atom:link href="https://blog.yuukisama.cc/categories/%E8%B1%A1%E7%89%99%E5%A1%94/index.xml" rel="self" type="application/rss+xml"/><item><title>MYSQL密码重置详解</title><link>https://blog.yuukisama.cc/p/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/</link><pubDate>Wed, 29 May 2019 11:04:15 +0000</pubDate><guid>https://blog.yuukisama.cc/p/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/</guid><description>&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>很多同学在学习数据库操作的过程中，总会因为某些莫名奇妙的原因导致数据库密码变动，而到了不得不重置数据库密码的情况。本文主要讲解一下各个版本的MYSQL数据库重置密码的方法。&lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img 1.jpg %}&lt;/p></description></item><item><title>MySQL导入csv文件数据</title><link>https://blog.yuukisama.cc/p/mysql%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/</link><pubDate>Wed, 15 May 2019 15:33:28 +0000</pubDate><guid>https://blog.yuukisama.cc/p/mysql%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/</guid><description>&lt;blockquote>
-&lt;h2 id="摘要">摘要&lt;/h2>
-&lt;/blockquote>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/1.jpg" >
+&lt;img src="https://blog.yuukisama.cc/1.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p></description></item><item><title>MySQL导入csv文件数据</title><link>https://blog.yuukisama.cc/p/mysql%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/</link><pubDate>Wed, 15 May 2019 15:33:28 +0000</pubDate><guid>https://blog.yuukisama.cc/p/mysql%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/</guid><description>&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>记录关于MySQL从csv文件导入数据的一些采坑记录&lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img star.jpg %}&lt;/p></description></item><item><title>C语言基础精炼</title><link>https://blog.yuukisama.cc/p/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/</link><pubDate>Sat, 30 Mar 2019 21:46:48 +0000</pubDate><guid>https://blog.yuukisama.cc/p/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/</guid><description>&lt;blockquote>
-&lt;h2 id="前言">前言：&lt;/h2>
-&lt;/blockquote>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/star.jpg" >
+&lt;img src="https://blog.yuukisama.cc/star.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p></description></item><item><title>C语言基础精炼</title><link>https://blog.yuukisama.cc/p/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/</link><pubDate>Sat, 30 Mar 2019 21:46:48 +0000</pubDate><guid>https://blog.yuukisama.cc/p/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/</guid><description>&lt;h2 id="前言">前言：&lt;/h2>
 &lt;ul>
 &lt;li>这是一篇有关C语言语法基础的精炼概述性质文章，不会涉及C语言一些有深度的内容&lt;/li>
 &lt;li>本文面向的是以大学C考试过关为目标，以计算机二级认证为目标，期望获得一个C语言最基础认识的读者&lt;/li>
 &lt;li>博主能力有限，可能某些知识点未能讲解清晰，某些知识点遗漏，甚至某些知识点错误，若发现以上问题欢迎邮件勘误。&lt;/li>
-&lt;/ul></description></item><item><title>mysql8的安装配置以及JDBC使用</title><link>https://blog.yuukisama.cc/p/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/</link><pubDate>Fri, 28 Dec 2018 16:11:13 +0000</pubDate><guid>https://blog.yuukisama.cc/p/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/</guid><description>&lt;blockquote>
-&lt;h2 id="摘要">摘要&lt;/h2>
-&lt;/blockquote>
+&lt;/ul></description></item><item><title>mysql8的安装配置以及JDBC使用</title><link>https://blog.yuukisama.cc/p/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/</link><pubDate>Fri, 28 Dec 2018 16:11:13 +0000</pubDate><guid>https://blog.yuukisama.cc/p/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/</guid><description>&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>基于windows下mysql 8.0.*版本安装以及配置等操作介绍
 &lt;ul>
@@ -32,15 +38,34 @@
 &lt;/li>
 &lt;li>以及书本《Java简明教程》实列代码的采坑&lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img Sqlserver.jpg 没找到mysql娘的图片 %}&lt;/p></description></item><item><title>k-shell算法Java实现</title><link>https://blog.yuukisama.cc/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/</link><pubDate>Fri, 28 Dec 2018 15:06:28 +0000</pubDate><guid>https://blog.yuukisama.cc/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/</guid><description>&lt;blockquote>
-&lt;h2 id="摘要">摘要&lt;/h2>
-&lt;/blockquote>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/Sqlserver.jpg" >
+&lt;img src="https://blog.yuukisama.cc/Sqlserver.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p></description></item><item><title>k-shell算法Java实现</title><link>https://blog.yuukisama.cc/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/</link><pubDate>Fri, 28 Dec 2018 15:06:28 +0000</pubDate><guid>https://blog.yuukisama.cc/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/</guid><description>&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>本文章是基于个人对k-shell算法的理解，若有偏颇还望指正。&lt;/li>
 &lt;li>基于java实现的k-shell算法，文末附源码，仅供学习。&lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img xiaoling.jpg 这也是位码农哦 %}&lt;/p></description></item><item><title>Dijkstra算法课设</title><link>https://blog.yuukisama.cc/p/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/</link><pubDate>Thu, 27 Dec 2018 18:35:23 +0000</pubDate><guid>https://blog.yuukisama.cc/p/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/</guid><description>&lt;blockquote>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/xiaoling.jpg" >
+&lt;img src="https://blog.yuukisama.cc/xiaoling.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p></description></item><item><title>Dijkstra算法课设</title><link>https://blog.yuukisama.cc/p/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/</link><pubDate>Thu, 27 Dec 2018 18:35:23 +0000</pubDate><guid>https://blog.yuukisama.cc/p/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/</guid><description>&lt;blockquote>
 &lt;h2 id="dijkstra算法课设">Dijkstra算法课设&lt;/h2>
 &lt;/blockquote>
 &lt;p>数据结构课程中的经典算法。我会将一些程序系统设计过程中的一些小细节问题（暂且称之为小细节把，因为我也不知道拿什么次比较准确），并在最后附上程序所有源码。作为一个曾经的苟若的算法狗（现在依旧小垃圾）,很多数据结构在实现的时候没必要照抄《数据结构》书上那套迂腐的东西，那终究是伪代码，而且反人类&lt;del>当然如果你就是十分喜欢结构体的使用的话不拦着你&lt;/del>。&lt;/p>
-&lt;p>{% asset_img miao.jpg This is an test image %}&lt;/p></description></item></channel></rss>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/miao.jpg" >
+&lt;img src="https://blog.yuukisama.cc/miao.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p></description></item></channel></rss>

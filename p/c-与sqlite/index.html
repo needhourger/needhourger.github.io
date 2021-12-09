@@ -1,17 +1,17 @@
 <!doctype html><html lang=zh-cn>
 <head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content=" 摘要   本文主要讲解了C++对接sqlite3数据库的配置以及相关操作 IDE：Visual Studio 2017 SQLite3  {% asset_img sqlite.jpg %}
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="摘要  本文主要讲解了C++对接sqlite3数据库的配置以及相关操作 IDE：Visual Studio 2017 SQLite3   
 "><title>C++与SQLite</title>
 <link rel=canonical href=https://blog.yuukisama.cc/p/c-%E4%B8%8Esqlite/>
 <link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="C++与SQLite">
-<meta property="og:description" content=" 摘要   本文主要讲解了C++对接sqlite3数据库的配置以及相关操作 IDE：Visual Studio 2017 SQLite3  {% asset_img sqlite.jpg %}
+<meta property="og:description" content="摘要  本文主要讲解了C++对接sqlite3数据库的配置以及相关操作 IDE：Visual Studio 2017 SQLite3   
 ">
 <meta property="og:url" content="https://blog.yuukisama.cc/p/c-%E4%B8%8Esqlite/">
 <meta property="og:site_name" content="零碎记忆">
 <meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="C/C++"><meta property="article:tag" content="数据库"><meta property="article:published_time" content="2019-05-14T08:47:25+00:00"><meta property="article:modified_time" content="2019-05-14T08:47:25+00:00">
 <meta name=twitter:site content="@Yukiricc">
 <meta name=twitter:creator content="@Yukiricc"><meta name=twitter:title content="C++与SQLite">
-<meta name=twitter:description content=" 摘要   本文主要讲解了C++对接sqlite3数据库的配置以及相关操作 IDE：Visual Studio 2017 SQLite3  {% asset_img sqlite.jpg %}
+<meta name=twitter:description content="摘要  本文主要讲解了C++对接sqlite3数据库的配置以及相关操作 IDE：Visual Studio 2017 SQLite3   
 ">
 <link rel="shortcut icon" href=img/favicon.png>
 </head>
@@ -49,44 +49,42 @@ C/C++
 </div>
 </header>
 <section class=article-content>
-<blockquote>
 <h2 id=摘要>摘要</h2>
-</blockquote>
 <ul>
 <li>本文主要讲解了C++对接sqlite3数据库的配置以及相关操作</li>
 <li>IDE：Visual Studio 2017</li>
 <li>SQLite3</li>
 </ul>
-<p>{% asset_img sqlite.jpg %}</p>
-<blockquote>
+<p><figure>
+<a href=/sqlite.jpg>
+<img src=/sqlite.jpg loading=lazy>
+</a>
+</figure></p>
 <h2 id=碎碎念>碎碎念</h2>
-</blockquote>
 <p>敲代码不接触数据库几乎是不可能的。但是很多学校开设的课程都是从Mysql开始的，导致很多学生一些项目就是Mysql。毫无疑问Mysql是很强大的，但是有的时候我们真的很需要因地制宜选择更加合适的数据库。<del>其实还是因为C++&Mysql的模式本垃圾配置不来</del></p>
-<blockquote>
 <h2 id=sqlite3-简介>SQLite3 简介</h2>
-</blockquote>
 <ul>
 <li>SQLite是一个进程内的库，实现了完全的自给自足的，无服务器的，零配置的，事务性的SQL数据库引擎。</li>
 <li>零配置意味着你不需要在任何一台机器上像mysql一样进行复杂的配置</li>
 <li>SQLite正如其名，轻量级，操作方便。毫无疑问相对于功能强大的mysql它缺少了很多相应的其他功能，但是如果你不准备采取分布式结构分离数据应用，复杂的数据库功能，只是需要一个轻量化便捷的数据库基础功能，SQLite是你最好的选择</li>
 <li><del>嗯，sqlite的c++API也不像mysql的那么变态</del></li>
 </ul>
-<blockquote>
 <h2 id=下载sqlite3>下载SQLite3</h2>
-</blockquote>
 <ul>
 <li>
 <p>依据你的需要的系统版本在SQLite官方下载源代码版本 <a class=link href=https://www.sqlite.org/download.html target=_blank rel=noopener>官方下载界面</a></p>
-<p>{% asset_img 1.png %}</p>
+<p><figure>
+<a href=/1.png>
+<img src=/1.png loading=lazy>
+</a>
+</figure></p>
 <p>SQLite官方给出了编译好的动态链接库方便开发，不过本教程以源代码入手（因为只要配置正确相较于动态链接库文件，本方法调用更为简单，并且效率更高）</p>
 </li>
 <li>
 <p>如图我们选择第一个下载。下载完成之后我们解压到当前文件夹，并修改文件夹为sqlite。把文件夹移动到我们自己的项目里，并在IDE中引入该文件夹。（具体怎么引入瞎几把发挥啦，随你是添加额外项目还是添加额外包含目录，搞通就行hhh）</p>
 </li>
 </ul>
-<blockquote>
 <h2 id=sqlite3的基础操作>SQLite3的基础操作</h2>
-</blockquote>
 <ul>
 <li>sqlite遵循最基本的通用sql语句。所以大部分操作与mysql等一系列其他数据库无差异</li>
 <li>你可以从sqlite3官网下载exe可执行文件用以访问sqlite生成的数据库文件，在可执行文件内，基础的支持命令如下：
@@ -239,9 +237,7 @@ C/C++
 </table>
 </li>
 </ul>
-<blockquote>
 <h2 id=使用c连接sqlite并执行一条sql语句>使用C++连接SQLite并执行一条sql语句</h2>
-</blockquote>
 <pre tabindex=0><code>#include&lt;iostream&gt;
 #include&lt;sqlite3.h&gt;
 using namespace std;
@@ -307,9 +303,7 @@ int main(){
 <p>该函数用以关闭数据库连接，释放内存。所有相关sql语句都应该在连接关闭之前完成，如果仍有sql语句在执行，该函数将返回SQLITE_BUSY错误</p>
 </li>
 </ul>
-<blockquote>
 <h2 id=sqlite3回调函数>sqlite3回调函数</h2>
-</blockquote>
 <ul>
 <li>
 <p><a class=link href=https://blog.csdn.net/qq_29924041/article/details/74857469 target=_blank rel=noopener>什么是回调函数</a></p>
@@ -329,9 +323,7 @@ static int callback(void *data,int argc,char **argv,char **azColName){
     }
     return 0;
 }
-</code></pre><blockquote>
-<h2 id=不用回调函数获取sql结果>不用回调函数获取sql结果</h2>
-</blockquote>
+</code></pre><h2 id=不用回调函数获取sql结果>不用回调函数获取sql结果</h2>
 <ul>
 <li>sqlite的回调函数尽管已经很方便，但是对于某些情景的应用时却力不从心，有什么办法可以不适用回调函数也获取sql的执行结果么？答案是有的</li>
 </ul>
@@ -362,9 +354,7 @@ static int callback(void *data,int argc,char **argv,char **azColName){
     return;
 }
 </code></pre><p>sqlite还有很多其他的函数用以获取sql语句执行结果，详情可以参见官方文档</p>
-<blockquote>
 <h2 id=构造sql语句并执行>构造sql语句并执行</h2>
-</blockquote>
 <ul>
 <li>尽管一旦程序中有接收用户参数动态构造sql语句的程序实现，就通常意味着sql注入漏洞的存在，但是数据库与用户输入数据的交互几乎是不可能不存在的。所以下面我们介绍有关构造sql语句的方法</li>
 </ul>
@@ -403,9 +393,7 @@ sqlite3_bind_text(stmt,pos,&quot;halloworld&quot;,strlen(&quot;halloworld&quot;)
 </code></pre><p><del>据说</del>使用sqlite3_bind_*()函数相对使用字符串处理函数更为节省内存，有一定程度可以规避sql注入攻击的效果（这里我感觉不是很苟同，这段是网上说的）</p>
 </li>
 </ol>
-<blockquote>
 <h2 id=中文字符编码问题>中文字符编码问题</h2>
-</blockquote>
 <p>Visual studio等一众Win下的IDE，编辑器默认编码不是utf-8，而sqlite3默认的字符编码是utf-8.于是又到了我们喜闻乐见的字符编码问题。这里给大家安利一波函数，方便的进行字符格式转换。</p>
 <p><strong>请将如下代码全部纳入你的项目中因为函数之间存在相互调用问题</strong></p>
 <pre tabindex=0><code>//UTF-8转Unicode 

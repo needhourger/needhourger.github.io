@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 零碎记忆</title><link>https://blog.yuukisama.cc/post/</link><description>Recent content in Posts on 零碎记忆</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 04 Jul 2019 23:07:04 +0000</lastBuildDate><atom:link href="https://blog.yuukisama.cc/post/index.xml" rel="self" type="application/rss+xml"/><item><title>YuukiSama的求生之路私服</title><link>https://blog.yuukisama.cc/p/yuukisama%E7%9A%84%E6%B1%82%E7%94%9F%E4%B9%8B%E8%B7%AF%E7%A7%81%E6%9C%8D/</link><pubDate>Thu, 04 Jul 2019 23:07:04 +0000</pubDate><guid>https://blog.yuukisama.cc/p/yuukisama%E7%9A%84%E6%B1%82%E7%94%9F%E4%B9%8B%E8%B7%AF%E7%A7%81%E6%9C%8D/</guid><description>{% asset_img 1.jpg %} {% asset_img 2.jpg %}</description></item><item><title>2019信安国赛出题经历</title><link>https://blog.yuukisama.cc/p/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/</link><pubDate>Wed, 05 Jun 2019 15:22:45 +0000</pubDate><guid>https://blog.yuukisama.cc/p/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/</guid><description>&lt;blockquote>
-&lt;h2 id="前言">前言&lt;/h2>
-&lt;/blockquote>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 零碎记忆</title><link>https://blog.yuukisama.cc/post/</link><description>Recent content in Posts on 零碎记忆</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 04 Jul 2019 23:07:04 +0000</lastBuildDate><atom:link href="https://blog.yuukisama.cc/post/index.xml" rel="self" type="application/rss+xml"/><item><title>YuukiSama的求生之路私服</title><link>https://blog.yuukisama.cc/p/yuukisama%E7%9A%84%E6%B1%82%E7%94%9F%E4%B9%8B%E8%B7%AF%E7%A7%81%E6%9C%8D/</link><pubDate>Thu, 04 Jul 2019 23:07:04 +0000</pubDate><guid>https://blog.yuukisama.cc/p/yuukisama%E7%9A%84%E6%B1%82%E7%94%9F%E4%B9%8B%E8%B7%AF%E7%A7%81%E6%9C%8D/</guid><description/></item><item><title>2019信安国赛出题经历</title><link>https://blog.yuukisama.cc/p/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/</link><pubDate>Wed, 05 Jun 2019 15:22:45 +0000</pubDate><guid>https://blog.yuukisama.cc/p/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
 &lt;ul>
 &lt;li>无力吐槽的信安国赛，段子乎喷了上届比赛有多坑，感觉这届也不差啊？&lt;/li>
 &lt;li>算了，我知道是我太菜。&lt;/li>
@@ -10,29 +8,56 @@
 &lt;li>本博客记录了一篇2019信安国赛复赛本队出题的一些经历。包括题目思路，搭建方法，以及writeup。&lt;/li>
 &lt;li>尽管我们没有最后参加复赛，但是也发现出题是一个很好的锻炼方式。&lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img 1.jpeg %}&lt;/p></description></item><item><title>MYSQL密码重置详解</title><link>https://blog.yuukisama.cc/p/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/</link><pubDate>Wed, 29 May 2019 11:04:15 +0000</pubDate><guid>https://blog.yuukisama.cc/p/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/</guid><description>&lt;blockquote>
-&lt;h2 id="摘要">摘要&lt;/h2>
-&lt;/blockquote>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 166;
+flex-basis: 400px"
+>
+&lt;a href="https://blog.yuukisama.cc/p/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/1.jpeg" data-size="1280x768">
+&lt;img src="https://blog.yuukisama.cc/p/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/1.jpeg"
+width="1280"
+height="768"
+srcset="https://blog.yuukisama.cc/p/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/1_hua3dd05f974f1a431fbeb9c680d95411e_112468_480x0_resize_q75_box.jpeg 480w, https://blog.yuukisama.cc/p/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/1_hua3dd05f974f1a431fbeb9c680d95411e_112468_1024x0_resize_q75_box.jpeg 1024w"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p></description></item><item><title>MYSQL密码重置详解</title><link>https://blog.yuukisama.cc/p/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/</link><pubDate>Wed, 29 May 2019 11:04:15 +0000</pubDate><guid>https://blog.yuukisama.cc/p/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/</guid><description>&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>很多同学在学习数据库操作的过程中，总会因为某些莫名奇妙的原因导致数据库密码变动，而到了不得不重置数据库密码的情况。本文主要讲解一下各个版本的MYSQL数据库重置密码的方法。&lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img 1.jpg %}&lt;/p></description></item><item><title>MySQL导入csv文件数据</title><link>https://blog.yuukisama.cc/p/mysql%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/</link><pubDate>Wed, 15 May 2019 15:33:28 +0000</pubDate><guid>https://blog.yuukisama.cc/p/mysql%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/</guid><description>&lt;blockquote>
-&lt;h2 id="摘要">摘要&lt;/h2>
-&lt;/blockquote>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/1.jpg" >
+&lt;img src="https://blog.yuukisama.cc/1.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p></description></item><item><title>MySQL导入csv文件数据</title><link>https://blog.yuukisama.cc/p/mysql%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/</link><pubDate>Wed, 15 May 2019 15:33:28 +0000</pubDate><guid>https://blog.yuukisama.cc/p/mysql%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/</guid><description>&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>记录关于MySQL从csv文件导入数据的一些采坑记录&lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img star.jpg %}&lt;/p></description></item><item><title>C++与SQLite</title><link>https://blog.yuukisama.cc/p/c-%E4%B8%8Esqlite/</link><pubDate>Tue, 14 May 2019 08:47:25 +0000</pubDate><guid>https://blog.yuukisama.cc/p/c-%E4%B8%8Esqlite/</guid><description>&lt;blockquote>
-&lt;h2 id="摘要">摘要&lt;/h2>
-&lt;/blockquote>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/star.jpg" >
+&lt;img src="https://blog.yuukisama.cc/star.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p></description></item><item><title>C++与SQLite</title><link>https://blog.yuukisama.cc/p/c-%E4%B8%8Esqlite/</link><pubDate>Tue, 14 May 2019 08:47:25 +0000</pubDate><guid>https://blog.yuukisama.cc/p/c-%E4%B8%8Esqlite/</guid><description>&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>本文主要讲解了C++对接sqlite3数据库的配置以及相关操作&lt;/li>
 &lt;li>IDE：Visual Studio 2017&lt;/li>
 &lt;li>SQLite3&lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img sqlite.jpg %}&lt;/p></description></item><item><title>Python requests ssl报错</title><link>https://blog.yuukisama.cc/p/python-requests-ssl%E6%8A%A5%E9%94%99/</link><pubDate>Tue, 16 Apr 2019 23:23:02 +0000</pubDate><guid>https://blog.yuukisama.cc/p/python-requests-ssl%E6%8A%A5%E9%94%99/</guid><description>&lt;blockquote>
-&lt;h2 id="问题背景">问题背景&lt;/h2>
-&lt;/blockquote>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/sqlite.jpg" >
+&lt;img src="https://blog.yuukisama.cc/sqlite.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p></description></item><item><title>Python requests ssl报错</title><link>https://blog.yuukisama.cc/p/python-requests-ssl%E6%8A%A5%E9%94%99/</link><pubDate>Tue, 16 Apr 2019 23:23:02 +0000</pubDate><guid>https://blog.yuukisama.cc/p/python-requests-ssl%E6%8A%A5%E9%94%99/</guid><description>&lt;h2 id="问题背景">问题背景&lt;/h2>
 &lt;ul>
 &lt;li>这是遇到的一个天坑！ &lt;del>这么过分的坑一定要写下来！！！！&lt;/del>&lt;/li>
 &lt;li>项目需求：
@@ -48,9 +73,7 @@ requests.exceptions.SSLError: HTTPSConnectionPool(host='msft.com', port=443): Ma
 ......
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>本文就来好好踩踩这些坑&lt;/li>
-&lt;/ul></description></item><item><title>C语言基础精炼</title><link>https://blog.yuukisama.cc/p/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/</link><pubDate>Sat, 30 Mar 2019 21:46:48 +0000</pubDate><guid>https://blog.yuukisama.cc/p/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/</guid><description>&lt;blockquote>
-&lt;h2 id="前言">前言：&lt;/h2>
-&lt;/blockquote>
+&lt;/ul></description></item><item><title>C语言基础精炼</title><link>https://blog.yuukisama.cc/p/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/</link><pubDate>Sat, 30 Mar 2019 21:46:48 +0000</pubDate><guid>https://blog.yuukisama.cc/p/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/</guid><description>&lt;h2 id="前言">前言：&lt;/h2>
 &lt;ul>
 &lt;li>这是一篇有关C语言语法基础的精炼概述性质文章，不会涉及C语言一些有深度的内容&lt;/li>
 &lt;li>本文面向的是以大学C考试过关为目标，以计算机二级认证为目标，期望获得一个C语言最基础认识的读者&lt;/li>
@@ -67,9 +90,15 @@ requests.exceptions.SSLError: HTTPSConnectionPool(host='msft.com', port=443): Ma
 &lt;p>词向量训练:在自然语言处理中将每个单词映射到一个空间向量过程,从而获得每个词汇之间的关联性.(可能说的不太对,大概就这样吧,不是理论帝)&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img 0.jpg 少数正经的图 %}&lt;/p></description></item><item><title>高阶爬虫selenium摘记</title><link>https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/</link><pubDate>Fri, 08 Mar 2019 14:46:18 +0000</pubDate><guid>https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/</guid><description>&lt;blockquote>
-&lt;h2 id="概述">概述&lt;/h2>
-&lt;/blockquote>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/0.jpg" >
+&lt;img src="https://blog.yuukisama.cc/0.jpg"
+loading="lazy"
+alt=" 少数正经的图">
+&lt;/a>
+&lt;figcaption>少数正经的图&lt;/figcaption>
+&lt;/figure>&lt;/p></description></item><item><title>高阶爬虫selenium摘记</title><link>https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/</link><pubDate>Fri, 08 Mar 2019 14:46:18 +0000</pubDate><guid>https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/</guid><description>&lt;h2 id="概述">概述&lt;/h2>
 &lt;ul>
 &lt;li>
 &lt;p>本文记录一些有关python高阶爬虫selenium+浏览器爬虫操作的踩坑记录.&lt;/p>
@@ -80,12 +109,34 @@ requests.exceptions.SSLError: HTTPSConnectionPool(host='msft.com', port=443): Ma
 &lt;p>selenium简单的说就是通过各种webdirver驱动去控制浏览器去访问网站,完成各种操作,从而达到爬取数据的目的.可以有效的规避多数反爬虫机制,列如用js动态生成的网站&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img selenium.jpeg null %}&lt;/p></description></item><item><title>Python常用Skill</title><link>https://blog.yuukisama.cc/p/python%E5%B8%B8%E7%94%A8skill/</link><pubDate>Fri, 25 Jan 2019 17:01:19 +0000</pubDate><guid>https://blog.yuukisama.cc/p/python%E5%B8%B8%E7%94%A8skill/</guid><description>&lt;blockquote>
-&lt;h2 id="python常用技能汇总">Python常用技能汇总&lt;/h2>
-&lt;p>这里是一些写python脚本时常用的小技巧,长期更新
-&lt;del>咕咕咕&lt;/del>&lt;/p>
-&lt;/blockquote>
-&lt;p>{% asset_img Python.jpg Python娘,来源于萌娘百科 %}&lt;/p></description></item><item><title>VC++调用外部exe并获取程序运行输出</title><link>https://blog.yuukisama.cc/p/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/</link><pubDate>Thu, 17 Jan 2019 12:16:36 +0000</pubDate><guid>https://blog.yuukisama.cc/p/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/</guid><description>&lt;blockquote>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 192;
+flex-basis: 461px"
+>
+&lt;a href="https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/selenium.jpeg" data-size="1280x666">
+&lt;img src="https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/selenium.jpeg"
+width="1280"
+height="666"
+srcset="https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/selenium_hu1a85fdc8012b385a5c1655565cef00ab_85451_480x0_resize_q75_box.jpeg 480w, https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/selenium_hu1a85fdc8012b385a5c1655565cef00ab_85451_1024x0_resize_q75_box.jpeg 1024w"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p></description></item><item><title>Python常用Skill</title><link>https://blog.yuukisama.cc/p/python%E5%B8%B8%E7%94%A8skill/</link><pubDate>Fri, 25 Jan 2019 17:01:19 +0000</pubDate><guid>https://blog.yuukisama.cc/p/python%E5%B8%B8%E7%94%A8skill/</guid><description>&lt;h2 id="python常用技能汇总">Python常用技能汇总&lt;/h2>
+&lt;ul>
+&lt;li>这里是一些写python脚本时常用的小技巧,长期更新
+&lt;del>咕咕咕&lt;/del>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/Python.jpg" >
+&lt;img src="https://blog.yuukisama.cc/Python.jpg"
+loading="lazy"
+alt="Python娘,来源于萌娘百科">
+&lt;/a>
+&lt;figcaption>Python娘,来源于萌娘百科&lt;/figcaption>
+&lt;/figure>&lt;/p></description></item><item><title>VC++调用外部exe并获取程序运行输出</title><link>https://blog.yuukisama.cc/p/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/</link><pubDate>Thu, 17 Jan 2019 12:16:36 +0000</pubDate><guid>https://blog.yuukisama.cc/p/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/</guid><description>&lt;blockquote>
 &lt;h2 id="摘要">摘要&lt;/h2>
 &lt;/blockquote>
 &lt;ul>
@@ -108,26 +159,51 @@ requests.exceptions.SSLError: HTTPSConnectionPool(host='msft.com', port=443): Ma
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img lobei.jpg 萝卜啊！赐予我力量！ %}&lt;/p></description></item><item><title>多终端更新hexo博客配置方法</title><link>https://blog.yuukisama.cc/p/%E5%A4%9A%E7%BB%88%E7%AB%AF%E6%9B%B4%E6%96%B0hexo%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/</link><pubDate>Wed, 02 Jan 2019 17:27:22 +0000</pubDate><guid>https://blog.yuukisama.cc/p/%E5%A4%9A%E7%BB%88%E7%AB%AF%E6%9B%B4%E6%96%B0hexo%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/</guid><description>&lt;blockquote>
-&lt;h2 id="概述">概述&lt;/h2>
-&lt;/blockquote>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/lobei.jpg" >
+&lt;img src="https://blog.yuukisama.cc/lobei.jpg"
+loading="lazy"
+alt="萝卜啊！赐予我力量！">
+&lt;/a>
+&lt;figcaption>萝卜啊！赐予我力量！&lt;/figcaption>
+&lt;/figure>&lt;/p></description></item><item><title>多终端更新hexo博客配置方法</title><link>https://blog.yuukisama.cc/p/%E5%A4%9A%E7%BB%88%E7%AB%AF%E6%9B%B4%E6%96%B0hexo%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/</link><pubDate>Wed, 02 Jan 2019 17:27:22 +0000</pubDate><guid>https://blog.yuukisama.cc/p/%E5%A4%9A%E7%BB%88%E7%AB%AF%E6%9B%B4%E6%96%B0hexo%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/</guid><description>&lt;h2 id="概述">概述&lt;/h2>
 &lt;ul>
 &lt;li>本文的基础都建立在小站成长日记系列的基础上。本教程默认你参照小站成长日记系列之前的教程完成了相关配置&lt;/li>
 &lt;li>博主本人电脑双系统，考虑到在不同设备终端更新博客的需求，于是有了下面这篇文章。&lt;/li>
 &lt;li>&lt;strong>实现方法简述：&lt;/strong> 使用git创建新的分支用来存放hexo博客本身&lt;/li>
 &lt;li>文末附kali下的小采坑&lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img sample.jpg 瞎几把找的图片可爱就完事了 %}&lt;/p></description></item><item><title>Centos 7 yum安装Mariadb</title><link>https://blog.yuukisama.cc/p/centos-7-yum%E5%AE%89%E8%A3%85mariadb/</link><pubDate>Sat, 29 Dec 2018 15:51:00 +0000</pubDate><guid>https://blog.yuukisama.cc/p/centos-7-yum%E5%AE%89%E8%A3%85mariadb/</guid><description>&lt;blockquote>
-&lt;h2 id="摘要">摘要&lt;/h2>
-&lt;/blockquote>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 160;
+flex-basis: 384px"
+>
+&lt;a href="https://blog.yuukisama.cc/p/%E5%A4%9A%E7%BB%88%E7%AB%AF%E6%9B%B4%E6%96%B0hexo%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/sample.jpg" data-size="576x360">
+&lt;img src="https://blog.yuukisama.cc/p/%E5%A4%9A%E7%BB%88%E7%AB%AF%E6%9B%B4%E6%96%B0hexo%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/sample.jpg"
+width="576"
+height="360"
+srcset="https://blog.yuukisama.cc/p/%E5%A4%9A%E7%BB%88%E7%AB%AF%E6%9B%B4%E6%96%B0hexo%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/sample_hu484c1878a8f84112ca09f7361403efdc_93335_480x0_resize_q75_box.jpg 480w, https://blog.yuukisama.cc/p/%E5%A4%9A%E7%BB%88%E7%AB%AF%E6%9B%B4%E6%96%B0hexo%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/sample_hu484c1878a8f84112ca09f7361403efdc_93335_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="瞎几把找的图片可爱就完事了">
+&lt;/a>
+&lt;figcaption>瞎几把找的图片可爱就完事了&lt;/figcaption>
+&lt;/figure>&lt;/p></description></item><item><title>Centos 7 yum安装Mariadb</title><link>https://blog.yuukisama.cc/p/centos-7-yum%E5%AE%89%E8%A3%85mariadb/</link><pubDate>Sat, 29 Dec 2018 15:51:00 +0000</pubDate><guid>https://blog.yuukisama.cc/p/centos-7-yum%E5%AE%89%E8%A3%85mariadb/</guid><description>&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>Centos7 下安装mariaDB数据库的操作记录。&lt;/li>
 &lt;li>MariaDB数据库是mysql的衍生版。centos发行版在centos6之后就将默认数据库改为了mariadb。&lt;a class="link" href="https://www.zhihu.com/question/41832866" target="_blank" rel="noopener"
 >因为MySQL被甲骨文公司收购后存在闭源风险&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img Linux.jpg 图片来源萌娘百科 %}&lt;/p></description></item><item><title>mysql8的安装配置以及JDBC使用</title><link>https://blog.yuukisama.cc/p/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/</link><pubDate>Fri, 28 Dec 2018 16:11:13 +0000</pubDate><guid>https://blog.yuukisama.cc/p/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/</guid><description>&lt;blockquote>
-&lt;h2 id="摘要">摘要&lt;/h2>
-&lt;/blockquote>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/Linux.jpg" >
+&lt;img src="https://blog.yuukisama.cc/Linux.jpg"
+loading="lazy"
+alt="图片来源萌娘百科">
+&lt;/a>
+&lt;figcaption>图片来源萌娘百科&lt;/figcaption>
+&lt;/figure>&lt;/p></description></item><item><title>mysql8的安装配置以及JDBC使用</title><link>https://blog.yuukisama.cc/p/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/</link><pubDate>Fri, 28 Dec 2018 16:11:13 +0000</pubDate><guid>https://blog.yuukisama.cc/p/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/</guid><description>&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>基于windows下mysql 8.0.*版本安装以及配置等操作介绍
 &lt;ul>
@@ -140,27 +216,50 @@ requests.exceptions.SSLError: HTTPSConnectionPool(host='msft.com', port=443): Ma
 &lt;/li>
 &lt;li>以及书本《Java简明教程》实列代码的采坑&lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img Sqlserver.jpg 没找到mysql娘的图片 %}&lt;/p></description></item><item><title>k-shell算法Java实现</title><link>https://blog.yuukisama.cc/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/</link><pubDate>Fri, 28 Dec 2018 15:06:28 +0000</pubDate><guid>https://blog.yuukisama.cc/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/</guid><description>&lt;blockquote>
-&lt;h2 id="摘要">摘要&lt;/h2>
-&lt;/blockquote>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/Sqlserver.jpg" >
+&lt;img src="https://blog.yuukisama.cc/Sqlserver.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p></description></item><item><title>k-shell算法Java实现</title><link>https://blog.yuukisama.cc/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/</link><pubDate>Fri, 28 Dec 2018 15:06:28 +0000</pubDate><guid>https://blog.yuukisama.cc/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/</guid><description>&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>本文章是基于个人对k-shell算法的理解，若有偏颇还望指正。&lt;/li>
 &lt;li>基于java实现的k-shell算法，文末附源码，仅供学习。&lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img xiaoling.jpg 这也是位码农哦 %}&lt;/p></description></item><item><title>小站成长日记-搜索引擎可发现</title><link>https://blog.yuukisama.cc/p/%E5%B0%8F%E7%AB%99%E6%88%90%E9%95%BF%E6%97%A5%E8%AE%B0-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E5%8F%AF%E5%8F%91%E7%8E%B0/</link><pubDate>Thu, 27 Dec 2018 23:53:12 +0000</pubDate><guid>https://blog.yuukisama.cc/p/%E5%B0%8F%E7%AB%99%E6%88%90%E9%95%BF%E6%97%A5%E8%AE%B0-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E5%8F%AF%E5%8F%91%E7%8E%B0/</guid><description>&lt;blockquote>
-&lt;h2 id="摘要">摘要&lt;/h2>
-&lt;/blockquote>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/xiaoling.jpg" >
+&lt;img src="https://blog.yuukisama.cc/xiaoling.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p></description></item><item><title>小站成长日记-搜索引擎可发现</title><link>https://blog.yuukisama.cc/p/%E5%B0%8F%E7%AB%99%E6%88%90%E9%95%BF%E6%97%A5%E8%AE%B0-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E5%8F%AF%E5%8F%91%E7%8E%B0/</link><pubDate>Thu, 27 Dec 2018 23:53:12 +0000</pubDate><guid>https://blog.yuukisama.cc/p/%E5%B0%8F%E7%AB%99%E6%88%90%E9%95%BF%E6%97%A5%E8%AE%B0-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E5%8F%AF%E5%8F%91%E7%8E%B0/</guid><description>&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>本文介绍了如何让搜索引擎可以搜索本站，小站成长的一步~&lt;/li>
 &lt;li>搜索引擎检索至少需要你的网站有域名（不建议没有域名）因此国内就需要进行备案等等一系列的操作，如果尚未备案的可以完成备案之后再尝试。&lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img baidu.jpg 谷歌娘 %}&lt;/p></description></item><item><title>Dijkstra算法课设</title><link>https://blog.yuukisama.cc/p/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/</link><pubDate>Thu, 27 Dec 2018 18:35:23 +0000</pubDate><guid>https://blog.yuukisama.cc/p/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/</guid><description>&lt;blockquote>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/baidu.jpg" >
+&lt;img src="https://blog.yuukisama.cc/baidu.jpg"
+loading="lazy"
+alt="谷歌娘">
+&lt;/a>
+&lt;figcaption>谷歌娘&lt;/figcaption>
+&lt;/figure>&lt;/p></description></item><item><title>Dijkstra算法课设</title><link>https://blog.yuukisama.cc/p/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/</link><pubDate>Thu, 27 Dec 2018 18:35:23 +0000</pubDate><guid>https://blog.yuukisama.cc/p/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/</guid><description>&lt;blockquote>
 &lt;h2 id="dijkstra算法课设">Dijkstra算法课设&lt;/h2>
 &lt;/blockquote>
 &lt;p>数据结构课程中的经典算法。我会将一些程序系统设计过程中的一些小细节问题（暂且称之为小细节把，因为我也不知道拿什么次比较准确），并在最后附上程序所有源码。作为一个曾经的苟若的算法狗（现在依旧小垃圾）,很多数据结构在实现的时候没必要照抄《数据结构》书上那套迂腐的东西，那终究是伪代码，而且反人类&lt;del>当然如果你就是十分喜欢结构体的使用的话不拦着你&lt;/del>。&lt;/p>
-&lt;p>{% asset_img miao.jpg This is an test image %}&lt;/p></description></item><item><title>VPS+nginx+hexo搭建个人博客</title><link>https://blog.yuukisama.cc/p/vps-nginx-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link><pubDate>Thu, 27 Dec 2018 15:54:11 +0000</pubDate><guid>https://blog.yuukisama.cc/p/vps-nginx-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid><description>&lt;blockquote>
-&lt;h2 id="开始前的碎碎念">开始前的碎碎念&lt;/h2>
-&lt;/blockquote>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/miao.jpg" >
+&lt;img src="https://blog.yuukisama.cc/miao.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p></description></item><item><title>VPS+nginx+hexo搭建个人博客</title><link>https://blog.yuukisama.cc/p/vps-nginx-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link><pubDate>Thu, 27 Dec 2018 15:54:11 +0000</pubDate><guid>https://blog.yuukisama.cc/p/vps-nginx-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid><description>&lt;h2 id="开始前的碎碎念">开始前的碎碎念&lt;/h2>
 &lt;h3 id="为了搭建这个小站搜索了很多资料踩了很多坑这里努力写点有用的东西防止后人踩坑希望阅读的读者遇到问题时思考自己是否是符合本样例的情况">为了搭建这个小站，搜索了很多资料，踩了很多坑。这里努力写点有用的东西防止后人踩坑。希望阅读的读者遇到问题时思考自己是否是符合本样例的情况。&lt;/h3>
 &lt;p>这是一篇旨在使用linux服务器+nginx+hexo+git实现搭建个人博客的教学性质文章。&lt;/p></description></item><item><title>Hello World</title><link>https://blog.yuukisama.cc/p/hello-world/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://blog.yuukisama.cc/p/hello-world/</guid><description>一些写在开始的碎碎念 折腾了好久才建好这个万恶的博客。以前是用的lnmp环境外傻瓜式的wordpress搭建了一个积灰博客。这次一切推到重来，使用新的框架——nginx+hexo的组合。
 也是这次开始，有了认认真真写博客的想法。记录一下自己踩过的坑，以及希望以后有人问我问 题我可以直接甩手给博客，而不是手把手一遍又一遍的重复同样的内容让我心很累。

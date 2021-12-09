@@ -1,17 +1,17 @@
 <!doctype html><html lang=zh-cn>
 <head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content=" 摘要   本文章是基于个人对k-shell算法的理解，若有偏颇还望指正。 基于java实现的k-shell算法，文末附源码，仅供学习。  {% asset_img xiaoling.jpg 这也是位码农哦 %}
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="摘要  本文章是基于个人对k-shell算法的理解，若有偏颇还望指正。 基于java实现的k-shell算法，文末附源码，仅供学习。   
 "><title>k-shell算法Java实现</title>
 <link rel=canonical href=https://blog.yuukisama.cc/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/>
 <link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="k-shell算法Java实现">
-<meta property="og:description" content=" 摘要   本文章是基于个人对k-shell算法的理解，若有偏颇还望指正。 基于java实现的k-shell算法，文末附源码，仅供学习。  {% asset_img xiaoling.jpg 这也是位码农哦 %}
+<meta property="og:description" content="摘要  本文章是基于个人对k-shell算法的理解，若有偏颇还望指正。 基于java实现的k-shell算法，文末附源码，仅供学习。   
 ">
 <meta property="og:url" content="https://blog.yuukisama.cc/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/">
 <meta property="og:site_name" content="零碎记忆">
 <meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="算法"><meta property="article:tag" content="课设"><meta property="article:published_time" content="2018-12-28T15:06:28+00:00"><meta property="article:modified_time" content="2018-12-28T15:06:28+00:00">
 <meta name=twitter:site content="@Yukiricc">
 <meta name=twitter:creator content="@Yukiricc"><meta name=twitter:title content="k-shell算法Java实现">
-<meta name=twitter:description content=" 摘要   本文章是基于个人对k-shell算法的理解，若有偏颇还望指正。 基于java实现的k-shell算法，文末附源码，仅供学习。  {% asset_img xiaoling.jpg 这也是位码农哦 %}
+<meta name=twitter:description content="摘要  本文章是基于个人对k-shell算法的理解，若有偏颇还望指正。 基于java实现的k-shell算法，文末附源码，仅供学习。   
 ">
 <link rel="shortcut icon" href=img/favicon.png>
 </head>
@@ -52,17 +52,17 @@ extended">
 </div>
 </header>
 <section class=article-content>
-<blockquote>
 <h2 id=摘要>摘要</h2>
-</blockquote>
 <ul>
 <li>本文章是基于个人对k-shell算法的理解，若有偏颇还望指正。</li>
 <li>基于java实现的k-shell算法，文末附源码，仅供学习。</li>
 </ul>
-<p>{% asset_img xiaoling.jpg 这也是位码农哦 %}</p>
-<blockquote>
+<p><figure>
+<a href=/xiaoling.jpg>
+<img src=/xiaoling.jpg loading=lazy>
+</a>
+</figure></p>
 <h2 id=k-shell算法>k-shell算法</h2>
-</blockquote>
 <ul>
 <li>
 <p>从数据结构图中逐步删除节点权值小于某阈值的节点以及其相关路径的算法</p>
@@ -77,9 +77,7 @@ extended">
 <p>本代码对这类节点，这个代码处理时在删除当前所有节点度数小于等于ks值的节点，并把删除节点加入ks值。针对此次提供的数据ks层数最大值为12。实验数据以及实验结果将会附在源代码末尾</p>
 </li>
 </ul>
-<blockquote>
 <h2 id=数据结构安排>数据结构安排</h2>
-</blockquote>
 <p><strong>以下代码使用vscode+java环境编写</strong></p>
 <ul>
 <li>
@@ -203,11 +201,9 @@ key值中存储图节点，对应value（hashset型）存储与该节点有连�
 }
 </code></pre></li>
 </ul>
-<blockquote>
 <h2 id=源码>源码</h2>
-</blockquote>
-<p><a class=link href=./data.txt>数据文件</a></p>
-<p><a class=link href=./result.txt>结果文件</a></p>
+<p><a class=link href=data.txt>数据文件</a></p>
+<p><a class=link href=result.txt>结果文件</a></p>
 <pre tabindex=0><code>import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;

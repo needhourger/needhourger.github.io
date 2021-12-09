@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>爬虫 on 零碎记忆</title><link>https://blog.yuukisama.cc/categories/%E7%88%AC%E8%99%AB/</link><description>Recent content in 爬虫 on 零碎记忆</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 16 Apr 2019 23:23:02 +0000</lastBuildDate><atom:link href="https://blog.yuukisama.cc/categories/%E7%88%AC%E8%99%AB/index.xml" rel="self" type="application/rss+xml"/><item><title>Python requests ssl报错</title><link>https://blog.yuukisama.cc/p/python-requests-ssl%E6%8A%A5%E9%94%99/</link><pubDate>Tue, 16 Apr 2019 23:23:02 +0000</pubDate><guid>https://blog.yuukisama.cc/p/python-requests-ssl%E6%8A%A5%E9%94%99/</guid><description>&lt;blockquote>
-&lt;h2 id="问题背景">问题背景&lt;/h2>
-&lt;/blockquote>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>爬虫 on 零碎记忆</title><link>https://blog.yuukisama.cc/categories/%E7%88%AC%E8%99%AB/</link><description>Recent content in 爬虫 on 零碎记忆</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 16 Apr 2019 23:23:02 +0000</lastBuildDate><atom:link href="https://blog.yuukisama.cc/categories/%E7%88%AC%E8%99%AB/index.xml" rel="self" type="application/rss+xml"/><item><title>Python requests ssl报错</title><link>https://blog.yuukisama.cc/p/python-requests-ssl%E6%8A%A5%E9%94%99/</link><pubDate>Tue, 16 Apr 2019 23:23:02 +0000</pubDate><guid>https://blog.yuukisama.cc/p/python-requests-ssl%E6%8A%A5%E9%94%99/</guid><description>&lt;h2 id="问题背景">问题背景&lt;/h2>
 &lt;ul>
 &lt;li>这是遇到的一个天坑！ &lt;del>这么过分的坑一定要写下来！！！！&lt;/del>&lt;/li>
 &lt;li>项目需求：
@@ -16,9 +14,7 @@ requests.exceptions.SSLError: HTTPSConnectionPool(host='msft.com', port=443): Ma
 ......
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>本文就来好好踩踩这些坑&lt;/li>
-&lt;/ul></description></item><item><title>高阶爬虫selenium摘记</title><link>https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/</link><pubDate>Fri, 08 Mar 2019 14:46:18 +0000</pubDate><guid>https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/</guid><description>&lt;blockquote>
-&lt;h2 id="概述">概述&lt;/h2>
-&lt;/blockquote>
+&lt;/ul></description></item><item><title>高阶爬虫selenium摘记</title><link>https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/</link><pubDate>Fri, 08 Mar 2019 14:46:18 +0000</pubDate><guid>https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/</guid><description>&lt;h2 id="概述">概述&lt;/h2>
 &lt;ul>
 &lt;li>
 &lt;p>本文记录一些有关python高阶爬虫selenium+浏览器爬虫操作的踩坑记录.&lt;/p>
@@ -29,4 +25,18 @@ requests.exceptions.SSLError: HTTPSConnectionPool(host='msft.com', port=443): Ma
 &lt;p>selenium简单的说就是通过各种webdirver驱动去控制浏览器去访问网站,完成各种操作,从而达到爬取数据的目的.可以有效的规避多数反爬虫机制,列如用js动态生成的网站&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img selenium.jpeg null %}&lt;/p></description></item></channel></rss>
+&lt;p>&lt;figure
+class="gallery-image"
+style="
+flex-grow: 192;
+flex-basis: 461px"
+>
+&lt;a href="https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/selenium.jpeg" data-size="1280x666">
+&lt;img src="https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/selenium.jpeg"
+width="1280"
+height="666"
+srcset="https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/selenium_hu1a85fdc8012b385a5c1655565cef00ab_85451_480x0_resize_q75_box.jpeg 480w, https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/selenium_hu1a85fdc8012b385a5c1655565cef00ab_85451_1024x0_resize_q75_box.jpeg 1024w"
+loading="lazy"
+>
+&lt;/a>
+&lt;/figure>&lt;/p></description></item></channel></rss>

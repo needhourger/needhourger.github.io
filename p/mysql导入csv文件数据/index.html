@@ -1,17 +1,17 @@
 <!doctype html><html lang=zh-cn>
 <head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content=" 摘要   记录关于MySQL从csv文件导入数据的一些采坑记录  {% asset_img star.jpg %}
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="摘要  记录关于MySQL从csv文件导入数据的一些采坑记录   
 "><title>MySQL导入csv文件数据</title>
 <link rel=canonical href=https://blog.yuukisama.cc/p/mysql%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/>
 <link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="MySQL导入csv文件数据">
-<meta property="og:description" content=" 摘要   记录关于MySQL从csv文件导入数据的一些采坑记录  {% asset_img star.jpg %}
+<meta property="og:description" content="摘要  记录关于MySQL从csv文件导入数据的一些采坑记录   
 ">
 <meta property="og:url" content="https://blog.yuukisama.cc/p/mysql%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/">
 <meta property="og:site_name" content="零碎记忆">
 <meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="数据库"><meta property="article:published_time" content="2019-05-15T15:33:28+00:00"><meta property="article:modified_time" content="2019-05-15T15:33:28+00:00">
 <meta name=twitter:site content="@Yukiricc">
 <meta name=twitter:creator content="@Yukiricc"><meta name=twitter:title content="MySQL导入csv文件数据">
-<meta name=twitter:description content=" 摘要   记录关于MySQL从csv文件导入数据的一些采坑记录  {% asset_img star.jpg %}
+<meta name=twitter:description content="摘要  记录关于MySQL从csv文件导入数据的一些采坑记录   
 ">
 <link rel="shortcut icon" href=img/favicon.png>
 </head>
@@ -49,28 +49,24 @@ extended">
 </div>
 </header>
 <section class=article-content>
-<blockquote>
 <h2 id=摘要>摘要</h2>
-</blockquote>
 <ul>
 <li>记录关于MySQL从csv文件导入数据的一些采坑记录</li>
 </ul>
-<p>{% asset_img star.jpg %}</p>
-<blockquote>
+<p><figure>
+<a href=/star.jpg>
+<img src=/star.jpg loading=lazy>
+</a>
+</figure></p>
 <h2 id=什么是csv文件>什么是csv文件</h2>
-</blockquote>
 <ul>
 <li>csv文件本质只是一个文本文件，它与你所见过的txt文件别无差异。（对，除了excel，你还可以用txt打开这类文件）</li>
 <li>csv文件（Comma-Separated Values）逗号分隔值文件格式，其文件以<strong>纯文本</strong>形式存储表格数据，并且以逗号分隔。</li>
 </ul>
-<blockquote>
 <h2 id=怎样将数据从csv导入到mysql>怎样将数据从csv导入到mysql</h2>
-</blockquote>
 <ul>
 <li>
-<blockquote>
 <h3 id=如果你看到如下报错>如果你看到如下报错</h3>
-</blockquote>
 <pre tabindex=0><code>The MySQL server is running with the --secure-file-priv option so it cannot execute...
 </code></pre><p>首先部分Mysql server设置中不允许你从任意路径导入数据</p>
 </li>
@@ -107,14 +103,16 @@ net start mysql
 <p>接下来进入数据库，输入如下命令</p>
 <pre tabindex=0><code>show variables like &quot;%secure%&quot;
 </code></pre><p>如果出现的回显中包含你之前设置的路径，则表示路径修改成功过</p>
-<p>{% asset_img 1.jpg %}</p>
+<p><figure>
+<a href=/1.jpg>
+<img src=/1.jpg loading=lazy>
+</a>
+</figure></p>
 </li>
 </ol>
 <ul>
 <li>
-<blockquote>
 <h3 id=文件字符编码问题>文件字符编码问题</h3>
-</blockquote>
 <p>要想成功导入文件，必须保证csv文件编码格式与数据库的编码格式相同。</p>
 <p>mysql是一个复杂的数据库，这里我们从默认编码开始修改。</p>
 </li>
@@ -169,27 +167,33 @@ net start mysql
 <p>使用notepad++打开csv文件,右下角就会标注这个文件的编码</p>
 </li>
 </ol>
-<p>{% asset_img 3.jpg %}</p>
+<p><figure>
+<a href=/3.jpg>
+<img src=/3.jpg loading=lazy>
+</a>
+</figure></p>
 <ol>
 <li>选择编码->选择转为UTF-8编码,最后保存退出即可</li>
 </ol>
-<p>{% asset_img 4.jpg %}</p>
+<p><figure>
+<a href=/4.jpg>
+<img src=/4.jpg loading=lazy>
+</a>
+</figure></p>
 <p><strong>不建议使用txt修改，因为txt的UTF-8格式是带有BOM的，导入时依旧会报错</strong></p>
 </li>
 </ol>
 <ul>
 <li>
-<blockquote>
 <h3 id=导入命令问题>导入命令问题</h3>
-</blockquote>
 <p>仅仅使用</p>
 <pre tabindex=0><code>LOAD DATA INFILE &quot;file_name&quot; INTO TABLE tbl_name
 </code></pre><p>是无法完成插入操作的，大概率会出现如下报错</p>
 <pre tabindex=0><code>Data truncated for column xxx at row 1
 </code></pre><p>因为我们需要指定你准备导入的csv文件格式</p>
-<blockquote>
-<p>完整命令</p>
-</blockquote>
+<ul>
+<li>完整命令</li>
+</ul>
 <pre tabindex=0><code>LOAD DATA INFILE &quot;D:/CoderLife/testMySQL/test.csv&quot; -- 指定csv文件路径，路径必须是我们一开始设置的
 INTO TABLE nation -- 指定你要插入的表格
 FIELDS TERMINATED BY ',' -- 指定csv文件是以逗号为分隔符
@@ -197,9 +201,7 @@ ENCLOSED BY '&quot;' -- 指定文本以双引号闭合
 LINES TERMINATED BY &quot;\r\n&quot;; -- 指定行按照如上格式换行
 </code></pre><ul>
 <li>
-<blockquote>
 <h3 id=拓展补充>拓展补充</h3>
-</blockquote>
 <ul>
 <li>\r 回车符</li>
 <li>\n 换行符</li>
@@ -211,16 +213,12 @@ LINES TERMINATED BY &quot;\r\n&quot;; -- 指定行按照如上格式换行
 <p>有关这个导入命令的详解，可以移步<a class=link href=https://blog.csdn.net/haijiege/article/details/78365063 target=_blank rel=noopener>这篇文章</a></p>
 </li>
 <li>
-<blockquote>
 <h3 id=报错-duplicate-entry-for-key->报错“ Duplicate entry for key &mldr;”</h3>
-</blockquote>
 <p>这个报错是因为你之前的表内有数据导致了主键冲突，方法删除旧的表内的内容。</p>
 <pre tabindex=0><code>delete from table_name
 </code></pre></li>
 <li>
-<blockquote>
 <h3 id=报错row-does-not-contain-data-for-all-columns>报错“Row does not contain data for all columns”</h3>
-</blockquote>
 <p>这个报错是因为csv内的数据并没有包含表的所有键值，那么这就需要在我们导入数据的时候指定导入数据数据那几列
 就是在之前上面的导入代码最后加上一个括号，里面按照csv数据列的顺序依次标注其键名</p>
 <pre tabindex=0><code>LOAD DATA INFILE &quot;D:/CoderLife/testMySQL/test.csv&quot; -- 指定csv文件路径，路径必须是我们一开始设置的
@@ -231,9 +229,7 @@ LINES TERMINATED BY &quot;\r\n&quot; -- 指定行按照如上格式换行
 (key1,key2,key3); -- 指定你需要导入的键
 </code></pre></li>
 <li>
-<blockquote>
 <h3 id=报错-incorrect-integer-value-xxx>报错“ Incorrect integer value: xxx”</h3>
-</blockquote>
 <p>这个报错是因为csv文件第一行存在着表头数据，我们可以数用如下命令忽略第一行</p>
 <pre tabindex=0><code>LOAD DATA INFILE &quot;D:/CoderLife/testMySQL/test.csv&quot; -- 指定csv文件路径，路径必须是我们一开始设置的
 INTO TABLE nation -- 指定你要插入的表格
@@ -244,9 +240,7 @@ IGNORE 1 LINES -- 指定忽略第一行
 (key1,key2,key3); -- 指定你需要导入的键
 </code></pre></li>
 <li>
-<blockquote>
 <h3 id=关于字符编码问题的补充>关于字符编码问题的补充</h3>
-</blockquote>
 <p>其实可以通过指定导入的csv文件编码来保证字符编码问题，使用如下命令</p>
 <pre tabindex=0><code>LOAD DATA INFILE &quot;D:/CoderLife/testMySQL/test.csv&quot; -- 指定csv文件路径，路径必须是我们一开始设置的
 INTO TABLE nation CHARACTER SET utf8-- 指定你要插入的表格

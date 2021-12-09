@@ -1,17 +1,17 @@
 <!doctype html><html lang=zh-cn>
 <head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content=" 摘要   基于windows下mysql 8.0.*版本安装以及配置等操作介绍  基本安装 初始化 密码重置 创建数据库 创建列表   以及书本《Java简明教程》实列代码的采坑  {% asset_img Sqlserver.jpg 没找到mysql娘的图片 %}
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="摘要  基于windows下mysql 8.0.*版本安装以及配置等操作介绍  基本安装 初始化 密码重置 创建数据库 创建列表   以及书本《Java简明教程》实列代码的采坑   
 "><title>mysql8的安装配置以及JDBC使用</title>
 <link rel=canonical href=https://blog.yuukisama.cc/p/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/>
 <link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="mysql8的安装配置以及JDBC使用">
-<meta property="og:description" content=" 摘要   基于windows下mysql 8.0.*版本安装以及配置等操作介绍  基本安装 初始化 密码重置 创建数据库 创建列表   以及书本《Java简明教程》实列代码的采坑  {% asset_img Sqlserver.jpg 没找到mysql娘的图片 %}
+<meta property="og:description" content="摘要  基于windows下mysql 8.0.*版本安装以及配置等操作介绍  基本安装 初始化 密码重置 创建数据库 创建列表   以及书本《Java简明教程》实列代码的采坑   
 ">
 <meta property="og:url" content="https://blog.yuukisama.cc/p/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/">
 <meta property="og:site_name" content="零碎记忆">
 <meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="数据库"><meta property="article:published_time" content="2018-12-28T16:11:13+00:00"><meta property="article:modified_time" content="2018-12-28T16:11:13+00:00">
 <meta name=twitter:site content="@Yukiricc">
 <meta name=twitter:creator content="@Yukiricc"><meta name=twitter:title content="mysql8的安装配置以及JDBC使用">
-<meta name=twitter:description content=" 摘要   基于windows下mysql 8.0.*版本安装以及配置等操作介绍  基本安装 初始化 密码重置 创建数据库 创建列表   以及书本《Java简明教程》实列代码的采坑  {% asset_img Sqlserver.jpg 没找到mysql娘的图片 %}
+<meta name=twitter:description content="摘要  基于windows下mysql 8.0.*版本安装以及配置等操作介绍  基本安装 初始化 密码重置 创建数据库 创建列表   以及书本《Java简明教程》实列代码的采坑   
 ">
 <link rel="shortcut icon" href=img/favicon.png>
 </head>
@@ -52,9 +52,7 @@ extended">
 </div>
 </header>
 <section class=article-content>
-<blockquote>
 <h2 id=摘要>摘要</h2>
-</blockquote>
 <ul>
 <li>基于windows下mysql 8.0.*版本安装以及配置等操作介绍
 <ul>
@@ -67,10 +65,12 @@ extended">
 </li>
 <li>以及书本《Java简明教程》实列代码的采坑</li>
 </ul>
-<p>{% asset_img Sqlserver.jpg 没找到mysql娘的图片 %}</p>
-<blockquote>
+<p><figure>
+<a href=/Sqlserver.jpg>
+<img src=/Sqlserver.jpg loading=lazy>
+</a>
+</figure></p>
 <h2 id=安装>安装</h2>
-</blockquote>
 <ol>
 <li>
 <p>从mysql官网下载mysql社区版本</p>
@@ -84,9 +84,7 @@ extended">
 <p>如果你是用可执行安装包安装，即msi文件安装请参照<a class=link href=https://blog.csdn.net/CSDN_Liang_1991/article/details/81035293 target=_blank rel=noopener>这个</a></p>
 </li>
 </ol>
-<blockquote>
 <h2 id=配置>配置</h2>
-</blockquote>
 <ol>
 <li>
 <p>进入myql的安装目录（就是你放加压后文件夹的地方）,找到里面的bin文件夹。</p>
@@ -190,9 +188,7 @@ create table student(no VARCHAR(20,name VARCHAR(20),math INT,average DOUBLE);
 <p><strong>坑:请先切换到你要创建表的数据库再执行创建表明操作</strong></p>
 </li>
 </ol>
-<blockquote>
 <h2 id=java连接数据库>java连接数据库</h2>
-</blockquote>
 <ol>
 <li>
 <p>在mysql官网下载mysql connector的java sdk.请按照你的数据库版本下载对应的connector <a class=link href=https://dev.mysql.com/downloads/connector/j/ target=_blank rel=noopener>下载地址</a></p>
@@ -235,9 +231,7 @@ create table student(no VARCHAR(20,name VARCHAR(20),math INT,average DOUBLE);
 <p>USER默认"root",PASS如果为空则使用空字符串即可，有密码请确保密码正确</p>
 </li>
 </ul>
-<blockquote>
 <h2 id=数据库连接代码示例>数据库连接代码示例</h2>
-</blockquote>
 <h3 id=请确保已经将mysqlconnector加入项目构建目录参照将jar文件加入你的java项目将jar文件加入你的java项目>请确保已经将mysqlconnector加入项目构建目录，参照<a class=link href=#%e5%b0%86jar%e6%96%87%e4%bb%b6%e5%8a%a0%e5%85%a5%e4%bd%a0%e7%9a%84java%e9%a1%b9%e7%9b%ae>将jar文件加入你的java项目</a></h3>
 <pre tabindex=0><code>public class MySQLDemo {
  

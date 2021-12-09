@@ -10,4 +10,12 @@
 &lt;p>词向量训练:在自然语言处理中将每个单词映射到一个空间向量过程,从而获得每个词汇之间的关联性.(可能说的不太对,大概就这样吧,不是理论帝)&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;p>{% asset_img 0.jpg 少数正经的图 %}&lt;/p></description></item></channel></rss>
+&lt;p>&lt;figure
+>
+&lt;a href="https://blog.yuukisama.cc/0.jpg" >
+&lt;img src="https://blog.yuukisama.cc/0.jpg"
+loading="lazy"
+alt=" 少数正经的图">
+&lt;/a>
+&lt;figcaption>少数正经的图&lt;/figcaption>
+&lt;/figure>&lt;/p></description></item></channel></rss>
