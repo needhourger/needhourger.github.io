@@ -338,7 +338,4 @@ loading="lazy"
 &lt;/a>
 &lt;/figure>&lt;/p></description></item><item><title>VPS+nginx+hexo搭建个人博客</title><link>https://blog.yuukisama.cc/p/vps-nginx-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link><pubDate>Thu, 27 Dec 2018 15:54:11 +0000</pubDate><guid>https://blog.yuukisama.cc/p/vps-nginx-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid><description>&lt;h2 id="开始前的碎碎念">开始前的碎碎念&lt;/h2>
 &lt;h3 id="为了搭建这个小站搜索了很多资料踩了很多坑这里努力写点有用的东西防止后人踩坑希望阅读的读者遇到问题时思考自己是否是符合本样例的情况">为了搭建这个小站，搜索了很多资料，踩了很多坑。这里努力写点有用的东西防止后人踩坑。希望阅读的读者遇到问题时思考自己是否是符合本样例的情况。&lt;/h3>
-&lt;p>这是一篇旨在使用linux服务器+nginx+hexo+git实现搭建个人博客的教学性质文章。&lt;/p></description></item><item><title>Hello World</title><link>https://blog.yuukisama.cc/p/hello-world/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://blog.yuukisama.cc/p/hello-world/</guid><description>一些写在开始的碎碎念 折腾了好久才建好这个万恶的博客。以前是用的lnmp环境外傻瓜式的wordpress搭建了一个积灰博客。这次一切推到重来，使用新的框架——nginx+hexo的组合。
-也是这次开始，有了认认真真写博客的想法。记录一下自己踩过的坑，以及希望以后有人问我问 题我可以直接甩手给博客，而不是手把手一遍又一遍的重复同样的内容让我心很累。
-另外，还请各位大师傅手下留情·····
-顺便这里应该是个二次元的主题站点吧，就这样。</description></item></channel></rss>
+&lt;p>这是一篇旨在使用linux服务器+nginx+hexo+git实现搭建个人博客的教学性质文章。&lt;/p></description></item></channel></rss>

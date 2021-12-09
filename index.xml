@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>零碎记忆</title><link>https://blog.yuukisama.cc/</link><description>Recent content on 零碎记忆</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 04 Jul 2019 23:07:04 +0000</lastBuildDate><atom:link href="https://blog.yuukisama.cc/index.xml" rel="self" type="application/rss+xml"/><item><title>YuukiSama的求生之路私服</title><link>https://blog.yuukisama.cc/p/yuukisama%E7%9A%84%E6%B1%82%E7%94%9F%E4%B9%8B%E8%B7%AF%E7%A7%81%E6%9C%8D/</link><pubDate>Thu, 04 Jul 2019 23:07:04 +0000</pubDate><guid>https://blog.yuukisama.cc/p/yuukisama%E7%9A%84%E6%B1%82%E7%94%9F%E4%B9%8B%E8%B7%AF%E7%A7%81%E6%9C%8D/</guid><description>&lt;p>&lt;figure
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>零碎记忆</title><link>https://blog.yuukisama.cc/</link><description>Recent content on 零碎记忆</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 09 Dec 2021 16:04:41 +0800</lastBuildDate><atom:link href="https://blog.yuukisama.cc/index.xml" rel="self" type="application/rss+xml"/><item><title>YuukiSama的求生之路私服</title><link>https://blog.yuukisama.cc/p/yuukisama%E7%9A%84%E6%B1%82%E7%94%9F%E4%B9%8B%E8%B7%AF%E7%A7%81%E6%9C%8D/</link><pubDate>Thu, 04 Jul 2019 23:07:04 +0000</pubDate><guid>https://blog.yuukisama.cc/p/yuukisama%E7%9A%84%E6%B1%82%E7%94%9F%E4%B9%8B%E8%B7%AF%E7%A7%81%E6%9C%8D/</guid><description>&lt;p>&lt;figure
 class="gallery-image"
 style="
 flex-grow: 160;
@@ -5102,18 +5102,4 @@ branch: master
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;/ol>
 &lt;p>&lt;strong>坑：不安装hexo-deployer-git是不可能推送的&lt;/strong>&lt;/p>
-&lt;p>&lt;strong>坑：如果访问页面出现cantnot GET/ 请检查主题设置，网上很多教程的设置基于hexo next主题，涉及到主题文件的请看你的主题的作者自己的文档，而不是看某dn&lt;/strong>&lt;/p></description></item><item><title>Hello World</title><link>https://blog.yuukisama.cc/p/hello-world/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://blog.yuukisama.cc/p/hello-world/</guid><description>&lt;h2 id="一些写在开始的碎碎念">一些写在开始的碎碎念&lt;/h2>
-&lt;ul>
-&lt;li>
-&lt;p>折腾了好久才建好这个万恶的博客。以前是用的lnmp环境外傻瓜式的wordpress搭建了一个积灰博客。这次一切推到重来，使用新的框架——nginx+hexo的组合。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>也是这次开始，有了认认真真写博客的想法。记录一下自己踩过的坑，以及希望以后有人问我问 题我可以直接甩手给博客，而不是手把手一遍又一遍的重复同样的内容让我心很累。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>另外，还请各位大师傅手下留情·····&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>顺便这里应该是个二次元的主题站点吧，就这样。&lt;/p>
-&lt;/li>
-&lt;/ul></description></item></channel></rss>
+&lt;p>&lt;strong>坑：如果访问页面出现cantnot GET/ 请检查主题设置，网上很多教程的设置基于hexo next主题，涉及到主题文件的请看你的主题的作者自己的文档，而不是看某dn&lt;/strong>&lt;/p></description></item></channel></rss>
