@@ -1,8 +1,7 @@
 <!doctype html><html lang=zh-cn>
 <head><meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="摘要  本文主要讲解了C++对接sqlite3数据库的配置以及相关操作 IDE：Visual Studio 2017 SQLite3   
-"><title>C++与SQLite</title>
-<link rel=canonical href=https://blog.yuukisama.cc/p/c-%E4%B8%8Esqlite/>
+"><title>C++与SQLite</title><link rel=canonical href=https://blog.yuukisama.cc/p/c-%E4%B8%8Esqlite/>
 <link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="C++与SQLite">
 <meta property="og:description" content="摘要  本文主要讲解了C++对接sqlite3数据库的配置以及相关操作 IDE：Visual Studio 2017 SQLite3   
 ">
@@ -14,17 +13,17 @@
 <meta name=twitter:description content="摘要  本文主要讲解了C++对接sqlite3数据库的配置以及相关操作 IDE：Visual Studio 2017 SQLite3   
 ">
 <link rel="shortcut icon" href=img/favicon.png>
-</head>
-<body class="article-page has-toc">
-<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSMKSWDEQK"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-YSMKSWDEQK",{anonymize_ip:!1})}</script>
+</head><body class="article-page has-toc">
+<script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script>
 <div class="container main-container flex
 extended">
 <div id=article-toolbar>
 <a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
 <span>返回</span>
 </a>
-</div>
-<main class="main full-width">
+</div><main class="main full-width">
 <article class=main-article>
 <header class=article-header>
 <div class=article-details>
@@ -32,223 +31,81 @@ extended">
 <a href=/categories/c/c++/>
 C/C++
 </a>
-</header>
-<h2 class=article-title>
+</header><h2 class=article-title>
 <a href=/p/c-%E4%B8%8Esqlite/>C++与SQLite</a>
-</h2>
-<footer class=article-time>
+</h2><footer class=article-time>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
 <time class=article-time--published>May 14, 2019</time>
-</div>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+</div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
 阅读时长: 4 分钟
 </time>
-</div>
-</footer>
-</div>
-</header>
-<section class=article-content>
-<h2 id=摘要>摘要</h2>
-<ul>
-<li>本文主要讲解了C++对接sqlite3数据库的配置以及相关操作</li>
-<li>IDE：Visual Studio 2017</li>
-<li>SQLite3</li>
-</ul>
-<p><figure class=gallery-image style=flex-grow:200;flex-basis:480px>
+</div></footer></div></header><section class=article-content>
+<h2 id=摘要>摘要</h2><ul>
+<li>本文主要讲解了C++对接sqlite3数据库的配置以及相关操作</li><li>IDE：Visual Studio 2017</li><li>SQLite3</li></ul><p><figure class=gallery-image style=flex-grow:200;flex-basis:480px>
 <a href=/p/c-%E4%B8%8Esqlite/sqlite.jpg data-size=1280x640>
 <img src=/p/c-%E4%B8%8Esqlite/sqlite.jpg width=1280 height=640 srcset="/p/c-%E4%B8%8Esqlite/sqlite_hu3b69ed866f10aca664eb06966c0ac20b_402725_480x0_resize_q75_box.jpg 480w, /p/c-%E4%B8%8Esqlite/sqlite_hu3b69ed866f10aca664eb06966c0ac20b_402725_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
 </a>
-</figure></p>
-<h2 id=碎碎念>碎碎念</h2>
-<p>敲代码不接触数据库几乎是不可能的。但是很多学校开设的课程都是从Mysql开始的，导致很多学生一些项目就是Mysql。毫无疑问Mysql是很强大的，但是有的时候我们真的很需要因地制宜选择更加合适的数据库。<del>其实还是因为C++&Mysql的模式本垃圾配置不来</del></p>
-<h2 id=sqlite3-简介>SQLite3 简介</h2>
-<ul>
-<li>SQLite是一个进程内的库，实现了完全的自给自足的，无服务器的，零配置的，事务性的SQL数据库引擎。</li>
-<li>零配置意味着你不需要在任何一台机器上像mysql一样进行复杂的配置</li>
-<li>SQLite正如其名，轻量级，操作方便。毫无疑问相对于功能强大的mysql它缺少了很多相应的其他功能，但是如果你不准备采取分布式结构分离数据应用，复杂的数据库功能，只是需要一个轻量化便捷的数据库基础功能，SQLite是你最好的选择</li>
-<li><del>嗯，sqlite的c++API也不像mysql的那么变态</del></li>
-</ul>
-<h2 id=下载sqlite3>下载SQLite3</h2>
-<ul>
+</figure></p><h2 id=碎碎念>碎碎念</h2><p>敲代码不接触数据库几乎是不可能的。但是很多学校开设的课程都是从Mysql开始的，导致很多学生一些项目就是Mysql。毫无疑问Mysql是很强大的，但是有的时候我们真的很需要因地制宜选择更加合适的数据库。<del>其实还是因为C++&Mysql的模式本垃圾配置不来</del></p><h2 id=sqlite3-简介>SQLite3 简介</h2><ul>
+<li>SQLite是一个进程内的库，实现了完全的自给自足的，无服务器的，零配置的，事务性的SQL数据库引擎。</li><li>零配置意味着你不需要在任何一台机器上像mysql一样进行复杂的配置</li><li>SQLite正如其名，轻量级，操作方便。毫无疑问相对于功能强大的mysql它缺少了很多相应的其他功能，但是如果你不准备采取分布式结构分离数据应用，复杂的数据库功能，只是需要一个轻量化便捷的数据库基础功能，SQLite是你最好的选择</li><li><del>嗯，sqlite的c++API也不像mysql的那么变态</del></li></ul><h2 id=下载sqlite3>下载SQLite3</h2><ul>
 <li>
-<p>依据你的需要的系统版本在SQLite官方下载源代码版本 <a class=link href=https://www.sqlite.org/download.html target=_blank rel=noopener>官方下载界面</a></p>
-<p><figure class=gallery-image style=flex-grow:580;flex-basis:1392px>
+<p>依据你的需要的系统版本在SQLite官方下载源代码版本 <a class=link href=https://www.sqlite.org/download.html target=_blank rel=noopener>官方下载界面</a></p><p><figure class=gallery-image style=flex-grow:580;flex-basis:1392px>
 <a href=/p/c-%E4%B8%8Esqlite/1.png data-size=928x160>
 <img src=/p/c-%E4%B8%8Esqlite/1.png width=928 height=160 srcset="/p/c-%E4%B8%8Esqlite/1_hubfb9001b6c7d3692996bd23c5233ac8a_22731_480x0_resize_box_3.png 480w, /p/c-%E4%B8%8Esqlite/1_hubfb9001b6c7d3692996bd23c5233ac8a_22731_1024x0_resize_box_3.png 1024w" loading=lazy>
 </a>
-</figure></p>
-<p>SQLite官方给出了编译好的动态链接库方便开发，不过本教程以源代码入手（因为只要配置正确相较于动态链接库文件，本方法调用更为简单，并且效率更高）</p>
-</li>
-<li>
-<p>如图我们选择第一个下载。下载完成之后我们解压到当前文件夹，并修改文件夹为sqlite。把文件夹移动到我们自己的项目里，并在IDE中引入该文件夹。（具体怎么引入瞎几把发挥啦，随你是添加额外项目还是添加额外包含目录，搞通就行hhh）</p>
-</li>
-</ul>
-<h2 id=sqlite3的基础操作>SQLite3的基础操作</h2>
-<ul>
-<li>sqlite遵循最基本的通用sql语句。所以大部分操作与mysql等一系列其他数据库无差异</li>
-<li>你可以从sqlite3官网下载exe可执行文件用以访问sqlite生成的数据库文件，在可执行文件内，基础的支持命令如下：
+</figure></p><p>SQLite官方给出了编译好的动态链接库方便开发，不过本教程以源代码入手（因为只要配置正确相较于动态链接库文件，本方法调用更为简单，并且效率更高）</p></li><li>
+<p>如图我们选择第一个下载。下载完成之后我们解压到当前文件夹，并修改文件夹为sqlite。把文件夹移动到我们自己的项目里，并在IDE中引入该文件夹。（具体怎么引入瞎几把发挥啦，随你是添加额外项目还是添加额外包含目录，搞通就行hhh）</p></li></ul><h2 id=sqlite3的基础操作>SQLite3的基础操作</h2><ul>
+<li>sqlite遵循最基本的通用sql语句。所以大部分操作与mysql等一系列其他数据库无差异</li><li>你可以从sqlite3官网下载exe可执行文件用以访问sqlite生成的数据库文件，在可执行文件内，基础的支持命令如下：
 <pre tabindex=0><code>sqlite3.exe ./test.db //在命令行内使用该命令连接指定数据库文件，不存在则创建
 </code></pre><table>
 <thead>
 <tr>
-<th>命令</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
+<th>命令</th><th>作用</th></tr></thead><tbody>
 <tr>
-<td>.backup ?DB? FILE</td>
-<td>备份 DB 数据库（默认是 &ldquo;main&rdquo;）到 FILE 文件。</td>
-</tr>
-<tr>
-<td>.bail ON</td>
-<td>OFF</td>
-</tr>
-<tr>
-<td>.databases</td>
-<td>列出数据库的名称及其所依附的文件。</td>
-</tr>
-<tr>
-<td>.dump ?TABLE?</td>
-<td>以 SQL 文本格式转储数据库。如果指定了 TABLE 表，则只转储匹配 LIKE 模式的 TABLE 表。</td>
-</tr>
-<tr>
-<td>.echo ON</td>
-<td>OFF</td>
-</tr>
-<tr>
-<td>.exit</td>
-<td>退出 SQLite 提示符。</td>
-</tr>
-<tr>
-<td>.explain ON</td>
-<td>OFF</td>
-</tr>
-<tr>
-<td>.header(s) ON</td>
-<td>OFF</td>
-</tr>
-<tr>
-<td>.help</td>
-<td>显示帮助消息。</td>
-</tr>
-<tr>
-<td>.import FILE TABLE</td>
-<td>导入来自 FILE 文件的数据到 TABLE 表中。</td>
-</tr>
-<tr>
-<td>.indices ?TABLE?</td>
-<td>显示所有索引的名称。如果指定了 TABLE 表，则只显示匹配 LIKE 模式的 TABLE 表的索引。</td>
-</tr>
-<tr>
-<td>.load FILE ?ENTRY?</td>
-<td>加载一个扩展库。</td>
-</tr>
-<tr>
-<td>.log FILE</td>
-<td>off</td>
-</tr>
-<tr>
-<td>.mode MODE</td>
-<td>设置输出模式，MODE 可以是下列之一：</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>csv 逗号分隔的值</li>
-<li>column 左对齐的列</li>
-<li>html HTML 的 &lt;table> 代码</li>
-<li>insert TABLE 表的 SQL 插入（insert）语句</li>
-<li>line 每行一个值</li>
-<li>list 由 .separator 字符串分隔的值</li>
-<li>tabs 由 Tab 分隔的值</li>
-<li>tcl TCL 列表元素</li>
-</ul>
-<table>
+<td>.backup ?DB? FILE</td><td>备份 DB 数据库（默认是 &ldquo;main&rdquo;）到 FILE 文件。</td></tr><tr>
+<td>.bail ON</td><td>OFF</td></tr><tr>
+<td>.databases</td><td>列出数据库的名称及其所依附的文件。</td></tr><tr>
+<td>.dump ?TABLE?</td><td>以 SQL 文本格式转储数据库。如果指定了 TABLE 表，则只转储匹配 LIKE 模式的 TABLE 表。</td></tr><tr>
+<td>.echo ON</td><td>OFF</td></tr><tr>
+<td>.exit</td><td>退出 SQLite 提示符。</td></tr><tr>
+<td>.explain ON</td><td>OFF</td></tr><tr>
+<td>.header(s) ON</td><td>OFF</td></tr><tr>
+<td>.help</td><td>显示帮助消息。</td></tr><tr>
+<td>.import FILE TABLE</td><td>导入来自 FILE 文件的数据到 TABLE 表中。</td></tr><tr>
+<td>.indices ?TABLE?</td><td>显示所有索引的名称。如果指定了 TABLE 表，则只显示匹配 LIKE 模式的 TABLE 表的索引。</td></tr><tr>
+<td>.load FILE ?ENTRY?</td><td>加载一个扩展库。</td></tr><tr>
+<td>.log FILE</td><td>off</td></tr><tr>
+<td>.mode MODE</td><td>设置输出模式，MODE 可以是下列之一：</td></tr></tbody></table><ul>
+<li>csv 逗号分隔的值</li><li>column 左对齐的列</li><li>html HTML 的 &lt;table> 代码</li><li>insert TABLE 表的 SQL 插入（insert）语句</li><li>line 每行一个值</li><li>list 由 .separator 字符串分隔的值</li><li>tabs 由 Tab 分隔的值</li><li>tcl TCL 列表元素</li></ul><table>
 <thead>
 <tr>
-<th>-</th>
-<th>-</th>
-</tr>
-</thead>
-<tbody>
+<th>-</th><th>-</th></tr></thead><tbody>
 <tr>
-<td>.nullvalue STRING</td>
-<td>在 NULL 值的地方输出 STRING 字符串。</td>
-</tr>
-<tr>
-<td>.output FILENAME</td>
-<td>发送输出到 FILENAME 文件。</td>
-</tr>
-<tr>
-<td>.output stdout</td>
-<td>发送输出到屏幕。</td>
-</tr>
-<tr>
-<td>.print STRING&mldr;</td>
-<td>逐字地输出 STRING 字符串。</td>
-</tr>
-<tr>
-<td>.prompt MAIN CONTINUE</td>
-<td>替换标准提示符。</td>
-</tr>
-<tr>
-<td>.quit</td>
-<td>退出 SQLite 提示符。</td>
-</tr>
-<tr>
-<td>.read FILENAME</td>
-<td>执行 FILENAME 文件中的 SQL。</td>
-</tr>
-<tr>
-<td>.schema ?TABLE?</td>
-<td>显示 CREATE 语句。如果指定了 TABLE 表，则只显示匹配 LIKE 模式的 TABLE 表。</td>
-</tr>
-<tr>
-<td>.separator STRING</td>
-<td>改变输出模式和 .import 所使用的分隔符。</td>
-</tr>
-<tr>
-<td>.show</td>
-<td>显示各种设置的当前值。</td>
-</tr>
-<tr>
-<td>.stats ON</td>
-<td>OFF</td>
-</tr>
-<tr>
-<td>.tables ?PATTERN?</td>
-<td>列出匹配 LIKE 模式的表的名称。</td>
-</tr>
-<tr>
-<td>.timeout MS</td>
-<td>尝试打开锁定的表 MS 毫秒。</td>
-</tr>
-<tr>
-<td>.width NUM NUM</td>
-<td>为 &ldquo;column&rdquo; 模式设置列宽度。</td>
-</tr>
-<tr>
-<td>.timer ON</td>
-<td>OFF</td>
-</tr>
-</tbody>
-</table>
-</li>
-</ul>
-<h2 id=使用c连接sqlite并执行一条sql语句>使用C++连接SQLite并执行一条sql语句</h2>
-<pre tabindex=0><code>#include&lt;iostream&gt;
+<td>.nullvalue STRING</td><td>在 NULL 值的地方输出 STRING 字符串。</td></tr><tr>
+<td>.output FILENAME</td><td>发送输出到 FILENAME 文件。</td></tr><tr>
+<td>.output stdout</td><td>发送输出到屏幕。</td></tr><tr>
+<td>.print STRING&mldr;</td><td>逐字地输出 STRING 字符串。</td></tr><tr>
+<td>.prompt MAIN CONTINUE</td><td>替换标准提示符。</td></tr><tr>
+<td>.quit</td><td>退出 SQLite 提示符。</td></tr><tr>
+<td>.read FILENAME</td><td>执行 FILENAME 文件中的 SQL。</td></tr><tr>
+<td>.schema ?TABLE?</td><td>显示 CREATE 语句。如果指定了 TABLE 表，则只显示匹配 LIKE 模式的 TABLE 表。</td></tr><tr>
+<td>.separator STRING</td><td>改变输出模式和 .import 所使用的分隔符。</td></tr><tr>
+<td>.show</td><td>显示各种设置的当前值。</td></tr><tr>
+<td>.stats ON</td><td>OFF</td></tr><tr>
+<td>.tables ?PATTERN?</td><td>列出匹配 LIKE 模式的表的名称。</td></tr><tr>
+<td>.timeout MS</td><td>尝试打开锁定的表 MS 毫秒。</td></tr><tr>
+<td>.width NUM NUM</td><td>为 &ldquo;column&rdquo; 模式设置列宽度。</td></tr><tr>
+<td>.timer ON</td><td>OFF</td></tr></tbody></table></li></ul><h2 id=使用c连接sqlite并执行一条sql语句>使用C++连接SQLite并执行一条sql语句</h2><pre tabindex=0><code>#include&lt;iostream&gt;
 #include&lt;sqlite3.h&gt;
 using namespace std;
 
 //需要执行的sql语句
 const char sql[] = {    
-	&quot;CREATE TABLE IF NOT EXISTS Users(&quot;
-	&quot;ID INTEGER PRIMARY KEY NOT NULL,&quot;
-	&quot;Stu_ID INTEGER,&quot;
-	&quot;Password TEXT&quot;
-	&quot;);&quot;
+	&#34;CREATE TABLE IF NOT EXISTS Users(&#34;
+	&#34;ID INTEGER PRIMARY KEY NOT NULL,&#34;
+	&#34;Stu_ID INTEGER,&#34;
+	&#34;Password TEXT&#34;
+	&#34;);&#34;
 };
 
 
@@ -256,14 +113,14 @@ int main(){
     sqlite3 *db=NULL;   //数据库句柄
     char *ErrMsg=NULL;  //错误信息指针
     int rc=0;           //函数执行返回值
-    DATABASE=&quot;./test.db&quot;//需要连接的数据库路径
+    DATABASE=&#34;./test.db&#34;//需要连接的数据库路径
     
     //连接数据库，并将返回的数据库句柄交给db
     rc=sqlite3_open(DATABASE,&amp;db);
     if (rc){
         //如果链接失败关闭句柄退出程序
         sqlite3_close(db);
-        cout&lt;&lt;&quot;Cannot connect to &quot;&lt;&lt;DATABASE&lt;&lt;endl;
+        cout&lt;&lt;&#34;Cannot connect to &#34;&lt;&lt;DATABASE&lt;&lt;endl;
         return 0;
     } 
     
@@ -272,76 +129,51 @@ int main(){
     if (rc){
         如果执行失败关闭句柄，打印出错误信息，退出程序
         sqlite3_close(db);
-        cout&lt;&lt;&quot;sql execute failed...&quot;&lt;&lt;endl;
+        cout&lt;&lt;&#34;sql execute failed...&#34;&lt;&lt;endl;
         cout&lt;&lt;ErrMsg&lt;&lt;endl;
         return 0;
     }
-    cout&lt;&lt;&quot;table create&quot;&lt;&lt;endl;
+    cout&lt;&lt;&#34;table create&#34;&lt;&lt;endl;
     //关闭数据库句柄释放内存
     sqlite3_close(db);
     return 0;
 }
 </code></pre><ul>
 <li>
-<p>sqlite3_open(const char *filename,sqlite3 **ppDb)</p>
-<p>该函数用以打开指定数据库（不存在则创建），并返回一个数据库连接对象。函数返回值表示执行成功与否。
-<strong>如果filename为:memory:，sqlite将会在内存里创建一个数据库</strong></p>
-</li>
+<p>sqlite3_open(const char *filename,sqlite3 **ppDb)</p><p>该函数用以打开指定数据库（不存在则创建），并返回一个数据库连接对象。函数返回值表示执行成功与否。
+<strong>如果filename为:memory:，sqlite将会在内存里创建一个数据库</strong></p></li><li>
+<p>sqlite3_exec(sqlite3* db,const char *sql,sqlite_callback,void *data,char **ErrMsg)</p><p>该函数用以执行sql语句，sql语句可以是一条也可以是多条。</p><ul>
+<li>sqlite3* db 数据库连接句柄</li><li>const char *sql 需要执行的sql语句</li><li>sqlite_callback 执行成功后的回调函数</li><li>void *data 回调函数参数</li><li>char **ErrMsg 错误信息</li></ul></li><li>
+<p>sqlite3_close(sqlite3* db)</p><p>该函数用以关闭数据库连接，释放内存。所有相关sql语句都应该在连接关闭之前完成，如果仍有sql语句在执行，该函数将返回SQLITE_BUSY错误</p></li></ul><h2 id=sqlite3回调函数>sqlite3回调函数</h2><ul>
 <li>
-<p>sqlite3_exec(sqlite3* db,const char *sql,sqlite_callback,void *data,char **ErrMsg)</p>
-<p>该函数用以执行sql语句，sql语句可以是一条也可以是多条。</p>
-<ul>
-<li>sqlite3* db 数据库连接句柄</li>
-<li>const char *sql 需要执行的sql语句</li>
-<li>sqlite_callback 执行成功后的回调函数</li>
-<li>void *data 回调函数参数</li>
-<li>char **ErrMsg 错误信息</li>
-</ul>
-</li>
-<li>
-<p>sqlite3_close(sqlite3* db)</p>
-<p>该函数用以关闭数据库连接，释放内存。所有相关sql语句都应该在连接关闭之前完成，如果仍有sql语句在执行，该函数将返回SQLITE_BUSY错误</p>
-</li>
-</ul>
-<h2 id=sqlite3回调函数>sqlite3回调函数</h2>
-<ul>
-<li>
-<p><a class=link href=https://blog.csdn.net/qq_29924041/article/details/74857469 target=_blank rel=noopener>什么是回调函数</a></p>
-</li>
-<li>
-<p>SQLite中的回调函数可以让我们自定义sql语句执行完成之后的操作。sqlite3_exec中执行的sql语句的执行结果会被默认传递给回调函数（如果你定义了的话）</p>
-</li>
-</ul>
-<pre tabindex=0><code>sqlite3_exec(db,&quot;select * from users;&quot;,callback,&quot;helloworld&quot;,&amp;ErrMsg)
+<p><a class=link href=https://blog.csdn.net/qq_29924041/article/details/74857469 target=_blank rel=noopener>什么是回调函数</a></p></li><li>
+<p>SQLite中的回调函数可以让我们自定义sql语句执行完成之后的操作。sqlite3_exec中执行的sql语句的执行结果会被默认传递给回调函数（如果你定义了的话）</p></li></ul><pre tabindex=0><code>sqlite3_exec(db,&#34;select * from users;&#34;,callback,&#34;helloworld&#34;,&amp;ErrMsg)
 
 //该回调函数将会在sql语句执行时每一行数据返回时被执行
 static int callback(void *data,int argc,char **argv,char **azColName){
-    //同时会打印由sqlite3_exec传入的参数&quot;helloworld&quot;
-    printf(&quot;%s&quot;,(char*)data);
+    //同时会打印由sqlite3_exec传入的参数&#34;helloworld&#34;
+    printf(&#34;%s&#34;,(char*)data);
     for(int i=0;i&lt;argc;i++){
-        printf(&quot;%s : %s\n&quot;,azColName[i],argv[i]?argv[i]:&quot;NULL&quot;);
+        printf(&#34;%s : %s\n&#34;,azColName[i],argv[i]?argv[i]:&#34;NULL&#34;);
     }
     return 0;
 }
-</code></pre><h2 id=不用回调函数获取sql结果>不用回调函数获取sql结果</h2>
-<ul>
-<li>sqlite的回调函数尽管已经很方便，但是对于某些情景的应用时却力不从心，有什么办法可以不适用回调函数也获取sql的执行结果么？答案是有的</li>
-</ul>
-<pre tabindex=0><code>void func(){
+</code></pre><h2 id=不用回调函数获取sql结果>不用回调函数获取sql结果</h2><ul>
+<li>sqlite的回调函数尽管已经很方便，但是对于某些情景的应用时却力不从心，有什么办法可以不适用回调函数也获取sql的执行结果么？答案是有的</li></ul><pre tabindex=0><code>void func(){
     sqlite3 *db=NULL;       //定义数据库句柄
     sqlite3_stmt* stmt=NULL;//Statement handle 能令sqlite3_step()执行的编译好的准备语句的指针。调用sqlite3_finalize()删除它。
     const char *zTail=NULL; //Pointer to unusedportion of zSql 当zSql在遇见终止符或者达到设定的nByte结束后，如果还有剩余的内容，那么这些剩余的内容将被存放到pzTail中，不包含终止符
-    const char sql[]=&quot;select ID from users;&quot;
+    const char sql[]=&#34;select ID from users;&#34;
     int rc;
     
-    rc=sqlite3_open(&quot;./test.db&quot;,&amp;db);
+    rc=sqlite3_open(&#34;./test.db&#34;,&amp;db);
     if (rc) return;
 
     //准备sql语句
     if (sqlite3_prepare_v2(db,sql,strlen(sql),&amp;stmt,&amp;zTail)==SQLITE_OK){
         //步进执行，并获取执行结果
         while (sqlite3_step(stmt)==SQLITE_ROW)
-            print(&quot;%d\n&quot;,sqlite3_column_int(stmt,0));
+            print(&#34;%d\n&#34;,sqlite3_column_int(stmt,0));
             /*
             sqlite3_column_int(stmt,0) 第二个参数表示sql语句返回的数据的列数，从0开始，本例子中的sql语句只选取了ID那一列，所以这里只用数字0
             sqlite3_column_text()用以获取字符串类型返回值
@@ -353,33 +185,25 @@ static int callback(void *data,int argc,char **argv,char **azColName){
     sqlite3_close(db);
     return;
 }
-</code></pre><p>sqlite还有很多其他的函数用以获取sql语句执行结果，详情可以参见官方文档</p>
-<h2 id=构造sql语句并执行>构造sql语句并执行</h2>
-<ul>
-<li>尽管一旦程序中有接收用户参数动态构造sql语句的程序实现，就通常意味着sql注入漏洞的存在，但是数据库与用户输入数据的交互几乎是不可能不存在的。所以下面我们介绍有关构造sql语句的方法</li>
-</ul>
-<ol>
+</code></pre><p>sqlite还有很多其他的函数用以获取sql语句执行结果，详情可以参见官方文档</p><h2 id=构造sql语句并执行>构造sql语句并执行</h2><ul>
+<li>尽管一旦程序中有接收用户参数动态构造sql语句的程序实现，就通常意味着sql注入漏洞的存在，但是数据库与用户输入数据的交互几乎是不可能不存在的。所以下面我们介绍有关构造sql语句的方法</li></ul><ol>
 <li>
-<p>使用字符串处理函数（个人安利）</p>
-<p>sql语句本质是一段字符串，所以我们可以直接使用c++自带的字符串处理函数用以绑定参数，动态构造sql语句</p>
-<pre tabindex=0><code>int id=1;
+<p>使用字符串处理函数（个人安利）</p><p>sql语句本质是一段字符串，所以我们可以直接使用c++自带的字符串处理函数用以绑定参数，动态构造sql语句</p><pre tabindex=0><code>int id=1;
 
 //首先定义一个字符数组用以存放动态生成的sql语句
 char sql[1024]={0};
 
 //使用相对安全的没有缓冲区溢出漏洞的sprintf_s构造sql语句
-sprintf_s(sql,1024,&quot;select * from users where ID=%d&quot;,id);
+sprintf_s(sql,1024,&#34;select * from users where ID=%d&#34;,id);
 
 //如果你的编译器不支持sprintf_s()函数，也可使用相对不安全的sprintf()函数
-sprintf(sql,&quot;select * from users where ID=%d&quot;,id);
+sprintf(sql,&#34;select * from users where ID=%d&#34;,id);
 
 //执行sql语句，这里函数换成sqlite3_prepare_v2()也是一样
 sqlite3_exec(db,sql,NULL,NULL,&amp;Errmsg);
-</code></pre></li>
-<li>
-<p>使用sqlite3自带的绑定参数函数</p>
-<pre tabindex=0><code>int id=1;
-char sql[1024]=&quot;select * from users where ID=?&quot;;
+</code></pre></li><li>
+<p>使用sqlite3自带的绑定参数函数</p><pre tabindex=0><code>int id=1;
+char sql[1024]=&#34;select * from users where ID=?&#34;;
 sqlite3_stmt *stmt=NULL;
 
 sqlite3_prepare_v2(db,sql,strlen(sql),&amp;stmt,NULL);
@@ -387,31 +211,25 @@ sqlite3_prepare_v2(db,sql,strlen(sql),&amp;stmt,NULL);
 //绑定整形参数到对应位置，参数位置从1开始
 sqlite3_bind_int(stmt,1,id);
 /*
-sqlite3_bind_text(stmt,pos,&quot;halloworld&quot;,strlen(&quot;halloworld&quot;),SQLITE_STATIC)
+sqlite3_bind_text(stmt,pos,&#34;halloworld&#34;,strlen(&#34;halloworld&#34;),SQLITE_STATIC)
 */
 ...
-</code></pre><p><del>据说</del>使用sqlite3_bind_*()函数相对使用字符串处理函数更为节省内存，有一定程度可以规避sql注入攻击的效果（这里我感觉不是很苟同，这段是网上说的）</p>
-</li>
-</ol>
-<h2 id=中文字符编码问题>中文字符编码问题</h2>
-<p>Visual studio等一众Win下的IDE，编辑器默认编码不是utf-8，而sqlite3默认的字符编码是utf-8.于是又到了我们喜闻乐见的字符编码问题。这里给大家安利一波函数，方便的进行字符格式转换。</p>
-<p><strong>请将如下代码全部纳入你的项目中因为函数之间存在相互调用问题</strong></p>
-<pre tabindex=0><code>//UTF-8转Unicode 
+</code></pre><p><del>据说</del>使用sqlite3_bind_*()函数相对使用字符串处理函数更为节省内存，有一定程度可以规避sql注入攻击的效果（这里我感觉不是很苟同，这段是网上说的）</p></li></ol><h2 id=中文字符编码问题>中文字符编码问题</h2><p>Visual studio等一众Win下的IDE，编辑器默认编码不是utf-8，而sqlite3默认的字符编码是utf-8.于是又到了我们喜闻乐见的字符编码问题。这里给大家安利一波函数，方便的进行字符格式转换。</p><p><strong>请将如下代码全部纳入你的项目中因为函数之间存在相互调用问题</strong></p><pre tabindex=0><code>//UTF-8转Unicode 
 std::wstring Utf82Unicode(const std::string&amp; utf8string) {
 	int widesize = ::MultiByteToWideChar(CP_UTF8, 0, utf8string.c_str(), -1, NULL, 0);
 	if (widesize == ERROR_NO_UNICODE_TRANSLATION)
 	{
-		throw std::exception(&quot;Invalid UTF-8 sequence.&quot;);
+		throw std::exception(&#34;Invalid UTF-8 sequence.&#34;);
 	}
 	if (widesize == 0)
 	{
-		throw std::exception(&quot;Error in conversion.&quot;);
+		throw std::exception(&#34;Error in conversion.&#34;);
 	}
 	std::vector&lt;wchar_t&gt; resultstring(widesize);
 	int convresult = ::MultiByteToWideChar(CP_UTF8, 0, utf8string.c_str(), -1, &amp;resultstring[0], widesize);
 	if (convresult != widesize)
 	{
-		throw std::exception(&quot;La falla!&quot;);
+		throw std::exception(&#34;La falla!&#34;);
 	}
 	return std::wstring(&amp;resultstring[0]);
 }
@@ -422,17 +240,17 @@ std::string WideByte2Acsi(std::wstring&amp; wstrcode) {
 	int asciisize = ::WideCharToMultiByte(CP_OEMCP, 0, wstrcode.c_str(), -1, NULL, 0, NULL, NULL);
 	if (asciisize == ERROR_NO_UNICODE_TRANSLATION)
 	{
-		throw std::exception(&quot;Invalid UTF-8 sequence.&quot;);
+		throw std::exception(&#34;Invalid UTF-8 sequence.&#34;);
 	}
 	if (asciisize == 0)
 	{
-		throw std::exception(&quot;Error in conversion.&quot;);
+		throw std::exception(&#34;Error in conversion.&#34;);
 	}
 	std::vector&lt;char&gt; resultstring(asciisize);
 	int convresult = ::WideCharToMultiByte(CP_OEMCP, 0, wstrcode.c_str(), -1, &amp;resultstring[0], asciisize, NULL, NULL);
 	if (convresult != asciisize)
 	{
-		throw std::exception(&quot;La falla!&quot;);
+		throw std::exception(&#34;La falla!&#34;);
 	}
 	return std::string(&amp;resultstring[0]);
 }
@@ -442,7 +260,7 @@ std::string WideByte2Acsi(std::wstring&amp; wstrcode) {
 //utf-8 转 ascii 
 std::string UTF_82ASCII(std::string&amp; strUtf8Code) {
 	using namespace std;
-	string strRet = &quot;&quot;;
+	string strRet = &#34;&#34;;
 	//先把 utf8 转为 unicode 
 	wstring wstr = Utf82Unicode(strUtf8Code);
 	//最后把 unicode 转为 ascii 
@@ -458,17 +276,17 @@ std::wstring Ascii2WideByte(std::string&amp; strascii) {
 	int widesize = MultiByteToWideChar(CP_ACP, 0, (char*)strascii.c_str(), -1, NULL, 0);
 	if (widesize == ERROR_NO_UNICODE_TRANSLATION)
 	{
-		throw std::exception(&quot;Invalid UTF-8 sequence.&quot;);
+		throw std::exception(&#34;Invalid UTF-8 sequence.&#34;);
 	}
 	if (widesize == 0)
 	{
-		throw std::exception(&quot;Error in conversion.&quot;);
+		throw std::exception(&#34;Error in conversion.&#34;);
 	}
 	std::vector&lt;wchar_t&gt; resultstring(widesize);
 	int convresult = MultiByteToWideChar(CP_ACP, 0, (char*)strascii.c_str(), -1, &amp;resultstring[0], widesize);
 	if (convresult != widesize)
 	{
-		throw std::exception(&quot;La falla!&quot;);
+		throw std::exception(&#34;La falla!&#34;);
 	}
 	return std::wstring(&amp;resultstring[0]);
 }
@@ -480,13 +298,13 @@ std::string Unicode2Utf8(const std::wstring&amp; widestring) {
 	int utf8size = ::WideCharToMultiByte(CP_UTF8, 0, widestring.c_str(), -1, NULL, 0, NULL, NULL);
 	if (utf8size == 0)
 	{
-		throw std::exception(&quot;Error in conversion.&quot;);
+		throw std::exception(&#34;Error in conversion.&#34;);
 	}
 	std::vector&lt;char&gt; resultstring(utf8size);
 	int convresult = ::WideCharToMultiByte(CP_UTF8, 0, widestring.c_str(), -1, &amp;resultstring[0], utf8size, NULL, NULL);
 	if (convresult != utf8size)
 	{
-		throw std::exception(&quot;La falla!&quot;);
+		throw std::exception(&#34;La falla!&#34;);
 	}
 	return std::string(&amp;resultstring[0]);
 }
@@ -495,120 +313,64 @@ std::string Unicode2Utf8(const std::wstring&amp; widestring) {
 //ascii 转 Utf8 
 std::string ASCII2UTF_8(std::string&amp; strAsciiCode) {
 	using namespace std;
-	string strRet(&quot;&quot;);
+	string strRet(&#34;&#34;);
 	//先把 ascii 转为 unicode 
 	wstring wstr = Ascii2WideByte(strAsciiCode);
 	//最后把 unicode 转为 utf8 
 	strRet = Unicode2Utf8(wstr);
 	return strRet;
 }
-</code></pre>
-</section>
-<footer class=article-footer>
+</code></pre></section><footer class=article-footer>
 <section class=article-tags>
 <a href=/tags/c/c++/>C/C++</a>
 <a href=/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
-</section>
-<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+</section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
 <span>Licensed under CC BY-NC-SA 4.0</span>
-</section>
-</footer>
-</article>
-<aside class=related-contents--wrapper>
-<h2 class=section-title>相关文章</h2>
-<div class=related-contents>
+</section></footer></article><aside class=related-contents--wrapper>
+<h2 class=section-title>相关文章</h2><div class=related-contents>
 <div class="flex article-list--tile">
 <article>
 <a href=/p/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/>
 <div class=article-details>
-<h2 class=article-title>C语言基础精炼</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>C语言基础精炼</h2></div></a>
+</article><article>
 <a href=/p/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/>
 <div class=article-details>
-<h2 class=article-title>VC++调用外部exe并获取程序运行输出</h2>
-</div>
-</a>
-</article>
-</div>
-</div>
-</aside>
-<footer class=site-footer>
+<h2 class=article-title>VC++调用外部exe并获取程序运行输出</h2></div></a>
+</article></div></div></aside><footer class=site-footer>
 <section class=copyright>
 &copy;
 2017 -
-2021 零碎记忆
-</section>
-<section class=powerby>
+2022 零碎记忆
+</section><section class=powerby>
 Try to remember <br>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
 Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.5.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
-</section>
-</footer>
-<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
-<div class=pswp__bg></div>
-<div class=pswp__scroll-wrap>
+</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div><div class=pswp__scroll-wrap>
 <div class=pswp__container>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-</div>
-<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden">
 <div class=pswp__top-bar>
-<div class=pswp__counter></div>
-<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
 <div class=pswp__preloader>
 <div class=pswp__preloader__icn>
 <div class=pswp__preloader__cut>
-<div class=pswp__preloader__donut></div>
-</div>
-</div>
-</div>
-</div>
-<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-<div class=pswp__share-tooltip></div>
-</div>
-<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+<div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
 </button>
 <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
 </button>
 <div class=pswp__caption>
-<div class=pswp__caption__center></div>
-</div>
-</div>
-</div>
-</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
-</main>
-<aside class="sidebar right-sidebar sticky">
+<div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main><aside class="sidebar right-sidebar sticky">
 <section class="widget archives">
 <div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
-</div>
-<h2 class="widget-title section-title">目录</h2>
-<div class=widget--toc>
+</div><h2 class="widget-title section-title">目录</h2><div class=widget--toc>
 <nav id=TableOfContents>
 <ol>
-<li><a href=#摘要>摘要</a></li>
-<li><a href=#碎碎念>碎碎念</a></li>
-<li><a href=#sqlite3-简介>SQLite3 简介</a></li>
-<li><a href=#下载sqlite3>下载SQLite3</a></li>
-<li><a href=#sqlite3的基础操作>SQLite3的基础操作</a></li>
-<li><a href=#使用c连接sqlite并执行一条sql语句>使用C++连接SQLite并执行一条sql语句</a></li>
-<li><a href=#sqlite3回调函数>sqlite3回调函数</a></li>
-<li><a href=#不用回调函数获取sql结果>不用回调函数获取sql结果</a></li>
-<li><a href=#构造sql语句并执行>构造sql语句并执行</a></li>
-<li><a href=#中文字符编码问题>中文字符编码问题</a></li>
-</ol>
-</nav>
-</div>
-</section>
-</aside>
-</div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
-<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
-</body>
-</html>
+<li><a href=#摘要>摘要</a></li><li><a href=#碎碎念>碎碎念</a></li><li><a href=#sqlite3-简介>SQLite3 简介</a></li><li><a href=#下载sqlite3>下载SQLite3</a></li><li><a href=#sqlite3的基础操作>SQLite3的基础操作</a></li><li><a href=#使用c连接sqlite并执行一条sql语句>使用C++连接SQLite并执行一条sql语句</a></li><li><a href=#sqlite3回调函数>sqlite3回调函数</a></li><li><a href=#不用回调函数获取sql结果>不用回调函数获取sql结果</a></li><li><a href=#构造sql语句并执行>构造sql语句并执行</a></li><li><a href=#中文字符编码问题>中文字符编码问题</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script>
+</body></html>

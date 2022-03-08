@@ -1,7 +1,6 @@
 <!doctype html><html lang=zh-cn>
 <head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="前言：  这是一篇有关C语言语法基础的精炼概述性质文章，不会涉及C语言一些有深度的内容 本文面向的是以大学C考试过关为目标，以计算机二级认证为目标，期望获得一个C语言最基础认识的读者 博主能力有限，可能某些知识点未能讲解清晰，某些知识点遗漏，甚至某些知识点错误，若发现以上问题欢迎邮件勘误。 "><title>C语言基础精炼</title>
-<link rel=canonical href=https://blog.yuukisama.cc/p/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="前言：  这是一篇有关C语言语法基础的精炼概述性质文章，不会涉及C语言一些有深度的内容 本文面向的是以大学C考试过关为目标，以计算机二级认证为目标，期望获得一个C语言最基础认识的读者 博主能力有限，可能某些知识点未能讲解清晰，某些知识点遗漏，甚至某些知识点错误，若发现以上问题欢迎邮件勘误。 "><title>C语言基础精炼</title><link rel=canonical href=https://blog.yuukisama.cc/p/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/>
 <link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="C语言基础精炼">
 <meta property="og:description" content="前言：  这是一篇有关C语言语法基础的精炼概述性质文章，不会涉及C语言一些有深度的内容 本文面向的是以大学C考试过关为目标，以计算机二级认证为目标，期望获得一个C语言最基础认识的读者 博主能力有限，可能某些知识点未能讲解清晰，某些知识点遗漏，甚至某些知识点错误，若发现以上问题欢迎邮件勘误。 ">
 <meta property="og:url" content="https://blog.yuukisama.cc/p/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/">
@@ -11,17 +10,17 @@
 <meta name=twitter:creator content="@Yukiricc"><meta name=twitter:title content="C语言基础精炼">
 <meta name=twitter:description content="前言：  这是一篇有关C语言语法基础的精炼概述性质文章，不会涉及C语言一些有深度的内容 本文面向的是以大学C考试过关为目标，以计算机二级认证为目标，期望获得一个C语言最基础认识的读者 博主能力有限，可能某些知识点未能讲解清晰，某些知识点遗漏，甚至某些知识点错误，若发现以上问题欢迎邮件勘误。 ">
 <link rel="shortcut icon" href=img/favicon.png>
-</head>
-<body class="article-page has-toc">
-<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSMKSWDEQK"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-YSMKSWDEQK",{anonymize_ip:!1})}</script>
+</head><body class="article-page has-toc">
+<script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script>
 <div class="container main-container flex
 extended">
 <div id=article-toolbar>
 <a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
 <span>返回</span>
 </a>
-</div>
-<main class="main full-width">
+</div><main class="main full-width">
 <article class=main-article>
 <header class=article-header>
 <div class=article-details>
@@ -32,276 +31,116 @@ extended">
 <a href=/categories/c/c++/>
 C/C++
 </a>
-</header>
-<h2 class=article-title>
+</header><h2 class=article-title>
 <a href=/p/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/>C语言基础精炼</a>
-</h2>
-<footer class=article-time>
+</h2><footer class=article-time>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
 <time class=article-time--published>Mar 30, 2019</time>
-</div>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+</div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
 阅读时长: 8 分钟
 </time>
-</div>
-</footer>
-</div>
-</header>
-<section class=article-content>
-<h2 id=前言>前言：</h2>
-<ul>
-<li>这是一篇有关C语言语法基础的精炼概述性质文章，不会涉及C语言一些有深度的内容</li>
-<li>本文面向的是以大学C考试过关为目标，以计算机二级认证为目标，期望获得一个C语言最基础认识的读者</li>
-<li>博主能力有限，可能某些知识点未能讲解清晰，某些知识点遗漏，甚至某些知识点错误，若发现以上问题欢迎邮件勘误。</li>
-</ul>
-<hr>
-<h2 id=start>Start</h2>
-<h2 id=c语言基本结构>C语言基本结构</h2>
-<pre tabindex=0><code>#include&lt;stdio.h&gt;
+</div></footer></div></header><section class=article-content>
+<h2 id=前言>前言：</h2><ul>
+<li>这是一篇有关C语言语法基础的精炼概述性质文章，不会涉及C语言一些有深度的内容</li><li>本文面向的是以大学C考试过关为目标，以计算机二级认证为目标，期望获得一个C语言最基础认识的读者</li><li>博主能力有限，可能某些知识点未能讲解清晰，某些知识点遗漏，甚至某些知识点错误，若发现以上问题欢迎邮件勘误。</li></ul><hr>
+<h2 id=start>Start</h2><h2 id=c语言基本结构>C语言基本结构</h2><pre tabindex=0><code>#include&lt;stdio.h&gt;
 
 int main(){
     /* 这是每个程序的开始 */
-    printf(&quot;Hello World!\n&quot;);   //这是另一种注释方法
+    printf(&#34;Hello World!\n&#34;);   //这是另一种注释方法
     return 0;
 }
 </code></pre><ul>
 <li>
-<p>所有C语言程序都包含一个main()函数，程序从main()函数开始执行，每个函数用花括号“{}”包括。</p>
-</li>
+<p>所有C语言程序都包含一个main()函数，程序从main()函数开始执行，每个函数用花括号“{}”包括。</p></li><li>
+<p>C语言有两种添加注释方法</p><ol>
+<li>以“//”开头的单行注释</li><li>以“/**/”包裹的多行注释，或者叫块注释</li></ol></li><li>
+<p>stdio.h是一个头文件（标准输入输出头文件，这个头文件内包含printf函数的定义与实现，如果没有找到stdio.h，printf函数会出现编译错误）。</p></li><li>
+<p>#include 是一个预处理命令（c语言中以#开头的命令称为预处理命令，类似还有#define）用来引入头文件。</p></li><li>
+<p>return 0; 用于退出程序，并向操作系统返回一个数值0.</p></li><li>
+<p>每一句完整的c语言代码用分号“;”（<strong>英文小写</strong>）作为结束符号</p></li></ul><hr>
+<h2 id=c语言简介>C语言简介</h2><ul>
 <li>
-<p>C语言有两种添加注释方法</p>
-<ol>
-<li>以“//”开头的单行注释</li>
-<li>以“/**/”包裹的多行注释，或者叫块注释</li>
-</ol>
-</li>
+<p><a class=link href=https://baike.baidu.com/item/C%E8%AF%AD%E8%A8%80 target=_blank rel=noopener>百度百科</a></p></li><li>
+<p><a class=link href=https://zh.wikipedia.org/wiki/C%E8%AF%AD%E8%A8%80 target=_blank rel=noopener>维基百科</a></p><blockquote>
+<p>重点</p></blockquote><ol>
+<li>C语言是一门<strong>面向过程</strong>的<strong>高级语言</strong></li><li>C语言仍然保持跨平台特性</li><li>未完待续。。。</li></ol></li></ul><hr>
+<h2 id=编写环境>编写环境</h2><ul>
 <li>
-<p>stdio.h是一个头文件（标准输入输出头文件，这个头文件内包含printf函数的定义与实现，如果没有找到stdio.h，printf函数会出现编译错误）。</p>
-</li>
-<li>
-<p>#include 是一个预处理命令（c语言中以#开头的命令称为预处理命令，类似还有#define）用来引入头文件。</p>
-</li>
-<li>
-<p>return 0; 用于退出程序，并向操作系统返回一个数值0.</p>
-</li>
-<li>
-<p>每一句完整的c语言代码用分号“;”（<strong>英文小写</strong>）作为结束符号</p>
-</li>
-</ul>
-<hr>
-<h2 id=c语言简介>C语言简介</h2>
-<ul>
-<li>
-<p><a class=link href=https://baike.baidu.com/item/C%E8%AF%AD%E8%A8%80 target=_blank rel=noopener>百度百科</a></p>
-</li>
-<li>
-<p><a class=link href=https://zh.wikipedia.org/wiki/C%E8%AF%AD%E8%A8%80 target=_blank rel=noopener>维基百科</a></p>
-<blockquote>
-<p>重点</p>
-</blockquote>
-<ol>
-<li>C语言是一门<strong>面向过程</strong>的<strong>高级语言</strong></li>
-<li>C语言仍然保持跨平台特性</li>
-<li>未完待续。。。</li>
-</ol>
-</li>
-</ul>
-<hr>
-<h2 id=编写环境>编写环境</h2>
-<ul>
-<li>
-<p>这里仅为初学者，没有开发项目需求的读者推荐以下开发软件</p>
-</li>
-<li>
-<p>软件名称超链接对应的软件的基本操作入门，Download超链接为下载地址。这里提供的软件下载地址部分是国外网站，如果无法打开可以百度软件名下载</p>
-<table>
+<p>这里仅为初学者，没有开发项目需求的读者推荐以下开发软件</p></li><li>
+<p>软件名称超链接对应的软件的基本操作入门，Download超链接为下载地址。这里提供的软件下载地址部分是国外网站，如果无法打开可以百度软件名下载</p><table>
 <thead>
 <tr>
-<th style=text-align:center>软件</th>
-<th style=text-align:center>简介</th>
-<th style=text-align:center>链接</th>
-</tr>
-</thead>
-<tbody>
+<th style=text-align:center>软件</th><th style=text-align:center>简介</th><th style=text-align:center>链接</th></tr></thead><tbody>
 <tr>
-<td style=text-align:center><a class=link href=https://blog.csdn.net/C20180630/article/details/53185725 target=_blank rel=noopener>Dev C++</a></td>
-<td style=text-align:center>个人觉得最适合新手的集成开发环境，同时具有简单项目的开发能力。傻瓜式安装即点即用同时支持中文，缺点大概是无法跨平台（需要跨平台的也就不是新手了）</td>
-<td style=text-align:center><a class=link href=https://sourceforge.net/projects/orwelldevcpp/ target=_blank rel=noopener>Download</a></td>
-</tr>
-<tr>
-<td style=text-align:center><a class=link href=http://www.dotcpp.com/wp/818.html target=_blank rel=noopener>Code Blocks</a></td>
-<td style=text-align:center>很多文章鼓吹的集成开发环境，博主本人没有使用过，但是口碑一直不错。作为一款开源软件同时支持跨平台就是其优点</td>
-<td style=text-align:center><a class=link href=https://sourceforge.net/projects/codeblocks/ target=_blank rel=noopener>Download</a></td>
-</tr>
-<tr>
-<td style=text-align:center><a class=link href=http://c.biancheng.net/cpp/html/2888.html target=_blank rel=noopener>Visual C++ 6.0</a></td>
-<td style=text-align:center>微软老牌集成开发环境，<del>个人感觉几近过时</del>是前计算机二级指定开发环境除非是学习单片机开发的，或者熟悉二级考试环境，不建议使用</td>
-<td style=text-align:center><a class=link href=http://c.biancheng.net/cpp/html/1117.html target=_blank rel=noopener>Download</a></td>
-</tr>
-<tr>
-<td style=text-align:center><a class=link href=http://c.biancheng.net/cpp/html/3384.html target=_blank rel=noopener>Visual Studio 2010</a></td>
-<td style=text-align:center>微软集成开发环境，全国计算机二级新标准指定的软件</td>
-<td style=text-align:center><a class=link href=http://c.biancheng.net/cpp/html/3383.html target=_blank rel=noopener>Download</a></td>
-</tr>
-<tr>
-<td style=text-align:center>Visual Studio (latest)</td>
-<td style=text-align:center>不是很推荐新手使用最新版的Visual Studio，微软最新的vs对诸多c++语法做了安全方面的限制</td>
-<td style=text-align:center>No Download</td>
-</tr>
-</tbody>
-</table>
-</li>
-</ul>
-<hr>
-<h2 id=基本数据类型>基本数据类型</h2>
-<ul>
+<td style=text-align:center><a class=link href=https://blog.csdn.net/C20180630/article/details/53185725 target=_blank rel=noopener>Dev C++</a></td><td style=text-align:center>个人觉得最适合新手的集成开发环境，同时具有简单项目的开发能力。傻瓜式安装即点即用同时支持中文，缺点大概是无法跨平台（需要跨平台的也就不是新手了）</td><td style=text-align:center><a class=link href=https://sourceforge.net/projects/orwelldevcpp/ target=_blank rel=noopener>Download</a></td></tr><tr>
+<td style=text-align:center><a class=link href=http://www.dotcpp.com/wp/818.html target=_blank rel=noopener>Code Blocks</a></td><td style=text-align:center>很多文章鼓吹的集成开发环境，博主本人没有使用过，但是口碑一直不错。作为一款开源软件同时支持跨平台就是其优点</td><td style=text-align:center><a class=link href=https://sourceforge.net/projects/codeblocks/ target=_blank rel=noopener>Download</a></td></tr><tr>
+<td style=text-align:center><a class=link href=http://c.biancheng.net/cpp/html/2888.html target=_blank rel=noopener>Visual C++ 6.0</a></td><td style=text-align:center>微软老牌集成开发环境，<del>个人感觉几近过时</del>是前计算机二级指定开发环境除非是学习单片机开发的，或者熟悉二级考试环境，不建议使用</td><td style=text-align:center><a class=link href=http://c.biancheng.net/cpp/html/1117.html target=_blank rel=noopener>Download</a></td></tr><tr>
+<td style=text-align:center><a class=link href=http://c.biancheng.net/cpp/html/3384.html target=_blank rel=noopener>Visual Studio 2010</a></td><td style=text-align:center>微软集成开发环境，全国计算机二级新标准指定的软件</td><td style=text-align:center><a class=link href=http://c.biancheng.net/cpp/html/3383.html target=_blank rel=noopener>Download</a></td></tr><tr>
+<td style=text-align:center>Visual Studio (latest)</td><td style=text-align:center>不是很推荐新手使用最新版的Visual Studio，微软最新的vs对诸多c++语法做了安全方面的限制</td><td style=text-align:center>No Download</td></tr></tbody></table></li></ul><hr>
+<h2 id=基本数据类型>基本数据类型</h2><ul>
 <li>
-<p>在了解基本数据类型之前我们需要对计算机存储空间单位换算有个基本概念</p>
-<ul>
-<li>最小单位bit（位）：即一个二进制位</li>
-<li>Byte（字节）：1 Byte=8 bit</li>
-<li>KB（千字节）：1 KB=1024 Byte</li>
-<li>MB（兆字节）：1 MB=1024 KB</li>
-<li>GB（吉字节）：1 GB=1024 MB</li>
-<li>TB（太字节）：1 TB=1024 GB</li>
-</ul>
-</li>
+<p>在了解基本数据类型之前我们需要对计算机存储空间单位换算有个基本概念</p><ul>
+<li>最小单位bit（位）：即一个二进制位</li><li>Byte（字节）：1 Byte=8 bit</li><li>KB（千字节）：1 KB=1024 Byte</li><li>MB（兆字节）：1 MB=1024 KB</li><li>GB（吉字节）：1 GB=1024 MB</li><li>TB（太字节）：1 TB=1024 GB</li></ul></li><li>
+<p><a class=link href=https://zhidao.baidu.com/question/6318898 target=_blank rel=noopener>更多相关资料链接</a></p><hr>
+</li></ul><ol>
 <li>
-<p><a class=link href=https://zhidao.baidu.com/question/6318898 target=_blank rel=noopener>更多相关资料链接</a></p>
-<hr>
-</li>
-</ul>
-<ol>
-<li>
-<h3 id=整数类型>整数类型</h3>
-<table>
+<h3 id=整数类型>整数类型</h3><table>
 <thead>
 <tr>
-<th style=text-align:left>类型</th>
-<th style=text-align:left>存储大小</th>
-<th style=text-align:left>取值范围</th>
-</tr>
-</thead>
-<tbody>
+<th style=text-align:left>类型</th><th style=text-align:left>存储大小</th><th style=text-align:left>取值范围</th></tr></thead><tbody>
 <tr>
-<td style=text-align:left>char</td>
-<td style=text-align:left>1 byte</td>
-<td style=text-align:left>-2^7~2^7-1</td>
-</tr>
-<tr>
-<td style=text-align:left>int</td>
-<td style=text-align:left>2 byte（32bit）4 Byte（64bit）</td>
-<td style=text-align:left>-2^15~2^15-1 -2^31~2^31-1</td>
-</tr>
-<tr>
-<td style=text-align:left>short</td>
-<td style=text-align:left>2 byte</td>
-<td style=text-align:left>-2^15~2^15-1</td>
-</tr>
-<tr>
-<td style=text-align:left>long</td>
-<td style=text-align:left>4 byte</td>
-<td style=text-align:left>-2^31~2^31-1</td>
-</tr>
-</tbody>
-</table>
-<ul>
+<td style=text-align:left>char</td><td style=text-align:left>1 byte</td><td style=text-align:left>-2^7~2^7-1</td></tr><tr>
+<td style=text-align:left>int</td><td style=text-align:left>2 byte（32bit）4 Byte（64bit）</td><td style=text-align:left>-2^15~2^15-1 -2^31~2^31-1</td></tr><tr>
+<td style=text-align:left>short</td><td style=text-align:left>2 byte</td><td style=text-align:left>-2^15~2^15-1</td></tr><tr>
+<td style=text-align:left>long</td><td style=text-align:left>4 byte</td><td style=text-align:left>-2^31~2^31-1</td></tr></tbody></table><ul>
 <li>
-<p>int型在32位程序和64位程序中所能表示的范围是不一样的，所以表中会有两个范围.</p>
-</li>
-<li>
-<p>重点:</p>
-</li>
-</ul>
-<p>结合之前对存储单位的科普。我们知道1 Byte=8bit即1字节等于8个比特位。计算机内部其实只认识1和0，也就是二进制。所以计算机对任何数据的处理都是转换成对应的二进制。1字节对应8个二进制位即：</p>
-<pre tabindex=0><code>00000000 -- 11111111
-</code></pre><p>用8个位子随意组合摆放0，1可以由2^8种组合，计算机内部将这2^8种组合在一一映射到实际的数值上。列如：</p>
-<pre tabindex=0><code>00000000 --&gt; -2^7=-128
+<p>int型在32位程序和64位程序中所能表示的范围是不一样的，所以表中会有两个范围.</p></li><li>
+<p>重点:</p></li></ul><p>结合之前对存储单位的科普。我们知道1 Byte=8bit即1字节等于8个比特位。计算机内部其实只认识1和0，也就是二进制。所以计算机对任何数据的处理都是转换成对应的二进制。1字节对应8个二进制位即：</p><pre tabindex=0><code>00000000 -- 11111111
+</code></pre><p>用8个位子随意组合摆放0，1可以由2^8种组合，计算机内部将这2^8种组合在一一映射到实际的数值上。列如：</p><pre tabindex=0><code>00000000 --&gt; -2^7=-128
 00000001 --&gt; -2^7+1=-127
         ···
 10000000 --&gt; 0
 10000001 --&gt; 1
         ···
 11111111 --&gt; 2^7-1=127
-</code></pre><p>所以我们就有了</p>
-<pre tabindex=0><code>char 1 Byte（字节）范围 -2^7~2^7 即 -128~127
-</code></pre><p>其他类型也可以同样的方法计算范围。也正如表中所给的数值范围，全部以2的次幂记忆。如:</p>
-<pre tabindex=0><code>int 在64位下 大小为4Byte（字节）
+</code></pre><p>所以我们就有了</p><pre tabindex=0><code>char 1 Byte（字节）范围 -2^7~2^7 即 -128~127
+</code></pre><p>其他类型也可以同样的方法计算范围。也正如表中所给的数值范围，全部以2的次幂记忆。如:</p><pre tabindex=0><code>int 在64位下 大小为4Byte（字节）
 4 Byte=4*8 bit=32bit 
 也就是32个二进制bit位
 所以int型的范围可以表示为
 -2^31~2^31-1
 （有没有奇怪为森魔要-1？因为数字0的存在）
 </code></pre><ul>
-<li>unsigned & signed</li>
-</ul>
-<p>值得一提的是c语言种对基本数据类型还有两个修饰符可以使用：</p>
-<pre tabindex=0><code>unsigned    中文释义：无符号
+<li>unsigned & signed</li></ul><p>值得一提的是c语言种对基本数据类型还有两个修饰符可以使用：</p><pre tabindex=0><code>unsigned    中文释义：无符号
 signed      中文释义：有符号
-</code></pre><p>顾名思义，举例来说，如果我们使用unsigned修饰int型</p>
-<pre tabindex=0><code>unsigned char x;
+</code></pre><p>顾名思义，举例来说，如果我们使用unsigned修饰int型</p><pre tabindex=0><code>unsigned char x;
 /* 如此声明的这个变量x的取值范围就会变成 0~2^8-1 即 0-255 */
-</code></pre><p>而signed有符号，以上常用数据类型默认都是由signed（有符号修饰的）所以他们的范围从负数开始，如果你加上unsigned（无符号）那么所有的数据类型范围将是从0开始</p>
-<hr>
-</li>
-<li>
-<h3 id=浮点类型>浮点类型</h3>
-<table>
+</code></pre><p>而signed有符号，以上常用数据类型默认都是由signed（有符号修饰的）所以他们的范围从负数开始，如果你加上unsigned（无符号）那么所有的数据类型范围将是从0开始</p><hr>
+</li><li>
+<h3 id=浮点类型>浮点类型</h3><table>
 <thead>
 <tr>
-<th style=text-align:left>类型</th>
-<th style=text-align:left>存储大小</th>
-<th style=text-align:left>取值范围</th>
-<th style=text-align:left>精度</th>
-</tr>
-</thead>
-<tbody>
+<th style=text-align:left>类型</th><th style=text-align:left>存储大小</th><th style=text-align:left>取值范围</th><th style=text-align:left>精度</th></tr></thead><tbody>
 <tr>
-<td style=text-align:left>float</td>
-<td style=text-align:left>4 Byte</td>
-<td style=text-align:left>1.2E-38 ~ 3.4E+38</td>
-<td style=text-align:left>6位小数</td>
-</tr>
-<tr>
-<td style=text-align:left>double</td>
-<td style=text-align:left>8 Byte</td>
-<td style=text-align:left>2.3E-308 ~ 1.7E+308</td>
-<td style=text-align:left>15位小数</td>
-</tr>
-<tr>
-<td style=text-align:left>long double</td>
-<td style=text-align:left>16 Byte</td>
-<td style=text-align:left>3.4E-4932 ~ 1.1E+4932</td>
-<td style=text-align:left>19位小数</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>有关浮点型的相关问题属于较有深度的问题，这里不做探究</li>
-</ul>
-<hr>
-</li>
-<li>
-<h3 id=void类型>void类型</h3>
-<p>void类型呢是一个比较特殊的类型。</p>
-<ul>
-<li>用来修饰函数表明函数返回值位空，即不存在返回值</li>
-</ul>
-<pre tabindex=0><code>#include&lt;stdio.h&gt;
+<td style=text-align:left>float</td><td style=text-align:left>4 Byte</td><td style=text-align:left>1.2E-38 ~ 3.4E+38</td><td style=text-align:left>6位小数</td></tr><tr>
+<td style=text-align:left>double</td><td style=text-align:left>8 Byte</td><td style=text-align:left>2.3E-308 ~ 1.7E+308</td><td style=text-align:left>15位小数</td></tr><tr>
+<td style=text-align:left>long double</td><td style=text-align:left>16 Byte</td><td style=text-align:left>3.4E-4932 ~ 1.1E+4932</td><td style=text-align:left>19位小数</td></tr></tbody></table><ul>
+<li>有关浮点型的相关问题属于较有深度的问题，这里不做探究</li></ul><hr>
+</li><li>
+<h3 id=void类型>void类型</h3><p>void类型呢是一个比较特殊的类型。</p><ul>
+<li>用来修饰函数表明函数返回值位空，即不存在返回值</li></ul><pre tabindex=0><code>#include&lt;stdio.h&gt;
 void main(){
-    printf(&quot;hello world&quot;);
+    printf(&#34;hello world&#34;);
     return;
 }
 /*
     还记得return吗，用于结束函数并向操作系统或者上级调用函数返回一个数值。如果这个函数是用void修饰的，列如这里的main()函数，这里return就不必返回一个数值（如果你还是写作return 0;还会报错）
 */
 </code></pre><ul>
-<li>用来修饰函数参数表明该函数不接受参数</li>
-</ul>
-<pre tabindex=0><code>#include&lt;stdio.h&gt;
+<li>用来修饰函数参数表明该函数不接受参数</li></ul><pre tabindex=0><code>#include&lt;stdio.h&gt;
 int func(void){
-    printf(&quot;hallo world&quot;);
+    printf(&#34;hallo world&#34;);
     return 0;
 }
 int main(){
@@ -310,33 +149,21 @@ int main(){
 }
 //其实默认括号内为空就表示没有参数，即void是可以省略的
 </code></pre><ul>
-<li>用来修饰指针代表对象地址，而不是一个类型。（关于指针会在指针部分详解）</li>
-</ul>
-<hr>
-</li>
+<li>用来修饰指针代表对象地址，而不是一个类型。（关于指针会在指针部分详解）</li></ul><hr>
+</li><li>
+<h3 id=常量>常量</h3><ul>
 <li>
-<h3 id=常量>常量</h3>
-<ul>
-<li>
-<p>常量，是写死在程序里，在程序运行过程中不可更改的量</p>
-</li>
-<li>
-<p>定义方法</p>
-</li>
-</ul>
-<pre tabindex=0><code>//所有基本数据类型均可以定义对应常量
+<p>常量，是写死在程序里，在程序运行过程中不可更改的量</p></li><li>
+<p>定义方法</p></li></ul><pre tabindex=0><code>//所有基本数据类型均可以定义对应常量
 #define N 100       
 #define Good true
 #define x 1.2345
-#define newline '\n'
+#define newline &#39;\n&#39;
 
 //你也可以使用那个const关键字定义常量
 const double x=0.123456;
-</code></pre></li>
-</ol>
-<hr>
-<h2 id=基本输入输出语句>基本输入输出语句</h2>
-<pre tabindex=0><code>#include&lt;stdio.h&gt;
+</code></pre></li></ol><hr>
+<h2 id=基本输入输出语句>基本输入输出语句</h2><pre tabindex=0><code>#include&lt;stdio.h&gt;
 int main(){
     int i;      //声明整形变量i
     int x,y;    //声明整形变量x，y
@@ -344,322 +171,111 @@ int main(){
     double b;
     char ch;    //声明字符变量ch
 
-    scanf(&quot;%d&quot;,&amp;i);         //从键盘输入数字i
-    scanf(&quot;%d %d&quot;,&amp;x,&amp;y);   //从键盘同时输入数字x,y
-    scanf(&quot;%f %lf&quot;,&amp;a,&amp;b);
-    scanf(&quot;%c&quot;,&amp;ch);        //从键盘读入一个字符ch
+    scanf(&#34;%d&#34;,&amp;i);         //从键盘输入数字i
+    scanf(&#34;%d %d&#34;,&amp;x,&amp;y);   //从键盘同时输入数字x,y
+    scanf(&#34;%f %lf&#34;,&amp;a,&amp;b);
+    scanf(&#34;%c&#34;,&amp;ch);        //从键盘读入一个字符ch
         
-    printf(&quot;hallo world\n&quot;);  //打印固定字符串
-    printf(&quot;%d\n&quot;,i);         //打印单个数字
-    printf(&quot;你输入的x=%d,y=%d\n&quot;,x,y);//格式化输出
-    printf(&quot;单精度a=%f;双精度b=%.3lf&quot;,a,b);//打印输出浮点类型，并限制位数
-    printf(&quot;%c&quot;,ch);//打印单个字符
+    printf(&#34;hallo world\n&#34;);  //打印固定字符串
+    printf(&#34;%d\n&#34;,i);         //打印单个数字
+    printf(&#34;你输入的x=%d,y=%d\n&#34;,x,y);//格式化输出
+    printf(&#34;单精度a=%f;双精度b=%.3lf&#34;,a,b);//打印输出浮点类型，并限制位数
+    printf(&#34;%c&#34;,ch);//打印单个字符
     return 0;
 }
 </code></pre><ul>
 <li>
-<p>以下是样例输入</p>
-<pre tabindex=0><code>10
+<p>以下是样例输入</p><pre tabindex=0><code>10
 2 3
 1.234 3.141592654
-
-</code></pre></li>
-<li>
-<p>以下是输出</p>
-<pre tabindex=0><code>hallo world
+</code></pre></li><li>
+<p>以下是输出</p><pre tabindex=0><code>hallo world
 10
 你输入的x=2,y=3
 单精度a=1.234000;双精度b=3.142
-
 </code></pre><ul>
-<li>你可能会奇怪不是应该还输入一个单个字符吗，为什么没有了，其实那个单个字符就是两个小数最后的回车符所以你也看到了我的输出其实多了一行，对那就是那个最后输入的回车符。</li>
-<li>&ldquo;%.3f"这个写法是限制小数后打印三位，默认四舍五入</li>
-</ul>
-<p><strong>请努力理解以上代码，结合下方给出的资料</strong></p>
-<ul>
-<li>格式输出符号</li>
-</ul>
-<table>
+<li>你可能会奇怪不是应该还输入一个单个字符吗，为什么没有了，其实那个单个字符就是两个小数最后的回车符所以你也看到了我的输出其实多了一行，对那就是那个最后输入的回车符。</li><li>&ldquo;%.3f"这个写法是限制小数后打印三位，默认四舍五入</li></ul><p><strong>请努力理解以上代码，结合下方给出的资料</strong></p><ul>
+<li>格式输出符号</li></ul><table>
 <thead>
 <tr>
-<th style=text-align:left>格式输出符号</th>
-<th style=text-align:left>含义</th>
-</tr>
-</thead>
-<tbody>
+<th style=text-align:left>格式输出符号</th><th style=text-align:left>含义</th></tr></thead><tbody>
 <tr>
-<td style=text-align:left>%a</td>
-<td style=text-align:left>浮点数、十六进制数字和p-记数法（c99</td>
-</tr>
-<tr>
-<td style=text-align:left>%A</td>
-<td style=text-align:left>浮点数、十六进制数字和p-记法（c99）</td>
-</tr>
-<tr>
-<td style=text-align:left>%c</td>
-<td style=text-align:left>一个字符(char)</td>
-</tr>
-<tr>
-<td style=text-align:left>%C</td>
-<td style=text-align:left>一个ISO宽字符</td>
-</tr>
-<tr>
-<td style=text-align:left>%d</td>
-<td style=text-align:left>有符号十进制整数(int)（%ld、%Ld：长整型数据(long),%hd：输出短整形。）</td>
-</tr>
-<tr>
-<td style=text-align:left>%e</td>
-<td style=text-align:left>浮点数、e-记数法</td>
-</tr>
-<tr>
-<td style=text-align:left>%E</td>
-<td style=text-align:left>浮点数、E-记数法</td>
-</tr>
-<tr>
-<td style=text-align:left>%f</td>
-<td style=text-align:left>单精度浮点数(默认float)、十进制记数法（%.nf  这里n表示精确到小数位后n位.十进制计数）</td>
-</tr>
-<tr>
-<td style=text-align:left>%g</td>
-<td style=text-align:left>根据数值不同自动选择%f或%e．</td>
-</tr>
-<tr>
-<td style=text-align:left>%G</td>
-<td style=text-align:left>根据数值不同自动选择%f或%e.</td>
-</tr>
-<tr>
-<td style=text-align:left>%i</td>
-<td style=text-align:left>有符号十进制数（与%d相同）</td>
-</tr>
-<tr>
-<td style=text-align:left>%o</td>
-<td style=text-align:left>无符号八进制整数</td>
-</tr>
-<tr>
-<td style=text-align:left>%p</td>
-<td style=text-align:left>指针</td>
-</tr>
-<tr>
-<td style=text-align:left>%s</td>
-<td style=text-align:left>对应字符串char*（%s = %hs = %hS 输出 窄字符）</td>
-</tr>
-<tr>
-<td style=text-align:left>%S</td>
-<td style=text-align:left>对应宽字符串WCAHR*（%ws = %S 输出宽字符串）</td>
-</tr>
-<tr>
-<td style=text-align:left>%u</td>
-<td style=text-align:left>无符号十进制整数(unsigned int)</td>
-</tr>
-<tr>
-<td style=text-align:left>%x</td>
-<td style=text-align:left>使用十六进制数字0xf的无符号十六进制整数</td>
-</tr>
-<tr>
-<td style=text-align:left>%X</td>
-<td style=text-align:left>使用十六进制数字0xf的无符号十六进制整数</td>
-</tr>
-<tr>
-<td style=text-align:left>%%</td>
-<td style=text-align:left>打印一个百分号</td>
-</tr>
-<tr>
-<td style=text-align:left>%I64d</td>
-<td style=text-align:left>用于INT64 或者 long long</td>
-</tr>
-<tr>
-<td style=text-align:left>%I64u</td>
-<td style=text-align:left>用于UINT64 或者 unsigned long long</td>
-</tr>
-<tr>
-<td style=text-align:left>%I64x</td>
-<td style=text-align:left>用于64位16进制数据</td>
-</tr>
-</tbody>
-</table>
-<ul>
+<td style=text-align:left>%a</td><td style=text-align:left>浮点数、十六进制数字和p-记数法（c99</td></tr><tr>
+<td style=text-align:left>%A</td><td style=text-align:left>浮点数、十六进制数字和p-记法（c99）</td></tr><tr>
+<td style=text-align:left>%c</td><td style=text-align:left>一个字符(char)</td></tr><tr>
+<td style=text-align:left>%C</td><td style=text-align:left>一个ISO宽字符</td></tr><tr>
+<td style=text-align:left>%d</td><td style=text-align:left>有符号十进制整数(int)（%ld、%Ld：长整型数据(long),%hd：输出短整形。）</td></tr><tr>
+<td style=text-align:left>%e</td><td style=text-align:left>浮点数、e-记数法</td></tr><tr>
+<td style=text-align:left>%E</td><td style=text-align:left>浮点数、E-记数法</td></tr><tr>
+<td style=text-align:left>%f</td><td style=text-align:left>单精度浮点数(默认float)、十进制记数法（%.nf  这里n表示精确到小数位后n位.十进制计数）</td></tr><tr>
+<td style=text-align:left>%g</td><td style=text-align:left>根据数值不同自动选择%f或%e．</td></tr><tr>
+<td style=text-align:left>%G</td><td style=text-align:left>根据数值不同自动选择%f或%e.</td></tr><tr>
+<td style=text-align:left>%i</td><td style=text-align:left>有符号十进制数（与%d相同）</td></tr><tr>
+<td style=text-align:left>%o</td><td style=text-align:left>无符号八进制整数</td></tr><tr>
+<td style=text-align:left>%p</td><td style=text-align:left>指针</td></tr><tr>
+<td style=text-align:left>%s</td><td style=text-align:left>对应字符串char*（%s = %hs = %hS 输出 窄字符）</td></tr><tr>
+<td style=text-align:left>%S</td><td style=text-align:left>对应宽字符串WCAHR*（%ws = %S 输出宽字符串）</td></tr><tr>
+<td style=text-align:left>%u</td><td style=text-align:left>无符号十进制整数(unsigned int)</td></tr><tr>
+<td style=text-align:left>%x</td><td style=text-align:left>使用十六进制数字0xf的无符号十六进制整数</td></tr><tr>
+<td style=text-align:left>%X</td><td style=text-align:left>使用十六进制数字0xf的无符号十六进制整数</td></tr><tr>
+<td style=text-align:left>%%</td><td style=text-align:left>打印一个百分号</td></tr><tr>
+<td style=text-align:left>%I64d</td><td style=text-align:left>用于INT64 或者 long long</td></tr><tr>
+<td style=text-align:left>%I64u</td><td style=text-align:left>用于UINT64 或者 unsigned long long</td></tr><tr>
+<td style=text-align:left>%I64x</td><td style=text-align:left>用于64位16进制数据</td></tr></tbody></table><ul>
 <li>
-<p>基本常用的就是整数，小数，字符，字符串的输出。</p>
-</li>
-<li>
-<p>转义字符</p>
-</li>
-</ul>
-<table>
+<p>基本常用的就是整数，小数，字符，字符串的输出。</p></li><li>
+<p>转义字符</p></li></ul><table>
 <thead>
 <tr>
-<th style=text-align:left>转义字符</th>
-<th style=text-align:left>含义</th>
-<th style=text-align:left>ASCII码值</th>
-</tr>
-</thead>
-<tbody>
+<th style=text-align:left>转义字符</th><th style=text-align:left>含义</th><th style=text-align:left>ASCII码值</th></tr></thead><tbody>
 <tr>
-<td style=text-align:left>\a</td>
-<td style=text-align:left>响铃(BEL)</td>
-<td style=text-align:left>007</td>
-</tr>
-<tr>
-<td style=text-align:left>\b</td>
-<td style=text-align:left>退格(BS) ，将当前位置移到前一列</td>
-<td style=text-align:left>008</td>
-</tr>
-<tr>
-<td style=text-align:left>\f</td>
-<td style=text-align:left>换页(FF)，将当前位置移到下页开头</td>
-<td style=text-align:left>012</td>
-</tr>
-<tr>
-<td style=text-align:left>\n</td>
-<td style=text-align:left>换行(LF) ，将当前位置移到下一行开头</td>
-<td style=text-align:left>010</td>
-</tr>
-<tr>
-<td style=text-align:left>\r</td>
-<td style=text-align:left>回车(CR) ，将当前位置移到本行开头</td>
-<td style=text-align:left>013</td>
-</tr>
-<tr>
-<td style=text-align:left>\t</td>
-<td style=text-align:left>水平制表(HT) （跳到下一个TAB位置）</td>
-<td style=text-align:left>009</td>
-</tr>
-<tr>
-<td style=text-align:left>\v</td>
-<td style=text-align:left>垂直制表(VT)</td>
-<td style=text-align:left>011</td>
-</tr>
-<tr>
-<td style=text-align:left>\\</td>
-<td style=text-align:left>代表一个反斜线字符'''</td>
-<td style=text-align:left>092 ​</td>
-</tr>
-<tr>
-<td style=text-align:left>'</td>
-<td style=text-align:left>代表一个单引号（撇号）字符</td>
-<td style=text-align:left>039</td>
-</tr>
-<tr>
-<td style=text-align:left>"</td>
-<td style=text-align:left>代表一个双引号字符</td>
-<td style=text-align:left>034</td>
-</tr>
-<tr>
-<td style=text-align:left>\0</td>
-<td style=text-align:left>空字符(NULL)</td>
-<td style=text-align:left>000</td>
-</tr>
-<tr>
-<td style=text-align:left>\ddd</td>
-<td style=text-align:left>1到3位八进制数所代表的任意字符</td>
-<td style=text-align:left>三位八进制</td>
-</tr>
-<tr>
-<td style=text-align:left>\xhh</td>
-<td style=text-align:left>1到2位十六进制所代表的任意字符</td>
-<td style=text-align:left>二位十六进制</td>
-</tr>
-</tbody>
-</table>
-<ul>
+<td style=text-align:left>\a</td><td style=text-align:left>响铃(BEL)</td><td style=text-align:left>007</td></tr><tr>
+<td style=text-align:left>\b</td><td style=text-align:left>退格(BS) ，将当前位置移到前一列</td><td style=text-align:left>008</td></tr><tr>
+<td style=text-align:left>\f</td><td style=text-align:left>换页(FF)，将当前位置移到下页开头</td><td style=text-align:left>012</td></tr><tr>
+<td style=text-align:left>\n</td><td style=text-align:left>换行(LF) ，将当前位置移到下一行开头</td><td style=text-align:left>010</td></tr><tr>
+<td style=text-align:left>\r</td><td style=text-align:left>回车(CR) ，将当前位置移到本行开头</td><td style=text-align:left>013</td></tr><tr>
+<td style=text-align:left>\t</td><td style=text-align:left>水平制表(HT) （跳到下一个TAB位置）</td><td style=text-align:left>009</td></tr><tr>
+<td style=text-align:left>\v</td><td style=text-align:left>垂直制表(VT)</td><td style=text-align:left>011</td></tr><tr>
+<td style=text-align:left>\\</td><td style=text-align:left>代表一个反斜线字符&rsquo;&rsquo;'</td><td style=text-align:left>092 ​</td></tr><tr>
+<td style=text-align:left>'</td><td style=text-align:left>代表一个单引号（撇号）字符</td><td style=text-align:left>039</td></tr><tr>
+<td style=text-align:left>"</td><td style=text-align:left>代表一个双引号字符</td><td style=text-align:left>034</td></tr><tr>
+<td style=text-align:left>\0</td><td style=text-align:left>空字符(NULL)</td><td style=text-align:left>000</td></tr><tr>
+<td style=text-align:left>\ddd</td><td style=text-align:left>1到3位八进制数所代表的任意字符</td><td style=text-align:left>三位八进制</td></tr><tr>
+<td style=text-align:left>\xhh</td><td style=text-align:left>1到2位十六进制所代表的任意字符</td><td style=text-align:left>二位十六进制</td></tr></tbody></table><ul>
 <li>
-<p><strong>难点</strong></p>
-</li>
+<p><strong>难点</strong></p></li><li>
+<p>scanf()函数，以空格或者回车符作为截断。</p></li><li>
+<p>C语言中的输入输出缓冲区机制</p><ul>
 <li>
-<p>scanf()函数，以空格或者回车符作为截断。</p>
-</li>
+<p>在C/C++中，输入输出事实上是各自有一个缓冲区的。缓冲区故名思意。</p></li><li>
+<p>在你的键盘，屏幕和程序实际获得输入之间还有一个缓冲区。</p></li><li>
+<p>你按下的按键会被先存放到缓冲区内，接着程序从<strong>输入缓冲区</strong>读取。处理完毕之后将输出写在<strong>输出缓冲区</strong>内，屏幕再从输出缓冲区内读取输出并显示给你。</p></li></ul><p><strong>并不是你想象中的你按下的每一个字符都会直接被程序接收</strong></p></li><li>
+<p>当再输入的时候涉及到了字符，或者字符串，并且你发现输入的数据并没有按照你的需要，按照你所想的进行，多半是因为在输入缓冲区内有你之前输入操作时遗留的字符在里面（简单举例，你使用scanf输入一个数字并且按下回车，数字被程序从输入缓冲区读取，但是遗留下来了一个回车符，如果你紧接着读取一个字符，就会出现你意料之外的情况，也就是上述输入输出示例代码中的情况。）</p></li><li>
+<p>当输入缓冲区出现问题时可以使用如下代码清除缓冲区：</p><pre tabindex=0><code>fflush(stdin);
+</code></pre><p><del>然而并不是所有的编译器支持这个函数</del></p></li></ul></li></ul><hr>
+<h2 id=运算符>运算符</h2><ol>
 <li>
-<p>C语言中的输入输出缓冲区机制</p>
-<ul>
-<li>
-<p>在C/C++中，输入输出事实上是各自有一个缓冲区的。缓冲区故名思意。</p>
-</li>
-<li>
-<p>在你的键盘，屏幕和程序实际获得输入之间还有一个缓冲区。</p>
-</li>
-<li>
-<p>你按下的按键会被先存放到缓冲区内，接着程序从<strong>输入缓冲区</strong>读取。处理完毕之后将输出写在<strong>输出缓冲区</strong>内，屏幕再从输出缓冲区内读取输出并显示给你。</p>
-</li>
-</ul>
-<p><strong>并不是你想象中的你按下的每一个字符都会直接被程序接收</strong></p>
-</li>
-<li>
-<p>当再输入的时候涉及到了字符，或者字符串，并且你发现输入的数据并没有按照你的需要，按照你所想的进行，多半是因为在输入缓冲区内有你之前输入操作时遗留的字符在里面（简单举例，你使用scanf输入一个数字并且按下回车，数字被程序从输入缓冲区读取，但是遗留下来了一个回车符，如果你紧接着读取一个字符，就会出现你意料之外的情况，也就是上述输入输出示例代码中的情况。）</p>
-</li>
-<li>
-<p>当输入缓冲区出现问题时可以使用如下代码清除缓冲区：</p>
-<pre tabindex=0><code>fflush(stdin);
-</code></pre><p><del>然而并不是所有的编译器支持这个函数</del></p>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id=运算符>运算符</h2>
-<ol>
-<li>
-<h3 id=算术运算符>算术运算符</h3>
-<p>这里假设A=10，B=20</p>
-<table>
+<h3 id=算术运算符>算术运算符</h3><p>这里假设A=10，B=20</p><table>
 <thead>
 <tr>
-<th style=text-align:left>运算符</th>
-<th style=text-align:left>含义</th>
-<th style=text-align:left>实列</th>
-</tr>
-</thead>
-<tbody>
+<th style=text-align:left>运算符</th><th style=text-align:left>含义</th><th style=text-align:left>实列</th></tr></thead><tbody>
 <tr>
-<td style=text-align:left>+</td>
-<td style=text-align:left>把两个操作数相加</td>
-<td style=text-align:left>A + B 将得到 30</td>
-</tr>
-<tr>
-<td style=text-align:left>-</td>
-<td style=text-align:left>从第一个操作数中减去第二个操作数</td>
-<td style=text-align:left>A - B 将得到 -10</td>
-</tr>
-<tr>
-<td style=text-align:left>*</td>
-<td style=text-align:left>把两个操作数相乘</td>
-<td style=text-align:left>A * B 将得到 200</td>
-</tr>
-<tr>
-<td style=text-align:left>/</td>
-<td style=text-align:left>分子除以分母</td>
-<td style=text-align:left>B / A 将得到 2</td>
-</tr>
-<tr>
-<td style=text-align:left>%</td>
-<td style=text-align:left>取模运算符，整除后的余数</td>
-<td style=text-align:left>B % A 将得到 0</td>
-</tr>
-<tr>
-<td style=text-align:left>++</td>
-<td style=text-align:left>自增运算符，整数值增加 1</td>
-<td style=text-align:left>A++ 将得到 11</td>
-</tr>
-<tr>
-<td style=text-align:left>&ndash;</td>
-<td style=text-align:left>自减运算符，整数值减少 1</td>
-<td style=text-align:left>A&ndash; 将得到 9</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>重点</li>
-</ul>
-<p>自增自减运算符的理解</p>
-<ul>
-<li>自增自减少运算符仅支持整数类型</li>
-<li>逻辑关系
+<td style=text-align:left>+</td><td style=text-align:left>把两个操作数相加</td><td style=text-align:left>A + B 将得到 30</td></tr><tr>
+<td style=text-align:left>-</td><td style=text-align:left>从第一个操作数中减去第二个操作数</td><td style=text-align:left>A - B 将得到 -10</td></tr><tr>
+<td style=text-align:left>*</td><td style=text-align:left>把两个操作数相乘</td><td style=text-align:left>A * B 将得到 200</td></tr><tr>
+<td style=text-align:left>/</td><td style=text-align:left>分子除以分母</td><td style=text-align:left>B / A 将得到 2</td></tr><tr>
+<td style=text-align:left>%</td><td style=text-align:left>取模运算符，整除后的余数</td><td style=text-align:left>B % A 将得到 0</td></tr><tr>
+<td style=text-align:left>++</td><td style=text-align:left>自增运算符，整数值增加 1</td><td style=text-align:left>A++ 将得到 11</td></tr><tr>
+<td style=text-align:left>&ndash;</td><td style=text-align:left>自减运算符，整数值减少 1</td><td style=text-align:left>A&ndash; 将得到 9</td></tr></tbody></table><ul>
+<li>重点</li></ul><p>自增自减运算符的理解</p><ul>
+<li>自增自减少运算符仅支持整数类型</li><li>逻辑关系
 <pre tabindex=0><code>#include&lt;stdio.h&gt;
 int main(){
     int x=0;
-    printf(&quot;%d\n&quot;,x++);
-    printf(&quot;%d\n&quot;,x);
-    printf(&quot;%d\n&quot;,--x);
-    printf(&quot;%d\n&quot;,x);
+    printf(&#34;%d\n&#34;,x++);
+    printf(&#34;%d\n&#34;,x);
+    printf(&#34;%d\n&#34;,--x);
+    printf(&#34;%d\n&#34;,x);
     return 0;
 }
 </code></pre>样例输出
@@ -667,141 +283,42 @@ int main(){
 1
 0
 0
-</code></pre></li>
-<li>当这两个运算符出现在程序语句中时</li>
-<li>如果位于变量前，则先执行自增（或自减）再执行程序语句</li>
-<li>如果位于变量之后，则先执行程序语句，再进行自增（或自减）</li>
-</ul>
-<p>除此之外c语言还支持如下的写法简化：</p>
-<pre tabindex=0><code>i=i+1;  可以写作 i+=1;
+</code></pre></li><li>当这两个运算符出现在程序语句中时</li><li>如果位于变量前，则先执行自增（或自减）再执行程序语句</li><li>如果位于变量之后，则先执行程序语句，再进行自增（或自减）</li></ul><p>除此之外c语言还支持如下的写法简化：</p><pre tabindex=0><code>i=i+1;  可以写作 i+=1;
 i=i*10; 可以写作 i*=10;
 i=i/2;  可以写作 i/=2;
 i=i-5;  可以写作 i-=5;
 </code></pre><hr>
-</li>
-<li>
-<h3 id=关系运算符>关系运算符</h3>
-<p>这里假设A=10，B=20</p>
-<table>
+</li><li>
+<h3 id=关系运算符>关系运算符</h3><p>这里假设A=10，B=20</p><table>
 <thead>
 <tr>
-<th style=text-align:left>运算符</th>
-<th style=text-align:left>描述</th>
-<th style=text-align:left>实例</th>
-</tr>
-</thead>
-<tbody>
+<th style=text-align:left>运算符</th><th style=text-align:left>描述</th><th style=text-align:left>实例</th></tr></thead><tbody>
 <tr>
-<td style=text-align:left>==</td>
-<td style=text-align:left>检查两个操作数的值是否相等，如果相等则条件为真。</td>
-<td style=text-align:left>(A == B) 不为真。</td>
-</tr>
-<tr>
-<td style=text-align:left>!=</td>
-<td style=text-align:left>检查两个操作数的值是否相等，如果不相等则条件为真。</td>
-<td style=text-align:left>(A != B) 为真。</td>
-</tr>
-<tr>
-<td style=text-align:left>></td>
-<td style=text-align:left>检查左操作数的值是否大于右操作数的值，如果是则条件为真。</td>
-<td style=text-align:left>(A > B) 不为真。</td>
-</tr>
-<tr>
-<td style=text-align:left>&lt;</td>
-<td style=text-align:left>检查左操作数的值是否小于右操作数的值，如果是则条件为真。</td>
-<td style=text-align:left>(A &lt; B) 为真。</td>
-</tr>
-<tr>
-<td style=text-align:left>>=</td>
-<td style=text-align:left>检查左操作数的值是否大于或等于右操作数的值，如果是则条件为真。</td>
-<td style=text-align:left>(A >= B) 不为真。</td>
-</tr>
-<tr>
-<td style=text-align:left>&lt;=</td>
-<td style=text-align:left>检查左操作数的值是否小于或等于右操作数的值，如果是则条件为真。</td>
-<td style=text-align:left>(A &lt;= B) 为真。</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</li>
-<li>
-<h3 id=逻辑运算符>逻辑运算符</h3>
-<p>这里假设A=10，B=20</p>
-<table>
+<td style=text-align:left>==</td><td style=text-align:left>检查两个操作数的值是否相等，如果相等则条件为真。</td><td style=text-align:left>(A == B) 不为真。</td></tr><tr>
+<td style=text-align:left>!=</td><td style=text-align:left>检查两个操作数的值是否相等，如果不相等则条件为真。</td><td style=text-align:left>(A != B) 为真。</td></tr><tr>
+<td style=text-align:left>></td><td style=text-align:left>检查左操作数的值是否大于右操作数的值，如果是则条件为真。</td><td style=text-align:left>(A > B) 不为真。</td></tr><tr>
+<td style=text-align:left>&lt;</td><td style=text-align:left>检查左操作数的值是否小于右操作数的值，如果是则条件为真。</td><td style=text-align:left>(A &lt; B) 为真。</td></tr><tr>
+<td style=text-align:left>>=</td><td style=text-align:left>检查左操作数的值是否大于或等于右操作数的值，如果是则条件为真。</td><td style=text-align:left>(A >= B) 不为真。</td></tr><tr>
+<td style=text-align:left>&lt;=</td><td style=text-align:left>检查左操作数的值是否小于或等于右操作数的值，如果是则条件为真。</td><td style=text-align:left>(A &lt;= B) 为真。</td></tr></tbody></table><hr>
+</li><li>
+<h3 id=逻辑运算符>逻辑运算符</h3><p>这里假设A=10，B=20</p><table>
 <thead>
 <tr>
-<th style=text-align:left>运算符</th>
-<th style=text-align:left>描述</th>
-<th style=text-align:left>实例</th>
-</tr>
-</thead>
-<tbody>
+<th style=text-align:left>运算符</th><th style=text-align:left>描述</th><th style=text-align:left>实例</th></tr></thead><tbody>
 <tr>
-<td style=text-align:left>&&</td>
-<td style=text-align:left>称为逻辑与运算符。如果两个操作数都非零，则条件为真。</td>
-<td style=text-align:left>(A && B) 为假。</td>
-</tr>
-<tr>
-<td style=text-align:left>||</td>
-<td style=text-align:left>称为逻辑或运算符。如果两个操作数中有任意一个非零，则条件为真。</td>
-<td style=text-align:left>(A</td>
-</tr>
-<tr>
-<td style=text-align:left>!</td>
-<td style=text-align:left>称为逻辑非运算符。用来逆转操作数的逻辑状态。如果条件为真则逻辑非运算符将使其为假。</td>
-<td style=text-align:left>!(A && B) 为真。</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</li>
-<li>
-<h3 id=按位运算符>按位运算符</h3>
-<p>位运算符作用于位，并逐位执行操作。&、 | 和 ^ 的真值表如下所示：</p>
-<table>
+<td style=text-align:left>&&</td><td style=text-align:left>称为逻辑与运算符。如果两个操作数都非零，则条件为真。</td><td style=text-align:left>(A && B) 为假。</td></tr><tr>
+<td style=text-align:left>||</td><td style=text-align:left>称为逻辑或运算符。如果两个操作数中有任意一个非零，则条件为真。</td><td style=text-align:left>(A</td></tr><tr>
+<td style=text-align:left>!</td><td style=text-align:left>称为逻辑非运算符。用来逆转操作数的逻辑状态。如果条件为真则逻辑非运算符将使其为假。</td><td style=text-align:left>!(A && B) 为真。</td></tr></tbody></table><hr>
+</li><li>
+<h3 id=按位运算符>按位运算符</h3><p>位运算符作用于位，并逐位执行操作。&、 | 和 ^ 的真值表如下所示：</p><table>
 <thead>
 <tr>
-<th>p</th>
-<th>q</th>
-<th>p & q</th>
-<th>p | q</th>
-<th>p ^ q</th>
-</tr>
-</thead>
-<tbody>
+<th>p</th><th>q</th><th>p & q</th><th>p | q</th><th>p ^ q</th></tr></thead><tbody>
 <tr>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-</tr>
-<tr>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-<p>假设如果 A = 60，且 B = 13，现在以二进制格式表示，它们如下所示：</p>
-<pre tabindex=0><code>A = 0011 1100
+<td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr>
+<td>0</td><td>1</td><td>0</td><td>1</td><td>1</td></tr><tr>
+<td>1</td><td>1</td><td>1</td><td>1</td><td>0</td></tr><tr>
+<td>1</td><td>0</td><td>0</td><td>1</td><td>1</td></tr></tbody></table><p>假设如果 A = 60，且 B = 13，现在以二进制格式表示，它们如下所示：</p><pre tabindex=0><code>A = 0011 1100
 B = 0000 1101
 -----------------
 A&amp;B = 0000 1100
@@ -809,69 +326,30 @@ A|B = 0011 1101
 A^B = 0011 0001
 ~A  = 1100 0011
 </code></pre><ul>
-<li>c语言中实际的位运算符</li>
-</ul>
-<table>
+<li>c语言中实际的位运算符</li></ul><table>
 <thead>
 <tr>
-<th style=text-align:left>位运算符</th>
-<th style=text-align:left>描述</th>
-<th style=text-align:left>实列</th>
-</tr>
-</thead>
-<tbody>
+<th style=text-align:left>位运算符</th><th style=text-align:left>描述</th><th style=text-align:left>实列</th></tr></thead><tbody>
 <tr>
-<td style=text-align:left>&</td>
-<td style=text-align:left>按位与操作，按二进制位进行"与"运算。</td>
-<td style=text-align:left>(A & B) 将得到 12，即为 0000 1100</td>
-</tr>
-<tr>
-<td style=text-align:left>|</td>
-<td style=text-align:left>按位或运算符，按二进制位进行"或"运算。</td>
-<td style=text-align:left>(A | B) 将得到 61，即为 0011 1101</td>
-</tr>
-<tr>
-<td style=text-align:left>^</td>
-<td style=text-align:left>异或运算符，按二进制位进行"异或"运算。</td>
-<td style=text-align:left>(A ^ B) 将得到 49，即为 0011 0001</td>
-</tr>
-<tr>
-<td style=text-align:left>~</td>
-<td style=text-align:left>取反运算符，按二进制位进行"取反"运算。</td>
-<td style=text-align:left>(~A ) 将得到 -61，即为 1100 0011，一个有符号二进制数的补码形式。</td>
-</tr>
-<tr>
-<td style=text-align:left>&#171;</td>
-<td style=text-align:left>二进制左移运算符。将一个运算对象的各二进制位全部左移若干位（左边的二进制位丢弃，右边补0）。</td>
-<td style=text-align:left>A &#171; 2 将得到 240，即为 1111 0000</td>
-</tr>
-<tr>
-<td style=text-align:left>&#187;</td>
-<td style=text-align:left>二进制右移运算符。将一个数的各二进制位全部右移若干位，正数左补0，负数左补1，右边丢弃。</td>
-<td style=text-align:left>A &#187; 2 将得到 15，即为 0000 1111</td>
-</tr>
-</tbody>
-</table>
-</li>
-</ol>
-<hr>
-<h2 id=条件选择语句>条件选择语句</h2>
-<ul>
-<li><strong>c语言把任意非零，非空的值定义为true，把零或null定义为false</strong></li>
-</ul>
-<ol>
+<td style=text-align:left>&</td><td style=text-align:left>按位与操作，按二进制位进行"与"运算。</td><td style=text-align:left>(A & B) 将得到 12，即为 0000 1100</td></tr><tr>
+<td style=text-align:left>|</td><td style=text-align:left>按位或运算符，按二进制位进行"或"运算。</td><td style=text-align:left>(A | B) 将得到 61，即为 0011 1101</td></tr><tr>
+<td style=text-align:left>^</td><td style=text-align:left>异或运算符，按二进制位进行"异或"运算。</td><td style=text-align:left>(A ^ B) 将得到 49，即为 0011 0001</td></tr><tr>
+<td style=text-align:left>~</td><td style=text-align:left>取反运算符，按二进制位进行"取反"运算。</td><td style=text-align:left>(~A ) 将得到 -61，即为 1100 0011，一个有符号二进制数的补码形式。</td></tr><tr>
+<td style=text-align:left>&#171;</td><td style=text-align:left>二进制左移运算符。将一个运算对象的各二进制位全部左移若干位（左边的二进制位丢弃，右边补0）。</td><td style=text-align:left>A &#171; 2 将得到 240，即为 1111 0000</td></tr><tr>
+<td style=text-align:left>&#187;</td><td style=text-align:left>二进制右移运算符。将一个数的各二进制位全部右移若干位，正数左补0，负数左补1，右边丢弃。</td><td style=text-align:left>A &#187; 2 将得到 15，即为 0000 1111</td></tr></tbody></table></li></ol><hr>
+<h2 id=条件选择语句>条件选择语句</h2><ul>
+<li><strong>c语言把任意非零，非空的值定义为true，把零或null定义为false</strong></li></ul><ol>
 <li>
-<h3 id=基本if语句>基本if语句</h3>
-<pre tabindex=0><code>#include&lt;stdio.h&gt;
+<h3 id=基本if语句>基本if语句</h3><pre tabindex=0><code>#include&lt;stdio.h&gt;
 int main(){
-    if (1) printf(&quot;hallo &quot;);
+    if (1) printf(&#34;hallo &#34;);
 
     if (true) {
-        printf(&quot;world&quot;);
+        printf(&#34;world&#34;);
     }
 
     int x=10;
-    if (x) printf(&quot;\n&quot;);
+    if (x) printf(&#34;\n&#34;);
 
     //求a,b,c种的最大值
     int a=5,b=2,c=3;
@@ -887,117 +365,86 @@ int main(){
             ans=c;
         }
     }
-    printf(&quot;a=%d,b=%d,c=%d\nMax=%d\n&quot;,a,b,c,ans);
+    printf(&#34;a=%d,b=%d,c=%d\nMax=%d\n&#34;,a,b,c,ans);
 
     //    &amp;&amp;且    ||或
-    if (a&gt;b &amp;&amp; b&gt;c) printf(&quot;a\n&quot;);
-    if (a&gt;b || b&gt;c) printf(&quot;b\n&quot;);
+    if (a&gt;b &amp;&amp; b&gt;c) printf(&#34;a\n&#34;);
+    if (a&gt;b || b&gt;c) printf(&#34;b\n&#34;);
 
     return 0;
 }
-</code></pre><p>输出如下</p>
-<pre tabindex=0><code>hallo world
+</code></pre><p>输出如下</p><pre tabindex=0><code>hallo world
 a=5,b=2,c=3
 Max=5
 b
 </code></pre><ul>
-<li>重点</li>
-</ul>
-<p><strong>c语言的条件判断语句具有短路性质</strong></p>
-<ul>
-<li>在用&&连接的两个表达式A，B中。如果A的运算值为false，那么表达式B不会运算</li>
-<li>在用||连接的两个表达式A，B中。如果A的运算值为true，那么表达式B不会运算</li>
-</ul>
-<pre tabindex=0><code>#include&lt;stdio.h&gt;
+<li>重点</li></ul><p><strong>c语言的条件判断语句具有短路性质</strong></p><ul>
+<li>在用&&连接的两个表达式A，B中。如果A的运算值为false，那么表达式B不会运算</li><li>在用||连接的两个表达式A，B中。如果A的运算值为true，那么表达式B不会运算</li></ul><pre tabindex=0><code>#include&lt;stdio.h&gt;
 int main(){
     int a=1,b=2,c=3;
 
-    if (a&gt;b &amp;&amp; ++a) printf(&quot;Yes\n&quot;);
+    if (a&gt;b &amp;&amp; ++a) printf(&#34;Yes\n&#34;);
     //这里由于a&gt;b不成立，所以a++不会被执行，所以a的值仍然为1,当然prinft语句也不会被执行
-    if (a&lt;b &amp;&amp; ++a) printf(&quot;%d\n&quot;,a);
+    if (a&lt;b &amp;&amp; ++a) printf(&#34;%d\n&#34;,a);
     //这里由于a&lt;b成立，所以a++也会被执行，这里会运行输出a数值2
 
-    if (b&lt;c || ++b) printf(&quot;%d\n&quot;,b);
+    if (b&lt;c || ++b) printf(&#34;%d\n&#34;,b);
     // ||也是如此，由于b&lt;c成立，于是b++也不会被执行，输出b的数值为2
     return 0;
 }
-</code></pre><p>样例输出</p>
-<pre tabindex=0><code>2
+</code></pre><p>样例输出</p><pre tabindex=0><code>2
 2
 </code></pre><hr>
-</li>
-<li>
-<h3 id=三元运算符>三元运算符</h3>
-<pre tabindex=0><code>#include&lt;stdio.h&gt;
+</li><li>
+<h3 id=三元运算符>三元运算符</h3><pre tabindex=0><code>#include&lt;stdio.h&gt;
 int main(){
     int n;
-    printf(&quot;请输入一个数字：&quot;);
-    scanf(&quot;%d&quot;,&amp;n);
-    (n&gt;0)?printf(&quot;正数\n&quot;):printf(&quot;负数\n&quot;);
+    printf(&#34;请输入一个数字：&#34;);
+    scanf(&#34;%d&#34;,&amp;n);
+    (n&gt;0)?printf(&#34;正数\n&#34;):printf(&#34;负数\n&#34;);
     return 0;
 }
-</code></pre><p>样例输入</p>
-<pre tabindex=0><code>请输入一个数字：12
-</code></pre><p>样例输出</p>
-<pre tabindex=0><code>正数
+</code></pre><p>样例输入</p><pre tabindex=0><code>请输入一个数字：12
+</code></pre><p>样例输出</p><pre tabindex=0><code>正数
 </code></pre><ul>
-<li>如上的三元运算符可以近似写成如下的if语句：</li>
-</ul>
-<pre tabindex=0><code>if (n&gt;0) {
-    printf(&quot;正数&quot;);
+<li>如上的三元运算符可以近似写成如下的if语句：</li></ul><pre tabindex=0><code>if (n&gt;0) {
+    printf(&#34;正数&#34;);
 }
 else {
-    printf(&quot;负数&quot;);
+    printf(&#34;负数&#34;);
 }
 </code></pre><hr>
-</li>
-<li>
-<h3 id=switch语句>switch语句</h3>
-<pre tabindex=0><code>#include&lt;stdio.h&gt;
+</li><li>
+<h3 id=switch语句>switch语句</h3><pre tabindex=0><code>#include&lt;stdio.h&gt;
 int main(){
     int n;
-    printf(&quot;请输入一个数字：&quot;);
-    scanf(&quot;%d&quot;,&amp;n);
+    printf(&#34;请输入一个数字：&#34;);
+    scanf(&#34;%d&#34;,&amp;n);
     switch (n){
-        case 1: printf(&quot;this is case 1\n&quot;); 
-        case 2: printf(&quot;this is case 2\n&quot;); break;
+        case 1: printf(&#34;this is case 1\n&#34;); 
+        case 2: printf(&#34;this is case 2\n&#34;); break;
         default:
-            printf(&quot;this is default\n&quot;);
+            printf(&#34;this is default\n&#34;);
     }
     return 0;
 }
 </code></pre><hr>
-<p>样例输入1</p>
-<pre tabindex=0><code>1
-</code></pre><p>样例输出1</p>
-<pre tabindex=0><code>this is case 1
+<p>样例输入1</p><pre tabindex=0><code>1
+</code></pre><p>样例输出1</p><pre tabindex=0><code>this is case 1
 this is case 2
 </code></pre><hr>
-<p>样例输入2</p>
-<pre tabindex=0><code>2
-</code></pre><p>样例输出2</p>
-<pre tabindex=0><code>this is case 2
+<p>样例输入2</p><pre tabindex=0><code>2
+</code></pre><p>样例输出2</p><pre tabindex=0><code>this is case 2
 </code></pre><hr>
-<p>样例输入3</p>
-<pre tabindex=0><code>3
-</code></pre><p>样例输出3</p>
-<pre tabindex=0><code>this is default
+<p>样例输入3</p><pre tabindex=0><code>3
+</code></pre><p>样例输出3</p><pre tabindex=0><code>this is default
 </code></pre><ul>
 <li>
-<p>重点</p>
-</li>
+<p>重点</p></li><li>
+<p>每一个case语句分支必须以break;（即返回）结尾，否则case的条件分支都会继续往下执行。</p></li></ul></li></ol><hr>
+<h2 id=循环语句>循环语句</h2><ol>
 <li>
-<p>每一个case语句分支必须以break;（即返回）结尾，否则case的条件分支都会继续往下执行。</p>
-</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id=循环语句>循环语句</h2>
-<ol>
-<li>
-<h3 id=for循环>for循环</h3>
-<pre tabindex=0><code>#include&lt;stdio.h&gt;
+<h3 id=for循环>for循环</h3><pre tabindex=0><code>#include&lt;stdio.h&gt;
 int main(){
     //  统计1加到100的和
     int i;
@@ -1005,33 +452,22 @@ int main(){
     for (i=0;i&lt;=100;i++){
         ans=ans+i;
     }
-    printf(&quot;%d\n&quot;,ans);
+    printf(&#34;%d\n&#34;,ans);
     return 0;
 }
-</code></pre><p>样例输出</p>
-<pre tabindex=0><code>5050
-</code></pre><p>下面是 for 循环的控制流：</p>
-<pre tabindex=0><code>for ( init; condition; increment )
+</code></pre><p>样例输出</p><pre tabindex=0><code>5050
+</code></pre><p>下面是 for 循环的控制流：</p><pre tabindex=0><code>for ( init; condition; increment )
 {
     statement(s);
 }
 </code></pre><ul>
-<li>init 会首先被执行，且只会执行一次。这一步允许您声明并初始化任何循环控制变量。您也可以不在这里写任何语句，只要有一个分号出现即可。</li>
-<li>接下来，会判断 condition。如果为真，则执行循环主体。如果为假，则不执行循环主体，且控制流会跳转到紧接着 for 循环的下一条语句。</li>
-<li>在执行完 for 循环主体后，控制流会跳回上面的 increment 语句。该语句允许您更新循环控制变量。该语句可以留空，只要在条件后有一个分号出现即可。</li>
-<li>条件再次被判断。如果为真，则执行循环，这个过程会不断重复（循环主体，然后增加步值，再然后重新判断条件）。在条件变为假时，for 循环终止。</li>
-</ul>
-<p>在VC 6.0中不支持在init中声明循环控制变量，只允许使用上面的样例代码，否则会有</p>
-<pre tabindex=0><code>[Error] 'for' loop initial declarations are only allowed in C99 or C11 mode
-</code></pre><p>错误，在比较新版本的编译器中，如下写法是被支持的</p>
-<pre tabindex=0><code>for (int i=0;i&lt;=100;i++) {
+<li>init 会首先被执行，且只会执行一次。这一步允许您声明并初始化任何循环控制变量。您也可以不在这里写任何语句，只要有一个分号出现即可。</li><li>接下来，会判断 condition。如果为真，则执行循环主体。如果为假，则不执行循环主体，且控制流会跳转到紧接着 for 循环的下一条语句。</li><li>在执行完 for 循环主体后，控制流会跳回上面的 increment 语句。该语句允许您更新循环控制变量。该语句可以留空，只要在条件后有一个分号出现即可。</li><li>条件再次被判断。如果为真，则执行循环，这个过程会不断重复（循环主体，然后增加步值，再然后重新判断条件）。在条件变为假时，for 循环终止。</li></ul><p>在VC 6.0中不支持在init中声明循环控制变量，只允许使用上面的样例代码，否则会有</p><pre tabindex=0><code>[Error] &#39;for&#39; loop initial declarations are only allowed in C99 or C11 mode
+</code></pre><p>错误，在比较新版本的编译器中，如下写法是被支持的</p><pre tabindex=0><code>for (int i=0;i&lt;=100;i++) {
     ans=ans+1;
 }//并且，这里的i变量在循环体结束之后就会被释放销毁，即你在循环体之外是无法再次使用i变量的。
 </code></pre><hr>
-</li>
-<li>
-<h3 id=while循环>while循环</h3>
-<pre tabindex=0><code>//求1~100内奇数的和
+</li><li>
+<h3 id=while循环>while循环</h3><pre tabindex=0><code>//求1~100内奇数的和
 #include&lt;stdio.h&gt;
 int main(){
     int i=1;
@@ -1041,24 +477,16 @@ int main(){
         i+=2;
     }
 }
-</code></pre><p>执行逻辑</p>
-<pre tabindex=0><code>while(condition)
+</code></pre><p>执行逻辑</p><pre tabindex=0><code>while(condition)
 {
 statement(s);
 }
 </code></pre><ul>
 <li>
-<p>在这里，statement(s) 可以是一个单独的语句，也可以是几个语句组成的代码块。</p>
-</li>
-<li>
-<p>condition 可以是任意的表达式，当为任意非零值时都为 true。当条件为 true 时执行循环。 当条件为 false 时，退出循环，程序流将继续执行紧接着循环的下一条语句。</p>
-</li>
-</ul>
-<hr>
-</li>
-<li>
-<h3 id=do-while循环>do while循环</h3>
-<pre tabindex=0><code>//计算100以内偶数的和
+<p>在这里，statement(s) 可以是一个单独的语句，也可以是几个语句组成的代码块。</p></li><li>
+<p>condition 可以是任意的表达式，当为任意非零值时都为 true。当条件为 true 时执行循环。 当条件为 false 时，退出循环，程序流将继续执行紧接着循环的下一条语句。</p></li></ul><hr>
+</li><li>
+<h3 id=do-while循环>do while循环</h3><pre tabindex=0><code>//计算100以内偶数的和
 #include&lt;stido.h&gt;
 int main(){
     int i=2;
@@ -1068,28 +496,18 @@ int main(){
         i+=2;
     }while(i&lt;=100)
 }
-</code></pre><p>执行逻辑</p>
-<pre tabindex=0><code>do
+</code></pre><p>执行逻辑</p><pre tabindex=0><code>do
 {
 statement(s);
 
 }while( condition );
 </code></pre><ul>
 <li>
-<p>与while循环不同的是，条件表达式出现在循环的尾部，所以循环中的 statement(s) 会在条件被测试之前至少执行一次。</p>
-</li>
+<p>与while循环不同的是，条件表达式出现在循环的尾部，所以循环中的 statement(s) 会在条件被测试之前至少执行一次。</p></li><li>
+<p>如果条件为真，控制流会跳转回上面的 do，然后重新执行循环中的 statement(s)。这个过程会不断重复，直到给定条件变为假为止。</p></li></ul></li></ol><hr>
+<h2 id=函数>函数</h2><ol>
 <li>
-<p>如果条件为真，控制流会跳转回上面的 do，然后重新执行循环中的 statement(s)。这个过程会不断重复，直到给定条件变为假为止。</p>
-</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id=函数>函数</h2>
-<ol>
-<li>
-<h3 id=c语言中的函数声明>C语言中的函数声明：</h3>
-<pre tabindex=0><code>返回值类型 函数名(参数类型 参数1,参数类型 参数2 ···){
+<h3 id=c语言中的函数声明>C语言中的函数声明：</h3><pre tabindex=0><code>返回值类型 函数名(参数类型 参数1,参数类型 参数2 ···){
     函数主体
 }
 
@@ -1101,10 +519,8 @@ int Max(int a,int b){
     return ret;   
 }
 </code></pre><hr>
-</li>
-<li>
-<h3 id=函数调用>函数调用</h3>
-<pre tabindex=0><code>#include&lt;stdio.h&gt;
+</li><li>
+<h3 id=函数调用>函数调用</h3><pre tabindex=0><code>#include&lt;stdio.h&gt;
 int Max(int a,int b) {
     int ret;
     (a&gt;=b)?ret=a:ret=b;
@@ -1113,22 +529,16 @@ int Max(int a,int b) {
 
 int main() {
     int a=10,b=20;
-	printf(&quot;%d\n&quot;,Max(a,b));
+	printf(&#34;%d\n&#34;,Max(a,b));
 	return 0;
 }
-</code></pre><p>样例输出</p>
-<pre tabindex=0><code>20
+</code></pre><p>样例输出</p><pre tabindex=0><code>20
 </code></pre><hr>
-</li>
+</li><li>
+<h3 id=函数参数>函数参数</h3><ul>
 <li>
-<h3 id=函数参数>函数参数</h3>
-<ul>
-<li>
-<p>值传递</p>
-</li>
-<li>
-<p>c语言默认多数为是传值调用，把参数的实际值赋给函数内的形式参数，在这种情况下在函数内部修改形式参数的值并不会影响实际参数,例子：</p>
-<pre tabindex=0><code>#include&lt;stdio.h&gt;
+<p>值传递</p></li><li>
+<p>c语言默认多数为是传值调用，把参数的实际值赋给函数内的形式参数，在这种情况下在函数内部修改形式参数的值并不会影响实际参数,例子：</p><pre tabindex=0><code>#include&lt;stdio.h&gt;
 //函数作用：交换ab的值，这是交换两个数常用写法。
 void swap(int a,int b){
     int t;
@@ -1138,26 +548,17 @@ void swap(int a,int b){
 }
 int main(){
     int a=10,b=20;
-    printf(&quot;a=%d,b=%d\n&quot;,a,b);
+    printf(&#34;a=%d,b=%d\n&#34;,a,b);
     swap(a,b);
-    printf(&quot;a=%d,b=%d\n&quot;,a,b);
+    printf(&#34;a=%d,b=%d\n&#34;,a,b);
     return 0;
 }
-</code></pre><p>样例输出</p>
-<pre tabindex=0><code>a=10,b=20
+</code></pre><p>样例输出</p><pre tabindex=0><code>a=10,b=20
 a=10,b=20
-</code></pre></li>
-<li>
-<p>如你所见，默认情况下在函数内部对传入参数做修改并不会影响实际参数的值</p>
-</li>
-<li>
-<p>如果你想真的向修改传入参数的值，那么就要使用下面将会提到的引用传递(引用传递的实质就是指针的运用)</p>
-</li>
-<li>
-<p>引用传递</p>
-</li>
-</ul>
-<pre tabindex=0><code>#include&lt;stdio.h&gt;
+</code></pre></li><li>
+<p>如你所见，默认情况下在函数内部对传入参数做修改并不会影响实际参数的值</p></li><li>
+<p>如果你想真的向修改传入参数的值，那么就要使用下面将会提到的引用传递(引用传递的实质就是指针的运用)</p></li><li>
+<p>引用传递</p></li></ul><pre tabindex=0><code>#include&lt;stdio.h&gt;
 void swap(int *a,int *b){
     int t=*a;
     *a=*b;
@@ -1165,147 +566,81 @@ void swap(int *a,int *b){
 }
 int main(){
     int a=10,b=20;
-    printf(&quot;a=%d,b=%d\n&quot;,a,b);
+    printf(&#34;a=%d,b=%d\n&#34;,a,b);
     swap(&amp;a,&amp;b);
-    printf(&quot;a=%d,b=%d\n&quot;,a,b);
+    printf(&#34;a=%d,b=%d\n&#34;,a,b);
     return 0;
 }
-</code></pre><p>样例输出</p>
-<pre tabindex=0><code>a=10,b=20
+</code></pre><p>样例输出</p><pre tabindex=0><code>a=10,b=20
 a=20,b=10
-</code></pre></li>
-</ol>
-<hr>
+</code></pre></li></ol><hr>
 <ol>
 <li>
-<h3 id=作用域规则>作用域规则</h3>
-<ul>
+<h3 id=作用域规则>作用域规则</h3><ul>
 <li>
-<p>作用域指程序定义的变量所存在的区域，超过这个区域，变量就不能被访问。C语言中我们可以在三处地方声明变量：</p>
-<ol>
-<li>在函数或者块（这里的块可以是for循环那个的init还记得吗）内部的局部变量</li>
-<li>在所有函数外部的全局变量</li>
-<li>在函数参数中定义的形式参数变量</li>
-</ol>
-</li>
-<li>
-<p>程序查看变量存在并访问的优先级顺序永远是先局部再全局（在某种程度上我们也可以把函数参数声明中定义的形式参数也理解为一种局部变量）</p>
-</li>
-</ul>
-<pre tabindex=0><code>#include&lt;stdio.h&gt;
+<p>作用域指程序定义的变量所存在的区域，超过这个区域，变量就不能被访问。C语言中我们可以在三处地方声明变量：</p><ol>
+<li>在函数或者块（这里的块可以是for循环那个的init还记得吗）内部的局部变量</li><li>在所有函数外部的全局变量</li><li>在函数参数中定义的形式参数变量</li></ol></li><li>
+<p>程序查看变量存在并访问的优先级顺序永远是先局部再全局（在某种程度上我们也可以把函数参数声明中定义的形式参数也理解为一种局部变量）</p></li></ul><pre tabindex=0><code>#include&lt;stdio.h&gt;
 //全局变量
 int g=10;
 
 void func1(int g){
-    printf(&quot;in func1 g=%d\n&quot;,g);
+    printf(&#34;in func1 g=%d\n&#34;,g);
     return;
 }
 
 void func2(){
-    printf(&quot;in func2 g=%d\n&quot;,g);
+    printf(&#34;in func2 g=%d\n&#34;,g);
     return;
 }
 
 int main(){
     //局部变量
     int x=20,g=30;
-    printf(&quot;in main x=%d,g=%d\n&quot;,x,g);
+    printf(&#34;in main x=%d,g=%d\n&#34;,x,g);
     func1(x);//我们把x=20的值赋值给形式参数g
     func2();
     return 0;
 }
-</code></pre><p>样例输出</p>
-<pre tabindex=0><code>in main x=20,g=30
+</code></pre><p>样例输出</p><pre tabindex=0><code>in main x=20,g=30
 in func1 g=20
 in func2 g=10
 </code></pre><ul>
-<li>在main()函数中尝试访问x,g的值并输出显示，程序优先查看局部变量中是否存在x,g,存在于是输出</li>
-</ul>
-<pre tabindex=0><code>in main x=20,g=30
+<li>在main()函数中尝试访问x,g的值并输出显示，程序优先查看局部变量中是否存在x,g,存在于是输出</li></ul><pre tabindex=0><code>in main x=20,g=30
 </code></pre><ul>
-<li>因为局部变量声明了一个g，所以这里并不会访问全局的g</li>
-<li>在func1()中我们尝试访问变量g，因为变量g在函数参数部分存在声明，是一个形式参数。所以也不会去访问全局变量g。于是输出</li>
-</ul>
-<pre tabindex=0><code>in func1 g=20
+<li>因为局部变量声明了一个g，所以这里并不会访问全局的g</li><li>在func1()中我们尝试访问变量g，因为变量g在函数参数部分存在声明，是一个形式参数。所以也不会去访问全局变量g。于是输出</li></ul><pre tabindex=0><code>in func1 g=20
 </code></pre><ul>
-<li>即传入的x的值。</li>
-<li>在func2()中，我们没有在函数内部声明任何局部变量，形式参数，于是这里尝试访问变量g就是访问的全局变量的值，输出</li>
-</ul>
-<pre tabindex=0><code>in func2 g=10
+<li>即传入的x的值。</li><li>在func2()中，我们没有在函数内部声明任何局部变量，形式参数，于是这里尝试访问变量g就是访问的全局变量的值，输出</li></ul><pre tabindex=0><code>in func2 g=10
 </code></pre><ul>
 <li>
-<p>重点</p>
-</li>
-<li>
-<p>全局变量被保存在内存的全局存储区中，占用静态存储空间，并且会被初始化。</p>
-</li>
-<li>
-<p>局部变量被保存在一种称为栈的结构中，只有在函数被调用的时候才会真正的被分配存储空间</p>
-</li>
-<li>
-<p>局部变量被定义的时候，系统不会对其进行初始化（虽然多数情况下不初始化数值也多为0）</p>
-</li>
-<li>
-<p>全局变量系统会自动进行初始化，初始化值如下</p>
-</li>
-</ul>
-<table>
+<p>重点</p></li><li>
+<p>全局变量被保存在内存的全局存储区中，占用静态存储空间，并且会被初始化。</p></li><li>
+<p>局部变量被保存在一种称为栈的结构中，只有在函数被调用的时候才会真正的被分配存储空间</p></li><li>
+<p>局部变量被定义的时候，系统不会对其进行初始化（虽然多数情况下不初始化数值也多为0）</p></li><li>
+<p>全局变量系统会自动进行初始化，初始化值如下</p></li></ul><table>
 <thead>
 <tr>
-<th style=text-align:left>数据类型</th>
-<th style=text-align:left>初始化默认值</th>
-</tr>
-</thead>
-<tbody>
+<th style=text-align:left>数据类型</th><th style=text-align:left>初始化默认值</th></tr></thead><tbody>
 <tr>
-<td style=text-align:left>int</td>
-<td style=text-align:left>0</td>
-</tr>
-<tr>
-<td style=text-align:left>char</td>
-<td style=text-align:left>&lsquo;\0&rsquo;</td>
-</tr>
-<tr>
-<td style=text-align:left>float</td>
-<td style=text-align:left>0</td>
-</tr>
-<tr>
-<td style=text-align:left>double</td>
-<td style=text-align:left>0</td>
-</tr>
-<tr>
-<td style=text-align:left>pointer(指针)</td>
-<td style=text-align:left>NULL</td>
-</tr>
-</tbody>
-</table>
-</li>
-</ol>
-<hr>
-<h2 id=进阶数据结构>进阶数据结构</h2>
-<ol>
+<td style=text-align:left>int</td><td style=text-align:left>0</td></tr><tr>
+<td style=text-align:left>char</td><td style=text-align:left>&lsquo;\0&rsquo;</td></tr><tr>
+<td style=text-align:left>float</td><td style=text-align:left>0</td></tr><tr>
+<td style=text-align:left>double</td><td style=text-align:left>0</td></tr><tr>
+<td style=text-align:left>pointer(指针)</td><td style=text-align:left>NULL</td></tr></tbody></table></li></ol><hr>
+<h2 id=进阶数据结构>进阶数据结构</h2><ol>
 <li>
-<h3 id=数组>数组</h3>
-<ul>
+<h3 id=数组>数组</h3><ul>
 <li>
-<p>数组，是可以存储大小固定类型相同并且个数固定的顺序集合。</p>
-</li>
-<li>
-<p>声明方法：</p>
-<pre tabindex=0><code>数据类型 数组名称[数组大小];
-</code></pre><p>示例：</p>
-<pre tabindex=0><code>int a[100];
+<p>数组，是可以存储大小固定类型相同并且个数固定的顺序集合。</p></li><li>
+<p>声明方法：</p><pre tabindex=0><code>数据类型 数组名称[数组大小];
+</code></pre><p>示例：</p><pre tabindex=0><code>int a[100];
 /*
 这个实例里我们就定义了一个长度为100的数组，可以存储100个int型数据
 */
 </code></pre><blockquote>
-<p><strong>注意：C语言中的数组下标从0开始，这里我们定义了一个长度为100的数组a，但是其下标范围事实上是从0到99</strong></p>
-</blockquote>
-<hr>
-</li>
-<li>
-<p>数组初始化</p>
-<pre tabindex=0><code>int a[10]={0};
+<p><strong>注意：C语言中的数组下标从0开始，这里我们定义了一个长度为100的数组a，但是其下标范围事实上是从0到99</strong></p></blockquote><hr>
+</li><li>
+<p>数组初始化</p><pre tabindex=0><code>int a[10]={0};
 //声明一个大小为10的整形数组，并初始化所有元素为0
 //还记得吗，下标从0开始哦，0~9
 
@@ -1315,10 +650,8 @@ double a[]={0.0,1.1,2.2,3.3}
 int a[10]={0,1,2,3}
 //如果规定了数组大小但是没有把每个元素单独赋值，未赋值部分依据上面提到的默认初始化规则初始化。
 </code></pre><hr>
-</li>
-<li>
-<p>数组元素访问</p>
-<pre tabindex=0><code>#include&lt;stdio.h&gt;
+</li><li>
+<p>数组元素访问</p><pre tabindex=0><code>#include&lt;stdio.h&gt;
 int main(){
     //声明一个大小为100的int型数组并初始化所有值为0
     int a[100]={0};
@@ -1335,14 +668,12 @@ int main(){
         ans+=a[i];
     }
     //样例输出5050
-    printf(&quot;%d\n&quot;,ans);
+    printf(&#34;%d\n&#34;,ans);
     return 0;
 }
 </code></pre><hr>
-</li>
-<li>
-<p>数组在函数之间的传参</p>
-<pre tabindex=0><code>#include&lt;stdio.h&gt;
+</li><li>
+<p>数组在函数之间的传参</p><pre tabindex=0><code>#include&lt;stdio.h&gt;
 //计算a数组内所有元素的平均值
 double func(int* a,int size){
     double average=0;
@@ -1362,83 +693,47 @@ int main(){
     //声明初始化一个数组a
     int a[5]={1,2,3,4,5};
     //打印平均值
-    printf(&quot;%lf\n&quot;,func(a,5));/
+    printf(&#34;%lf\n&#34;,func(a,5));/
     return 0;
 }
 </code></pre><ul>
 <li>
-<p>数组的本质（重点）</p>
-</li>
-<li>
-<p>数组本质是一个在内存中线性连续的存储空间</p>
-</li>
-<li>
-<p>你在声明数组的时候事实上获得的是一个这个空间的地址</p>
-</li>
-<li>
-<p>数组下标就是相对于数组地址的一个偏移量用来确定内部元素的位置</p>
-</li>
-<li>
-<p>C语言中你要时刻注意数组下标，因为下标越界有时是不会报错的。</p>
-<p>你声明了一个</p>
-<pre tabindex=0><code>int a[10]={0}
-</code></pre><p>的数组，你可以使用如下的循环来遍历它</p>
-<pre tabindex=0><code>#include&lt;stdio.h&gt;
+<p>数组的本质（重点）</p></li><li>
+<p>数组本质是一个在内存中线性连续的存储空间</p></li><li>
+<p>你在声明数组的时候事实上获得的是一个这个空间的地址</p></li><li>
+<p>数组下标就是相对于数组地址的一个偏移量用来确定内部元素的位置</p></li><li>
+<p>C语言中你要时刻注意数组下标，因为下标越界有时是不会报错的。</p><p>你声明了一个</p><pre tabindex=0><code>int a[10]={0}
+</code></pre><p>的数组，你可以使用如下的循环来遍历它</p><pre tabindex=0><code>#include&lt;stdio.h&gt;
 int main(){
     int a[10]={0};
     for(int i=0;i&lt;=10;i++)
-        printf(&quot;%d &quot;,a[i]);
+        printf(&#34;%d &#34;,a[i]);
     return 0;
 }
-</code></pre><p>样例输出</p>
-<pre tabindex=0><code>0 0 0 0 0 0 0 0 0 0 1
+</code></pre><p>样例输出</p><pre tabindex=0><code>0 0 0 0 0 0 0 0 0 0 1
 </code></pre><ul>
 <li>
-<p>我设置了循环条件是i&lt;=10,但是你还记得吗？c语言数组下标从0开始！！！</p>
-</li>
-<li>
-<p>所以这里输出了11个数字。你也发现了，我明明初始化了所有的数组元素为0，但是最后却多输出了一个1。这里就是因为我们越界访问。</p>
-</li>
-<li>
-<p>最后这个数字1不属于数组的元素，但是你依旧可以访问它。</p>
-</li>
-<li>
-<p>所以每当你尝试访问数组的时候，请千万注意数组下标越界问题。因为不检查数组下标越界已经在计算机界造成了许许多多的重大安全问题。</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<hr>
+<p>我设置了循环条件是i&lt;=10,但是你还记得吗？c语言数组下标从0开始！！！</p></li><li>
+<p>所以这里输出了11个数字。你也发现了，我明明初始化了所有的数组元素为0，但是最后却多输出了一个1。这里就是因为我们越界访问。</p></li><li>
+<p>最后这个数字1不属于数组的元素，但是你依旧可以访问它。</p></li><li>
+<p>所以每当你尝试访问数组的时候，请千万注意数组下标越界问题。因为不检查数组下标越界已经在计算机界造成了许许多多的重大安全问题。</p></li></ul></li></ul></li></ul></li></ol><hr>
 <ol>
 <li>
-<h3 id=字符数组>字符数组</h3>
-</li>
-</ol>
-<ul>
+<h3 id=字符数组>字符数组</h3></li></ol><ul>
 <li>
-<p>字符数组本质还是数组，在大多数情况下和基本数组的操作方式类似。所以接下来我们只讲解字符串数组某些特殊操作。</p>
-</li>
-<li>
-<p>字符数组声明以及初始化</p>
-<pre tabindex=0><code>/*
+<p>字符数组本质还是数组，在大多数情况下和基本数组的操作方式类似。所以接下来我们只讲解字符串数组某些特殊操作。</p></li><li>
+<p>字符数组声明以及初始化</p><pre tabindex=0><code>/*
 还记的\0吗，截止符
 字符数组内存储的字符串的末尾必须有截止符！
 */
-char name[6]={'h', 'e', 'l', 'l', 'o', '\0'};
+char name[6]={&#39;h&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;, &#39;\0&#39;};
 
 //你还可以用这个写法.
-char greeting[]=&quot;hello&quot;;
+char greeting[]=&#34;hello&#34;;
 //初始化部分元素也是可以滴
-char name[20]=&quot;xiaoming&quot;;
-</code></pre></li>
-<li>
-<p>字符数组的遍历</p>
-<p>因为字符串数组末尾必定有截止符的特性，我们有了一些常用的遍历字符数组的方法：</p>
-<pre tabindex=0><code>char str[]=&quot;hello world&quot;;
+char name[20]=&#34;xiaoming&#34;;
+</code></pre></li><li>
+<p>字符数组的遍历</p><p>因为字符串数组末尾必定有截止符的特性，我们有了一些常用的遍历字符数组的方法：</p><pre tabindex=0><code>char str[]=&#34;hello world&#34;;
 for (int i=0;str[i]!=0;i++){
     ···
 }
@@ -1448,18 +743,15 @@ while(str[i]!=0){
     ···
     i++;
 }
-</code></pre><p>当然你也可以获取字符串长度，然后设定下标i小于等于字符串长度的时候执行循环，不过那样就和普通数组没有区别音次不在此举例。</p>
-</li>
-<li>
-<p>字符串的输入输出</p>
-<pre tabindex=0><code>char str[100];
+</code></pre><p>当然你也可以获取字符串长度，然后设定下标i小于等于字符串长度的时候执行循环，不过那样就和普通数组没有区别音次不在此举例。</p></li><li>
+<p>字符串的输入输出</p><pre tabindex=0><code>char str[100];
 //输入字符串
 gets(str);
-scanf(&quot;%s&quot;,&amp;str);
+scanf(&#34;%s&#34;,&amp;str);
 
 //输出字符串
 puts(str);
-printf(&quot;%s\n&quot;,str);
+printf(&#34;%s\n&#34;,str);
 
 /*
 之前说到在数组处理，越界并不会被报错
@@ -1467,103 +759,52 @@ printf(&quot;%s\n&quot;,str);
 在默认情况下不允许使用以上函数读取字符串。下面提到的C语言字符串处理函数也是一样，都存在了越界问题
 因而在最新的VS中默认不允许使用，这也是我不推荐使用最新版本的VS的原因
 */
-</code></pre></li>
-<li>
-<p>C语言自带的字符串处理函数</p>
-<ul>
-<li>以下函数使用需引入头文件string.h（还记得怎么引入头文件吗？#include&lt;string.h>）</li>
-</ul>
-<table>
+</code></pre></li><li>
+<p>C语言自带的字符串处理函数</p><ul>
+<li>以下函数使用需引入头文件string.h（还记得怎么引入头文件吗？#include&lt;string.h>）</li></ul><table>
 <thead>
 <tr>
-<th style=text-align:left>函数</th>
-<th style=text-align:left>作用</th>
-</tr>
-</thead>
-<tbody>
+<th style=text-align:left>函数</th><th style=text-align:left>作用</th></tr></thead><tbody>
 <tr>
-<td style=text-align:left>strcpy(s1,s2);</td>
-<td style=text-align:left>复制字符串s2到字符串s1</td>
-</tr>
-<tr>
-<td style=text-align:left>strcat(s1,s2);</td>
-<td style=text-align:left>连接字符串s2到s1末尾</td>
-</tr>
-<tr>
-<td style=text-align:left>strlen(s);</td>
-<td style=text-align:left>获取字符串s长度</td>
-</tr>
-<tr>
-<td style=text-align:left>strcmp(s1,s2);</td>
-<td style=text-align:left>如果 s1 和 s2 是相同的，则返回 0；如果 s1&lt;s2 则返回小于 0；如果 s1>s2 则返回大于 0。（这里的s1 s2基于字符数组内的字符的字典序判定）</td>
-</tr>
-<tr>
-<td style=text-align:left>strchr(s1,ch);</td>
-<td style=text-align:left>返回一个指针，只想字符串s1中字符ch第一次出现的位置</td>
-</tr>
-<tr>
-<td style=text-align:left>strstr(s1,s2);</td>
-<td style=text-align:left>返回一个指针，指出字符串s1在字符串s2中年第一次出现的位置</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p>重点</p>
-</li>
-<li>
-<p>sizeof()与strlen()函数对字符串的差别</p>
-</li>
-<li>
-<p>sizeof()函数获取变量所占空间大小</p>
-</li>
-<li>
-<p>strlen()获取字符串长度</p>
-<p>sizeof()函数是可以对任何变量使用的，但是strlen()是字符串专属函数</p>
-<pre tabindex=0><code>#include&lt;stdio.h&gt;
+<td style=text-align:left>strcpy(s1,s2);</td><td style=text-align:left>复制字符串s2到字符串s1</td></tr><tr>
+<td style=text-align:left>strcat(s1,s2);</td><td style=text-align:left>连接字符串s2到s1末尾</td></tr><tr>
+<td style=text-align:left>strlen(s);</td><td style=text-align:left>获取字符串s长度</td></tr><tr>
+<td style=text-align:left>strcmp(s1,s2);</td><td style=text-align:left>如果 s1 和 s2 是相同的，则返回 0；如果 s1&lt;s2 则返回小于 0；如果 s1>s2 则返回大于 0。（这里的s1 s2基于字符数组内的字符的字典序判定）</td></tr><tr>
+<td style=text-align:left>strchr(s1,ch);</td><td style=text-align:left>返回一个指针，只想字符串s1中字符ch第一次出现的位置</td></tr><tr>
+<td style=text-align:left>strstr(s1,s2);</td><td style=text-align:left>返回一个指针，指出字符串s1在字符串s2中年第一次出现的位置</td></tr></tbody></table></li><li>
+<p>重点</p></li><li>
+<p>sizeof()与strlen()函数对字符串的差别</p></li><li>
+<p>sizeof()函数获取变量所占空间大小</p></li><li>
+<p>strlen()获取字符串长度</p><p>sizeof()函数是可以对任何变量使用的，但是strlen()是字符串专属函数</p><pre tabindex=0><code>#include&lt;stdio.h&gt;
 #include&lt;string.h&gt;
 int main(){
-    char name[]=&quot;xiaoming&quot;;
-    printf(&quot;size of name=%d\n&quot;,sizeof(name));
-    printf(&quot;strlen of name=%d\n&quot;,strlen(name));
+    char name[]=&#34;xiaoming&#34;;
+    printf(&#34;size of name=%d\n&#34;,sizeof(name));
+    printf(&#34;strlen of name=%d\n&#34;,strlen(name));
     return 0;
 }
-</code></pre><p>样例输出</p>
-<pre tabindex=0><code>size of name=9
+</code></pre><p>样例输出</p><pre tabindex=0><code>size of name=9
 strlen of name=8
 </code></pre><ul>
-<li>strlen()函数统计字符数组内存储的字符串长度并且不包括截止符</li>
-<li>sizeof()函数统计字符数组所占的空间大小！</li>
-</ul>
-</li>
-<li>
-<p>补充:</p>
-<pre tabindex=0><code>#include&lt;stdio.h&gt;
+<li>strlen()函数统计字符数组内存储的字符串长度并且不包括截止符</li><li>sizeof()函数统计字符数组所占的空间大小！</li></ul></li><li>
+<p>补充:</p><pre tabindex=0><code>#include&lt;stdio.h&gt;
 #include&lt;string.h&gt;
 int main(){
-    char name[20]=&quot;xiaoming&quot;;
-    printf(&quot;size of name=%d\n&quot;,sizeof(name));
-    printf(&quot;strlen of name=%d\n&quot;,strlen(name));
+    char name[20]=&#34;xiaoming&#34;;
+    printf(&#34;size of name=%d\n&#34;,sizeof(name));
+    printf(&#34;strlen of name=%d\n&#34;,strlen(name));
     return 0;
 }
-</code></pre></li>
-<li>
-<p>样例输出</p>
-<pre tabindex=0><code>size of name=20
+</code></pre></li><li>
+<p>样例输出</p><pre tabindex=0><code>size of name=20
 strlen of name=8
-</code></pre></li>
-</ul>
-<hr>
+</code></pre></li></ul><hr>
 <ol>
 <li>
-<h3 id=结构体>结构体</h3>
-<ul>
+<h3 id=结构体>结构体</h3><ul>
 <li>
-<p>有的时候你可能在想，我需要在程序里存储一个人，或者多个人的身份数据，包括姓名，年龄，出生年月一类的时候咋办？我们当然会希望把这些数据放在一起组织起来，而不是用N多个变量分别存储。于是！结构体就应运而生。</p>
-</li>
-<li>
-<p>我们直接以上面的例子来：情景假设我们要存储一个班级学生的信息。</p>
-<pre tabindex=0><code>#include&lt;stdio.h&gt;
+<p>有的时候你可能在想，我需要在程序里存储一个人，或者多个人的身份数据，包括姓名，年龄，出生年月一类的时候咋办？我们当然会希望把这些数据放在一起组织起来，而不是用N多个变量分别存储。于是！结构体就应运而生。</p></li><li>
+<p>我们直接以上面的例子来：情景假设我们要存储一个班级学生的信息。</p><pre tabindex=0><code>#include&lt;stdio.h&gt;
 int main(){
     //首先定义一个结构体DATE来存储出生年月
     struct DATE{
@@ -1582,12 +823,12 @@ int main(){
     StudentInfo student[50];
 
     for (int i=0;i&lt;50;i++){
-        printf(&quot;输入第%d个学生信息：\n&quot;,i+1);
+        printf(&#34;输入第%d个学生信息：\n&#34;,i+1);
         //我们使用结构体名称加“.”的方式来访问结构体内部元素
-        printf(&quot;学生姓名：&quot;); scanf(&quot;%s&quot;,&amp;student[i].name);
-        printf(&quot;学生出生年月日：&quot;); 
+        printf(&#34;学生姓名：&#34;); scanf(&#34;%s&#34;,&amp;student[i].name);
+        printf(&#34;学生出生年月日：&#34;); 
         scanf(
-            &quot;%d-%d-%d&quot;,
+            &#34;%d-%d-%d&#34;,
             &amp;student[i].date.year,
             &amp;student[i].date.month,
             &amp;student[i].date.day
@@ -1595,9 +836,9 @@ int main(){
     };
 
     for (int i=0;i&lt;50;i++){
-        printf(&quot;%s\n&quot;,student[i].name);
+        printf(&#34;%s\n&#34;,student[i].name);
         printf(
-            &quot;%d-%d-%d&quot;,
+            &#34;%d-%d-%d&#34;,
             student[i].date.year,
             student[i].date.month,
             student[i].date.day
@@ -1605,30 +846,20 @@ int main(){
     };
     return 0;
 }
-</code></pre><p>样例输入</p>
-<pre tabindex=0><code>输入第1个学生信息：
+</code></pre><p>样例输入</p><pre tabindex=0><code>输入第1个学生信息：
 学生姓名：xiaoming
 学生出生年月日：1992-12-21
-</code></pre><p>样例输出</p>
-<pre tabindex=0><code>xiaoming
+</code></pre><p>样例输出</p><pre tabindex=0><code>xiaoming
 1992-12-21
-</code></pre></li>
-</ul>
-</li>
-</ol>
-<ul>
+</code></pre></li></ul></li></ol><ul>
 <li>
-<p>我们通过如下格式声明结构体</p>
-<pre tabindex=0><code>struct 结构体类型名{
+<p>我们通过如下格式声明结构体</p><pre tabindex=0><code>struct 结构体类型名{
     基本数据类型 变量名;
     基本数据类型 变量名;
     ...
 }
 </code></pre><ul>
-<li>结构体的声明，其实只是定义了一个由用户个人定义的一种数据类型，我们真正要使用的时候还需要重新真正声明一个结构体实际变量.正如上面代码例子中给出的那样。</li>
-<li>除了上述的声明结构体实际变量的写法，我们还有如下几种其他方式</li>
-</ul>
-<pre tabindex=0><code>//如此我们在声明一个DATE结构体类型的同时，声明了一个date的结构体实体变量
+<li>结构体的声明，其实只是定义了一个由用户个人定义的一种数据类型，我们真正要使用的时候还需要重新真正声明一个结构体实际变量.正如上面代码例子中给出的那样。</li><li>除了上述的声明结构体实际变量的写法，我们还有如下几种其他方式</li></ul><pre tabindex=0><code>//如此我们在声明一个DATE结构体类型的同时，声明了一个date的结构体实体变量
 stuct DATE{
     int year;
     int month;
@@ -1646,14 +877,10 @@ typedef stuct{
     int year;
     int month;
 }DATE;
-</code></pre></li>
-</ul>
-<hr>
+</code></pre></li></ul><hr>
 <ol>
 <li>
-<h3 id=枚举结构>枚举结构</h3>
-<p><del>这是本垃圾博主很少使用的一种结构</del></p>
-<pre tabindex=0><code>enum WEEK{
+<h3 id=枚举结构>枚举结构</h3><p><del>这是本垃圾博主很少使用的一种结构</del></p><pre tabindex=0><code>enum WEEK{
     Monday=1,
     Tuesday,
     Wednesday,
@@ -1680,67 +907,36 @@ enum WEEK{
 } day;
 */
 </code></pre><ul>
-<li>第一个枚举类型成员值默认为整形0，后续枚举成员默认值为前一个成员+1.</li>
-</ul>
-<pre tabindex=0><code>enum season {spring, summer=3, autumn, winter};
+<li>第一个枚举类型成员值默认为整形0，后续枚举成员默认值为前一个成员+1.</li></ul><pre tabindex=0><code>enum season {spring, summer=3, autumn, winter};
 </code></pre><ul>
-<li>没有指定值的枚举元素，其值为前一元素加 1。也就说 spring 的值为 0，summer 的值为 3，autumn 的值为 4，winter 的值为 5</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id=指针>指针</h2>
-<ul>
+<li>没有指定值的枚举元素，其值为前一元素加 1。也就说 spring 的值为 0，summer 的值为 3，autumn 的值为 4，winter 的值为 5</li></ul></li></ol><hr>
+<h2 id=指针>指针</h2><ul>
 <li>
-<p><del>无数萌新惨死在这里</del></p>
-</li>
+<p><del>无数萌新惨死在这里</del></p></li><li>
+<p>指针是一种变量类型，这种类型可以存储另一个变量的地址，地址即另一个变量在内存中的位置</p></li><li>
+<p>你可以使用指针里存储的地址来访问另一个变量的值，修改另一个变量</p></li></ul><ol>
 <li>
-<p>指针是一种变量类型，这种类型可以存储另一个变量的地址，地址即另一个变量在内存中的位置</p>
-</li>
-<li>
-<p>你可以使用指针里存储的地址来访问另一个变量的值，修改另一个变量</p>
-</li>
-</ul>
-<ol>
-<li>
-<h3 id=声明方法>声明方法</h3>
-<pre tabindex=0><code>基础数据类型 *变量名
+<h3 id=声明方法>声明方法</h3><pre tabindex=0><code>基础数据类型 *变量名
 </code></pre><ul>
-<li>举例1：</li>
-</ul>
-<pre tabindex=0><code>int *p0;
+<li>举例1：</li></ul><pre tabindex=0><code>int *p0;
 short *p1;
 long *p2;
 char *p3;
 float *p4;
-</code></pre></li>
-</ol>
-<ul>
+</code></pre></li></ol><ul>
 <li>
-<p>基本的数据类型都可以声明其对应的指针变量</p>
-</li>
-<li>
-<p>一种类型的指针变量只可以存储对应类型变量的地址。列如int*型的指针变量，所存储的地址指向的位置必定存储的也是一个int型的数据</p>
-</li>
-<li>
-<p>举例2：</p>
-<pre tabindex=0><code>struct TEST{
+<p>基本的数据类型都可以声明其对应的指针变量</p></li><li>
+<p>一种类型的指针变量只可以存储对应类型变量的地址。列如int*型的指针变量，所存储的地址指向的位置必定存储的也是一个int型的数据</p></li><li>
+<p>举例2：</p><pre tabindex=0><code>struct TEST{
     int a,b;
 };
 TEST* p0;
-</code></pre></li>
+</code></pre></li><li>
+<p>我们也可以声明一个结构体类型，并且声明一个指向该结构体类型的指针变量</p><hr>
+</li></ul><ol>
 <li>
-<p>我们也可以声明一个结构体类型，并且声明一个指向该结构体类型的指针变量</p>
-<hr>
-</li>
-</ul>
-<ol>
-<li>
-<h3 id=指针使用>指针使用</h3>
-<ul>
-<li>基本使用</li>
-</ul>
-<pre tabindex=0><code>#include&lt;stdio.h&gt;
+<h3 id=指针使用>指针使用</h3><ul>
+<li>基本使用</li></ul><pre tabindex=0><code>#include&lt;stdio.h&gt;
 int main(){
     int *p=NULL; //声明指针变量，并初始化为NULL（即0）NULL是C语言里约定的空指针值
     int a;  //声明一个正常整形变量
@@ -1749,242 +945,119 @@ int main(){
     p=&amp;a;  //将a的地址赋值给指针变量
     //&amp; 符号，取变量的地址
 
-    printf(&quot;a=%d\np=%p\n*p=%d&quot;,a,p,*p);
+    printf(&#34;a=%d\np=%p\n*p=%d&#34;,a,p,*p);
     a=22;   //改变a的值
-    printf(&quot;\na=%d\np=%p\n*p=%d&quot;,a,p,*p);
+    printf(&#34;\na=%d\np=%p\n*p=%d&#34;,a,p,*p);
     return 0;
 }
 </code></pre><ul>
-<li>样例输出</li>
-</ul>
-<pre tabindex=0><code>a=1                 //a的值
+<li>样例输出</li></ul><pre tabindex=0><code>a=1                 //a的值
 p=000000000062FE44  //p的值，即a的地址
 *p=1                //p所指向的地址所存储的值，即a的值
 
 a=22
 p=000000000062FE44  //同上
 *p=22
-</code></pre></li>
-</ol>
-<ul>
-<li><a class=link href=http://www.runoob.com/cprogramming/c-pointers.html target=_blank rel=noopener>更多c语言指针相关教程</a></li>
-</ul>
-<hr>
-<h2 id=文件操作>文件操作</h2>
-<ul>
-<li>程序是用了来处理数据的，而数据实质就是存储在磁盘上的文件，因而文件操作是程序员必须学习的基础</li>
-</ul>
-<pre tabindex=0><code>FILE *f=NULL;   //声明一个文件指针
+</code></pre></li></ol><ul>
+<li><a class=link href=http://www.runoob.com/cprogramming/c-pointers.html target=_blank rel=noopener>更多c语言指针相关教程</a></li></ul><hr>
+<h2 id=文件操作>文件操作</h2><ul>
+<li>程序是用了来处理数据的，而数据实质就是存储在磁盘上的文件，因而文件操作是程序员必须学习的基础</li></ul><pre tabindex=0><code>FILE *f=NULL;   //声明一个文件指针
 char buff[100]; //声明一个字符串数组
 char ch;        //声明一个字符变量
 int x;          //声明一个整形变量
 
-f=fopen(&quot;test.txt&quot;,&quot;wr&quot;);   //打开文件，“wr”指定可读可写
+f=fopen(&#34;test.txt&#34;,&#34;wr&#34;);   //打开文件，“wr”指定可读可写
 ch=fgetc(f);                //从文件中读取单个字符赋值给ch
-fscanf(f,&quot;%s&quot;,buff);        //从文件中读取字符串赋值给buff字符串数组
-fscanf(f,&quot;%d&quot;,&amp;x);          //从文件中读取一个整形变量
+fscanf(f,&#34;%s&#34;,buff);        //从文件中读取字符串赋值给buff字符串数组
+fscanf(f,&#34;%d&#34;,&amp;x);          //从文件中读取一个整形变量
 fgets(buff,100,f);          //从文件中读取字符串，并存放到buff中，指定最大长度100
-fprintf(f,&quot;%s\n&quot;,buff);     //向文件中写入字符串数组
+fprintf(f,&#34;%s\n&#34;,buff);     //向文件中写入字符串数组
 
 fputc(ch,f);                //向文件中写入单个字符
 fputs(buff,f);              //向文件中写入字符串
-</code></pre><h2 id=后记>后记</h2>
-<ul>
+</code></pre><h2 id=后记>后记</h2><ul>
 <li>
-<p>指针我这里暂时咕了，指针可以说是c语言的精髓，也意味着贯穿了整个c语言的所有内容，如果完成指针部分可能又花当前篇幅的一半。所以这里只有一个最最最基础的指针使用。如果你还需要详细的指针学习，推荐你前往<a class=link href=http://www.runoob.com/cprogramming/c-pointers.html target=_blank rel=noopener>这里</a>,或许之后我也可能会把指针单独独立的讲解一次。</p>
-</li>
-<li>
-<p>写着整个教程花了我接近三天的时间，而且越是到后面意志越是消沉（所以我写到指针咕咕咕了）</p>
-</li>
-<li>
-<p>而且我知道这样实在是一个写的不怎么样的教程。</p>
-</li>
-<li>
-<p>本教程尽量挑选了基础性的，使用较为常见的知识点进行讲解，并以本人自认为合适的一种顺序组织安排了全部内容</p>
-</li>
-<li>
-<p>如果这篇博客能帮到你，非常高兴。</p>
-</li>
-<li>
-<p>如果觉得博客有问题，欢迎邮件交流。</p>
-</li>
-</ul>
-</section>
-<footer class=article-footer>
+<p>指针我这里暂时咕了，指针可以说是c语言的精髓，也意味着贯穿了整个c语言的所有内容，如果完成指针部分可能又花当前篇幅的一半。所以这里只有一个最最最基础的指针使用。如果你还需要详细的指针学习，推荐你前往<a class=link href=http://www.runoob.com/cprogramming/c-pointers.html target=_blank rel=noopener>这里</a>,或许之后我也可能会把指针单独独立的讲解一次。</p></li><li>
+<p>写着整个教程花了我接近三天的时间，而且越是到后面意志越是消沉（所以我写到指针咕咕咕了）</p></li><li>
+<p>而且我知道这样实在是一个写的不怎么样的教程。</p></li><li>
+<p>本教程尽量挑选了基础性的，使用较为常见的知识点进行讲解，并以本人自认为合适的一种顺序组织安排了全部内容</p></li><li>
+<p>如果这篇博客能帮到你，非常高兴。</p></li><li>
+<p>如果觉得博客有问题，欢迎邮件交流。</p></li></ul></section><footer class=article-footer>
 <section class=article-tags>
 <a href=/tags/c/c++/>C/C++</a>
-</section>
-<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+</section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
 <span>Licensed under CC BY-NC-SA 4.0</span>
-</section>
-</footer>
-</article>
-<aside class=related-contents--wrapper>
-<h2 class=section-title>相关文章</h2>
-<div class=related-contents>
+</section></footer></article><aside class=related-contents--wrapper>
+<h2 class=section-title>相关文章</h2><div class=related-contents>
 <div class="flex article-list--tile">
 <article>
 <a href=/p/c-%E4%B8%8Esqlite/>
 <div class=article-details>
-<h2 class=article-title>C++与SQLite</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>C++与SQLite</h2></div></a>
+</article><article>
 <a href=/p/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/>
 <div class=article-details>
-<h2 class=article-title>VC++调用外部exe并获取程序运行输出</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>VC++调用外部exe并获取程序运行输出</h2></div></a>
+</article><article>
 <a href=/p/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/>
 <div class=article-details>
-<h2 class=article-title>MYSQL密码重置详解</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>MYSQL密码重置详解</h2></div></a>
+</article><article>
 <a href=/p/mysql%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/>
 <div class=article-details>
-<h2 class=article-title>MySQL导入csv文件数据</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>MySQL导入csv文件数据</h2></div></a>
+</article><article>
 <a href=/p/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/>
 <div class=article-details>
-<h2 class=article-title>mysql8的安装配置以及JDBC使用</h2>
-</div>
-</a>
-</article>
-</div>
-</div>
-</aside>
-<footer class=site-footer>
+<h2 class=article-title>mysql8的安装配置以及JDBC使用</h2></div></a>
+</article></div></div></aside><footer class=site-footer>
 <section class=copyright>
 &copy;
 2017 -
-2021 零碎记忆
-</section>
-<section class=powerby>
+2022 零碎记忆
+</section><section class=powerby>
 Try to remember <br>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
 Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.5.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
-</section>
-</footer>
-<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
-<div class=pswp__bg></div>
-<div class=pswp__scroll-wrap>
+</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div><div class=pswp__scroll-wrap>
 <div class=pswp__container>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-</div>
-<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden">
 <div class=pswp__top-bar>
-<div class=pswp__counter></div>
-<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
 <div class=pswp__preloader>
 <div class=pswp__preloader__icn>
 <div class=pswp__preloader__cut>
-<div class=pswp__preloader__donut></div>
-</div>
-</div>
-</div>
-</div>
-<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-<div class=pswp__share-tooltip></div>
-</div>
-<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+<div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
 </button>
 <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
 </button>
 <div class=pswp__caption>
-<div class=pswp__caption__center></div>
-</div>
-</div>
-</div>
-</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
-</main>
-<aside class="sidebar right-sidebar sticky">
+<div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main><aside class="sidebar right-sidebar sticky">
 <section class="widget archives">
 <div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
-</div>
-<h2 class="widget-title section-title">目录</h2>
-<div class=widget--toc>
+</div><h2 class="widget-title section-title">目录</h2><div class=widget--toc>
 <nav id=TableOfContents>
 <ol>
-<li><a href=#前言>前言：</a></li>
-<li><a href=#start>Start</a></li>
-<li><a href=#c语言基本结构>C语言基本结构</a></li>
-<li><a href=#c语言简介>C语言简介</a></li>
-<li><a href=#编写环境>编写环境</a></li>
-<li><a href=#基本数据类型>基本数据类型</a>
+<li><a href=#前言>前言：</a></li><li><a href=#start>Start</a></li><li><a href=#c语言基本结构>C语言基本结构</a></li><li><a href=#c语言简介>C语言简介</a></li><li><a href=#编写环境>编写环境</a></li><li><a href=#基本数据类型>基本数据类型</a>
 <ol>
-<li><a href=#整数类型>整数类型</a></li>
-<li><a href=#浮点类型>浮点类型</a></li>
-<li><a href=#void类型>void类型</a></li>
-<li><a href=#常量>常量</a></li>
-</ol>
-</li>
-<li><a href=#基本输入输出语句>基本输入输出语句</a></li>
-<li><a href=#运算符>运算符</a>
+<li><a href=#整数类型>整数类型</a></li><li><a href=#浮点类型>浮点类型</a></li><li><a href=#void类型>void类型</a></li><li><a href=#常量>常量</a></li></ol></li><li><a href=#基本输入输出语句>基本输入输出语句</a></li><li><a href=#运算符>运算符</a>
 <ol>
-<li><a href=#算术运算符>算术运算符</a></li>
-<li><a href=#关系运算符>关系运算符</a></li>
-<li><a href=#逻辑运算符>逻辑运算符</a></li>
-<li><a href=#按位运算符>按位运算符</a></li>
-</ol>
-</li>
-<li><a href=#条件选择语句>条件选择语句</a>
+<li><a href=#算术运算符>算术运算符</a></li><li><a href=#关系运算符>关系运算符</a></li><li><a href=#逻辑运算符>逻辑运算符</a></li><li><a href=#按位运算符>按位运算符</a></li></ol></li><li><a href=#条件选择语句>条件选择语句</a>
 <ol>
-<li><a href=#基本if语句>基本if语句</a></li>
-<li><a href=#三元运算符>三元运算符</a></li>
-<li><a href=#switch语句>switch语句</a></li>
-</ol>
-</li>
-<li><a href=#循环语句>循环语句</a>
+<li><a href=#基本if语句>基本if语句</a></li><li><a href=#三元运算符>三元运算符</a></li><li><a href=#switch语句>switch语句</a></li></ol></li><li><a href=#循环语句>循环语句</a>
 <ol>
-<li><a href=#for循环>for循环</a></li>
-<li><a href=#while循环>while循环</a></li>
-<li><a href=#do-while循环>do while循环</a></li>
-</ol>
-</li>
-<li><a href=#函数>函数</a>
+<li><a href=#for循环>for循环</a></li><li><a href=#while循环>while循环</a></li><li><a href=#do-while循环>do while循环</a></li></ol></li><li><a href=#函数>函数</a>
 <ol>
-<li><a href=#c语言中的函数声明>C语言中的函数声明：</a></li>
-<li><a href=#函数调用>函数调用</a></li>
-<li><a href=#函数参数>函数参数</a></li>
-<li><a href=#作用域规则>作用域规则</a></li>
-</ol>
-</li>
-<li><a href=#进阶数据结构>进阶数据结构</a>
+<li><a href=#c语言中的函数声明>C语言中的函数声明：</a></li><li><a href=#函数调用>函数调用</a></li><li><a href=#函数参数>函数参数</a></li><li><a href=#作用域规则>作用域规则</a></li></ol></li><li><a href=#进阶数据结构>进阶数据结构</a>
 <ol>
-<li><a href=#数组>数组</a></li>
-<li><a href=#字符数组>字符数组</a></li>
-<li><a href=#结构体>结构体</a></li>
-<li><a href=#枚举结构>枚举结构</a></li>
-</ol>
-</li>
-<li><a href=#指针>指针</a>
+<li><a href=#数组>数组</a></li><li><a href=#字符数组>字符数组</a></li><li><a href=#结构体>结构体</a></li><li><a href=#枚举结构>枚举结构</a></li></ol></li><li><a href=#指针>指针</a>
 <ol>
-<li><a href=#声明方法>声明方法</a></li>
-<li><a href=#指针使用>指针使用</a></li>
-</ol>
-</li>
-<li><a href=#文件操作>文件操作</a></li>
-<li><a href=#后记>后记</a></li>
-</ol>
-</nav>
-</div>
-</section>
-</aside>
-</div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
-<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
-</body>
-</html>
+<li><a href=#声明方法>声明方法</a></li><li><a href=#指针使用>指针使用</a></li></ol></li><li><a href=#文件操作>文件操作</a></li><li><a href=#后记>后记</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script>
+</body></html>

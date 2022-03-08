@@ -1,8 +1,7 @@
 <!doctype html><html lang=zh-cn>
 <head><meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="摘要  本文章是基于个人对k-shell算法的理解，若有偏颇还望指正。 基于java实现的k-shell算法，文末附源码，仅供学习。   
-"><title>k-shell算法Java实现</title>
-<link rel=canonical href=https://blog.yuukisama.cc/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/>
+"><title>k-shell算法Java实现</title><link rel=canonical href=https://blog.yuukisama.cc/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/>
 <link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="k-shell算法Java实现">
 <meta property="og:description" content="摘要  本文章是基于个人对k-shell算法的理解，若有偏颇还望指正。 基于java实现的k-shell算法，文末附源码，仅供学习。   
 ">
@@ -14,17 +13,17 @@
 <meta name=twitter:description content="摘要  本文章是基于个人对k-shell算法的理解，若有偏颇还望指正。 基于java实现的k-shell算法，文末附源码，仅供学习。   
 ">
 <link rel="shortcut icon" href=img/favicon.png>
-</head>
-<body class="article-page has-toc">
-<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSMKSWDEQK"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-YSMKSWDEQK",{anonymize_ip:!1})}</script>
+</head><body class="article-page has-toc">
+<script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script>
 <div class="container main-container flex
 extended">
 <div id=article-toolbar>
 <a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
 <span>返回</span>
 </a>
-</div>
-<main class="main full-width">
+</div><main class="main full-width">
 <article class=main-article>
 <header class=article-header>
 <div class=article-details>
@@ -35,77 +34,48 @@ extended">
 <a href=/categories/%E8%AF%BE%E8%AE%BE/>
 课设
 </a>
-</header>
-<h2 class=article-title>
+</header><h2 class=article-title>
 <a href=/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/>k-shell算法Java实现</a>
-</h2>
-<footer class=article-time>
+</h2><footer class=article-time>
 <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
 <time class=article-time--published>Dec 28, 2018</time>
-</div>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+</div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <time class=article-time--reading>
 阅读时长: 3 分钟
 </time>
-</div>
-</footer>
-</div>
-</header>
-<section class=article-content>
-<h2 id=摘要>摘要</h2>
-<ul>
-<li>本文章是基于个人对k-shell算法的理解，若有偏颇还望指正。</li>
-<li>基于java实现的k-shell算法，文末附源码，仅供学习。</li>
-</ul>
-<p><figure class=gallery-image style=flex-grow:178;flex-basis:427px>
+</div></footer></div></header><section class=article-content>
+<h2 id=摘要>摘要</h2><ul>
+<li>本文章是基于个人对k-shell算法的理解，若有偏颇还望指正。</li><li>基于java实现的k-shell算法，文末附源码，仅供学习。</li></ul><p><figure class=gallery-image style=flex-grow:178;flex-basis:427px>
 <a href=/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/xiaoling.jpg data-size=534x300>
 <img src=/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/xiaoling.jpg width=534 height=300 srcset="/p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/xiaoling_hu2393fc7e89efed778f3939834c3b634e_19889_480x0_resize_q75_box.jpg 480w, /p/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/xiaoling_hu2393fc7e89efed778f3939834c3b634e_19889_1024x0_resize_q75_box.jpg 1024w" loading=lazy>
 </a>
-</figure></p>
-<h2 id=k-shell算法>k-shell算法</h2>
-<ul>
+</figure></p><h2 id=k-shell算法>k-shell算法</h2><ul>
 <li>
-<p>从数据结构图中逐步删除节点权值小于某阈值的节点以及其相关路径的算法</p>
-</li>
-<li>
+<p>从数据结构图中逐步删除节点权值小于某阈值的节点以及其相关路径的算法</p></li><li>
 <p>K-shell 方法递归地剥离网络中度数小于或等于 k 的节点,具体划分过程如下: 假设网络中不存在度数为 0 的孤立节点。从度指标的角度分析,度数为 1的节点是网络中最不重要的节点,因此首先将度数为 1 的节点及其连边从网络中删除。删除操作进行之后的网络中会出现新的度数为 1 的节点,接着将这些新出现的度数为 1 的节点及其连边删除。重复上述操作,直到网络中不再新出现度数为 1的节点为止。此时所有被删除的节点构成第一层,即 1-shell,节点的 Ks 值等于 1。剩下的网络中,每个节点的度数至少为2。继续重复上述删除操作,得到 Ks 值等于 2 的第二层,即 2-shell。依此类推,直到网络中所有的节点都被赋予 Ks 值。
-<a class=link href=https://blog.csdn.net/DreamHome_S/article/details/78830943 target=_blank rel=noopener>出处</a></p>
-</li>
-<li>
-<p>关于k-shell算法的一些小问题，目前为止本人未能找到足够官方的文章讲解。若有人能指正，感激不尽。</p>
-<p>节点的度在图的定义中可以理解为节点与其他节点的路径数目。在我们删除对应度数节点的过程中势必会又节点度数更大的节点变为度数小的节点。这样节点的度数就会改变，对于这种改变发生而产生的低于当前处理度数k的新节点又应该怎样处理？</p>
-<p>本代码对这类节点，这个代码处理时在删除当前所有节点度数小于等于ks值的节点，并把删除节点加入ks值。针对此次提供的数据ks层数最大值为12。实验数据以及实验结果将会附在源代码末尾</p>
-</li>
-</ul>
-<h2 id=数据结构安排>数据结构安排</h2>
-<p><strong>以下代码使用vscode+java环境编写</strong></p>
-<ul>
+<a class=link href=https://blog.csdn.net/DreamHome_S/article/details/78830943 target=_blank rel=noopener>出处</a></p></li><li>
+<p>关于k-shell算法的一些小问题，目前为止本人未能找到足够官方的文章讲解。若有人能指正，感激不尽。</p><p>节点的度在图的定义中可以理解为节点与其他节点的路径数目。在我们删除对应度数节点的过程中势必会又节点度数更大的节点变为度数小的节点。这样节点的度数就会改变，对于这种改变发生而产生的低于当前处理度数k的新节点又应该怎样处理？</p><p>本代码对这类节点，这个代码处理时在删除当前所有节点度数小于等于ks值的节点，并把删除节点加入ks值。针对此次提供的数据ks层数最大值为12。实验数据以及实验结果将会附在源代码末尾</p></li></ul><h2 id=数据结构安排>数据结构安排</h2><p><strong>以下代码使用vscode+java环境编写</strong></p><ul>
 <li>
 <p>因为是使用的java语言。这里用一个hashmap来存储图。hashmap中key，value分别为string，以及hashset。
-key值中存储图节点，对应value（hashset型）存储与该节点有连接的节点。</p>
-<pre tabindex=0><code>HashMap&lt;String,HashSet&lt;String&gt;&gt; map=new HashMap&lt;String,HashSet&lt;String&gt;&gt;();
-</code></pre></li>
-<li>
-<p>用另一个hashmap来存储对应k值的网络层,key值用来存放k值，value的hashset里面存放从网络中剔除的节点。</p>
-<pre tabindex=0><code>HashMap&lt;Integer,HashSet&lt;String&gt;&gt; kmap=new HashMap&lt;Integer,HashSet&lt;String&gt;&gt;();
-</code></pre></li>
-<li>
-<p>首先第一步从文件中读取数据,这里操作时按行读取。<a class=link href=https://blog.csdn.net/brushli/article/details/12356695 target=_blank rel=noopener>java文件操作</a></p>
-<pre tabindex=0><code>private static void loadfile(String filename){
+key值中存储图节点，对应value（hashset型）存储与该节点有连接的节点。</p><pre tabindex=0><code>HashMap&lt;String,HashSet&lt;String&gt;&gt; map=new HashMap&lt;String,HashSet&lt;String&gt;&gt;();
+</code></pre></li><li>
+<p>用另一个hashmap来存储对应k值的网络层,key值用来存放k值，value的hashset里面存放从网络中剔除的节点。</p><pre tabindex=0><code>HashMap&lt;Integer,HashSet&lt;String&gt;&gt; kmap=new HashMap&lt;Integer,HashSet&lt;String&gt;&gt;();
+</code></pre></li><li>
+<p>首先第一步从文件中读取数据,这里操作时按行读取。<a class=link href=https://blog.csdn.net/brushli/article/details/12356695 target=_blank rel=noopener>java文件操作</a></p><pre tabindex=0><code>private static void loadfile(String filename){
     map.clear();                                                //将图清空重置
     try {
         File f=new File(filename);                              //尝试打开文件
         FileInputStream fstream=new FileInputStream(f);         
         InputStreamReader ireader=new InputStreamReader(fstream);
         BufferedReader breader=new BufferedReader(ireader);
-        String line=&quot;&quot;; //存储每一行的数据
-        String a=&quot;&quot;;    //存储逗号左边
-        String b=&quot;&quot;;    //存储逗号右边
+        String line=&#34;&#34;; //存储每一行的数据
+        String a=&#34;&#34;;    //存储逗号左边
+        String b=&#34;&#34;;    //存储逗号右边
         String[] points;//存储行数据分割之后的内容
         HashSet&lt;String&gt; temp=null;
 
         while ((line=breader.readLine())!=null){
-            points=line.split(&quot;,&quot;); //以逗号分割字符串
+            points=line.split(&#34;,&#34;); //以逗号分割字符串
             a=points[0];
             b=points[1];
             temp=map.get(a);
@@ -135,35 +105,25 @@ key值中存储图节点，对应value（hashset型）存储与该节点有连�
     }
 
 }
-</code></pre></li>
-<li>
-<p>为了方便查看图的变化这里写了一个map的打印函数：</p>
-<pre tabindex=0><code>private static void mapprint(){
+</code></pre></li><li>
+<p>为了方便查看图的变化这里写了一个map的打印函数：</p><pre tabindex=0><code>private static void mapprint(){
     Iterator iter=map.entrySet().iterator();
     while (iter.hasNext()){
         Map.Entry&lt;String,HashSet&lt;String&gt;&gt; entry=(Map.Entry&lt;String,HashSet&lt;String&gt;&gt;) iter.next();
-        System.out.println(entry.getKey()+&quot; &quot;+entry.getValue().toString());
+        System.out.println(entry.getKey()+&#34; &#34;+entry.getValue().toString());
     }
 }
-</code></pre></li>
-<li>
-<p>以及存储对应k值剥离出来的网络节点的打印函数</p>
-<pre tabindex=0><code>private static void printkmap(){
+</code></pre></li><li>
+<p>以及存储对应k值剥离出来的网络节点的打印函数</p><pre tabindex=0><code>private static void printkmap(){
     Iterator iter=kmap.entrySet().iterator();
     while(iter.hasNext()){
         Map.Entry&lt;Integer,HashSet&lt;String&gt;&gt; entry=(Map.Entry&lt;Integer,HashSet&lt;String&gt;&gt;) iter.next();
-        System.out.println(entry.getKey().toString()+&quot; &quot;+entry.getValue().toString());
+        System.out.println(entry.getKey().toString()+&#34; &#34;+entry.getValue().toString());
     }
 }
-</code></pre></li>
-<li>
-<p>k-shell算法。</p>
-<ul>
-<li>以图（hashmap为空为终止条件）为空为终止条件的循环。每次删除节点权值小于k的节点以及相应路径，在图（hashmap）一轮遍历完成之后k值+1。</li>
-<li>删除的时候要注意，这样的存储结构的设计模式，我们删除一个节点时，要同时把该节点从其他与该节点相连接的节点的value中删除。因此这里的删除函数显得很复杂。</li>
-</ul>
-<p><a class=link href=https://www.cnblogs.com/zhangnf/p/HashMap.html target=_blank rel=noopener>Hashmap的遍历删除操作</a></p>
-<pre tabindex=0><code>private static void kshell_func(){
+</code></pre></li><li>
+<p>k-shell算法。</p><ul>
+<li>以图（hashmap为空为终止条件）为空为终止条件的循环。每次删除节点权值小于k的节点以及相应路径，在图（hashmap）一轮遍历完成之后k值+1。</li><li>删除的时候要注意，这样的存储结构的设计模式，我们删除一个节点时，要同时把该节点从其他与该节点相连接的节点的value中删除。因此这里的删除函数显得很复杂。</li></ul><p><a class=link href=https://www.cnblogs.com/zhangnf/p/HashMap.html target=_blank rel=noopener>Hashmap的遍历删除操作</a></p><pre tabindex=0><code>private static void kshell_func(){
     int k=1;
     kmap.clear();
     while (!map.isEmpty()){
@@ -192,19 +152,14 @@ key值中存储图节点，对应value（hashset型）存储与该节点有连�
         //         String keytemp=entry.getKey();
         //         entry=(Map.Entry&lt;String,HashSet&lt;String&gt;&gt;) iter.next();
         //         map.remove(keytemp);
-        //         System.out.println(&quot;delete ...&quot;);
+        //         System.out.println(&#34;delete ...&#34;);
         //     }
         // }
         kmap.put(Integer.valueOf(k),ktemp);
         k=k+1;
     }
 }
-</code></pre></li>
-</ul>
-<h2 id=源码>源码</h2>
-<p><a class=link href=data.txt>数据文件</a></p>
-<p><a class=link href=result.txt>结果文件</a></p>
-<pre tabindex=0><code>import java.io.BufferedReader;
+</code></pre></li></ul><h2 id=源码>源码</h2><p><a class=link href=data.txt>数据文件</a></p><p><a class=link href=result.txt>结果文件</a></p><pre tabindex=0><code>import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
@@ -224,14 +179,14 @@ public class kshell{
             FileInputStream fstream=new FileInputStream(f);
             InputStreamReader ireader=new InputStreamReader(fstream);
             BufferedReader breader=new BufferedReader(ireader);
-            String line=&quot;&quot;;
-            String a=&quot;&quot;;
-            String b=&quot;&quot;;
+            String line=&#34;&#34;;
+            String a=&#34;&#34;;
+            String b=&#34;&#34;;
             String[] points;
             HashSet&lt;String&gt; temp=null;
             
             while ((line=breader.readLine())!=null){
-                points=line.split(&quot;,&quot;);
+                points=line.split(&#34;,&#34;);
                 a=points[0];
                 b=points[1];
                 temp=map.get(a);
@@ -265,7 +220,7 @@ public class kshell{
         Iterator iter=map.entrySet().iterator();
         while (iter.hasNext()){
             Map.Entry&lt;String,HashSet&lt;String&gt;&gt; entry=(Map.Entry&lt;String,HashSet&lt;String&gt;&gt;) iter.next();
-            System.out.println(entry.getKey()+&quot; &quot;+entry.getValue().toString());
+            System.out.println(entry.getKey()+&#34; &#34;+entry.getValue().toString());
         }
     }
 
@@ -299,7 +254,7 @@ public class kshell{
             //         String keytemp=entry.getKey();
             //         entry=(Map.Entry&lt;String,HashSet&lt;String&gt;&gt;) iter.next();
             //         map.remove(keytemp);
-            //         System.out.println(&quot;delete ...&quot;);
+            //         System.out.println(&#34;delete ...&#34;);
             //     }
             // }
             kmap.put(Integer.valueOf(k),ktemp);
@@ -311,141 +266,82 @@ public class kshell{
         Iterator iter=kmap.entrySet().iterator();
         while(iter.hasNext()){
             Map.Entry&lt;Integer,HashSet&lt;String&gt;&gt; entry=(Map.Entry&lt;Integer,HashSet&lt;String&gt;&gt;) iter.next();
-            System.out.println(entry.getKey().toString()+&quot; &quot;+entry.getValue().toString());
+            System.out.println(entry.getKey().toString()+&#34; &#34;+entry.getValue().toString());
         }
     }
     public static void main(String[] args) {
-        loadfile(&quot;./data.txt&quot;);
+        loadfile(&#34;./data.txt&#34;);
         //mapprint();
         kshell_func();
         //mapprint();
         printkmap();
-        System.out.println(&quot;complete&quot;);
+        System.out.println(&#34;complete&#34;);
         
     }
 }
-</code></pre>
-</section>
-<footer class=article-footer>
+</code></pre></section><footer class=article-footer>
 <section class=article-tags>
 <a href=/tags/%E7%AE%97%E6%B3%95/>算法</a>
 <a href=/tags/%E8%AF%BE%E8%AE%BE/>课设</a>
-</section>
-<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+</section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
 <span>Licensed under CC BY-NC-SA 4.0</span>
-</section>
-</footer>
-</article>
-<aside class=related-contents--wrapper>
-<h2 class=section-title>相关文章</h2>
-<div class=related-contents>
+</section></footer></article><aside class=related-contents--wrapper>
+<h2 class=section-title>相关文章</h2><div class=related-contents>
 <div class="flex article-list--tile">
 <article>
 <a href=/p/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/>
 <div class=article-details>
-<h2 class=article-title>Dijkstra算法课设</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>Dijkstra算法课设</h2></div></a>
+</article><article>
 <a href=/p/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/>
 <div class=article-details>
-<h2 class=article-title>mysql8的安装配置以及JDBC使用</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>mysql8的安装配置以及JDBC使用</h2></div></a>
+</article><article>
 <a href=/p/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/>
 <div class=article-details>
-<h2 class=article-title>MYSQL密码重置详解</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>MYSQL密码重置详解</h2></div></a>
+</article><article>
 <a href=/p/mysql%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/>
 <div class=article-details>
-<h2 class=article-title>MySQL导入csv文件数据</h2>
-</div>
-</a>
-</article>
-<article>
+<h2 class=article-title>MySQL导入csv文件数据</h2></div></a>
+</article><article>
 <a href=/p/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/>
 <div class=article-details>
-<h2 class=article-title>C语言基础精炼</h2>
-</div>
-</a>
-</article>
-</div>
-</div>
-</aside>
-<footer class=site-footer>
+<h2 class=article-title>C语言基础精炼</h2></div></a>
+</article></div></div></aside><footer class=site-footer>
 <section class=copyright>
 &copy;
 2017 -
-2021 零碎记忆
-</section>
-<section class=powerby>
+2022 零碎记忆
+</section><section class=powerby>
 Try to remember <br>
 Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
 Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.5.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
-</section>
-</footer>
-<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
-<div class=pswp__bg></div>
-<div class=pswp__scroll-wrap>
+</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div><div class=pswp__scroll-wrap>
 <div class=pswp__container>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-</div>
-<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden">
 <div class=pswp__top-bar>
-<div class=pswp__counter></div>
-<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
 <div class=pswp__preloader>
 <div class=pswp__preloader__icn>
 <div class=pswp__preloader__cut>
-<div class=pswp__preloader__donut></div>
-</div>
-</div>
-</div>
-</div>
-<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-<div class=pswp__share-tooltip></div>
-</div>
-<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+<div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
 </button>
 <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
 </button>
 <div class=pswp__caption>
-<div class=pswp__caption__center></div>
-</div>
-</div>
-</div>
-</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
-</main>
-<aside class="sidebar right-sidebar sticky">
+<div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main><aside class="sidebar right-sidebar sticky">
 <section class="widget archives">
 <div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
-</div>
-<h2 class="widget-title section-title">目录</h2>
-<div class=widget--toc>
+</div><h2 class="widget-title section-title">目录</h2><div class=widget--toc>
 <nav id=TableOfContents>
 <ol>
-<li><a href=#摘要>摘要</a></li>
-<li><a href=#k-shell算法>k-shell算法</a></li>
-<li><a href=#数据结构安排>数据结构安排</a></li>
-<li><a href=#源码>源码</a></li>
-</ol>
-</nav>
-</div>
-</section>
-</aside>
-</div>
-<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
-<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
-</body>
-</html>
+<li><a href=#摘要>摘要</a></li><li><a href=#k-shell算法>k-shell算法</a></li><li><a href=#数据结构安排>数据结构安排</a></li><li><a href=#源码>源码</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script>
+</body></html>

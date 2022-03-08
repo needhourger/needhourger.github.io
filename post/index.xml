@@ -88,9 +88,9 @@ loading="lazy"
 &lt;/ul>
 &lt;/li>
 &lt;li>就是在这的需求之下，代码持续爆出如下错误：
-&lt;pre tabindex="0">&lt;code>requests.exceptions.SSLError: SOCKSHTTPSConnectionPool(host='www.xxx.org', port=443): Max retries exceeded with url: /file/ (Caused by SSLError(SSLError(&amp;quot;bad handshake: SysCallError(-1, 'Unexpected EOF')&amp;quot;)))
-requests.exceptions.ConnectionError: SOCKSHTTPSConnectionPool(host='www.xxx.org', port=443): Max retries exceeded with url: /file/ (Caused by NewConnectionError('&amp;lt;urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021C585105C0&amp;gt;: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))
-requests.exceptions.SSLError: HTTPSConnectionPool(host='msft.com', port=443): Max retries exceeded with url: / (Caused by SSLError(&amp;quot;Can't connect to HTTPS URL because the SSL module is not available.&amp;quot;))
+&lt;pre tabindex="0">&lt;code>requests.exceptions.SSLError: SOCKSHTTPSConnectionPool(host=&amp;#39;www.xxx.org&amp;#39;, port=443): Max retries exceeded with url: /file/ (Caused by SSLError(SSLError(&amp;#34;bad handshake: SysCallError(-1, &amp;#39;Unexpected EOF&amp;#39;)&amp;#34;)))
+requests.exceptions.ConnectionError: SOCKSHTTPSConnectionPool(host=&amp;#39;www.xxx.org&amp;#39;, port=443): Max retries exceeded with url: /file/ (Caused by NewConnectionError(&amp;#39;&amp;lt;urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x0000021C585105C0&amp;gt;: Failed to establish a new connection: [Errno 11001] getaddrinfo failed&amp;#39;))
+requests.exceptions.SSLError: HTTPSConnectionPool(host=&amp;#39;msft.com&amp;#39;, port=443): Max retries exceeded with url: / (Caused by SSLError(&amp;#34;Can&amp;#39;t connect to HTTPS URL because the SSL module is not available.&amp;#34;))
 ......
 &lt;/code>&lt;/pre>&lt;/li>
 &lt;li>本文就来好好踩踩这些坑&lt;/li>
