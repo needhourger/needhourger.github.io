@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Broken Memories</title><link>https://yuukisama.cc/</link><description>一个陌生人捡拾记忆贝壳的海滩</description><generator>Hugo 0.115.2 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>chainyuuki@gmail.com (Yuuki)</managingEditor><webMaster>chainyuuki@gmail.com (Yuuki)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Wed, 12 Jul 2023 20:02:29 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://yuukisama.cc/rss.xml"/><item><title>记一次Slurm集群部署</title><link>https://yuukisama.cc/posts/%E8%AE%B0%E4%B8%80%E6%AC%A1slurm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/</link><guid isPermaLink="true">https://yuukisama.cc/posts/%E8%AE%B0%E4%B8%80%E6%AC%A1slurm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/</guid><pubDate>Thu, 13 Jul 2023 00:52:36 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h1 id="记一次slurm集群环境部署">记一次Slurm集群环境部署&lt;/h1>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Broken Memories</title><link>https://yuukisama.cc/</link><description>思海拾贝</description><generator>Hugo 0.121.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>chainyuuki@gmail.com (Yuuki)</managingEditor><webMaster>chainyuuki@gmail.com (Yuuki)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Thu, 04 Jan 2024 10:05:37 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://yuukisama.cc/rss.xml"/><item><title>记一次Slurm集群部署</title><link>https://yuukisama.cc/posts/%E8%AE%B0%E4%B8%80%E6%AC%A1slurm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/</link><guid isPermaLink="true">https://yuukisama.cc/posts/%E8%AE%B0%E4%B8%80%E6%AC%A1slurm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/</guid><pubDate>Thu, 13 Jul 2023 00:52:36 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h1 id="记一次slurm集群环境部署">记一次Slurm集群环境部署&lt;/h1>
 &lt;p>工作中遇到了好几次基于Slurm部署HPC计算集群的工作。因此在这里记录一下部署过程。&lt;/p>
 &lt;p>不过由于集群部署的复杂性，以及这是一篇事后的复盘文章，所以可能有所纰漏，还望指正。&lt;/p>
 &lt;h2 id="hpcslurm">HPC——Slurm&lt;/h2>
@@ -1281,7 +1281,7 @@ sudo systemctl restart slurmctld
 &lt;p>在之后的计算机硬盘，内存等相关的内容中，容量相关概念将会被提及的非常频繁。因此有必要在开始接下来的内容前详尽的科普一下有关计算机存储容量的相关知识点。由于该篇章内容较为重要，因此将会采用独立的文章来讲述此篇幅内容。&lt;/p>
 &lt;ul>
 &lt;li>
-&lt;h3 id="计算机存储单位详解hahahugoshortcodes0hbhb">&lt;a href="https://yuukisama.cc/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E8%AF%A6%E8%A7%A3/">计算机存储单位详解&lt;/a>&lt;/h3>
+&lt;h3 id="计算机存储单位详解hahahugoshortcode21s0hbhb">&lt;a href="https://yuukisama.cc/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E8%AF%A6%E8%A7%A3/">计算机存储单位详解&lt;/a>&lt;/h3>
 &lt;/li>
 &lt;/ul></description><category domain="https://yuukisama.cc/categories/code/">Code</category><category domain="https://yuukisama.cc/tags/%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86/">硬件知识</category></item><item><title>2019信安国赛出题经历</title><link>https://yuukisama.cc/posts/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/</link><guid isPermaLink="true">https://yuukisama.cc/posts/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/</guid><pubDate>Wed, 05 Jun 2019 15:22:45 +0000</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="前言">前言&lt;/h2>
 &lt;ul>
@@ -5320,7 +5320,7 @@ int map[MAXSIZE][MAXSIZE];
 &lt;p>邻接矩阵的初始化。&lt;/p>
 &lt;ul>
 &lt;li>
-&lt;p>因为假定城市之间是无向图，那么邻接矩阵应该是呈现出以对角线对称的趋势(因为map&lt;input checked="" disabled="" type="checkbox"> [y]的值等于map[y]&lt;input checked="" disabled="" type="checkbox"> 因为我们这里认为这两个是一个路径，一个弧边)。我们把城市x到城市x自己的权值赋值为0，把城市x到城市y有路径的城市赋值为对应权值。城市间没有路径的话我们赋值权值为一个最大值0x7FFFFFFF,这又便于我们下面的Dijkstra算法进行&lt;/p>
+&lt;p>因为假定城市之间是无向图，那么邻接矩阵应该是呈现出以对角线对称的趋势(因为map[x][y]的值等于map[y][x]因为我们这里认为这两个是一个路径，一个弧边)。我们把城市x到城市x自己的权值赋值为0，把城市x到城市y有路径的城市赋值为对应权值。城市间没有路径的话我们赋值权值为一个最大值0x7FFFFFFF,这又便于我们下面的Dijkstra算法进行&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>当然为了打印邻接矩阵看着漂亮，在打印邻接矩阵的时候使用-代替了0x7FFFFFFF数据&lt;/p>
