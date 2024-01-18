@@ -1,4 +1,200 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Broken Memories</title><link>https://yuukisama.cc/</link><description>思海拾贝</description><generator>Hugo 0.121.2 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>chainyuuki@gmail.com (Yuuki)</managingEditor><webMaster>chainyuuki@gmail.com (Yuuki)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Thu, 18 Jan 2024 03:45:11 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://yuukisama.cc/rss.xml"/><item><title>Git配置Proxy访问Github</title><link>https://yuukisama.cc/posts/code/git%E9%85%8D%E7%BD%AEproxy%E8%AE%BF%E9%97%AEgithub/</link><guid isPermaLink="true">https://yuukisama.cc/posts/code/git%E9%85%8D%E7%BD%AEproxy%E8%AE%BF%E9%97%AEgithub/</guid><pubDate>Thu, 18 Jan 2024 11:08:00 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h1 id="git配置proxy访问github">Git配置Proxy访问Github&lt;/h1>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Broken Memories</title><link>https://yuukisama.cc/</link><description>思海拾贝</description><generator>Hugo 0.121.2 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>chainyuuki@gmail.com (Yuuki)</managingEditor><webMaster>chainyuuki@gmail.com (Yuuki)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Thu, 18 Jan 2024 11:16:54 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://yuukisama.cc/rss.xml"/><item><title>Langsmith初探</title><link>https://yuukisama.cc/posts/code/langsmith%E5%88%9D%E6%8E%A2/</link><guid isPermaLink="true">https://yuukisama.cc/posts/code/langsmith%E5%88%9D%E6%8E%A2/</guid><pubDate>Thu, 18 Jan 2024 17:27:44 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h1 id="langsmith初探">Langsmith初探&lt;/h1>
+&lt;h2 id="langsmith-简介">Langsmith 简介&lt;/h2>
+&lt;p>&lt;a href="https://www.langchain.com/langsmith">Langsmith&lt;/a>是一款由&lt;a href="https://www.langchain.com/">Langchain&lt;/a>团队开发的用于调试，测试，评估基于Langchain框架开发的LLM应用程序的工具。截至本文撰写时刻，该工具目前还在早期开发测试阶段，部分功能尚不完善。&lt;a href="https://smith.langchain.com/">Langsmith - https://smith.langchain.com/&lt;/a>目前是一个在线平台 ，需要注册账号并填写邀请码后才可以使用，同时不提供源码以实现本地私有化部署。截至本文撰写时刻，&lt;code>lang_learners_2023&lt;/code>这个邀请码还是可用的。&lt;/p>
+&lt;p>将Langsmith集成进自己开发的LLM应用的过程并不复杂，大多数功能仅仅需要在应用运行环境中添加Langsmith专有的环境变量即可实现，数据集测试功能则需要编写一些额外的测试代码。&lt;/p>
+&lt;blockquote>
+&lt;p>需要注意的是Debug本地LLM应用的时候，Langsmith并不会在其服务器做任何真正的计算工作。所有的代码运行均在本地LLM运行环境中产生，Langsmith仅仅通过一些内置在Langchain框架中的代码以获得上报的运行结果。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="langsmith功能模块简介">Langsmith功能模块简介&lt;/h2>
+&lt;p>Langsmith目前大致有如下功能（部分功能尚未完成实现）,这里按照侧栏菜单对应模块介绍&lt;/p>
+&lt;p>&lt;img src="image.png" alt="Alt text">&lt;/p>
+&lt;h3 id="project">Project&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>项目管理，在这里可以新建项目用来归类追踪开发的LLM应用在运行过程中产生的所有问答记录，针对单条记录可以跟踪代码中一次运行用到的chain中各个模块的类名，以及每个类的输入输出。包括该类所使用的LLM可能使用到的Prompt,Template,Chat History等等，同时可以显示大模型调用时所使用的模型参数：模型名，Temperature，等等。&lt;/p>
+&lt;blockquote>
+&lt;p>一些迷思：这里的project在第一次创建之后内部没有问答记录时并不会显示在项目列表中，只有针对其名称进行检索亦或者其项目内部有记录时才会显示在项目列表中。&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="image-1.png" alt="Alt text">
+&lt;img src="image-2.png" alt="Alt text">&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>对于每条记录可以进行如下操作&lt;/p>
+&lt;ul>
+&lt;li>&lt;img src="image-3.png" alt="Alt text">&lt;/li>
+&lt;li>重放Playground,对模型的Prompt,Input修改后重新发起调用，调试输出结构过。&lt;strong>目前该功能仅支持某些特定的LLM例如ChatGPT，同时如果对代码中的LLM类进行过魔改Langsmith也会认为其不是受支持的LLM进而无法使用该功能。&lt;/strong>&lt;/li>
+&lt;li>添加到数据集，将该问答记录存储到数据集中以供测试&lt;/li>
+&lt;li>分享，生成该问答记录的分享链接&lt;/li>
+&lt;li>备注Annotate，可以对问答记录做一些备注，包括标记Correctness,标记tag,添加Notes，feedback等 。
+&lt;img src="image-4.png" alt="Alt text">&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>同时对于所有的问答记录，支持基于条件的过滤搜索，以及批量添加到数据集（Add to Dataset），发送到数据标注队列（Send to Annotation Queue）中.
+&lt;img src="image-5.png" alt="Alt text">&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="annotation-queues">Annotation Queues&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>数据标注队列，在这里可以创建标注队列，方便对问答数据进行一些人工的标注记录。&lt;/p>
+&lt;blockquote>
+&lt;p>一些迷思：此处的功能和Project中对单条记录的Annotate功能类似，但是如果不选择将Project中问答记录发送到Annotation Queue中，Project中的Annotate是不会在此处Annotation Queue显示的。&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="image-6.png" alt="Alt text">&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="deployments">Deployments&lt;/h3>
+&lt;ul>
+&lt;li>部署功能，目前尚未实现。根据Langchain团队的规划在这里可以快速部署开发的LLM应用，大概可以理解为近似于很多的静态页面托管服务，只不过这里托管的是LLM服务应用。&lt;/li>
+&lt;li>尽管尚未上线，但是似乎可以提前填写申请内测名额。&lt;/li>
+&lt;/ul>
+&lt;h3 id="datasets--testing">Datasets &amp;amp; Testing&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>数据集和测试功能。在这里可以上传创建数据集，上传完成之后可以在本地使用代码集成测试。大致流程是本地代码会拉取线上的对应的数据集，将数据集内每条输入生成输出，并与线上数据集中的标准输出做对比评判。同时Langsmith内置了一些评判按标准，当然也可以通过代码自定义评判标准。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>数据集的文件上传目前仅支持CSV格式的文件，但是提供了一些文件内容的格式选择。上传页面会自动解析csv文件的表头，以方便选择哪一列作为输入，哪一列作为标准输出。并提供一个单条结果的实时预览。
+&lt;img src="image-7.png" alt="Alt text">&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>数据集上传完成之后可以针对数据集跑测试，具体的测试代码需要在本地对LLM应用做一些调整，Langsmith的面板上提供了一些内置的评判器选择，和对应的代码示例。
+&lt;img src="image-8.png" alt="Alt text">&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="hub">Hub&lt;/h3>
+&lt;ul>
+&lt;li>Hub模块是一个类似Github仓库的存在，但是这个仓库存储分享的是其他用户是上传分享的Prompt.在这里看可以浏览其他用户分享的Prompt,并进行诸如fork, 尝试运行等等。
+&lt;img src="image-9.png" alt="Alt text">&lt;/li>
+&lt;/ul>
+&lt;h2 id="集成-langsmith">集成 Langsmith&lt;/h2>
+&lt;h3 id="基本集成">基本集成&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>最基础的集成可以通过给本地LLM应用添加运行环境变量实现。&lt;/p>
+&lt;pre tabindex="0">&lt;code>export LANGCHAIN_TRACING_V2=true
+export LANGCHAIN_ENDPOINT=&amp;#34;https://api.smith.langchain.com&amp;#34;
+export LANGCHAIN_API_KEY=&amp;#34;&amp;lt;your-api-key&amp;gt;&amp;#34;
+export LANGCHAIN_PROJECT=&amp;#34;&amp;lt;your-project-name&amp;gt;&amp;#34;
+&lt;/code>&lt;/pre>&lt;ul>
+&lt;li>LANGCHAIN_TRACING_V2 设置Langchain是否开启日志追踪模式&lt;/li>
+&lt;li>LANGCHAIN_API_KEY 在Langsmith页面生成的可以生成api key&lt;/li>
+&lt;li>LANGCHAIN_PROJECT 是要跟踪的项目名称，如果LangSmith平台上还没有这个项目，会自动创建。如果不设置这个环境变量，会把相关信息写到default项目。这里的项目不一定要跟你实际的项目一一对应，可以理解为分类或者标签。你只要在运行某个应用前改变这一项，就会把相关的日志写到这个下面。可以按开发、生产环境分，也可以按日期分等等。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="image-10.png" alt="Alt text">&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>配置完成如上的环境变量后，在本地开发的LLM应用中的每一次问答对话将会实时上报到Langsmith上以供查看。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="dataset-test-集成">Dataset Test 集成&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>要使用数据集测试功能，除了刚刚设置的环境变量等还需要一些额外的代码修改&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>基本环境变量&lt;/p>
+&lt;pre tabindex="0">&lt;code>export LANGCHAIN_ENDPOINT=https://api.smith.langchain.com
+export LANGCHAIN_API_KEY=&amp;lt;your-api-key&amp;gt;
+&lt;/code>&lt;/pre>&lt;/li>
+&lt;li>
+&lt;p>代码部分&lt;/p>
+&lt;pre tabindex="0">&lt;code>import langsmith
+from langchain import chat_models, smith
+# Define your runnable or chain below.
+prompt = prompts.ChatPromptTemplate.from_messages(
+[
+(&amp;#34;system&amp;#34;, &amp;#34;You are a helpful AI assistant.&amp;#34;),
+(&amp;#34;human&amp;#34;, &amp;#34;{your_input_key}&amp;#34;)
+]
+)
+llm = chat_models.ChatOpenAI(model=&amp;#34;gpt-3.5-turbo&amp;#34;, temperature=0)
+chain = prompt | llm | output_parser.StrOutputParser()
+# Define the evaluators to apply
+eval_config = smith.RunEvalConfig(
+evaluators=[
+# 以下是一些Langsmith预定义的评判模型
+smith.RunEvalConfig.Criteria(&amp;#34;conciseness&amp;#34;),
+smith.RunEvalConfig.Criteria(&amp;#34;relevance&amp;#34;),
+smith.RunEvalConfig.Criteria(&amp;#34;coherence&amp;#34;),
+smith.RunEvalConfig.Criteria(&amp;#34;harmfulness&amp;#34;),
+smith.RunEvalConfig.Criteria(&amp;#34;maliciousness&amp;#34;),
+smith.RunEvalConfig.Criteria(&amp;#34;helpfulness&amp;#34;),
+smith.RunEvalConfig.Criteria(&amp;#34;controversiality&amp;#34;),
+smith.RunEvalConfig.Criteria(&amp;#34;misogyny&amp;#34;),
+smith.RunEvalConfig.Criteria(&amp;#34;criminality&amp;#34;),
+smith.RunEvalConfig.Criteria(&amp;#34;insensitivity&amp;#34;)
+],
+custom_evaluators=[],
+input_key=&amp;#34;input&amp;#34;,
+prediction_key=&amp;#34;result&amp;#34;,
+eval_llm=chat_models.ChatOpenAI(model=&amp;#34;gpt-4&amp;#34;, temperature=0)
+)
+client = langsmith.Client()
+chain_results = client.run_on_dataset(
+dataset_name=&amp;#34;&amp;lt;dataset-name&amp;gt;&amp;#34;,
+llm_or_chain_factory=chain,
+evaluation=eval_config,
+project_name=&amp;#34;test-warmhearted-savior-51&amp;#34;,
+concurrency_level=5,
+verbose=True,
+)
+&lt;/code>&lt;/pre>&lt;/li>
+&lt;li>
+&lt;p>&lt;code>eval_config&lt;/code>函数支持一些额外的参数&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>custom_evaluators&lt;/code> 一些自定义评判模型&lt;/li>
+&lt;li>&lt;code>input_key&lt;/code> 数据集中问题所使用的key&lt;/li>
+&lt;li>&lt;code>prediction_key&lt;/code> chain输出结果中回答所在的key&lt;/li>
+&lt;li>&lt;code>eva_llm&lt;/code> 评判模型所使用到的LLM&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="有关评判模型的评判函数">有关评判模型的评判函数&lt;/h3>
+&lt;p>目前Langsmith提供一些已经内置的评判模型标准如下&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>correctness&lt;/th>
+&lt;th>conciseness&lt;/th>
+&lt;th>harmfulness&lt;/th>
+&lt;th>maliciousness&lt;/th>
+&lt;th>helpfulness&lt;/th>
+&lt;th>controversiality&lt;/th>
+&lt;th>criminality&lt;/th>
+&lt;th>insensitivity&lt;/th>
+&lt;th>relevance&lt;/th>
+&lt;th>coherence&lt;/th>
+&lt;th>misogyny&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>正确性&lt;/td>
+&lt;td>简明性&lt;/td>
+&lt;td>危害性&lt;/td>
+&lt;td>恶意程度&lt;/td>
+&lt;td>帮助性&lt;/td>
+&lt;td>争议性&lt;/td>
+&lt;td>犯罪倾向&lt;/td>
+&lt;td>敏感性&lt;/td>
+&lt;td>相关性&lt;/td>
+&lt;td>连贯性&lt;/td>
+&lt;td>是否具有歧视&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>以上评判的实现原理，基本上是通过将测试结果与期望结果一起交给用于评判的大模型（例如chatgpt-3.5-turbo），通过配合特定的Prompt，要求模型给两个输入的模型就相关性，正确性给出一个打分评判。要是想要了解更具体的大模型评判详情，可以转到Projects列表中evaluators项目，其中会有针对每一次评判调度大模型的各种参数跟踪，包括所使用到的Prompt，输入输出格式等等。&lt;/p>
+&lt;blockquote>
+&lt;p>这个项目会在跑数据集测试的是过程中自动创建，用于记录所有预置评判中所使用到的大模型的调用记录&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="image-11.png" alt="Alt text">&lt;/p>
+&lt;h3 id="自定义评判标准">自定义评判标准&lt;/h3>
+&lt;ul>
+&lt;li>在数据集测试代码中的&lt;code>eval_config.custom_evaluators&lt;/code>可以添加自己实现的评测函数。只需要继承相关类即可，具体内容可以在&lt;a href="https://docs.smith.langchain.com/evaluation/custom-evaluators">Langsmith有关自定义Evalutors类的文档&lt;/a>中查看&lt;/li>
+&lt;li>已知的实现自定义评测标准的方法，除了使用大模型去评判之外，还支持使用类似向量化的评判方法，即将测试输出和预期输出同时向量化映射到向量空间然后计算其向量距离来评判其相关性。&lt;/li>
+&lt;/ul></description><category domain="https://yuukisama.cc/categories/code/">CODE</category><category domain="https://yuukisama.cc/tags/ai/">AI</category></item><item><title>Git配置Proxy访问Github</title><link>https://yuukisama.cc/posts/code/git%E9%85%8D%E7%BD%AEproxy%E8%AE%BF%E9%97%AEgithub/</link><guid isPermaLink="true">https://yuukisama.cc/posts/code/git%E9%85%8D%E7%BD%AEproxy%E8%AE%BF%E9%97%AEgithub/</guid><pubDate>Thu, 18 Jan 2024 11:08:00 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h1 id="git配置proxy访问github">Git配置Proxy访问Github&lt;/h1>
 &lt;h2 id="start">Start&lt;/h2>
 &lt;p>一觉醒来突然发现针对Github的墙高了许多，公司新发的电脑刚安装好Archlinux还没配置Proxy,所以在此记录一下。&lt;/p>
 &lt;p>以下配置方案均在Linux系统上，发行版为Archlinux.配置Proxy的前提是学会天朝程序员的传统艺能：爬墙头。但在这篇文章里不会涉及这部分。&lt;/p>
@@ -1699,7 +1895,7 @@ sudo systemctl restart slurmctld
 &lt;p>在之后的计算机硬盘，内存等相关的内容中，容量相关概念将会被提及的非常频繁。因此有必要在开始接下来的内容前详尽的科普一下有关计算机存储容量的相关知识点。由于该篇章内容较为重要，因此将会采用独立的文章来讲述此篇幅内容。&lt;/p>
 &lt;ul>
 &lt;li>
-&lt;h3 id="计算机存储单位详解hahahugoshortcode22s0hbhb">&lt;a href="https://yuukisama.cc/posts/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E8%AF%A6%E8%A7%A3/">计算机存储单位详解&lt;/a>&lt;/h3>
+&lt;h3 id="计算机存储单位详解hahahugoshortcode23s0hbhb">&lt;a href="https://yuukisama.cc/posts/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E8%AF%A6%E8%A7%A3/">计算机存储单位详解&lt;/a>&lt;/h3>
 &lt;/li>
 &lt;/ul></description><category domain="https://yuukisama.cc/categories/code/">CODE</category><category domain="https://yuukisama.cc/tags/%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86/">硬件知识</category></item><item><title>2019信安国赛出题经历</title><link>https://yuukisama.cc/posts/code/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/</link><guid isPermaLink="true">https://yuukisama.cc/posts/code/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/</guid><pubDate>Wed, 05 Jun 2019 15:22:45 +0000</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="前言">前言&lt;/h2>
 &lt;ul>
