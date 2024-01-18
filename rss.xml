@@ -1,4 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Broken Memories</title><link>https://yuukisama.cc/</link><description>思海拾贝</description><generator>Hugo 0.121.2 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>chainyuuki@gmail.com (Yuuki)</managingEditor><webMaster>chainyuuki@gmail.com (Yuuki)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Fri, 12 Jan 2024 09:45:36 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://yuukisama.cc/rss.xml"/><item><title>记录一次xmrig木马查杀</title><link>https://yuukisama.cc/posts/code/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1xmrig%E6%9C%A8%E9%A9%AC%E6%9F%A5%E6%9D%80/</link><guid isPermaLink="true">https://yuukisama.cc/posts/code/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1xmrig%E6%9C%A8%E9%A9%AC%E6%9F%A5%E6%9D%80/</guid><pubDate>Wed, 10 Jan 2024 14:26:37 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>&lt;img src="./0.PNG" alt="">&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Broken Memories</title><link>https://yuukisama.cc/</link><description>思海拾贝</description><generator>Hugo 0.121.2 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>chainyuuki@gmail.com (Yuuki)</managingEditor><webMaster>chainyuuki@gmail.com (Yuuki)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Thu, 18 Jan 2024 03:45:11 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://yuukisama.cc/rss.xml"/><item><title>Git配置Proxy访问Github</title><link>https://yuukisama.cc/posts/code/git%E9%85%8D%E7%BD%AEproxy%E8%AE%BF%E9%97%AEgithub/</link><guid isPermaLink="true">https://yuukisama.cc/posts/code/git%E9%85%8D%E7%BD%AEproxy%E8%AE%BF%E9%97%AEgithub/</guid><pubDate>Thu, 18 Jan 2024 11:08:00 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h1 id="git配置proxy访问github">Git配置Proxy访问Github&lt;/h1>
+&lt;h2 id="start">Start&lt;/h2>
+&lt;p>一觉醒来突然发现针对Github的墙高了许多，公司新发的电脑刚安装好Archlinux还没配置Proxy,所以在此记录一下。&lt;/p>
+&lt;p>以下配置方案均在Linux系统上，发行版为Archlinux.配置Proxy的前提是学会天朝程序员的传统艺能：爬墙头。但在这篇文章里不会涉及这部分。&lt;/p>
+&lt;h2 id="first">First&lt;/h2>
+&lt;p>Git工具主要支持两种协议&lt;/p>
+&lt;ul>
+&lt;li>HTTP/HTTPS&lt;/li>
+&lt;li>SSH&lt;/li>
+&lt;/ul>
+&lt;p>接下来我们假定用于爬墙头的系统代理服务socks5开设在&lt;code>localhost:10808&lt;/code>，http开设在&lt;code>localhost:10809&lt;/code>&lt;/p>
+&lt;h3 id="https代理">HTTPS代理&lt;/h3>
+&lt;p>Git的HTTP模式支持配置全局代理，且支持两种代理协议：HTTP协议以及socks5协议，可以使用如下命令配置：&lt;/p>
+&lt;pre tabindex="0">&lt;code># http 代理
+git config --global http.proxy http://localhost:10809
+git config --global https.proxy http://localhost:10809
+# socks5 代理
+git config --global http.proxy socks5://localhost:10808
+git config --global https.proxy socks5://localhost:10808
+&lt;/code>&lt;/pre>&lt;blockquote>
+&lt;p>--global参数为该设置为全局配置，如果没有该参数，且命令运行在git项目目录环境下，则此次配置仅针对该项目。&lt;/p>
+&lt;/blockquote>
+&lt;p>当然全局代理具有一定的局限性，因为在实际工作中除了Github还会使用很多其他的代码仓库，例如gitlab等等，并不是所有的仓库都需要走代理&lt;del>浪费流量&lt;/del>&lt;/p>
+&lt;p>以下配置是针对Github的HTTP协议走代理&lt;/p>
+&lt;pre tabindex="0">&lt;code># http 代理
+git config --global http.https://github.com.proxy http://localhost:10809
+# socks5 代理
+git config --global http.https://github.com.proxy socks5://localhost:10808
+&lt;/code>&lt;/pre>&lt;h3 id="ssh代理">SSH代理&lt;/h3>
+&lt;p>Github的个人项目，以及不想每次推送代码都要输入账号密码的话肯定需要这个。&lt;/p>
+&lt;p>在使用ssh代理 之前，请确保你已经配置生成两ssh key,且key已经被添加到Github的settings中。&lt;/p>
+&lt;p>在&lt;code>~/.ssh/config&lt;/code>文件中配置如下内容&lt;/p>
+&lt;pre tabindex="0">&lt;code>Host github.com
+User git
+Hostname github.com
+IdentityFile &amp;#34;~/.ssh/id_rsa&amp;#34;
+TCPKeepAlive yes
+ProxyCommand nc -v -x localhost:10808 %h %p
+&lt;/code>&lt;/pre>&lt;p>nc即&lt;a href="https://zh.wikipedia.org/zh-sg/Netcat">netcat&lt;/a>号称网络瑞士军刀的一个小工具，如果没有需要安装一下。&lt;/p>
+&lt;p>但是需要注意的是在Archlinux的软件源中，netcat有两个版本，一个&lt;code>openbsd-netcat&lt;/code>一个&lt;code>gnu-netcat&lt;/code>，以上&lt;code>ProxyCommand&lt;/code>中的命令仅仅适用于&lt;code>openbsd-netcat&lt;/code>版本的netcat&lt;/p>
+&lt;hr>
+&lt;p>如果是windows,ProxyCommand可能需要替换成如下样式.其中&lt;code>connect&lt;/code>是一个Git在windows下都会自带的一个程序，如果提示connect找不到你可能需要指定connect的完整路径，亦或是配置环境变量。&lt;/p>
+&lt;pre tabindex="0">&lt;code>Host github.com
+User git
+Hostname github.com
+IdentityFile &amp;#34;~/.ssh/id_rsa&amp;#34;
+TCPKeepAlive yes
+ProxyCommand connect -S localhost:10808 -a none %h %p
+&lt;/code>&lt;/pre>&lt;h3 id="test">Test&lt;/h3>
+&lt;p>在配置完成之后可以尝试使用https协议clone一个项目，例如&lt;/p>
+&lt;pre tabindex="0">&lt;code>git clone https://github.com/nginx/nginx.git
+&lt;/code>&lt;/pre>&lt;p>ssh协议可以使用如下命令测试&lt;/p>
+&lt;pre tabindex="0">&lt;code>ssh -T git@github.com
+Connection to github.com 22 port [tcp/ssh] succeeded!
+Hi xxxx! You&amp;#39;ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/code>&lt;/pre></description><category domain="https://yuukisama.cc/categories/code/">CODE</category><category domain="https://yuukisama.cc/tags/wall/">Wall</category></item><item><title>记录一次xmrig木马查杀</title><link>https://yuukisama.cc/posts/code/%E8%AE%B0%E4%B8%80%E6%AC%A1xmrig%E6%9C%A8%E9%A9%AC%E6%9F%A5%E6%9D%80/</link><guid isPermaLink="true">https://yuukisama.cc/posts/code/%E8%AE%B0%E4%B8%80%E6%AC%A1xmrig%E6%9C%A8%E9%A9%AC%E6%9F%A5%E6%9D%80/</guid><pubDate>Wed, 10 Jan 2024 14:26:37 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>&lt;img src="./0.PNG" alt="">&lt;/p>
 &lt;h2 id="start">Start&lt;/h2>
 &lt;p>尽管挖矿热潮逐渐消退，以太坊等一众主流虚拟货币不再推荐显卡挖矿。但是还是不乏一些恶趣味的黑客秉着“蚊子在小也是肉的原则”在公共网络上扫描网段寻找可用的肉鸡目标。&lt;/p>
 &lt;p>上家公司做私有云相关的业务，机器隔三差五就被日。其中最常见的就是挖矿病毒XMRig&lt;/p>
@@ -139,7 +194,7 @@ while : do
 &lt;p>黑客利用了一些公网网络扫描工具发现了这些暴露出来的ssh端口服务，并对其进行爆破（在后续的检查中，所有的容器的ssh日志都存在不同程度的爆破记录）&lt;/p>
 &lt;p>&lt;img src="image.png" alt="Alt text">&lt;/p>
 &lt;h2 id="last">Last&lt;/h2>
-&lt;h3 id="靠背哦其实我是全栈开发来着">靠背哦，其实我是全栈开发来着！！！&lt;/h3></description></item><item><title>记一场旅行</title><link>https://yuukisama.cc/posts/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/</link><guid isPermaLink="true">https://yuukisama.cc/posts/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/</guid><pubDate>Mon, 08 Jan 2024 14:43:08 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h1 id="记一场旅行">记一场旅行&lt;/h1>
+&lt;h3 id="靠背哦其实我是全栈开发来着">靠背哦，其实我是全栈开发来着！！！&lt;/h3></description><category domain="https://yuukisama.cc/categories/code/">CODE</category><category domain="https://yuukisama.cc/tags/security/">Security</category></item><item><title>记一场旅行</title><link>https://yuukisama.cc/posts/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/</link><guid isPermaLink="true">https://yuukisama.cc/posts/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/</guid><pubDate>Mon, 08 Jan 2024 14:43:08 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h1 id="记一场旅行">记一场旅行&lt;/h1>
 &lt;h2 id="碎碎念">碎碎念&lt;/h2>
 &lt;p>其实真正闲暇下来到有时间来写这篇博客已经是手术后一年多的事情了。这一年里又经历了什么呢？&lt;/p>
 &lt;ul>
@@ -795,7 +850,7 @@ NodeName=master Gres=gpu:4,shard:32
 &lt;h4 id="重启所有主从节点的slurm相关服务">重启所有主从节点的slurm相关服务&lt;/h4>
 &lt;pre tabindex="0">&lt;code>sudo systemctl restart slurmd
 sudo systemctl restart slurmctld
-&lt;/code>&lt;/pre></description></item><item><title>计算机存储单位详解</title><link>https://yuukisama.cc/posts/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E8%AF%A6%E8%A7%A3/</link><guid isPermaLink="true">https://yuukisama.cc/posts/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E8%AF%A6%E8%A7%A3/</guid><pubDate>Tue, 07 Mar 2023 13:54:47 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h1 id="计算机存储单位详解">计算机存储单位详解&lt;/h1>
+&lt;/code>&lt;/pre></description><category domain="https://yuukisama.cc/categories/code/">CODE</category></item><item><title>计算机存储单位详解</title><link>https://yuukisama.cc/posts/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E8%AF%A6%E8%A7%A3/</link><guid isPermaLink="true">https://yuukisama.cc/posts/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E8%AF%A6%E8%A7%A3/</guid><pubDate>Tue, 07 Mar 2023 13:54:47 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h1 id="计算机存储单位详解">计算机存储单位详解&lt;/h1>
 &lt;p>本文将通过较为接近基础原理的方式讲解计算机中有关存储容量单位的相关知识点。&lt;/p>
 &lt;p>&lt;em>本章节阅读前需要的知识储备：九年之义务教育的数学计算能力以及语文阅读能力。&lt;/em>&lt;/p>
 &lt;p>不论你是不是计算机相关专业的人员，相信你都听说过一句话：&lt;strong>计算机世界是1和0的世界&lt;/strong>（&lt;del>不是那个01啊喂！&lt;/del>），因此本文将会涉及到非常多的2的次方运算，准确的说，计算机存储容量的换算方式就是基于2的多少次方进行的，即2的幂运算，即二进制。&lt;/p>
@@ -1644,7 +1699,7 @@ sudo systemctl restart slurmctld
 &lt;p>在之后的计算机硬盘，内存等相关的内容中，容量相关概念将会被提及的非常频繁。因此有必要在开始接下来的内容前详尽的科普一下有关计算机存储容量的相关知识点。由于该篇章内容较为重要，因此将会采用独立的文章来讲述此篇幅内容。&lt;/p>
 &lt;ul>
 &lt;li>
-&lt;h3 id="计算机存储单位详解hahahugoshortcode21s0hbhb">&lt;a href="https://yuukisama.cc/posts/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E8%AF%A6%E8%A7%A3/">计算机存储单位详解&lt;/a>&lt;/h3>
+&lt;h3 id="计算机存储单位详解hahahugoshortcode22s0hbhb">&lt;a href="https://yuukisama.cc/posts/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E8%AF%A6%E8%A7%A3/">计算机存储单位详解&lt;/a>&lt;/h3>
 &lt;/li>
 &lt;/ul></description><category domain="https://yuukisama.cc/categories/code/">CODE</category><category domain="https://yuukisama.cc/tags/%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86/">硬件知识</category></item><item><title>2019信安国赛出题经历</title><link>https://yuukisama.cc/posts/code/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/</link><guid isPermaLink="true">https://yuukisama.cc/posts/code/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/</guid><pubDate>Wed, 05 Jun 2019 15:22:45 +0000</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="前言">前言&lt;/h2>
 &lt;ul>
