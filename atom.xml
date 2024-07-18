@@ -1,4 +1,167 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><title type="text">Broken Memories</title><subtitle type="html">思海拾贝</subtitle><updated>2024-02-19T08:33:07+00:00</updated><id>https://yuukisama.cc/</id><link rel="alternate" type="text/html" href="https://yuukisama.cc/"/><link rel="self" type="application/atom+xml" href="https://yuukisama.cc/atom.xml"/><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><generator uri="https://gohugo.io/" version="0.122.0">Hugo</generator><entry><title type="text">Git配置Proxy访问Github</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/git%E9%85%8D%E7%BD%AEproxy%E8%AE%BF%E9%97%AEgithub/"/><id>https://yuukisama.cc/posts/code/git%E9%85%8D%E7%BD%AEproxy%E8%AE%BF%E9%97%AEgithub/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2024-01-18T11:08:00+08:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">Git配置Proxy访问Github Start 一觉醒来突然发现针对Github的墙高了许多，公司新发的电脑刚安装好Archlinux还没配置Proxy,所以在此记录一下。 以下配置方案均在Linux系统上，发行……</summary><content type="html">&lt;h1 id="git配置proxy访问github">Git配置Proxy访问Github&lt;/h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><title type="text">Broken Memories</title><subtitle type="html">思海拾贝</subtitle><updated>2024-07-18T08:11:55+00:00</updated><id>https://yuukisama.cc/</id><link rel="alternate" type="text/html" href="https://yuukisama.cc/"/><link rel="self" type="application/atom+xml" href="https://yuukisama.cc/atom.xml"/><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><generator uri="https://gohugo.io/" version="0.129.0">Hugo</generator><entry><title type="text">进程·线程·协程初探</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/"/><id>https://yuukisama.cc/posts/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2024-02-06T15:03:10+08:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">Start 这里是一些自己对进程线程以及协程的学习记录和思考，如有错误还望指正。 进程，线程，协程这三者可以说是计算机领域，亦或者是面试题中最常遇到的部分了，在许多次的面试中多多少少回答了一些内容，但是大多都不是……</summary><content type="html">&lt;h2 id="start">Start&lt;/h2>
+&lt;p>这里是一些自己对进程线程以及协程的学习记录和思考，如有错误还望指正。&lt;/p>
+&lt;p>进程，线程，协程这三者可以说是计算机领域，亦或者是面试题中最常遇到的部分了，在许多次的面试中多多少少回答了一些内容，但是大多都不是系统性的，且缺乏一定的深度。因此有了这篇文章，算是努力写一篇较为系统的学习笔记吧。&lt;del>希望下次面试的时候我能记起写在这里的内容，悲......&lt;/del>&lt;/p>
+&lt;h2 id="基础概念">基础概念&lt;/h2>
+&lt;p>在现代操作系统中（例如windows，linux等基于分时系统设计的操作系统），常有的观念是&lt;/p>
+&lt;blockquote>
+&lt;p>一个程序至少包含一个进程，而一个进程又至少包含一个线程。线程是程序真正的执行单元。&lt;/p>
+&lt;/blockquote>
+&lt;p>线程与进程的调度控制由操作系统决定。在现如今的多核CPU情况下，多数时候是一个核心可以同时“并行”两个线程。因此常可以听到类似“这个cpu是双核四线程”这种描述。然而需要注意的是这里的“并行”是打引号的。因为实际上CPU的核心只可以顺序执行一系列的机器指令，且在早期的CPU设计中，一个核心同一时刻只可以运行一个线程。&lt;/p>
+&lt;p>Intel在2022年推出了“超线程（Hyper-Threading）技术”，这一技术的出现使得CPU可以实现“单个核心双线程”。简单的理解这个技术就是单线程时代的CPU实际上在单个时间片内是有处理能力冗余的，因此Intel为单个核心额外添加一小部分资源就可以实现同时运行第二个线程。&lt;/p>
+&lt;p>到目前为止我们讨论了的是现代基于分时系统设计的操作系统，然而其实在早期的计算机设计中（例如早期的UNIX,linux 2.4以及更早的版本中），进程（Process）才是程序的基本执行单元。(当然那个时候也还没有线程这个概念)&lt;/p>
+&lt;p>不过实践上，不论是进程Process还是线程Thread都是人们对于计算机科学中计算资源调度组织的一种设计概念，它们也可以换个名字例如Jobs,例如tasks。甚至由于中文的博大精深有些语境下进程和线程会是一个意思。当然人们可能更加愿意约定俗成的使用进程Process,线程Thread来指代它们。&lt;/p>
+&lt;p>说了这么多似乎感觉遗漏了协程Coroutine？&lt;/p>
+&lt;p>其实之所以拖到现在是因为协程Coroutine和进程Process以及线程Threading是完全不同的存在。进程和线程在现代操作系统中是能找到设计实现的，而协程则更像是依托于进程和线程这二者构建的基地而实现的一种调度方式。&lt;/p>
+&lt;p>相较于线程这种“抢占式多任务”由操作系统本身决定切换时机，协程则要求运行中的每一个执行单元定期放弃自己的执行权力，同时告知作业系统可以调度下一个执行单元。&lt;/p>
+&lt;p>在实际的应用实现中，线程进程是操作系统提供的接口，而协程更多的是编程语言本身对进程线程调度的优化实现（即线程进程的调度系统是操作系统本身，而协程的调度系统是由编程语言本身依靠操作系统进程线程特性实现的）。例如python以及go语言中对于协程的设计。更加具象化一点说：你可以在操作系统里找到进程ID,线程ID但是找不到协程ID.&lt;/p>
+&lt;blockquote>
+&lt;p>总结: 在现代计算机中，一个程序至少包含一个进程，一个进程又至少包含 一个线程。线程是操作系统的最小执行单元。协程是依靠进程线程特性而设计出的一种调度方法。&lt;/p>
+&lt;/blockquote>
+&lt;p>在接下来的文章中为了避免中文语境下的混淆，我们规定进程即Process,线程即Thread, 协程即Coroutine.&lt;/p>
+&lt;h2 id="进程线程之间的关系">进程线程之间的关系&lt;/h2>
+&lt;h3 id="生命周期">生命周期&lt;/h3>
+&lt;p>在上一篇章中我们简单的讲了进程与线程之间的关系：一个进程至少包含一个线程。但是实际上线程与进程的关系更复杂一些，尤其是对于各种计算机资源，IO,内存等上面。&lt;/p>
+&lt;p>线程与进程的生命周期类似（因为本质上进程运行的过程中本质是运行进程中的线程）所以他们都具有类似的生命周期：&lt;/p>
+&lt;ol>
+&lt;li>创建created&lt;/li>
+&lt;li>就绪ready&lt;/li>
+&lt;li>运行running&lt;/li>
+&lt;li>等待waiting&lt;/li>
+&lt;li>终止terminated&lt;/li>
+&lt;/ol>
+&lt;p>进程创建成功created并得到许可admitted后会进入到“就绪ready”状态等待“调度器scheduler”调度指派运行进入到“运行running”状态。在运行状态中也可以通过操作系统“中断interrupt”再次回到“就绪ready”状态。&lt;/p>
+&lt;p>在运行running过程中可能因为需要IO资源亦或是某些事件等进入“等待waiting”状态，在等待过程中调度器会去执行其他进入“就绪ready”状态的进程。在等待结束后进程又会进入“就绪ready”状态等待调度器调度。当然最终在运行过程中也可以满足某些条件退出exit,并进入最终终止terminated状态。&lt;/p>
+&lt;p>&lt;img src="image.png" alt="alt text">&lt;/p>
+&lt;h3 id="内存层面">内存层面&lt;/h3>
+&lt;p>进程具有自己独立的进程空间，进程空间内包含基本的数据区，代码区，堆空间和栈。进程所拥有的代码，全局变量，以及打开的文件信息IO句柄，动态链接库等。以上都是进程内的线程们所共享的。&lt;/p>
+&lt;p>在实际的开发过程中，线程的创建往往是定义一个函数体，然后将这个函数体传给操作系统提供的线程创建函数中以运行调度。&lt;/p>
+&lt;p>所以其实在内存层面来说，线程就像一个函数体一样有自己的内存栈。栈内维护了一系列的局部变量，寄存器，以及返回地址等。这些数据一起存放在整个进程地址空间的栈区。而进程地址空间内其他的区域包括堆区，代码区，数据区也就是我们常说的线程共享的进程内存空间。反应到代码里就是一些全局变量以及手动分配的在堆上的变量。&lt;/p>
+&lt;p>&lt;img src="image-1.png" alt="alt text">&lt;/p>
+&lt;p>由于CPU的指令执行信息实际上是保存在一个寄存器中的，而之前说的每个线程都有自己独立的寄存器，所以操作系统可以很方便的从这个寄存器中得知线程在哪里被暂停，并继续运行。&lt;/p>
+&lt;p>此外虽然设计上来说线程共享进程的内存空间，但是线程与线程之间彼此独立。但是不代表线程之间就完全无法访问彼此的变量。例如：&lt;/p>
+&lt;pre tabindex="0">&lt;code>void thread(void* var) {
+int* p = (int*)var;
+*p = 2;
+}
+int main() {
+int a = 1;
+pthread_t tid;
+pthread_create(&amp;amp;tid, NULL, thread, (void*)&amp;amp;a);
+return 0;
+}
+&lt;/code>&lt;/pre>&lt;p>如上的函数在main函数中定义了一个变量a,并将a的地址传入给子线程并修改了这个变量的内容。&lt;/p>
+&lt;p>所以线程与线程之间并不是完全隔离的，这点与进程与进程之间的情况截然不同，进程与进程之间的隔离就严格多了，在现代操作系统中还有一些额外的安全设计来禁止进程之间的直接内存访问。例如进程的地址空间实际上都是虚拟地址空间并不代表实际的物理地址，在32位系统下一个进程的（虚拟）内存空间是4G,这些内存空间通过页表映射到实际的物理地址。（当然 64位下虚拟内存空间的大小会大很多，而且起内部的结构也与32位有差异）&lt;/p>
+&lt;h3 id="线程局部存储">线程局部存储&lt;/h3>
+&lt;p>这是一个用于实现线程似有数据的技术 TLS, Thread Local Storage。&lt;/p>
+&lt;ul>
+&lt;li>存放在该区域的变量是全局变量所有的线程都可以访问。&lt;/li>
+&lt;li>尽管所有线程访问的似乎是很同一个变量，但是在变量在一个线程访问过程中仅属于该线程，该线程对此变量的修改对其他线程不可见。&lt;/li>
+&lt;/ul>
+&lt;p>举例以下是一段C++ 11标准的代码&lt;/p>
+&lt;pre tabindex="0">&lt;code>int a = 1; // 全局变量
+void print_a() {
+cout&amp;lt;&amp;lt;a&amp;lt;&amp;lt;endl;
+}
+void run() {
+++a;
+print_a();
+}
+void main() {
+thread t1(run);
+t1.join();
+thread t2(run);
+t2.join();
+}
+&lt;/code>&lt;/pre>&lt;p>两个线程轮流对全局变量a进行+1操作，其最终输出结果如下&lt;/p>
+&lt;pre tabindex="0">&lt;code>2
+3
+&lt;/code>&lt;/pre>&lt;p>但如果对a变量的声明稍加修改为如下形式&lt;/p>
+&lt;pre tabindex="0">&lt;code>__thread int a = 1;
+&lt;/code>&lt;/pre>&lt;p>其输出结果就会变成如下内容:&lt;/p>
+&lt;pre tabindex="0">&lt;code>2
+2
+&lt;/code>&lt;/pre>&lt;p>线程局部存储可以让你使用一个独属于线程的全局变量。该变量可以被所有的线程访问，且在每个线程中都有一个副本，一个线程对变量的修改不会影响其他的线程。&lt;/p>
+&lt;h2 id="操作系统层面的进程和线程">操作系统层面的进程和线程&lt;/h2>
+&lt;p>截止到这一章节为止，之前所讲的所有有关线程和进程的相关内容其实都是理论性质的。在落实到实际的操作系统上，进程上的理念还是和基本一致，进程是线程的非空集合，然而线程设计实现模式又和理论是有一定差距的。同时，在现代linux和windows操作系统上的线程和进程的具体实现又各自略有不同。&lt;/p>
+&lt;p>在实际操作系统设计中，内存又分为了如下两个模式：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>用户态线程&lt;/p>
+&lt;p>操作系统在内存用户空间内创建的线程，由用户空间内的线程库进行管理调度，不能直接访问计算机硬件资源与系统资源，通过系统调用去访问具体的计算机资源（例如IO），此时即出现上下文切换，用户态线程切换到内核态，转由操作系统处理调用，当内核态任务完成后，将控制权返回给用户态线程库（即返回用户态）&lt;/p>
+&lt;p>相较于内核态线程其不需要系统调度因此开销较小，同时切换速度快。但缺点是无法充分利用多核处理器，因为在内核看来只有一个内核态线程。&lt;/p>
+&lt;p>可以简单的理解为不论有多少个用户态线程，实际最终被执行运算时都会被“放入（陷入）”真正实际拥有运算资源内核态线程中。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>内核态线程&lt;/p>
+&lt;p>内核态线程是由操作系统来进行管理调度，可直接访问硬件与系统资源，因而可以充分利用多处理器，即使一个线程阻塞，其他线程依旧会运行。&lt;/p>
+&lt;p>但其缺点也明显，由于涉及系统资源其上下文切换代价大。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>总结&lt;/p>
+&lt;p>用户态线程在实际运行过程中会被实际映射到内核态的线程最终被执行，这种映射关系被称为“线程模型”，线程模型可能是：&lt;/p>
+&lt;ul>
+&lt;li>1对多： 一个内核态线程对应多个用户态线程，这个设计的缺点是无法并行&lt;/li>
+&lt;li>1对1： 一个内核态线程对应一个用户态线程，windows的设计可以近似理解为这种模式。&lt;/li>
+&lt;li>N对M： 多个用户态线程对应多个用户态线程，Linux采用的就是这个模式，当然也会有些进程优先级较高会赋予1对1。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="linux中的线程与进程">Linux中的线程与进程&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>进程
+在Linux中，系统通过“fork”这一系统调用创建进程，新的进程是其父进程的拷贝，但拥有独立的地址空间，在新的进程中使用exec族函数可以在新进程中运行与父进程不同的程序。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>线程
+在Linux中线程通过clone系统调用创建内核态线程并由内核负责调度。在实际的程序中，程序调用PThreads等线程库来创建用户态线程，并最终由底层clone创建其对应的内核态线程。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>当然也有完全的纯用户态线程库，可以帮助你创建纯用户态管理的线程同时其调度又完全由程序本身管理。&lt;/p>
+&lt;h3 id="windows中的线程与进程">Windows中的线程与进程&lt;/h3>
+&lt;p>与Linux不同的是，Windows并没有特别强调类似Linux中的内核态与用户态的两种线程。在Windows中所有的线程更多是由内核管理的内核线程，程序运行时也是直接使用内核线程。线程的创建也是通过CreateThread函数直接创建内核线程。&lt;/p>
+&lt;p>与Linux的差异同时还有其调度算法：&lt;/p>
+&lt;ul>
+&lt;li>Windows使用优先级区分线程调度以及时间片机制，可以保证用户程序的高可用性。&lt;/li>
+&lt;li>Linux则使用CFS（完全公平调度算法）以及RT（基于优先级的全枪展示调度算法）来进行线程调度以确保高并发能力。&lt;/li>
+&lt;/ul>
+&lt;h2 id="编程语言中的线程与进程">编程语言中的线程与进程&lt;/h2>
+&lt;p>现如今的众多高级语言中，类似C, C++ 亦或者是Rust以及Java等大多为1：1的线程模型的“绿色线程模型”, 而Golang，Python等则又是不同的设计&lt;/p>
+&lt;h3 id="c">C++&lt;/h3>
+&lt;p>C++ 在C++11中添加了操作线程的库thread，提供对线程操作的进一步封装，这个库底层使用Pthread, 采用了1：1的线程模型。&lt;/p>
+&lt;h3 id="java">Java&lt;/h3>
+&lt;blockquote>
+&lt;p>1：1的线程模型最早被称为“绿色线程”&lt;/p>
+&lt;/blockquote>
+&lt;p>在Java中用户态线程完全由JVM去管理，早期JVM中的线程模型采用的是对对一的设计，即多个用户线程对应一个操作系统线程。但随着操作系统对线程的支持性的完善，目前JVM内核线程实现了1：1的对应实现。即一个Java线程对应一个内核线程。但是Java的线程堆栈大小固定，随着线程数量创建的越来越对有可能最终导致内存溢出。于是在Java19的版本中引入了“虚拟线程”的概念，虚拟线程具有一个动态的堆栈， 可以增大和缩小，这就实现了和操作系统多对多的线程模型。&lt;/p>
+&lt;p>一对一的线程模型相对而言维护起来较为简单，但是由于每个线程栈信息固定，不利于创建大量线程，且多线程操作会涉及到频繁的系统调用，上下文切换代价高。&lt;/p>
+&lt;h3 id="python">Python&lt;/h3>
+&lt;p>Python的线程采用了操作系统的原生线程， python虚拟机使用了一个全局互斥锁（GIL）来互斥线程对Python虚拟机的使用，当一个线程获取GIL的权限之后，其他线程必须等待这个GIL锁释放才可以被运行。因此Python即使是在多核CPU上，python的多线程也会退化为单线程，无法利用好多核的优势。&lt;/p>
+&lt;ul>
+&lt;li>Python协程&lt;/li>
+&lt;/ul>
+&lt;p>在python中协程是一种语言特性，而不是真正的线程。协程程序也会运行在某个实际的操作系统线程上，协程的计算任务调度通过协程自己的调度器控制，从而避免了线程之间的上下文切换，尤其是python线程的GIL锁天与咒缚的问题，从而实现效率上的提升。&lt;/p>
+&lt;h3 id="golang">Golang&lt;/h3>
+&lt;p>Go语言中的线程模型就相较于其他都有所不同。Go语言并没有实现传统意义上的用户态线程，而是采用了一种更加轻量级的并发原语——协程。但是这个协程又与Python中的协程模型大不相同。&lt;/p>
+&lt;p>Go语言的实际线程模型可以被理解为N:M多对多的调度模式。&lt;/p>
+&lt;p>Go语言中有自己实现的调度器GPM：&lt;/p>
+&lt;ul>
+&lt;li>G(Gorountine)： 指代一个Go协程，是Go语言中的最小执行单元&lt;/li>
+&lt;li>P(Processer)：逻辑处理器，用于执行Go代码，每个P逻辑处理器都有自己的一个本地队列用来存储等待被执行的协程G&lt;/li>
+&lt;li>M(Machine/OS Thread):操作系统内核线程， 负责实际执行P上的协程。&lt;/li>
+&lt;/ul>
+&lt;p>实际的调度过程中，一个M内核线程可以绑定一个P（Go语言的逻辑处理器）来执行多个G。同时P中直接存储了而所有他所管理的协程中的上下文环境，函数指针，堆栈地址边界等等， 因而避免了类似传统线程之间切换带来的开销。&lt;/p>
+&lt;p>当一个M内核线程在执行一个带有阻塞任务的协程G时，P可以将这个内核线程M单独分离出来，同时Go语言逻辑处理器P去寻找一个其他空闲的内核线程来执行其他的协程们。这样的机制大大减少了阻塞带来的性能损耗。&lt;/p>
+&lt;ul>
+&lt;li>抢占式调度规则：Golang具有抢占是调度的规则，当有协程G长时间运行时可以被调度器P终端，一边其他的协程G获得执行机会，保证系统的响应性。&lt;/li>
+&lt;li>工作窃取（Work Stealing）：当一个逻辑处理器P处理完成起本地队列中所有的协程G们是，他可以从别的P逻辑处理器队列中窃取协程任务，这样有助于负载平衡，提升处理效率。&lt;/li>
+&lt;li>运行时优化：Golang的运行时包含内存管理和垃圾回收机制，这些机制优化内存的使用同时减少了内存泄漏和内存碎片问题。同时Go的协程开销非常低，每个协程只占用2KB的左右的栈内存，这样使得协程的创建销毁成本相较于用户态线程而言耕地，可以支持大量的并发操作。&lt;/li>
+&lt;/ul>
+&lt;h4 id="总结">总结&lt;/h4>
+&lt;p>Golang采用的协程，是不同于Python中协程的概念。其也不依赖于常规的用户态线程。而是采用了一套自身的GPM协程调度管理逻辑，将多个协程由某个逻辑处理器管理并实际交给一个用户态线程执行。&lt;/p>
+&lt;p>即Golang所使用的内核线程对应一个Golang的逻辑处理器，对应多个Golang协程，1：1：N，同时可以有多个内核线程被Golang使用。&lt;/p>
+&lt;h2 id="后记">后记&lt;/h2>
+&lt;p>这篇文章来来回回写了鸽，鸽了写从二月开始写到了7月，终于是挤出来了。但是已经完全无法保证文章内容的流利性了，悲...&lt;/p></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" term="操作系统" label="操作系统"/></entry><entry><title type="text">Git配置Proxy访问Github</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/git%E9%85%8D%E7%BD%AEproxy%E8%AE%BF%E9%97%AEgithub/"/><id>https://yuukisama.cc/posts/code/git%E9%85%8D%E7%BD%AEproxy%E8%AE%BF%E9%97%AEgithub/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2024-01-18T11:08:00+08:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">Git配置Proxy访问Github Start 一觉醒来突然发现针对Github的墙高了许多，公司新发的电脑刚安装好Archlinux还没配置Proxy,所以在此记录一下。 以下配置方案均在Linux系统上，发行……</summary><content type="html">&lt;h1 id="git配置proxy访问github">Git配置Proxy访问Github&lt;/h1>
 &lt;h2 id="start">Start&lt;/h2>
 &lt;p>一觉醒来突然发现针对Github的墙高了许多，公司新发的电脑刚安装好Archlinux还没配置Proxy,所以在此记录一下。&lt;/p>
 &lt;p>以下配置方案均在Linux系统上，发行版为Archlinux.配置Proxy的前提是学会天朝程序员的传统艺能：爬墙头。但在这篇文章里不会涉及这部分。&lt;/p>
@@ -59,7 +222,7 @@ ProxyCommand connect -S localhost:10808 -a none %h %p
 &lt;pre tabindex="0">&lt;code>ssh -T git@github.com
 Connection to github.com 22 port [tcp/ssh] succeeded!
 Hi xxxx! You&amp;#39;ve successfully authenticated, but GitHub does not provide shell access.
-&lt;/code>&lt;/pre></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/wall/" term="Wall" label="Wall"/></entry><entry><title type="text">记录一次xmrig木马查杀</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/%E8%AE%B0%E4%B8%80%E6%AC%A1xmrig%E6%9C%A8%E9%A9%AC%E6%9F%A5%E6%9D%80/"/><id>https://yuukisama.cc/posts/code/%E8%AE%B0%E4%B8%80%E6%AC%A1xmrig%E6%9C%A8%E9%A9%AC%E6%9F%A5%E6%9D%80/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2024-01-10T14:26:37+08:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">Start 尽管挖矿热潮逐渐消退，以太坊等一众主流虚拟货币不再推荐显卡挖矿。但是还是不乏一些恶趣味的黑客秉着“蚊子在小也是肉的原则”在公共网络上扫描网段寻找可用的肉鸡目标。 上家公司做私有云相关的业务，机器隔三差……</summary><content type="html">&lt;p>&lt;img src="./0.PNG" alt="">&lt;/p>
+&lt;/code>&lt;/pre></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/wall/" term="Wall" label="Wall"/></entry><entry><title type="text">记录一次xmrig木马查杀</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/%E8%AE%B0%E4%B8%80%E6%AC%A1xmrig%E6%9C%A8%E9%A9%AC%E6%9F%A5%E6%9D%80/"/><id>https://yuukisama.cc/posts/code/%E8%AE%B0%E4%B8%80%E6%AC%A1xmrig%E6%9C%A8%E9%A9%AC%E6%9F%A5%E6%9D%80/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2024-01-10T14:26:37+08:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">Start 尽管挖矿热潮逐渐消退，以太坊等一众主流虚拟货币不再推荐显卡挖矿。但是还是不乏一些恶趣味的黑客秉着“蚊子在小也是肉的原则”在公共网络上扫描网段寻找可用的肉鸡目标。 上家公司做私有云相关的业务，机器隔三差……</summary><content type="html">&lt;p>&lt;img src="./0.PNG" alt="">&lt;/p>
 &lt;h2 id="start">Start&lt;/h2>
 &lt;p>尽管挖矿热潮逐渐消退，以太坊等一众主流虚拟货币不再推荐显卡挖矿。但是还是不乏一些恶趣味的黑客秉着“蚊子在小也是肉的原则”在公共网络上扫描网段寻找可用的肉鸡目标。&lt;/p>
 &lt;p>上家公司做私有云相关的业务，机器隔三差五就被日。其中最常见的就是挖矿病毒XMRig&lt;/p>
@@ -200,7 +363,7 @@ while : do
 &lt;p>黑客利用了一些公网网络扫描工具发现了这些暴露出来的ssh端口服务，并对其进行爆破（在后续的检查中，所有的容器的ssh日志都存在不同程度的爆破记录）&lt;/p>
 &lt;p>&lt;img src="image.png" alt="Alt text">&lt;/p>
 &lt;h2 id="last">Last&lt;/h2>
-&lt;h3 id="靠背哦其实我是全栈开发来着">靠背哦，其实我是全栈开发来着！！！&lt;/h3></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/security/" term="Security" label="Security"/></entry><entry><title type="text">记一场旅行</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/"/><id>https://yuukisama.cc/posts/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2024-01-08T14:43:08+08:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">一篇大健康末期的泰国旅游记？</summary><content type="html">&lt;h1 id="记一场旅行">记一场旅行&lt;/h1>
+&lt;h3 id="靠背哦其实我是全栈开发来着">靠背哦，其实我是全栈开发来着！！！&lt;/h3></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/security/" term="Security" label="Security"/></entry><entry><title type="text">记一场旅行</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/"/><id>https://yuukisama.cc/posts/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2024-01-08T14:43:08+08:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">一篇大健康末期的泰国旅游记？</summary><content type="html">&lt;h1 id="记一场旅行">记一场旅行&lt;/h1>
 &lt;h2 id="碎碎念">碎碎念&lt;/h2>
 &lt;p>其实真正闲暇下来到有时间来写这篇博客已经是手术后一年多的事情了。这一年里又经历了什么呢？&lt;/p>
 &lt;ul>
@@ -422,7 +585,7 @@ while : do
 &lt;p>在实时核算结果出来之后就会按照接下来的去向被送去不同的隔离酒店。在隔离酒店住满xx天后才可以“刑满释放”，不过即使是“刑满释放”也不允许随意走动，比如自己跑去坐什么公共交通之类的。如果准备接下来前往广东境内只能是有亲属来接，或者自己打车前往接收目的地，且目的地居委会等管理机构声明接收才可以，不然的话就只能被去深圳机场，或者继续隔离。所以其实后续讲道理我应该回到广东，但是因为这个傻逼政策的缘故只能先跑上海投奔别人（能来机场接我），待满多少天等境外行程码消掉之后才能回到广东。&lt;/p>
 &lt;p>所以这场旅行终于算是告于段落，回到自己的小出租屋后我有干嘛呢？被二号模具捅到自闭，然后继续躺尸，然后找了个工作，然后离开了广东去新的工作，然后被新工作派去鸟不拉屎的山区出差，然后气愤离职，然后再度入职，直到现在...&lt;/p>
 &lt;p>所以&lt;/p>
-&lt;p>Trans之外，人还要生活，还要工作，学会生活，学会自力更生，生活不止Trans.世界很大，多去看看。&lt;/p></content><category scheme="https://yuukisama.cc/categories/life/" term="LIFE" label="LIFE"/><category scheme="https://yuukisama.cc/tags/srs/" term="SRS" label="SRS"/><category scheme="https://yuukisama.cc/tags/lgbtq-/" term="LGBTQ+" label="LGBTQ+"/></entry><entry><title type="text">记一次Slurm集群部署</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/%E8%AE%B0%E4%B8%80%E6%AC%A1slurm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/"/><id>https://yuukisama.cc/posts/code/%E8%AE%B0%E4%B8%80%E6%AC%A1slurm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2023-07-13T00:52:36+08:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">记一次Slurm集群环境部署 工作中遇到了好几次基于Slurm部署HPC计算集群的工作。因此在这里记录一下部署过程。 不过由于集群部署的复杂性，以及这是一篇事后的复盘文章，所以可能有所纰漏，还望指正。 HP……</summary><content type="html">&lt;h1 id="记一次slurm集群环境部署">记一次Slurm集群环境部署&lt;/h1>
+&lt;p>Trans之外，人还要生活，还要工作，学会生活，学会自力更生，生活不止Trans.世界很大，多去看看。&lt;/p></content><category scheme="https://yuukisama.cc/categories/life/" term="LIFE" label="LIFE"/><category scheme="https://yuukisama.cc/tags/srs/" term="SRS" label="SRS"/><category scheme="https://yuukisama.cc/tags/lgbtq-/" term="LGBTQ+" label="LGBTQ+"/></entry><entry><title type="text">记一次Slurm集群部署</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/%E8%AE%B0%E4%B8%80%E6%AC%A1slurm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/"/><id>https://yuukisama.cc/posts/code/%E8%AE%B0%E4%B8%80%E6%AC%A1slurm%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2023-07-13T00:52:36+08:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">记一次Slurm集群环境部署 工作中遇到了好几次基于Slurm部署HPC计算集群的工作。因此在这里记录一下部署过程。 不过由于集群部署的复杂性，以及这是一篇事后的复盘文章，所以可能有所纰漏，还望指正。 HP……</summary><content type="html">&lt;h1 id="记一次slurm集群环境部署">记一次Slurm集群环境部署&lt;/h1>
 &lt;p>工作中遇到了好几次基于Slurm部署HPC计算集群的工作。因此在这里记录一下部署过程。&lt;/p>
 &lt;p>不过由于集群部署的复杂性，以及这是一篇事后的复盘文章，所以可能有所纰漏，还望指正。&lt;/p>
 &lt;h2 id="hpcslurm">HPC——Slurm&lt;/h2>
@@ -856,7 +1019,7 @@ NodeName=master Gres=gpu:4,shard:32
 &lt;h4 id="重启所有主从节点的slurm相关服务">重启所有主从节点的slurm相关服务&lt;/h4>
 &lt;pre tabindex="0">&lt;code>sudo systemctl restart slurmd
 sudo systemctl restart slurmctld
-&lt;/code>&lt;/pre></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/></entry><entry><title type="text">计算机存储单位详解</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E8%AF%A6%E8%A7%A3/"/><id>https://yuukisama.cc/posts/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E8%AF%A6%E8%A7%A3/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2023-03-07T13:54:47+08:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">计算机存储单位详解 本文将通过较为接近基础原理的方式讲解计算机中有关存储容量单位的相关知识点。 本章节阅读前需要的知识储备：九年之义务教育的数学计算能力以及语文阅读能力。 不论你是不是计算机相关专业的人员，……</summary><content type="html">&lt;h1 id="计算机存储单位详解">计算机存储单位详解&lt;/h1>
+&lt;/code>&lt;/pre></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/></entry><entry><title type="text">计算机存储单位详解</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E8%AF%A6%E8%A7%A3/"/><id>https://yuukisama.cc/posts/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E8%AF%A6%E8%A7%A3/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2023-03-07T13:54:47+08:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">计算机存储单位详解 本文将通过较为接近基础原理的方式讲解计算机中有关存储容量单位的相关知识点。 本章节阅读前需要的知识储备：九年之义务教育的数学计算能力以及语文阅读能力。 不论你是不是计算机相关专业的人员，……</summary><content type="html">&lt;h1 id="计算机存储单位详解">计算机存储单位详解&lt;/h1>
 &lt;p>本文将通过较为接近基础原理的方式讲解计算机中有关存储容量单位的相关知识点。&lt;/p>
 &lt;p>&lt;em>本章节阅读前需要的知识储备：九年之义务教育的数学计算能力以及语文阅读能力。&lt;/em>&lt;/p>
 &lt;p>不论你是不是计算机相关专业的人员，相信你都听说过一句话：&lt;strong>计算机世界是1和0的世界&lt;/strong>（&lt;del>不是那个01啊喂！&lt;/del>），因此本文将会涉及到非常多的2的次方运算，准确的说，计算机存储容量的换算方式就是基于2的多少次方进行的，即2的幂运算，即二进制。&lt;/p>
@@ -1052,7 +1215,7 @@ sudo systemctl restart slurmctld
 &lt;li>5G网络的峰值速度是10-20Gbps。&lt;/li>
 &lt;li>宽带速度是1000Mbps&lt;/li>
 &lt;li>服务器带宽是10Mbps&lt;/li>
-&lt;/ul></content></entry><entry><title type="text">计算机硬件知识科普</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E7%A7%91%E6%99%AE/"/><id>https://yuukisama.cc/posts/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E7%A7%91%E6%99%AE/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2023-01-10T14:19:26+08:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">计算机硬件知识科普 一篇简单的计算机硬件科普文，将简单从计算机各个硬件组成来普及个人 pc 以及简单服务器 pc 的硬件组成及品牌硬件参数知识。如有纰漏还望指正。本文的目的，是为了向小白快速普及计算机硬件知识，所以……</summary><content type="html">&lt;h1 id="计算机硬件知识科普">计算机硬件知识科普&lt;/h1>
+&lt;/ul></content></entry><entry><title type="text">计算机硬件知识科普</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E7%A7%91%E6%99%AE/"/><id>https://yuukisama.cc/posts/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E7%A7%91%E6%99%AE/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2023-01-10T14:19:26+08:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">计算机硬件知识科普 一篇简单的计算机硬件科普文，将简单从计算机各个硬件组成来普及个人 pc 以及简单服务器 pc 的硬件组成及品牌硬件参数知识。如有纰漏还望指正。本文的目的，是为了向小白快速普及计算机硬件知识，所以……</summary><content type="html">&lt;h1 id="计算机硬件知识科普">计算机硬件知识科普&lt;/h1>
 &lt;p>一篇简单的计算机硬件科普文，将简单从计算机各个硬件组成来普及个人 pc 以及简单服务器 pc 的硬件组成及品牌硬件参数知识。如有纰漏还望指正。本文的目的，是为了向小白快速普及计算机硬件知识，所以涉及偏向学术性质的原理知识这里可能会简单一笔带过。&lt;/p>
 &lt;h2 id="计算机的理论组成">计算机的理论组成&lt;/h2>
 &lt;p>现代计算机的结构组成脱胎于“冯 诺依曼结构”，所以冯诺依曼也被称为计算机之父，该理论下计算机由如下四个部分组成：&lt;/p>
@@ -1705,9 +1868,9 @@ sudo systemctl restart slurmctld
 &lt;p>在之后的计算机硬盘，内存等相关的内容中，容量相关概念将会被提及的非常频繁。因此有必要在开始接下来的内容前详尽的科普一下有关计算机存储容量的相关知识点。由于该篇章内容较为重要，因此将会采用独立的文章来讲述此篇幅内容。&lt;/p>
 &lt;ul>
 &lt;li>
-&lt;h3 id="计算机存储单位详解hahahugoshortcode23s0hbhb">&lt;a href="https://yuukisama.cc/posts/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E8%AF%A6%E8%A7%A3/">计算机存储单位详解&lt;/a>&lt;/h3>
+&lt;h3 id="计算机存储单位详解hahahugoshortcode21s0hbhb">&lt;a href="https://yuukisama.cc/posts/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E8%AF%A6%E8%A7%A3/">计算机存储单位详解&lt;/a>&lt;/h3>
 &lt;/li>
-&lt;/ul></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86/" term="硬件知识" label="硬件知识"/></entry><entry><title type="text">2019信安国赛出题经历</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/"/><id>https://yuukisama.cc/posts/code/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2019-06-05T15:22:45+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="前言">前言&lt;/h2>
+&lt;/ul></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86/" term="硬件知识" label="硬件知识"/></entry><entry><title type="text">2019信安国赛出题经历</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/"/><id>https://yuukisama.cc/posts/code/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2019-06-05T15:22:45+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="前言">前言&lt;/h2>
 &lt;ul>
 &lt;li>无力吐槽的信安国赛，段子乎喷了上届比赛有多坑，感觉这届也不差啊？&lt;/li>
 &lt;li>算了，我知道是我太菜。&lt;/li>
@@ -1835,7 +1998,7 @@ object.__subclasses__()[78].__init__.__globals__.__builtins__.open(&amp;#34;./fl
 &lt;h2 id="后记">后记&lt;/h2>
 &lt;ul>
 &lt;li>这次比赛真是一个很不愉快的体验。这个题目出题到写博客也隔了很久。所以有些细节在本博客中可能描述的很不清楚。（总之这篇博客很垃圾就是了）在图书馆办公室一边修理爬虫一边跑着爬虫利用闲暇之余写出来的博客真的质量不高令人堪忧。总之就这样吧，感谢阅读。&lt;/li>
-&lt;/ul></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/python/" term="Python" label="Python"/><category scheme="https://yuukisama.cc/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" term="数据库" label="数据库"/></entry><entry><title type="text">MYSQL密码重置详解</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/"/><id>https://yuukisama.cc/posts/code/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2019-05-29T11:04:15+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="摘要">摘要&lt;/h2>
+&lt;/ul></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/python/" term="Python" label="Python"/><category scheme="https://yuukisama.cc/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" term="数据库" label="数据库"/></entry><entry><title type="text">MYSQL密码重置详解</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/"/><id>https://yuukisama.cc/posts/code/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2019-05-29T11:04:15+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>很多同学在学习数据库操作的过程中，总会因为某些莫名奇妙的原因导致数据库密码变动，而到了不得不重置数据库密码的情况。本文主要讲解一下各个版本的MYSQL数据库重置密码的方法。&lt;/li>
 &lt;/ul>
@@ -1945,7 +2108,7 @@ update user set password=password(&amp;#34;123456&amp;#34;) where user=&amp;#34;
 &lt;p>接下来退出数据库，关闭新的命令行，回到之前的命令行使用ctrl+c中止命令，然后重新启动mysql服务&lt;/p>
 &lt;pre tabindex="0">&lt;code>net start mysql
 &lt;/code>&lt;/pre>&lt;/li>
-&lt;/ol></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" term="数据库" label="数据库"/></entry><entry><title type="text">MySQL导入csv文件数据</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/mysql%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/"/><id>https://yuukisama.cc/posts/code/mysql%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2019-05-15T15:33:28+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="摘要">摘要&lt;/h2>
+&lt;/ol></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" term="数据库" label="数据库"/></entry><entry><title type="text">MySQL导入csv文件数据</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/mysql%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/"/><id>https://yuukisama.cc/posts/code/mysql%E5%AF%BC%E5%85%A5csv%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2019-05-15T15:33:28+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>记录关于MySQL从csv文件导入数据的一些采坑记录&lt;/li>
 &lt;/ul>
@@ -2136,7 +2299,7 @@ IGNORE 1 LINES -- 指定忽略第一行
 &lt;h2 id="以上所有问题几乎都可以因为使用图形化界面而避免ㄟ---ㄏ">以上所有问题几乎都可以因为使用图形化界面而避免ㄟ( ▔, ▔ )ㄏ&lt;/h2>
 &lt;p>意不意外，刺不刺激？？？&lt;/p>
 &lt;/li>
-&lt;/ul></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" term="数据库" label="数据库"/></entry><entry><title type="text">C++与SQLite</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/c-%E4%B8%8Esqlite/"/><id>https://yuukisama.cc/posts/code/c-%E4%B8%8Esqlite/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2019-05-14T08:47:25+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="摘要">摘要&lt;/h2>
+&lt;/ul></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" term="数据库" label="数据库"/></entry><entry><title type="text">C++与SQLite</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/c-%E4%B8%8Esqlite/"/><id>https://yuukisama.cc/posts/code/c-%E4%B8%8Esqlite/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2019-05-14T08:47:25+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>本文主要讲解了C++对接sqlite3数据库的配置以及相关操作&lt;/li>
 &lt;li>IDE：Visual Studio 2017&lt;/li>
@@ -2561,7 +2724,7 @@ wstring wstr = Ascii2WideByte(strAsciiCode);
 strRet = Unicode2Utf8(wstr);
 return strRet;
 }
-&lt;/code>&lt;/pre></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/c/c-/" term="C/C++" label="C/C++"/><category scheme="https://yuukisama.cc/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" term="数据库" label="数据库"/></entry><entry><title type="text">Python requests ssl报错</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/python-requests-ssl%E6%8A%A5%E9%94%99/"/><id>https://yuukisama.cc/posts/code/python-requests-ssl%E6%8A%A5%E9%94%99/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2019-04-16T23:23:02+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="问题背景">问题背景&lt;/h2>
+&lt;/code>&lt;/pre></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/c/c-/" term="C/C++" label="C/C++"/><category scheme="https://yuukisama.cc/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" term="数据库" label="数据库"/></entry><entry><title type="text">Python requests ssl报错</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/python-requests-ssl%E6%8A%A5%E9%94%99/"/><id>https://yuukisama.cc/posts/code/python-requests-ssl%E6%8A%A5%E9%94%99/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2019-04-16T23:23:02+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="问题背景">问题背景&lt;/h2>
 &lt;ul>
 &lt;li>这是遇到的一个天坑！ &lt;del>这么过分的坑一定要写下来！！！！&lt;/del>&lt;/li>
 &lt;li>项目需求：
@@ -2633,7 +2796,7 @@ r=requests.get(URL,proxies={&amp;#34;https&amp;#34;:&amp;#34;socks5h://127.0.0.1
 &lt;/code>&lt;/pre>表示主机名由socks服务器解析;
 &lt;pre tabindex="0">&lt;code>socks5:// socks4://
 &lt;/code>&lt;/pre>表示主机名在本地解析&lt;/li>
-&lt;/ul></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/python/" term="Python" label="Python"/><category scheme="https://yuukisama.cc/tags/%E7%88%AC%E8%99%AB/" term="爬虫" label="爬虫"/></entry><entry><title type="text">C语言基础精炼</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/"/><id>https://yuukisama.cc/posts/code/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2019-03-30T21:46:48+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="前言">前言：&lt;/h2>
+&lt;/ul></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/python/" term="Python" label="Python"/><category scheme="https://yuukisama.cc/tags/%E7%88%AC%E8%99%AB/" term="爬虫" label="爬虫"/></entry><entry><title type="text">C语言基础精炼</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/"/><id>https://yuukisama.cc/posts/code/c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%B2%BE%E7%82%BC/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2019-03-30T21:46:48+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="前言">前言：&lt;/h2>
 &lt;ul>
 &lt;li>这是一篇有关C语言语法基础的精炼概述性质文章，不会涉及C语言一些有深度的内容&lt;/li>
 &lt;li>本文面向的是以大学C考试过关为目标，以计算机二级认证为目标，期望获得一个C语言最基础认识的读者&lt;/li>
@@ -2780,7 +2943,7 @@ return 0;
 &lt;tr>
 &lt;td style="text-align:left">int&lt;/td>
 &lt;td style="text-align:left">2 byte（32bit）&lt;br/>4 Byte（64bit）&lt;/td>
-&lt;td style="text-align:left">-2^15~2^15-1 &lt;br/>-2^31~2^31-1&lt;/td>
+&lt;td style="text-align:left">-2^15&lt;del>2^15-1 &lt;br/>-2^31&lt;/del>2^31-1&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:left">short&lt;/td>
@@ -4355,7 +4518,7 @@ fputs(buff,f); //向文件中写入字符串
 &lt;li>
 &lt;p>如果觉得博客有问题，欢迎邮件交流。&lt;/p>
 &lt;/li>
-&lt;/ul></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/c/c-/" term="C/C++" label="C/C++"/></entry><entry><title type="text">word2vec词向量训练</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/"/><id>https://yuukisama.cc/posts/code/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2019-03-13T10:26:22+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;blockquote>
+&lt;/ul></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/c/c-/" term="C/C++" label="C/C++"/></entry><entry><title type="text">word2vec词向量训练</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/"/><id>https://yuukisama.cc/posts/code/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2019-03-13T10:26:22+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;blockquote>
 &lt;h2 id="概述">概述&lt;/h2>
 &lt;/blockquote>
 &lt;ul>
@@ -4484,7 +4647,7 @@ model.similarity(&amp;#39;男人&amp;#39;, &amp;#39;女人&amp;#39;)
 # 获得单个词汇的词向量
 model[&amp;#39;男人&amp;#39;]
 &lt;/code>&lt;/pre>&lt;/li>
-&lt;/ol></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/python/" term="Python" label="Python"/><category scheme="https://yuukisama.cc/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" term="机器学习" label="机器学习"/></entry><entry><title type="text">高阶爬虫selenium摘记</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/"/><id>https://yuukisama.cc/posts/code/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2019-03-08T14:46:18+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="概述">概述&lt;/h2>
+&lt;/ol></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/python/" term="Python" label="Python"/><category scheme="https://yuukisama.cc/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" term="机器学习" label="机器学习"/></entry><entry><title type="text">高阶爬虫selenium摘记</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/"/><id>https://yuukisama.cc/posts/code/%E9%AB%98%E9%98%B6%E7%88%AC%E8%99%ABselenium%E6%91%98%E8%AE%B0/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2019-03-08T14:46:18+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="概述">概述&lt;/h2>
 &lt;ul>
 &lt;li>
 &lt;p>本文记录一些有关python高阶爬虫selenium+浏览器爬虫操作的踩坑记录.&lt;/p>
@@ -4625,7 +4788,7 @@ chrome.execute_async_script(&amp;#34;alert(&amp;#34;halloworld&amp;#34;);&amp;#3
 &lt;li>set_script_timeout是设置js执行超时时间,对于阻塞执行的js代码,在timeout设定的时间内没有能够完成将强行终止.这个timeout值默认是30s&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;/ol></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/python/" term="Python" label="Python"/><category scheme="https://yuukisama.cc/tags/%E7%88%AC%E8%99%AB/" term="爬虫" label="爬虫"/><category scheme="https://yuukisama.cc/tags/selenium/" term="selenium" label="selenium"/></entry><entry><title type="text">Python常用Skill</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/python%E5%B8%B8%E7%94%A8skill/"/><id>https://yuukisama.cc/posts/code/python%E5%B8%B8%E7%94%A8skill/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2019-01-25T17:01:19+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="python常用技能汇总">Python常用技能汇总&lt;/h2>
+&lt;/ol></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/python/" term="Python" label="Python"/><category scheme="https://yuukisama.cc/tags/%E7%88%AC%E8%99%AB/" term="爬虫" label="爬虫"/><category scheme="https://yuukisama.cc/tags/selenium/" term="Selenium" label="Selenium"/></entry><entry><title type="text">Python常用Skill</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/python%E5%B8%B8%E7%94%A8skill/"/><id>https://yuukisama.cc/posts/code/python%E5%B8%B8%E7%94%A8skill/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2019-01-25T17:01:19+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="python常用技能汇总">Python常用技能汇总&lt;/h2>
 &lt;ul>
 &lt;li>这里是一些写python脚本时常用的小技巧,长期更新
 &lt;del>咕咕咕&lt;/del>&lt;/li>
@@ -4737,7 +4900,7 @@ arg3: 3
 &lt;li>
 &lt;p>本段参考简书 &lt;a href="https://www.jianshu.com/p/be92113116c8">https://www.jianshu.com/p/be92113116c8&lt;/a>&lt;/p>
 &lt;/li>
-&lt;/ul></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/python/" term="Python" label="Python"/></entry><entry><title type="text">VC++调用外部exe并获取程序运行输出</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/"/><id>https://yuukisama.cc/posts/code/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2019-01-17T12:16:36+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;blockquote>
+&lt;/ul></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/python/" term="Python" label="Python"/></entry><entry><title type="text">VC++调用外部exe并获取程序运行输出</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/"/><id>https://yuukisama.cc/posts/code/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2019-01-17T12:16:36+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;blockquote>
 &lt;h2 id="摘要">摘要&lt;/h2>
 &lt;/blockquote>
 &lt;ul>
@@ -5071,7 +5234,7 @@ retrun 0;
 argv1
 argv2
 argv3
-&lt;/code>&lt;/pre>&lt;p>emmm 很有意思啊，系统认定的传入参数数量越来越少咯~&lt;/p></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/c/c-/" term="C/C++" label="C/C++"/></entry><entry><title type="text">多终端更新hexo博客配置方法</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/%E5%A4%9A%E7%BB%88%E7%AB%AF%E6%9B%B4%E6%96%B0hexo%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/"/><id>https://yuukisama.cc/posts/code/%E5%A4%9A%E7%BB%88%E7%AB%AF%E6%9B%B4%E6%96%B0hexo%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2019-01-02T17:27:22+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="概述">概述&lt;/h2>
+&lt;/code>&lt;/pre>&lt;p>emmm 很有意思啊，系统认定的传入参数数量越来越少咯~&lt;/p></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/c/c-/" term="C/C++" label="C/C++"/></entry><entry><title type="text">多终端更新hexo博客配置方法</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/%E5%A4%9A%E7%BB%88%E7%AB%AF%E6%9B%B4%E6%96%B0hexo%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/"/><id>https://yuukisama.cc/posts/code/%E5%A4%9A%E7%BB%88%E7%AB%AF%E6%9B%B4%E6%96%B0hexo%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2019-01-02T17:27:22+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="概述">概述&lt;/h2>
 &lt;ul>
 &lt;li>本文的基础都建立在小站成长日记系列的基础上。本教程默认你参照小站成长日记系列之前的教程完成了相关配置&lt;/li>
 &lt;li>博主本人电脑双系统，考虑到在不同设备终端更新博客的需求，于是有了下面这篇文章。&lt;/li>
@@ -5186,7 +5349,7 @@ apt update &amp;amp;&amp;amp; apt upgrade -y &amp;amp;&amp;amp; reboot
 apt install npm -y
 &lt;/code>&lt;/pre>&lt;p>安装完成之后再尝试输入npm就有回显说明安装完成了。&lt;/p>
 &lt;/li>
-&lt;/ul></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/%E5%BB%BA%E7%AB%99/" term="建站" label="建站"/></entry><entry><title type="text">Centos 7 yum安装Mariadb</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/centos-7-yum%E5%AE%89%E8%A3%85mariadb/"/><id>https://yuukisama.cc/posts/code/centos-7-yum%E5%AE%89%E8%A3%85mariadb/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2018-12-29T15:51:00+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="摘要">摘要&lt;/h2>
+&lt;/ul></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/%E5%BB%BA%E7%AB%99/" term="建站" label="建站"/></entry><entry><title type="text">Centos 7 yum安装Mariadb</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/centos-7-yum%E5%AE%89%E8%A3%85mariadb/"/><id>https://yuukisama.cc/posts/code/centos-7-yum%E5%AE%89%E8%A3%85mariadb/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2018-12-29T15:51:00+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>Centos7 下安装mariaDB数据库的操作记录。&lt;/li>
 &lt;li>MariaDB数据库是mysql的衍生版。centos发行版在centos6之后就将默认数据库改为了mariadb。&lt;a href="https://www.zhihu.com/question/41832866">因为MySQL被甲骨文公司收购后存在闭源风险&lt;/a>&lt;/li>
@@ -5288,7 +5451,7 @@ Thanks for using MariaDB!
 &lt;p>使用如下命令登陆数据库。&lt;/p>
 &lt;pre tabindex="0">&lt;code>mysql -u root -p
 &lt;/code>&lt;/pre>&lt;/li>
-&lt;/ul></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/linux/" term="Linux" label="Linux"/><category scheme="https://yuukisama.cc/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" term="数据库" label="数据库"/></entry><entry><title type="text">mysql8的安装配置以及JDBC使用</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/"/><id>https://yuukisama.cc/posts/code/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2018-12-28T16:11:13+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="摘要">摘要&lt;/h2>
+&lt;/ul></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/linux/" term="Linux" label="Linux"/><category scheme="https://yuukisama.cc/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" term="数据库" label="数据库"/></entry><entry><title type="text">mysql8的安装配置以及JDBC使用</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/"/><id>https://yuukisama.cc/posts/code/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2018-12-28T16:11:13+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>基于windows下mysql 8.0.*版本安装以及配置等操作介绍
 &lt;ul>
@@ -5535,7 +5698,7 @@ se.printStackTrace();
 System.out.println(&amp;#34;Goodbye!&amp;#34;);
 }
 }
-&lt;/code>&lt;/pre></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" term="数据库" label="数据库"/></entry><entry><title type="text">k-shell算法Java实现</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/"/><id>https://yuukisama.cc/posts/code/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2018-12-28T15:06:28+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="摘要">摘要&lt;/h2>
+&lt;/code>&lt;/pre></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" term="数据库" label="数据库"/></entry><entry><title type="text">k-shell算法Java实现</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/"/><id>https://yuukisama.cc/posts/code/k-shell%E7%AE%97%E6%B3%95java%E5%AE%9E%E7%8E%B0/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2018-12-28T15:06:28+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>本文章是基于个人对k-shell算法的理解，若有偏颇还望指正。&lt;/li>
 &lt;li>基于java实现的k-shell算法，文末附源码，仅供学习。&lt;/li>
@@ -5795,7 +5958,7 @@ printkmap();
 System.out.println(&amp;#34;complete&amp;#34;);
 }
 }
-&lt;/code>&lt;/pre></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/%E7%AE%97%E6%B3%95/" term="算法" label="算法"/><category scheme="https://yuukisama.cc/tags/%E8%B1%A1%E7%89%99%E5%A1%94/" term="象牙塔" label="象牙塔"/></entry><entry><title type="text">Blog搜索引擎可发现</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/%E5%B0%8F%E7%AB%99%E6%88%90%E9%95%BF-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E5%8F%AF%E5%8F%91%E7%8E%B0/"/><id>https://yuukisama.cc/posts/code/%E5%B0%8F%E7%AB%99%E6%88%90%E9%95%BF-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E5%8F%AF%E5%8F%91%E7%8E%B0/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2018-12-27T23:53:12+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="摘要">摘要&lt;/h2>
+&lt;/code>&lt;/pre></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/%E7%AE%97%E6%B3%95/" term="算法" label="算法"/><category scheme="https://yuukisama.cc/tags/%E8%B1%A1%E7%89%99%E5%A1%94/" term="象牙塔" label="象牙塔"/></entry><entry><title type="text">Blog搜索引擎可发现</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/%E5%B0%8F%E7%AB%99%E6%88%90%E9%95%BF-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E5%8F%AF%E5%8F%91%E7%8E%B0/"/><id>https://yuukisama.cc/posts/code/%E5%B0%8F%E7%AB%99%E6%88%90%E9%95%BF-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E5%8F%AF%E5%8F%91%E7%8E%B0/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2018-12-27T23:53:12+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="摘要">摘要&lt;/h2>
 &lt;ul>
 &lt;li>本文介绍了如何让搜索引擎可以搜索本站，小站成长的一步~&lt;/li>
 &lt;li>搜索引擎检索至少需要你的网站有域名（不建议没有域名）因此国内就需要进行备案等等一系列的操作，如果尚未备案的可以完成备案之后再尝试。&lt;/li>
@@ -5847,7 +6010,7 @@ Sitemap: http://aleonchen.com/baidusitemap.xml
 &lt;pre tabindex="0">&lt;code>layout: false
 ---
 &lt;/code>&lt;/pre>&lt;p>这样可以标识hexo停用ta的渲染，就不会重定向了.&lt;/p>
-&lt;p>之后重新构建发布网站即可&lt;/p></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" term="网站搭建" label="网站搭建"/></entry><entry><title type="text">Dijkstra算法课设</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/"/><id>https://yuukisama.cc/posts/code/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2018-12-27T18:35:23+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;blockquote>
+&lt;p>之后重新构建发布网站即可&lt;/p></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" term="网站搭建" label="网站搭建"/></entry><entry><title type="text">Dijkstra算法课设</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/"/><id>https://yuukisama.cc/posts/code/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2018-12-27T18:35:23+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;blockquote>
 &lt;h2 id="dijkstra算法课设">Dijkstra算法课设&lt;/h2>
 &lt;/blockquote>
 &lt;p>数据结构课程中的经典算法。我会将一些程序系统设计过程中的一些小细节问题（暂且称之为小细节把，因为我也不知道拿什么次比较准确），并在最后附上程序所有源码。作为一个曾经的苟若的算法狗（现在依旧小垃圾）,很多数据结构在实现的时候没必要照抄《数据结构》书上那套迂腐的东西，那终究是伪代码，而且反人类&lt;del>当然如果你就是十分喜欢结构体的使用的话不拦着你&lt;/del>。&lt;/p>
@@ -6219,7 +6382,7 @@ continue;
 }
 return 0;
 }
-&lt;/code>&lt;/pre></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/%E7%AE%97%E6%B3%95/" term="算法" label="算法"/><category scheme="https://yuukisama.cc/tags/%E8%B1%A1%E7%89%99%E5%A1%94/" term="象牙塔" label="象牙塔"/></entry><entry><title type="text">VPS+nginx+hexo搭建个人博客</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/vps-nginx-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/><id>https://yuukisama.cc/posts/code/vps-nginx-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</id><updated>2024-02-19T08:33:04+00:00</updated><published>2018-12-27T15:54:11+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="开始前的碎碎念">开始前的碎碎念&lt;/h2>
+&lt;/code>&lt;/pre></content><category scheme="https://yuukisama.cc/categories/code/" term="CODE" label="CODE"/><category scheme="https://yuukisama.cc/tags/%E7%AE%97%E6%B3%95/" term="算法" label="算法"/><category scheme="https://yuukisama.cc/tags/%E8%B1%A1%E7%89%99%E5%A1%94/" term="象牙塔" label="象牙塔"/></entry><entry><title type="text">VPS+nginx+hexo搭建个人博客</title><link rel="alternate" type="text/html" href="https://yuukisama.cc/posts/code/vps-nginx-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/><id>https://yuukisama.cc/posts/code/vps-nginx-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</id><updated>2024-07-18T08:11:52+00:00</updated><published>2018-12-27T15:54:11+00:00</published><author><name>Yuuki</name><uri>https://yuukisama.cc/</uri><email>chainyuuki@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">&lt;h2 id="开始前的碎碎念">开始前的碎碎念&lt;/h2>
 &lt;h3 id="为了搭建这个小站搜索了很多资料踩了很多坑这里努力写点有用的东西防止后人踩坑希望阅读的读者遇到问题时思考自己是否是符合本样例的情况">为了搭建这个小站，搜索了很多资料，踩了很多坑。这里努力写点有用的东西防止后人踩坑。希望阅读的读者遇到问题时思考自己是否是符合本样例的情况。&lt;/h3>
 &lt;p>这是一篇旨在使用linux服务器+nginx+hexo+git实现搭建个人博客的教学性质文章。&lt;/p>……</summary><content type="html">&lt;h2 id="开始前的碎碎念">开始前的碎碎念&lt;/h2>
 &lt;h3 id="为了搭建这个小站搜索了很多资料踩了很多坑这里努力写点有用的东西防止后人踩坑希望阅读的读者遇到问题时思考自己是否是符合本样例的情况">为了搭建这个小站，搜索了很多资料，踩了很多坑。这里努力写点有用的东西防止后人踩坑。希望阅读的读者遇到问题时思考自己是否是符合本样例的情况。&lt;/h3>
