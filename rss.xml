@@ -1,4 +1,784 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Broken Memories</title><link>https://yuukisama.cc/</link><description>Someone write something</description><generator>Hugo 0.130.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>chainyuuki@gmail.com (Yuuki)</managingEditor><webMaster>chainyuuki@gmail.com (Yuuki)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Thu, 01 Aug 2024 07:16:15 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://yuukisama.cc/rss.xml"/><item><title>Transcend Your Dream</title><link>https://yuukisama.cc/life/transcend-your-dream/</link><guid isPermaLink="true">https://yuukisama.cc/life/transcend-your-dream/</guid><pubDate>Fri, 19 Jul 2024 11:15:08 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="before-start">Before Start&lt;/h2>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Broken Memories</title><link>https://yuukisama.cc/</link><description>Someone write something</description><generator>Hugo 0.130.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>chainyuuki@gmail.com (Yuuki)</managingEditor><webMaster>chainyuuki@gmail.com (Yuuki)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Fri, 02 Aug 2024 09:32:02 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://yuukisama.cc/rss.xml"/><item><title>读《代码的简洁之道》I</title><link>https://yuukisama.cc/code/%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E7%AE%80%E6%B4%81%E4%B9%8B%E9%81%93i/</link><guid isPermaLink="true">https://yuukisama.cc/code/%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E7%AE%80%E6%B4%81%E4%B9%8B%E9%81%93i/</guid><pubDate>Thu, 01 Aug 2024 14:52:46 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="zero">Zero&lt;/h2>
+&lt;p>这应该是一篇类似读书笔记性质的文章。&lt;del>毕竟我不觉得我光滑的脑子在读完这些书籍后能记下东西，所以还是找个地方做做笔记吧，顺便写写博客。为了名正言顺的看书我真是花巨资买了个墨水屏阅读器，虽然感觉有很大的概率最后变成泡面盖子...&lt;/del>&lt;/p>
+&lt;p>《代码的简洁之道》这本书讲道理让我久仰大名很久了,因为自认为是一个十分有赛博洁癖的人：譬如我会无法忍受某些APP在我的设备内随地拉屎的习惯，以及无比厌恶不按照规范标准使用存储空间（譬如在linux上多数的config配置文件都应该存在于&lt;code>/home/user/.config&lt;/code>目录下这种事情）,导致我经常性陷入重装系统，重新配置某些软件以妄图摆脱那些赛博垃圾。&lt;/p>
+&lt;p>当然这种习惯也一定程度上延伸到了日常的代码习惯中。譬如在工作中完全无法忍受别人代码里混乱的缩进（例如javascript中一会以4空格缩进，一会以2空格缩进，或者干脆没有缩进规范），亦或是某些十分随性的变量命名函数命名，又或者一个冗长到几千行的单一函数...在我看来所有的代码至少都应当遵循某种规范做到统一以方便阅读，同时统一且能言简意赅的简单明了。&lt;/p>
+&lt;p>当然其实也有人说混乱的代码书写习惯其实是一种“防御性编程”——为了让下一个接替你干活的程序员焦头烂额以提升自身在公司工作中的不可替代性。诚然这似乎有点道理，毕竟谁不喜欢离职之后公司求你回去接手烂摊子的爽文呢？不过爽文归爽文，简洁而优雅的代码应当是每个程序员的追求。就像“生活不只有眼前的苟且，还有诗和远方”。&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;em>防御性编程是眼前的苟且，优雅的代码才是诗和远方&lt;/em>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="有意义的命名">有意义的命名&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>名副其实&lt;/p>
+&lt;p>变量，函数亦或者是类名应当直截了当的能揭示他为什么存在，做什么事情，应该做怎么用。如果一个变量需要用注释来描述补充其含义，那其就不算名副其实。&lt;/p>
+&lt;blockquote>
+&lt;p>例如表示“过去的天数”，不应当直接使用&lt;code>int days;&lt;/code>之类的名称，而是应当使用&lt;code>int daysSinceCreation;&lt;/code>&lt;/p>
+&lt;/blockquote>
+&lt;/li>
+&lt;li>
+&lt;p>避免误导&lt;/p>
+&lt;p>避免命名的相似性以及误导性，例如命名差异过小无法一眼看出差异&amp;quot;XYZControllerForEfficientHandlingOfStrings&amp;quot;和&amp;quot;XYZControllerForEfficientStorageOfStrings&amp;quot;。当然还有诸如“I,l,0,O”这些容易互相混淆的单个单词作区分的命名方法。&lt;/p>
+&lt;p>&lt;del>但是讲道理其实我个人会用编程专用字体，一般情况下这些字体对于这种容易混淆的字母都是做了明显区分效果的。&lt;/del>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>做有意义的区分&lt;/p>
+&lt;p>避免类似针对重名变量使用添加数字尾缀这种模棱两可的方式区分变量。“Variable”不应当被用于变量，“Table”不应当被用于表名。在没有明确约定的情况下，AccountInfo和Account没有区别，moneyAmount与money也没有区别。以读者能鉴别的方式来区分。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>可读的命名&lt;/p>
+&lt;p>&lt;del>感觉在中文语境下作者想表达的意思大概有诸如别用中文拼音做变量&lt;/del>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>可搜索的命名&lt;/p>
+&lt;p>单个字母名称或者数字常量如果直接使用很难被后续搜索出来，因此应当给其一个可以被搜索到的命名，例如“MAX_CLASSES_PER_STUDENT”&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>避免编码命名|匈牙利语标记法&lt;/p>
+&lt;ul>
+&lt;li>避免使用诸如“strUserName,m_iUserAge,arrUserList”这类，而是改用“userName,userAge,userList”。（来源于Fortran语言要求首字母体现变量类型，因为导致编码的产生，以及Basic早期版本只允许一个字母加上一位数字的变量名）。&lt;/li>
+&lt;li>避免不必要的前缀，例如“m_”标记成员变量，而是应当尽量缩小类和函数以消除对成员前缀的需要。&lt;/li>
+&lt;li>避免诸如单字母的前缀例如“IShapeFactory”，“I”作为接口的缩写&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>避免思维映射&lt;/p>
+&lt;p>不应当让读者把变量名称翻译为他们数值的名称，例如常被用于循环体的“i”&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>类名应当是名字或者名词短语“Customer,Account,WikiPage”，避免是使用动词作为类名。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>方法名应当是动词或者动词短语“postPayment,deletePage,save”，又需要依据Javabean加上get,set,is前缀.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>给每个概念抽象一个对应的词并且贯穿项目，避免在A中是Controller,在B中又变成Manager这种局面。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>避免双关&lt;/p>
+&lt;p>例如如果你已经实现了一个类方法add(int value),其作用是将某个变量增加特定value,那就不应该实现第二个类方法同样叫add,转为在数组中添加某个元素。相反，“append，insert”或许是更好的选择。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>优先使用计算机变成领域的术语专业名词命名，在无法找到合适的专业名词的情况下才考虑使用问题所涉及的问题领域的相关名称。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>仅添加有意义的语境前缀。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="函数">函数&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>函数应当尽量短小，函数亦或者是代码块不应当大到足以容纳嵌套结构，函数的缩进层级不应多于2层。if,else,while等代码块应当尽量简短乃至一行，如果超过了那就应当独立成函数。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>保证函数作用的单一性&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>每个函数一个抽象层级, 做到代码阅读的自顶向下性。&lt;/p>
+&lt;p>高抽象层级：负责描述业务逻辑，整体流程，系统操作
+低抽象层级：负责具体实现，诸如算法数据结构&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>使用描述性的名称&lt;/p>
+&lt;blockquote>
+&lt;p>如果每个例程都让你感到深合己意，那就是整洁的代码&lt;/p>
+&lt;/blockquote>
+&lt;p>不必在意函数名长短，描述清楚函数做的事情例如“includeSetupAndTeardownPages”同时和保证命名方法的一致性，例如“includeSetupPages”&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>函数参数越少越好，0参数是最理想的，其次是1参数，最多不超过三参数。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>有无输出参数是另一个重要的点，对于转换输入参数输出的函数尽量使输出参数最为返回结果而不是在入参中保存结果。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>尽量避免标识的参数使用&lt;/p>
+&lt;blockquote>
+&lt;p>例如参数内有个Boolean类型，在true的时候做一件事情，在false的时候做另一件事情(&lt;del>草，个人很喜欢这么写&lt;/del>)&lt;/p>
+&lt;/blockquote>
+&lt;/li>
+&lt;li>
+&lt;p>如何函数具有两个三个或者三个以上的函数，那么或许ta应该被封装成类&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>避免副作用&lt;/p>
+&lt;p>函数名应该言简意赅的表述函数详细的所有作用，不应当有“副作用”&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">public boolean checkPassword(String username, String password) {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> User user = UserGateway.findByName(username)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> if (user != User.NULL) {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> String codedPhrase = user.getPhraseEncodedByPassword();
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> String phrase = cryptographer.decrypt(codedPhrase, password);
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> if (&amp;#34;Valid Password&amp;#34;.equals(phrase)) {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Session.initialize();
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> return true;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> return false;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>例如如上的代码，“副作用”即对&lt;code>Session.initialize()&lt;/code>的调用。函数名称“checkPassword”并没有暗示其会初始化会话。因此“checkPasswordAndInitializeSession”这函数名称或许更合适。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>分隔指令与询问&lt;/p>
+&lt;p>&lt;code>public boolean set(String attribute, String value)&lt;/code>这个函数的作用是设置“attribute”属性为“value”，如果属性不存在则返回false,反之true. 这里就是一个“指令（order）和询问（check）的混用”，将这个函数重构成下面两个函数或许会更加合适：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">public boolean attributeExists(String attribute)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">public void setAttribute(String attribute, String value)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>使用异常替代返回错误码&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>抽离Try/Catch代码块&lt;/p>
+&lt;p>Try/Catch代码丑陋不堪，它们搞乱了代码结构，把错误处理与正常流程混为一谈。最好将其从主体部分抽离独立成为函数。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="注释">注释&lt;/h2>
+&lt;blockquote>
+&lt;p>注释的恰当用法是弥补我们在用代码表达意图时遭遇的失败。
+代码在变动，在演化，从这里移动到那里，彼此分离，重构之后又合到一起，然而很不幸注释并不会随之变动。
+唯一真正的注释是你想办法不去写注释&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>尽量使用代码本身来阐述程序行为而不是注释&lt;/li>
+&lt;li>注释里可以存在法律信息这类的&lt;/li>
+&lt;li>注释可以被用于对意图的解释，例如“为什么这里对于某个数据执行这个操作”。&lt;/li>
+&lt;li>注释可以将某些晦涩难懂的参数或者返回值的意义翻译成某种可读的形式。&lt;/li>
+&lt;li>注释可以用来作为某种警告，警示，例如“Don't run unless you have some time to kill” &lt;del>或者这家公司超烂的快跑！！！&lt;/del>&lt;/li>
+&lt;li>TODO注释是有意义的，不过定期检查删除不再需要的。&lt;/li>
+&lt;li>公共API, SDK中的注释，例如Javadoc, 编写良好的这类注释是有必要的。但不意味着每个函数都需要Javadoc的存在。&lt;/li>
+&lt;li>日志式注释，类似记录每次代码修改记录等等的注释，在早期没有代码版本管理工具的时候是有意义的，现如今已经是时代的糟粕&lt;/li>
+&lt;li>尽量避免形如“//Actions =============”这类的位置标记注释，避免滥用，除非代码块确实非常有价值。&lt;/li>
+&lt;li>不要随意注释掉代码，因为别人不敢随意删除注释掉的代码，除非确信这段代码后面会被恢复。&lt;/li>
+&lt;li>避免含有HTML格式的注释，它们或许在IDE中非常易读，但是直接看原文会让人面目可憎。&lt;/li>
+&lt;li>注释应当是表述“本地信息”，别让注释体现代码上下文中别的地方的内容。&lt;/li>
+&lt;/ul>
+&lt;h2 id="格式">格式&lt;/h2>
+&lt;ul>
+&lt;li>良好的格式规范的重要程度不亚于让代码跑起来。合理使用各种格式工具让代码更美观。&lt;/li>
+&lt;li>代码之间以适当的空白行增加概念间垂直方向上的区隔，而紧密相关的代码则应该在垂直空间上互相靠近。&lt;/li>
+&lt;li>在水平空间上，代码的宽度应该尽量保持在一屏的宽度内。（当然目前屏幕宽度五花八门，这个规则一定程度上不是那么严格，但是谁也不喜欢需要拖着滚动条到天荒地老的代码。）&lt;/li>
+&lt;li>水平方向上也应当有何时的区隔和靠近，例如在赋值操作符和运算操作符周围加上空格以强调分割。
+&lt;blockquote>
+&lt;p>在乘法因子之间不加空格，因为他们具有较高的优先级，在加减法之间则增加空格，因为加减法的优先级更低.&lt;/p>
+&lt;/blockquote>
+&lt;/li>
+&lt;li>水平对齐不是必须的&lt;/li>
+&lt;li>尊崇团队的规则，如果你在某个开发团队工作。&lt;/li>
+&lt;/ul>
+&lt;h2 id="对象和数据结构">对象和数据结构&lt;/h2>
+&lt;blockquote>
+&lt;p>将变量设置为“私有”的一个里有：我们不希望其他人以来这些变量，使得我们能在心血来潮时修改其类型或者实现。那么为什么还是有很多程序员给自己的似有对象自动添加赋值器，取值器呢，将私有变量公之于众，如同他们他们根本就是共有变量一般呢？&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;del>暴露了绿帽奴本质&lt;/del>&lt;/p>
+&lt;blockquote>
+&lt;p>隐藏实现并非仅仅只是在变量之间放上一个函数层这么简单。隐藏实现关乎抽象！类并不是简单的用取值器和赋值器将其变量向外推，而是暴露抽象接口以便用户无需了解数据的实现就可以操作数据的本体。&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="数据对象的反对称性">数据，对象的反对称性&lt;/h3>
+&lt;ul>
+&lt;li>数据
+&lt;ul>
+&lt;li>数据本身是被动的，是逻辑操作的主要对象，他们不包含行为只是保存状态。&lt;/li>
+&lt;li>数据结构通俗的将可以理解为数据的容器，结构化存储相关数据&lt;/li>
+&lt;li>操作数据的逻辑通常是在函数或者方法中实现的，而不是在数据内部&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>对象
+&lt;ul>
+&lt;li>对象是面向对象（OOP）变成的核心，对象不仅包含数据（状态），同时还包含操作这些数据的方法（行为）。&lt;/li>
+&lt;li>对象通过封装来保护数据，将操作封装在方法内部，控制对数据的访问&lt;/li>
+&lt;li>对象之间通过消息传递（调用方法）来进行交互， 而不是直接操作数据&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>反对称性
+&lt;ul>
+&lt;li>使用数据时，数据结构应当尽量简单，透明。逻辑操作应当放在专门的函数或者过程（方法）中。&lt;/li>
+&lt;li>使用对象时，对象应当封装数据和方法，数据的访问应当通过定义明确的方法进行。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="得墨忒耳定律">得墨忒耳定律&lt;/h3>
+&lt;blockquote>
+&lt;p>模块不应了解其所操作的对象的内部情形。对象只与以下集中对象通信：&lt;/p>
+&lt;ul>
+&lt;li>该对象自身&lt;/li>
+&lt;li>该对象的属性，字段，成员&lt;/li>
+&lt;li>该对象的方法参数&lt;/li>
+&lt;li>由该对象创造的局部对象&lt;/li>
+&lt;li>全局变量（尽管现代编程中尽量避免使用）&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">class Engine {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> public FuelTank getFuelTank() {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> return fuelTank;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">class FuelTank {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> public double getFuelLevel() {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> return fuelLevel;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">class Car {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> private Engine engine;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> public Engine getEngine() {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> return engine;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">class Driver {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> public void checkFuelLevel(Car car) {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> double fuelLevel = car.getEngine().getFuelTank().getFuelLevel();
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> if(fuelLevel &amp;lt; 10) {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> System.out.println(&amp;#34;Need to refuel soon.&amp;#34;);
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>以上代码就是一个反例：Driver类方法的checkFuelLevel通过链式访问深层次对象(Car -&amp;gt; Engine -&amp;gt; FuelTank -&amp;gt; FuelLevel)。&lt;/p>
+&lt;p>下面是更正后更好的做法。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">class FuelTank {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> public double getFuelLevel() {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> return fuelLevel;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">class Engine {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> private FuelTank fuelTank;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> public double getFuelLevel() {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> return fuelTank.getFuelLevel();
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">class Car {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> private Engine engine;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> public double getFuelLevel() {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> return engine.getFuelLevel();
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">class Driver {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> public void checkFuelLevel(Car car) {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> double fuelLevel = car.getFuelLevel();
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> if(fuelLevel &amp;lt; 10) {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> System.out.println(&amp;#34;Need to refuel soon.&amp;#34;);
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="错误处理">错误处理&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>先写Try-Catch-Finally语句，尽量缩小异常类型的范围。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>避免可控异常的使用。&lt;/p>
+&lt;p>在Java中低一个版本引入可控异常，看似和四个很好的电子，每个方法签名都会罗列出其可能传递给调用者的异常，且这些异常是方法类型的一部分。但是最后也就Java具有这个特性，C++，Python,Ruby均没有引入。因为可控异常的代价违反“开放/闭合原则”，引入可控异常意味着在你抛出可控异常后你需要在该函数每一个层次调用中生命该异常，意味着地层次的修改会搏击高层次的签名。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>开放/闭合原则（Open/Closed Principle, OCP），由法国计算机科学家Bertrand Meyer于1988年提出。是面向对象设计的五大原则之一。
+软件实体（类，模块，函数等）应该：&lt;/p>
+&lt;ul>
+&lt;li>对扩展开放（Open for extension）&lt;/li>
+&lt;li>对修改关闭（Closed for modification）&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>给出异常发生的环境说明&lt;/li>
+&lt;li>依据调用者的需要定义异常类，确保返回统一的异常类型方便定位问题归类异常。&lt;/li>
+&lt;li>别返回亦或是传递null&lt;/li>
+&lt;/ul>
+&lt;h2 id="边界">边界&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>三方程序包或者框架追求普适性，而使用者则需要集中满足特定需求的接口，这就是边界。&lt;/p>
+&lt;p>以Java.util.Map为例。有时我们使用map是为了构造一个Map对象并传递ta,但是并不会希望接收者删除Map中的任何数据。但是Map数据结构本身具有clear方案让任何能够接触到Map对象的接收者都可以删除Map中所有的数据。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>学习性测试，帮助我们学习如何使用API,同时也会帮助上手新版本&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="单元测试">单元测试&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>TDD三定律&lt;/p>
+&lt;ol>
+&lt;li>在编写不能通过的单元测试前，不可编写生产代码&lt;/li>
+&lt;/ol>
+&lt;p>这意味着你需要先明确需求并编写相应的测试，使其失败。测试用力的失败保证了该需求尚未实现，并且测试实际上是有效的，能够检测出代码的变化。
+2. 只可编写刚好无法通过的单元测试，不能编译也算不通过&lt;/p>
+&lt;p>测试应该尽可能简单，只需要涵盖特定的需求或者功能，避免过多的冗余和复杂性。
+3. 之编写刚好足以通过当前失败测试的代码&lt;/p>
+&lt;p>编写最少的生产代码，之实现是你测试通过的功能，避免过度的设计和不必要的代码，使得系统易于维护.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>测试与生产代码一起编写，测试只比生产代码早几秒。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>测试代码和生产代码一样在重要，ta不是“二等公民”，需要被思考，被设计和被照料，需要像生产代码一样保持简洁。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>测试代码的&lt;strong>可读性&lt;/strong>是第一要义&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>每个测试一个断言，每一个测试函数都应当有且只有一个断言语句。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>整洁的测试的规则：&lt;/p>
+&lt;ol>
+&lt;li>快速（Fast）：测试应当可以被快速运行，避免运行缓慢的测试&lt;/li>
+&lt;li>独立（Independent）：测试应该相互独立，某个测试不应当成为下个测试的设定条件。&lt;/li>
+&lt;li>可重复性（Repeatable）：测试应当在任何情况下可以通过，不论是生产环境还是质检环境，不论是有网络的办公室还是无网络的列车。&lt;/li>
+&lt;li>自足验证（Self-Validating）：测试应当有布尔输出。不论通过与否，你不应该通过查看日志已确认测试是否通过。&lt;/li>
+&lt;li>及时（Timely）：测试应当及时被编写。单元测试应当巧好在使其通过的生产代码之前编写。&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="类">类&lt;/h2>
+&lt;ul>
+&lt;li>遵循Java的约定，类应当由变量列表开始，公共静态常量应该在首部，然后是私有静态变量，以及似有实体变量，很少的公共变量&lt;/li>
+&lt;li>公共函数的应该紧跟在变量列表之后，供港函数调用的私有工具函数应当紧紧跟随该公共函数之后，以满足“自顶向下”规则&lt;/li>
+&lt;li>保证变量和工具函数的似有性，但是并不执着于此。&lt;/li>
+&lt;/ul>
+&lt;hr />
+&lt;ul>
+&lt;li>
+&lt;p>类的第一要义是短小。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>单一权责原则（SRP）&lt;/strong>&lt;/p>
+&lt;p>类的名称应当描述其权责，同时名称帮助判断界定类的长短，类名越混杂，含义越模糊则说明其权责不恰当。类或者模块有且仅有一条加以修改的理由。例如：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">public class Version{
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> public int getMajorVersionNumber()
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> public int getMinorVersionNumber()
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> public int getBuildNumber()
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>内聚&lt;/p>
+&lt;p>类应当只有少量的实体变量。类中的每个方法都应当操作一个或多个这样的变量。类方法操作的变量越多，就意味着越发“黏聚”在这个类上，即内聚性。
+同时保持内聚性可以帮助我们写出更加短小的类。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="系统">系统&lt;/h2>
+&lt;p>&lt;del>感觉这部分读起来理解我个人的理解好空，可能得等以后二周目&lt;/del>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>将系统的构造与使用分开&lt;/p>
+&lt;ul>
+&lt;li>将构造过程迁移到main函数中，或者被称之为main的模块中，设计系统其余部分时假设其所有对象均已正确构造。&lt;/li>
+&lt;li>使用抽象工行模式，以及依赖注入来确保构造与使用分开&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>保证系统具有扩容性&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>有条件使用测试驱动系统架构&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>优化决策&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>明智使用添加了可论证的价值标准&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>系统需要领域特定的语言&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="迭代">迭代&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>通过迭代设计以达到整洁的目的&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>简单设计规则：&lt;/p>
+&lt;ol>
+&lt;li>运行所有测试&lt;/li>
+&lt;/ol>
+&lt;p>全面测试并持续通过所有测试的系统是可测试的系统。紧耦合的代码会难以编写测试，所以编写的测试越多，系统会越发遵循DIP规则，使用依赖注入，接口和抽象工具减少耦合，这样一来设计就会有长足的进步。&lt;/p>
+&lt;ol>
+&lt;li>重构&lt;/li>
+&lt;/ol>
+&lt;p>递增式的重构代码，在添加加厚能够代码后就需要暂停，思考变化的设计，设计是否退步，清理并改进，继而运行测试。&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>不可重复性&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>表达力&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>努力调整代码，使后来者易于阅读，对于每个变量函数，选用较好的类，函数切分称更小的函数。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>尽可能减少类和方法，以消除重复性。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="并发编程">并发编程&lt;/h2>
+&lt;blockquote>
+&lt;p>对象是过程的抽象。线程是调度的抽象 ——James O Coplien
+并发是一种解耦策略，帮助我们将目的和时机分离开来。在单线程中，目的和时机紧密耦合。解耦目的与时机可以显著改进程序的吞吐量和结构。&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>
+&lt;p>并发并不总是能改进性能，只有当多个线程与处理器之间分享大量的等待时间是才是管用的。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>并发编程与常规单线程系统的设计可能会截然不同&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>并发的防御原则&lt;/p>
+&lt;ul>
+&lt;li>单一权责原则&lt;/li>
+&lt;/ul>
+&lt;p>方法/类/组件应当有一个修改的理由，而并发设计本身即足以成为一个修改的理由，因此其也应当从代码中分离出来。&lt;/p>
+&lt;ul>
+&lt;li>限制数据的作用域，例如上锁&lt;/li>
+&lt;li>使用数据复本&lt;/li>
+&lt;/ul>
+&lt;p>尽量避免共享数据导致的线程不安全。复本对象以只读的方式对待，从多个线程收集复本结果并在单一线程中合并这些结果&lt;/p>
+&lt;ul>
+&lt;li>线程应当尽可能独立&lt;/li>
+&lt;/ul>
+&lt;p>让每个线程不予其他线程共享数据，尽量减少同步的需要。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>了解常见的可执行模型&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>生产者-消费者模型&lt;/p>
+&lt;p>生产者生产数据并将其放入缓冲区，消费者从缓冲区中读取数据并消费，协调生产消费的速度防止资源竞争和死锁。
+常用的解决方案缓冲区机制和同步机制：&lt;/p>
+&lt;ul>
+&lt;li>信号量，互斥锁，条件变量&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>读者-作者模型
+同步问题，如何允许多个读者同时读取数据，当只有一个writer在写数据时，确保数据的一致性以及防止死锁。以及两个变种问题：&lt;/p>
+&lt;ol>
+&lt;li>读者优先：多个读者同时读取，当有作者要写入数据时，新读者将被速则直到写操作结束。&lt;/li>
+&lt;li>作者优先：防止作家被长时间等待，确保一旦有作者等待写作，所有新读者以及读者都将阻塞，知道写操作完成。
+解决方案：&lt;/li>
+&lt;li>读/写锁，所有读者线程采用共享读锁来读取数据，作者线程使用独占的写锁来写数据。&lt;/li>
+&lt;li>读者优先：维护一些额外的状态跟踪当前读者数量，并在读者操作过多时降低写着的延迟。&lt;/li>
+&lt;li>作者优先：通过写锁请求被阻塞时阻塞新的读锁要求，确保写操作优先。&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;p>宴席哲学家：&lt;/p>
+&lt;p>五个哲学家围坐在圆桌前，各自眼前有一盆意大利面，每个哲学家之间方有一把叉子，一共五把叉子。每个哲学家要吃面条时必须同时拿起左右两把叉子，否则只能一直等待。&lt;/p>
+&lt;ul>
+&lt;li>资源层层调度：给叉子编号，按照一定顺序拿叉子（例如优先那编号小的，再拿大的）以避免死锁&lt;/li>
+&lt;li>限制临界区大小： 最多允许N-1名哲学家尝试拿起叉子，避免死锁。&lt;/li>
+&lt;li>Chandy/Misra方案（Navie Solution）：五个叉子分别交予相邻的哲学家，要求哲学家想拿起另一把叉子时请求并等待邻居哲学家是否放弃自己持有的叉子。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>警惕多个同步方法之间的依赖&lt;/p>
+&lt;p>避免使用共享对象的多个方法:&lt;/p>
+&lt;ul>
+&lt;li>客户端可以在调用第一个方法之前锁定服务端，确保在锁的范围内覆盖到了最后一个调用方法。&lt;/li>
+&lt;li>服务端内创建锁定服务端的方法，调用所有方法然后解锁，让客户端调用该新方法。&lt;/li>
+&lt;li>适配服务端，创建执行锁定的中间层。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>保持同步区域微小，同步区域创造了锁保证某个时刻只可以有一个线程执行，但是锁的代价昂贵的带来了额外的延迟和开销。因此尽量小的同步区域。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>尽早考虑如何编写正确的关闭代码以保证功能正常终止。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>测试线程代码&lt;/p>
+&lt;ul>
+&lt;li>不要将系统错误归咎于偶发性事件&lt;/li>
+&lt;li>首先确保线程代码可以在非线程之外工作&lt;/li>
+&lt;li>编写可插拔的线程代码，即在不同配置环境下，单线程多线程下都可以运行的代码。&lt;/li>
+&lt;li>编写可以调整的代码&lt;/li>
+&lt;li>运行多于处理器数量的代码，任务切换越频繁，越容易找到错过临界区导致死锁的代码。&lt;/li>
+&lt;li>在不同的平台上运行，尽早经常在所有目标平台上运行线程代码以发现问题。&lt;/li>
+&lt;li>装置试错代码，增加对wait，sleep,yield以及priority的调用改变代码执行顺序增加发现缺陷的可能。你可以手工添加这些调用，亦或是使用某些自动化工具来实现。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="逐步改进--junit内幕--重构serialdate">逐步改进 &amp;amp; JUnit内幕 &amp;amp; 重构SerialDate&lt;/h2>
+&lt;p>这一系列章节的内容是作者以编写重构三个框架为例子来演示如何逐步改进自己的代码。大部分内容为代码原文以及作者改进过程的碎碎念，推荐阅读全文跟着作者思路走体验更加。&lt;/p>
+&lt;h2 id="味道与启发">味道与启发&lt;/h2>
+&lt;p>代码是具有味道的，以下是作者根据Martin Fowler的书籍《Refectoring:Improving the Design of Existing Code》中指出的“代码味道”和作者自己总结的一些味道。&lt;/p>
+&lt;h3 id="注释-1">注释&lt;/h3>
+&lt;ul>
+&lt;li>不恰当的信息：本该有代码控制系统，问题追踪系统或者任何其他系统中记录的信息出现在注释中都是不恰当的。&lt;/li>
+&lt;li>废弃的注释：过时无关或者不正确的注释就是废弃注释，应尽快更新或者删除。&lt;/li>
+&lt;li>冗余注释：注释本身描述的是已经充分自我阐述的代码即是冗余的。&lt;/li>
+&lt;li>糟糕的注释&lt;/li>
+&lt;li>注释掉的代码：因为没有人该随意删除，所有人都会假设ta将来有进一步计划，这样的代码会随着时间腐烂，污染其他的部分。&lt;/li>
+&lt;/ul>
+&lt;h3 id="环境">环境&lt;/h3>
+&lt;ul>
+&lt;li>构建系统应该是单步的小操作，不应难当从源码控制系统中一次又一次迁出代码，不应当使用一系列神秘指令以来脚本构建整个元素，不应当寻找额外的JAR亦或者是XML文件和其他系统所需要的杂物。应当是单个命令签出系统代码，单个指令构建。&lt;/li>
+&lt;/ul>
+&lt;h3 id="函数-1">函数&lt;/h3>
+&lt;ul>
+&lt;li>过多的参数：函数参数尽量从简，0为最佳，最多三个。&lt;/li>
+&lt;li>输出参数：以入参传递函数结果非常反直觉。如果非要修改某样东西，那就修改其对象&lt;/li>
+&lt;li>标识参数：bool参数宣告了函数不止做一件事情，应当被毁灭。&lt;/li>
+&lt;li>死函数：永远不会被调用的方法应当丢弃，放心删除因为源码控制系统会记住ta.&lt;/li>
+&lt;/ul>
+&lt;h3 id="一般性问题">一般性问题&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>一个源文件中存在多个语言：理想的源文件应当只包含一种语言，当然现实中我们应当尽量减少额外语言的数量和范围。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>明显的行为未被实现：函数名称未能明确的表述其做的事情，会让读者不再信赖作者不得不阅读代码细节。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>不正确的边界行为&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>忽视安全&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>重复&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在错误的抽象层级上的代码&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>基类依赖派生类&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>信息过多：隐藏你的数据，工具函数，常量和临时变量，保持接口紧凑以控制耦合度。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>死代码：不可执行或者不会被执行到底代码，例如if的某个分支，尽早删除。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>垂直分隔：变量函数应该在靠近被使用的地方定义，本地变量应该正好在首次被使用的位置声明，垂直距离要短。私有函数应当在其首次被使用的位置下面定义。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>前后不一致：命名方式的前后一致让代码易于阅读修改。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>混淆视听：移除一切无用的东西保持源文件整洁。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>人为耦合：不互相依赖的东西不该耦合，在何时的地方声明函数，变量，常量，不要随意放置后面置之不理。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>特性依恋：类的方法只应该对其类所属的变量函数感兴趣。不应该垂青于其他的类中的变量和函数。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>选择算子参数：&lt;del>还是作者强调的boolean型不应该被作为函数参数&lt;/del>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>晦涩的意图：代码应当具有表达力，避免联排表达式，匈牙利语标记法，魔术数。&lt;/p>
+&lt;blockquote>
+&lt;p>联排表达式即超长的链式调用result = data.filter().map().reduce().append()&lt;/p>
+&lt;p>匈牙利语标记法：以特定前缀来标记变量类型：strUsername,strPassword&lt;/p>
+&lt;p>魔术数：代码中直接出现的而没有被专门声明具备常量类型的数字常量&lt;/p>
+&lt;/blockquote>
+&lt;/li>
+&lt;li>
+&lt;p>位置错误的权责: 最小惊异原则，代码应当被放在读者自然而然期待的地方。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>不恰当的静态方法&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>使用解释性变量&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>函数名称应当表达其行为&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>理解算法&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>把逻辑依赖改为物理依赖：依赖者模块不应当对被依赖者是假定的（即逻辑依赖），应当明确的询问后者的全部信息。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>用多态替代if/else或switch/case&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>遵循标准约定：遵循团队的标准亦或者是行业规范。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>使用命名常量代替魔术数&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>朱雀努尔&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>结构甚于约定：命名约定很好，但是却次于强制性的结构要求。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>封装条件：针对if/while的抽离封装，应当同步抽离出对应的上下文意图。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>避免否定条件：否定式比肯定式难以理解，尽量使用肯定式，例如&lt;code>if (buffer.shouldCompact())&lt;/code>优于&lt;code>if(!buffer.shouldNotCompact())&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>函数只做一件事：单一性原则&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>掩蔽时序耦合：不应当掩蔽时序耦合，排列函数参数，让其被调用的次序显而易见。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>别随意&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>封装边界条件：将边界条件代码集中到一处，而不是散落在代码中。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>函数中的代码应当在一个抽象层级上&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在较高层级放置可配置数据&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>避免传递浏览：得墨忒耳律，通常我们不希望写作者之间知道太多其他协作者。例如A与B协作，B与C协作，但我们不希望A了解C模块的信息。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="java">Java&lt;/h3>
+&lt;ul>
+&lt;li>通过使用通配符避免过长的导入清单&lt;/li>
+&lt;li>不要继承常量，而是常量作为静态导入&lt;/li>
+&lt;li>常量 vs. 枚举： 金安陵使用枚举值而不是&lt;code>public static final int&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;h3 id="名称">名称&lt;/h3>
+&lt;ul>
+&lt;li>采用描述性名称&lt;/li>
+&lt;li>名称应与抽象层级匹配&lt;/li>
+&lt;li>尽可能使用标准命名方法&lt;/li>
+&lt;li>无歧义的名称&lt;/li>
+&lt;li>为较大作用范围选择较长的名称&lt;/li>
+&lt;li>避免编码：避免稀奇古怪的前缀词&lt;/li>
+&lt;li>名称应该说明副作用&lt;/li>
+&lt;/ul>
+&lt;h3 id="测试">测试&lt;/h3>
+&lt;ul>
+&lt;li>测试不足：只要还有没有被测试过的条件或者没有被验证过的计算，测试就是不够的。&lt;/li>
+&lt;li>使用覆盖率工具&lt;/li>
+&lt;li>别忽略小测试&lt;/li>
+&lt;li>被剧烈的测试就是对不确定事物的疑问&lt;/li>
+&lt;li>测试边界条件&lt;/li>
+&lt;li>全面测试相近的缺陷&lt;/li>
+&lt;li>测试失败的模式有启发性：通过失败的测试模式来诊断问题所在&lt;/li>
+&lt;li>测试覆盖率的模式有启发性： 查看未被测试的代码来诊断问题所在&lt;/li>
+&lt;li>测试应当是快速的。&lt;/li>
+&lt;/ul></description><category domain="https://yuukisama.cc/code/">code</category><category domain="https://yuukisama.cc/tags/notes/">Notes</category></item><item><title>Transcend Your Dream</title><link>https://yuukisama.cc/life/transcend-your-dream/</link><guid isPermaLink="true">https://yuukisama.cc/life/transcend-your-dream/</guid><pubDate>Fri, 19 Jul 2024 11:15:08 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="before-start">Before Start&lt;/h2>
 &lt;p>其实这本来应该是一个分享会的内容，但是好像被咕咕咕了.&lt;/p>
 &lt;p>&lt;del>不知道是我咕咕咕了主办方还是主办方咕咕咕了我。&lt;/del>&lt;/p>
 &lt;hr />
@@ -7942,7 +8722,7 @@ randomblob()函数生成指定长度的随机字符串。当这个长度足够�
 &lt;li>set_script_timeout是设置js执行超时时间,对于阻塞执行的js代码,在timeout设定的时间内没有能够完成将强行终止.这个timeout值默认是30s&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;/ol></description><category domain="https://yuukisama.cc/code/">code</category><category domain="https://yuukisama.cc/tags/python/">Python</category><category domain="https://yuukisama.cc/tags/%E7%88%AC%E8%99%AB/">爬虫</category><category domain="https://yuukisama.cc/tags/selenium/">Selenium</category></item><item><title>Python常用Skill</title><link>https://yuukisama.cc/code/python%E5%B8%B8%E7%94%A8skill/</link><guid isPermaLink="true">https://yuukisama.cc/code/python%E5%B8%B8%E7%94%A8skill/</guid><pubDate>Fri, 25 Jan 2019 17:01:19 +0000</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="python常用技能汇总">Python常用技能汇总&lt;/h2>
+&lt;/ol></description><category domain="https://yuukisama.cc/code/">code</category><category domain="https://yuukisama.cc/tags/python/">Python</category><category domain="https://yuukisama.cc/tags/%E7%88%AC%E8%99%AB/">爬虫</category><category domain="https://yuukisama.cc/tags/selenium/">selenium</category></item><item><title>Python常用Skill</title><link>https://yuukisama.cc/code/python%E5%B8%B8%E7%94%A8skill/</link><guid isPermaLink="true">https://yuukisama.cc/code/python%E5%B8%B8%E7%94%A8skill/</guid><pubDate>Fri, 25 Jan 2019 17:01:19 +0000</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="python常用技能汇总">Python常用技能汇总&lt;/h2>
 &lt;ul>
 &lt;li>这里是一些写python脚本时常用的小技巧,长期更新
 &lt;del>咕咕咕&lt;/del>&lt;/li>
