@@ -1,4 +1,419 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Broken Memories</title><link>https://yuukisama.cc/</link><description>Someone write something</description><generator>Hugo 0.139.2 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>chainyuuki@gmail.com (Yuuki)</managingEditor><webMaster>chainyuuki@gmail.com (Yuuki)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Fri, 29 Nov 2024 05:32:48 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://yuukisama.cc/rss.xml"/><item><title>life is struggle</title><link>https://yuukisama.cc/life/life-is-struggle/</link><guid isPermaLink="true">https://yuukisama.cc/life/life-is-struggle/</guid><pubDate>Thu, 28 Nov 2024 10:40:04 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h1 id="life-is-struggle">&lt;a href="https://yuukisama.cc/life/life-is-struggle/#life-is-struggle" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/life/life-is-struggle/#contents:life-is-struggle" class="headings">Life is Struggle&lt;/a>&lt;/h1>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Broken Memories</title><link>https://yuukisama.cc/</link><description>Someone write something</description><generator>Hugo 0.146.5 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>chainyuuki@gmail.com (Yuuki)</managingEditor><webMaster>chainyuuki@gmail.com (Yuuki)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Wed, 16 Apr 2025 09:44:36 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://yuukisama.cc/rss.xml"/><item><title>Milvus数据迁移</title><link>https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/</link><guid isPermaLink="true">https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/</guid><pubDate>Wed, 16 Apr 2025 15:51:19 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="zero">&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#zero" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#contents:zero" class="headings">Zero&lt;/a>&lt;/h2>
+&lt;p>目前厂子在降本增效，小组里唯一的一台开发用服务器也将要被裁撤，所以需要将其上所有的开发项目迁移到别的服务器上，其中就有 Milvus 2.x 的数据库。因为是使用 docker 容器化部署的所以一开始觉得只需要把外挂文件 down 下来再上传到新的服务器上即可，但是现实是顶着 1MB/s 的速度上传十几 G 压缩包上去之后，重新启用服务挂载目录后并没有任何卵用，数据并没有被正确的识别，翻阅官方有关迁移数据库的文档后才知道需要使用官方提供的工具.&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;a href="https://milvus.io/docs/zh/migrate_overview.md" target="_blank" rel="noopener">milvus 数据库迁移 https://milvus.io/docs/zh/migrate_overview.md&lt;/a> &amp;gt; &lt;a href="https://milvus.io/docs/zh/from-m2x.md" target="_blank" rel="noopener">从 Milvus 2.3.x 迁移数据&lt;/a>&lt;/p>&lt;/blockquote>
+&lt;p>本文以 milvus 2.x 的版本为例讲述非升级时迁移 milvus 数据库文件的方案&lt;/p>
+&lt;h2 id="使用官方的备份工具-milvus_backup">&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#使用官方的备份工具-milvus_backup" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#contents:使用官方的备份工具-milvus_backup" class="headings">使用官方的备份工具 milvus_backup&lt;/a>&lt;/h2>
+&lt;h3 id="获取备份工具">&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#获取备份工具" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#contents:获取备份工具" class="headings">获取备份工具&lt;/a>&lt;/h3>
+&lt;p>首先从官方的迁移工具 Github 仓库下载合适的版本： &lt;a href="https://github.com/zilliztech/milvus-backup/releases" target="_blank" rel="noopener">milvus-backup&lt;/a>
+部分软件仓库可能包含，例如 homebrew&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">brew install zilliztech/tap/milvus-backup
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;p>工具提供两种方式使用，一种是通过 CLI 调用，另一种是通过开启 Web API，以 API 请求的方式使用&lt;/p>
+&lt;ul>
+&lt;li>需要注意的是备份工具兼容的版本
+&lt;div class="table-container">&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Milvus&lt;/th>
+&lt;th>Milvus-backup&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>v2.3.0 and above&lt;/td>
+&lt;td>v0.4.0 and above&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>v2.2.9 and above&lt;/td>
+&lt;td>v0.3.0 and above&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>v2.2.0 to v2.2.8I&lt;/td>
+&lt;td>v0.1.0 to v0.2.2&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>&lt;/div>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="创建备份配置">&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#创建备份配置" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#contents:创建备份配置" class="headings">创建备份配置&lt;/a>&lt;/h3>
+&lt;p>在&lt;code>milvus-backup&lt;/code>工具同级目录创建文件夹&lt;code>configs&lt;/code>，并在其中创建备份配置文件&lt;code>backup.yaml&lt;/code>&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;a href="https://raw.githubusercontent.com/zilliztech/milvus-backup/master/configs/backup.yaml" target="_blank" rel="noopener">官方配置示例文件 backup.yaml&lt;/a>&lt;/p>&lt;/blockquote>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="c"># configs/backup.yaml&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">log&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">level&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">info&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 日志级别&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">console&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 是否打印日志到console&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">file&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 日志文件路径&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">rootPath&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">./backup.log&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">milvus&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 备份及恢复时所用的milvus环境&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">address&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">localhost&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">port&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">27000&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">user&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">root&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">password&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">milvus&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">minio&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">backupStorageType&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">local&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 备份文件的类型，这里备份到本地文件&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>默认 Minio 文件桶的名称随安装 Milvus 的方式而不同。更改 Minio 设置时，请参阅下表。&lt;/strong>&lt;/p>
+&lt;div class="table-container">&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>字段&lt;/th>
+&lt;th>Docker Compose&lt;/th>
+&lt;th>Helm / Milvus 操作符&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>bucketName&lt;/td>
+&lt;td>a-bucket&lt;/td>
+&lt;td>milvus-bucket&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>rootPath&lt;/td>
+&lt;td>文件&lt;/td>
+&lt;td>文件&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>&lt;/div>
+&lt;p>本处因为采用 docker compose 部署，因此直接使用默认值&lt;/p>
+&lt;h3 id="备份数据">&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#备份数据" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#contents:备份数据" class="headings">备份数据&lt;/a>&lt;/h3>
+&lt;p>使用如下命令创建备份，备份过程中一般情况下是不会影响 milvus 本身运行的，即通常情况下备份和还原期间 milvus 实例不受影响&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">./milvus-backup create -n &amp;lt;backup_name&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;h3 id="恢复数据">&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#恢复数据" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#contents:恢复数据" class="headings">恢复数据&lt;/a>&lt;/h3>
+&lt;p>在将备份数据拷贝到目标目标服务器后，创建上述备份配置&lt;code>configs/backup.yaml&lt;/code>和下载对应的备份工具&lt;code>milvus-backup&lt;/code>，使用如下命令即可还原&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">./milvus-backup restore -n my_backup
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;p>默认会直接恢复创建同名的 collection， 如果希望不覆盖现有恢复环境原有的 collection 可以使用&lt;code>-s _recover&lt;/code>参数，这样所有恢复创建的 collection 将会加上一个&lt;code>_recover&lt;/code>的后缀&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">./milvus-backup restore -n my_backup -s _recover
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;h3 id="web-api-模式">&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#web-api-模式" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#contents:web-api-模式" class="headings">Web API 模式&lt;/a>&lt;/h3>
+&lt;p>&lt;code>milvus-backup&lt;/code>工具也提供通过 Web API 的方式创建备份和恢复数据&lt;/p>
+&lt;p>使用如下命令启动 HTTP 服务模式提供 RESTAPI&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">./milvus-backup server -p &lt;span class="m">8080&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;p>同时可以通过如下接口访问其 Swagger UI&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span class="line">&lt;span class="cl">http://localhost:8080/api/v1/docs/index.html
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;p>具体的 Web API 操作就不在这里赘述了，需要的话可以参考官方&lt;a href="https://github.com/zilliztech/milvus-backup/" target="_blank" rel="noopener">milvus-backup 项目 README.md&lt;/a>&lt;/p>
+&lt;h2 id="使用官方迁移工具-milvus_migrate">&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#使用官方迁移工具-milvus_migrate" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#contents:使用官方迁移工具-milvus_migrate" class="headings">使用官方迁移工具 milvus_migrate&lt;/a>&lt;/h2>
+&lt;h3 id="获取迁移工具">&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#获取迁移工具" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#contents:获取迁移工具" class="headings">获取迁移工具&lt;/a>&lt;/h3>
+&lt;p>首先从官方迁移工具的 Github 代码仓库下载最新版本的可执行文件压缩包&lt;a href="http://github.com/zilliztech/milvus-migration/tags" target="_blank" rel="noopener">milvus-migration&lt;/a>&lt;/p>
+&lt;p>当然也可以选择下载源码编译可执行文件，使用 Go 语言编译器编译项目得到可执行文件&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">git clone https://github.com/zilliztech/milvus-migration.git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cd milvus-migration
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">go get &amp;amp; go build
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;h3 id="创建迁移配置文件">&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#创建迁移配置文件" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#contents:创建迁移配置文件" class="headings">创建迁移配置文件&lt;/a>&lt;/h3>
+&lt;p>在开始迁移之前，需要为迁移工具以及此次迁移操作创建一个对应的迁移配置文件 &lt;code>migration.yaml&lt;/code>，文件可以被防止在数据源机器的任意目录下。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">dumper:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> worker:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> workMode: milvus2x
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> reader:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> bufferSize: 500
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">meta:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mode: config
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> version: 2.3.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> collection: src_table_name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">source:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> milvus2x:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> endpoint: {milvus2x_domain}:{milvus2x_port}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> username: xxxx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> password: xxxxx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">target:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> milvus2x:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> endpoint: {milvus2x_domain}:{milvus2x_port}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> username: xxxx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> password: xxxxx
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>
+&lt;p>dumper&lt;/p>
+&lt;div class="table-container">&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>参数&lt;/th>
+&lt;th>说明&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>dumper.worker.workMode&lt;/td>
+&lt;td>迁移任务的操作符。从 Milvus 2.x 迁移时设置为 milvus2x。&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>dumper.worker.reader.bufferSize&lt;/td>
+&lt;td>每批从 Milvus 2.x 读取的缓冲区大小。&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>&lt;/div>
+&lt;/li>
+&lt;li>
+&lt;p>meta&lt;/p>
+&lt;div class="table-container">&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>参数&lt;/th>
+&lt;th>说明&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>meta.mode&lt;/td>
+&lt;td>指定从何处读取元文件。设置为 config，表示元配置可以从这个 migration.yaml 文件中获取。&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>meta.version&lt;/td>
+&lt;td>源 Milvus 版本。设置为 2.3.0 或更高版本。&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>meta.collection&lt;/td>
+&lt;td>源 Collections 名称。&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>&lt;/div>
+&lt;/li>
+&lt;li>
+&lt;p>source&lt;/p>
+&lt;div class="table-container">&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>参数&lt;/th>
+&lt;th>说明&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>source.milvus2x.endpoint&lt;/td>
+&lt;td>源 Milvus 服务器地址。&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>source.milvus2x.username&lt;/td>
+&lt;td>Milvus 源服务器的用户名。如果 Milvus 服务器启用了用户身份验证，则需要使用此参数。有关详细信息，请参阅启用身份验证。&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>source.milvus2x.password&lt;/td>
+&lt;td>源 Milvus 服务器的密码。如果 Milvus 服务器启用了用户身份验证，则需要使用此参数。有关更多信息，请参阅启用身份验证。&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>&lt;/div>
+&lt;/li>
+&lt;li>
+&lt;p>target&lt;/p>
+&lt;div class="table-container">&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>参数&lt;/th>
+&lt;th>说明&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>target.milvus2x.endpoint&lt;/td>
+&lt;td>目标 Milvus 服务器地址。&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>target.milvus2x.username&lt;/td>
+&lt;td>目标 Milvus 服务器的用户名。如果 Milvus 服务器启用了用户身份验证，则需要使用此参数。有关详细信息，请参阅启用身份验证。&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>target.milvus2x.password&lt;/td>
+&lt;td>目标 Milvus 服务器的密码。如果 Milvus 服务器启用了用户身份验证，则需要使用此参数。更多信息，请参阅启用身份验证。&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>&lt;/div>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="启动迁移任务">&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#启动迁移任务" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#contents:启动迁移任务" class="headings">启动迁移任务&lt;/a>&lt;/h3>
+&lt;ol>
+&lt;li>使用 CLI 启动任务
+使用如下命令启动迁移任务&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">./milvus-migration start --config&lt;span class="o">=&lt;/span>/example/path/migration.yaml
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;p>查看日志的输出，成功迁移可以看到如下内容&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span class="line">&lt;span class="cl">[INFO] [migration/milvus2x_starter.go:79] [&amp;#34;=================&amp;gt;JobProcess!&amp;#34;] [Percent=100]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[INFO] [migration/milvus2x_starter.go:27] [&amp;#34;[Starter] migration Milvus2x to Milvus2x finish!!!&amp;#34;] [Cost=94.877717375]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[INFO] [starter/starter.go:109] [&amp;#34;[Starter] Migration Success!&amp;#34;] [Cost=94.878243583]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;ol>
+&lt;li>使用 API 请求执行迁移&lt;/li>
+&lt;/ol>
+&lt;p>使用如下命令启动 API 服务器&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">./milvus-migration server run -p &lt;span class="m">8080&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;p>服务启动后，将&lt;code>migration.yaml&lt;/code>文件放到项目的&lt;code>configs/&lt;/code>目录下，然后使用如下请求开始迁移&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">curl -XPOST http://localhost:8080/api/v1/start
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;h3 id="其他配置选项">&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#其他配置选项" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#contents:其他配置选项" class="headings">其他配置选项&lt;/a>&lt;/h3>
+&lt;p>除了基本配置外，还可以根据需求添加其他设置&lt;/p>
+&lt;ul>
+&lt;li>选择性字段迁移: 如果只需要迁移 Collections 中的特定字段而不是所有字段，请在 migration.yaml 文件的 meta 部分指定要迁移的字段。&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span class="line">&lt;span class="cl">meta:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> fields:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - name: id
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - name: title_vector
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - name: reading_time
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>自定义 collection： 要自定义目标 Collections 的属性，请在 migration.yaml 文件的 meta 部分添加相关配置。&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span class="line">&lt;span class="cl">meta:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> milvus:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> collection: target_collection_name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> shardNum: 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> closeDynamicField: false
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> consistencyLevel: Customized
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;h3 id="后记">&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#后记" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#contents:后记" class="headings">后记&lt;/a>&lt;/h3>
+&lt;p>这个方法是官方提供的升级迁移数据，附带了数据筛选功能，以及具有的限制是源头服务器和目标服务器以及操作者本身的设备三者之间必须能够互相通讯。如果不满足上述条件或者只是单纯需要备份数据，可以使用 backup 工具&lt;/p>
+&lt;h2 id="end">&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#end" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#contents:end" class="headings">End&lt;/a>&lt;/h2>
+&lt;p>所以最后看来上述两种备份工具的原理基本都属于模拟所有历史数据变更，将历史数据变更重新在新数据库上演绎一遍,属于“重放日志”式的备份恢复？这里仅仅是个人通过对备份文件大致结构以及备份还原过程观察得出的结论，若有纰漏还望指正。&lt;/p></description><category domain="https://yuukisama.cc/code/">code</category></item><item><title>life is struggle</title><link>https://yuukisama.cc/life/life-is-struggle/</link><guid isPermaLink="true">https://yuukisama.cc/life/life-is-struggle/</guid><pubDate>Thu, 28 Nov 2024 10:40:04 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h1 id="life-is-struggle">&lt;a href="https://yuukisama.cc/life/life-is-struggle/#life-is-struggle" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/life/life-is-struggle/#contents:life-is-struggle" class="headings">Life is Struggle&lt;/a>&lt;/h1>
 &lt;p>不出意外的, 这又是一篇有关生活碎碎念的文章, 如果真的有读者, 或许在你看到这段话的时候还来得及离开, 去另一个分类看看兴许会有你真正需要的东西. &lt;del>哦,得了吧你其他的技术文章也写得稀烂诶&lt;/del>&lt;/p>
 &lt;h2 id="zero">&lt;a href="https://yuukisama.cc/life/life-is-struggle/#zero" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/life/life-is-struggle/#contents:zero" class="headings">Zero&lt;/a>&lt;/h2>
 &lt;p>今天是2024年11月28日, 一个普通的工作日, 我的同事兼leader在一旁努力的自我提升刷着leetcode, 而我在这里摸鱼写下这篇碎碎念的文章.&lt;/p>
@@ -221,8 +636,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;/div>
 &lt;/div></description><category domain="https://yuukisama.cc/code/">code</category></item><item><title>初识Agentic RAG</title><link>https://yuukisama.cc/code/%E5%88%9D%E8%AF%86agentic-rag/</link><guid isPermaLink="true">https://yuukisama.cc/code/%E5%88%9D%E8%AF%86agentic-rag/</guid><pubDate>Tue, 03 Sep 2024 10:45:00 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="what-is-agentic-rag">&lt;a href="https://yuukisama.cc/code/%E5%88%9D%E8%AF%86agentic-rag/#what-is-agentic-rag" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/%E5%88%9D%E8%AF%86agentic-rag/#contents:what-is-agentic-rag" class="headings">What is Agentic RAG&lt;/a>&lt;/h2>
 &lt;blockquote>
-&lt;p>Agentic RAG(Agentic Retrieval-Augmented Generation)被誉为一种新的革命性的处理信息方式，其核心在与给RAG框架注入智能以及自主性，使其能够做出自己的决定并采取行动以实现特定目标的Agent.&lt;/p>
-&lt;/blockquote>
+&lt;p>Agentic RAG(Agentic Retrieval-Augmented Generation)被誉为一种新的革命性的处理信息方式，其核心在与给RAG框架注入智能以及自主性，使其能够做出自己的决定并采取行动以实现特定目标的Agent.&lt;/p>&lt;/blockquote>
 &lt;p>这样说或许非常的模糊，但是其实可以将Agentic RAG所做的事情分解开来来解释ta究竟与传统RAG的差别。&lt;/p>
 &lt;ul>
 &lt;li>
@@ -262,8 +676,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p>综上所述，Agentic RAG是又一次针对传统RAG的一次改进，对传统RAG以及各类知识库应用的一次组装应用，从而再度提升AI智能的能力。&lt;/p>
 &lt;h2 id="agentic-rag实现langgraph">&lt;a href="https://yuukisama.cc/code/%E5%88%9D%E8%AF%86agentic-rag/#agentic-rag实现langgraph" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/%E5%88%9D%E8%AF%86agentic-rag/#contents:agentic-rag实现langgraph" class="headings">Agentic RAG实现——LangGraph&lt;/a>&lt;/h2>
 &lt;blockquote>
-&lt;p>Building language agents as graphs&lt;/p>
-&lt;/blockquote>
+&lt;p>Building language agents as graphs&lt;/p>&lt;/blockquote>
 &lt;p>LangGraph是langchain推出的用于构建多状态多参与者的大模型应用程序。从“Building language agents as graphs”这句话可以看出其作用，将语言大模型的Agents构建成一个graphs. 有点类似计算机理论中的图论中的知识点：&lt;/p>
 &lt;p>将所有的工具，特定领域模型的Agent定义为这样一张图（工作流，Graph）中的节点，而节点之间的边则有决策函数决定工作流的下一步调用。&lt;/p>
 &lt;p>LangGraph目前有的Features：&lt;/p>
@@ -459,16 +872,14 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p>当然这种习惯也一定程度上延伸到了日常的代码习惯中。譬如在工作中完全无法忍受别人代码里混乱的缩进（例如javascript中一会以4空格缩进，一会以2空格缩进，或者干脆没有缩进规范），亦或是某些十分随性的变量命名函数命名，又或者一个冗长到几千行的单一函数...在我看来所有的代码至少都应当遵循某种规范做到统一以方便阅读，同时统一且能言简意赅的简单明了。&lt;/p>
 &lt;p>当然其实也有人说混乱的代码书写习惯其实是一种“防御性编程”——为了让下一个接替你干活的程序员焦头烂额以提升自身在公司工作中的不可替代性。诚然这似乎有点道理，毕竟谁不喜欢离职之后公司求你回去接手烂摊子的爽文呢？不过爽文归爽文，简洁而优雅的代码应当是每个程序员的追求。就像“生活不只有眼前的苟且，还有诗和远方”。&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;em>防御性编程是眼前的苟且，优雅的代码才是诗和远方&lt;/em>&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;em>防御性编程是眼前的苟且，优雅的代码才是诗和远方&lt;/em>&lt;/p>&lt;/blockquote>
 &lt;h2 id="有意义的命名">&lt;a href="https://yuukisama.cc/code/%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E7%AE%80%E6%B4%81%E4%B9%8B%E9%81%93i/#有意义的命名" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E7%AE%80%E6%B4%81%E4%B9%8B%E9%81%93i/#contents:有意义的命名" class="headings">有意义的命名&lt;/a>&lt;/h2>
 &lt;ul>
 &lt;li>
 &lt;p>名副其实&lt;/p>
 &lt;p>变量，函数亦或者是类名应当直截了当的能揭示他为什么存在，做什么事情，应该做怎么用。如果一个变量需要用注释来描述补充其含义，那其就不算名副其实。&lt;/p>
 &lt;blockquote>
-&lt;p>例如表示“过去的天数”，不应当直接使用&lt;code>int days;&lt;/code>之类的名称，而是应当使用&lt;code>int daysSinceCreation;&lt;/code>&lt;/p>
-&lt;/blockquote>
+&lt;p>例如表示“过去的天数”，不应当直接使用&lt;code>int days;&lt;/code>之类的名称，而是应当使用&lt;code>int daysSinceCreation;&lt;/code>&lt;/p>&lt;/blockquote>
 &lt;/li>
 &lt;li>
 &lt;p>避免误导&lt;/p>
@@ -535,8 +946,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;li>
 &lt;p>使用描述性的名称&lt;/p>
 &lt;blockquote>
-&lt;p>如果每个例程都让你感到深合己意，那就是整洁的代码&lt;/p>
-&lt;/blockquote>
+&lt;p>如果每个例程都让你感到深合己意，那就是整洁的代码&lt;/p>&lt;/blockquote>
 &lt;p>不必在意函数名长短，描述清楚函数做的事情例如“includeSetupAndTeardownPages”同时和保证命名方法的一致性，例如“includeSetupPages”&lt;/p>
 &lt;/li>
 &lt;li>
@@ -548,8 +958,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;li>
 &lt;p>尽量避免标识的参数使用&lt;/p>
 &lt;blockquote>
-&lt;p>例如参数内有个Boolean类型，在true的时候做一件事情，在false的时候做另一件事情(&lt;del>草，个人很喜欢这么写&lt;/del>)&lt;/p>
-&lt;/blockquote>
+&lt;p>例如参数内有个Boolean类型，在true的时候做一件事情，在false的时候做另一件事情(&lt;del>草，个人很喜欢这么写&lt;/del>)&lt;/p>&lt;/blockquote>
 &lt;/li>
 &lt;li>
 &lt;p>如何函数具有两个三个或者三个以上的函数，那么或许ta应该被封装成类&lt;/p>
@@ -615,8 +1024,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;blockquote>
 &lt;p>注释的恰当用法是弥补我们在用代码表达意图时遭遇的失败。
 代码在变动，在演化，从这里移动到那里，彼此分离，重构之后又合到一起，然而很不幸注释并不会随之变动。
-唯一真正的注释是你想办法不去写注释&lt;/p>
-&lt;/blockquote>
+唯一真正的注释是你想办法不去写注释&lt;/p>&lt;/blockquote>
 &lt;ul>
 &lt;li>尽量使用代码本身来阐述程序行为而不是注释&lt;/li>
 &lt;li>注释里可以存在法律信息这类的&lt;/li>
@@ -638,20 +1046,17 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;li>在水平空间上，代码的宽度应该尽量保持在一屏的宽度内。（当然目前屏幕宽度五花八门，这个规则一定程度上不是那么严格，但是谁也不喜欢需要拖着滚动条到天荒地老的代码。）&lt;/li>
 &lt;li>水平方向上也应当有何时的区隔和靠近，例如在赋值操作符和运算操作符周围加上空格以强调分割。
 &lt;blockquote>
-&lt;p>在乘法因子之间不加空格，因为他们具有较高的优先级，在加减法之间则增加空格，因为加减法的优先级更低.&lt;/p>
-&lt;/blockquote>
+&lt;p>在乘法因子之间不加空格，因为他们具有较高的优先级，在加减法之间则增加空格，因为加减法的优先级更低.&lt;/p>&lt;/blockquote>
 &lt;/li>
 &lt;li>水平对齐不是必须的&lt;/li>
 &lt;li>尊崇团队的规则，如果你在某个开发团队工作。&lt;/li>
 &lt;/ul>
 &lt;h2 id="对象和数据结构">&lt;a href="https://yuukisama.cc/code/%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E7%AE%80%E6%B4%81%E4%B9%8B%E9%81%93i/#对象和数据结构" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E7%AE%80%E6%B4%81%E4%B9%8B%E9%81%93i/#contents:对象和数据结构" class="headings">对象和数据结构&lt;/a>&lt;/h2>
 &lt;blockquote>
-&lt;p>将变量设置为“私有”的一个里有：我们不希望其他人以来这些变量，使得我们能在心血来潮时修改其类型或者实现。那么为什么还是有很多程序员给自己的似有对象自动添加赋值器，取值器呢，将私有变量公之于众，如同他们他们根本就是共有变量一般呢？&lt;/p>
-&lt;/blockquote>
+&lt;p>将变量设置为“私有”的一个里有：我们不希望其他人以来这些变量，使得我们能在心血来潮时修改其类型或者实现。那么为什么还是有很多程序员给自己的似有对象自动添加赋值器，取值器呢，将私有变量公之于众，如同他们他们根本就是共有变量一般呢？&lt;/p>&lt;/blockquote>
 &lt;p>&lt;del>暴露了绿帽奴本质&lt;/del>&lt;/p>
 &lt;blockquote>
-&lt;p>隐藏实现并非仅仅只是在变量之间放上一个函数层这么简单。隐藏实现关乎抽象！类并不是简单的用取值器和赋值器将其变量向外推，而是暴露抽象接口以便用户无需了解数据的实现就可以操作数据的本体。&lt;/p>
-&lt;/blockquote>
+&lt;p>隐藏实现并非仅仅只是在变量之间放上一个函数层这么简单。隐藏实现关乎抽象！类并不是简单的用取值器和赋值器将其变量向外推，而是暴露抽象接口以便用户无需了解数据的实现就可以操作数据的本体。&lt;/p>&lt;/blockquote>
 &lt;h3 id="数据对象的反对称性">&lt;a href="https://yuukisama.cc/code/%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E7%AE%80%E6%B4%81%E4%B9%8B%E9%81%93i/#数据对象的反对称性" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E7%AE%80%E6%B4%81%E4%B9%8B%E9%81%93i/#contents:数据对象的反对称性" class="headings">数据，对象的反对称性&lt;/a>&lt;/h3>
 &lt;ul>
 &lt;li>数据
@@ -684,8 +1089,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;li>该对象的方法参数&lt;/li>
 &lt;li>由该对象创造的局部对象&lt;/li>
 &lt;li>全局变量（尽管现代编程中尽量避免使用）&lt;/li>
-&lt;/ul>
-&lt;/blockquote>
+&lt;/ul>&lt;/blockquote>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -832,8 +1236,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;ul>
 &lt;li>对扩展开放（Open for extension）&lt;/li>
 &lt;li>对修改关闭（Closed for modification）&lt;/li>
-&lt;/ul>
-&lt;/blockquote>
+&lt;/ul>&lt;/blockquote>
 &lt;ul>
 &lt;li>给出异常发生的环境说明&lt;/li>
 &lt;li>依据调用者的需要定义异常类，确保返回统一的异常类型方便定位问题归类异常。&lt;/li>
@@ -980,8 +1383,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;h2 id="并发编程">&lt;a href="https://yuukisama.cc/code/%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E7%AE%80%E6%B4%81%E4%B9%8B%E9%81%93i/#并发编程" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E7%AE%80%E6%B4%81%E4%B9%8B%E9%81%93i/#contents:并发编程" class="headings">并发编程&lt;/a>&lt;/h2>
 &lt;blockquote>
 &lt;p>对象是过程的抽象。线程是调度的抽象 ——James O Coplien
-并发是一种解耦策略，帮助我们将目的和时机分离开来。在单线程中，目的和时机紧密耦合。解耦目的与时机可以显著改进程序的吞吐量和结构。&lt;/p>
-&lt;/blockquote>
+并发是一种解耦策略，帮助我们将目的和时机分离开来。在单线程中，目的和时机紧密耦合。解耦目的与时机可以显著改进程序的吞吐量和结构。&lt;/p>&lt;/blockquote>
 &lt;ul>
 &lt;li>
 &lt;p>并发并不总是能改进性能，只有当多个线程与处理器之间分享大量的等待时间是才是管用的。&lt;/p>
@@ -1142,8 +1544,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;blockquote>
 &lt;p>联排表达式即超长的链式调用result = data.filter().map().reduce().append()&lt;/p>
 &lt;p>匈牙利语标记法：以特定前缀来标记变量类型：strUsername,strPassword&lt;/p>
-&lt;p>魔术数：代码中直接出现的而没有被专门声明具备常量类型的数字常量&lt;/p>
-&lt;/blockquote>
+&lt;p>魔术数：代码中直接出现的而没有被专门声明具备常量类型的数字常量&lt;/p>&lt;/blockquote>
 &lt;/li>
 &lt;li>
 &lt;p>位置错误的权责: 最小惊异原则，代码应当被放在读者自然而然期待的地方。&lt;/p>
@@ -1540,8 +1941,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;h2 id="基础概念">&lt;a href="https://yuukisama.cc/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/#基础概念" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/#contents:基础概念" class="headings">基础概念&lt;/a>&lt;/h2>
 &lt;p>在现代操作系统中（例如windows，linux等基于分时系统设计的操作系统），常有的观念是&lt;/p>
 &lt;blockquote>
-&lt;p>一个程序至少包含一个进程，而一个进程又至少包含一个线程。线程是程序真正的执行单元。&lt;/p>
-&lt;/blockquote>
+&lt;p>一个程序至少包含一个进程，而一个进程又至少包含一个线程。线程是程序真正的执行单元。&lt;/p>&lt;/blockquote>
 &lt;p>线程与进程的调度控制由操作系统决定。在现如今的多核CPU情况下，多数时候是一个核心可以同时“并行”两个线程。因此常可以听到类似“这个cpu是双核四线程”这种描述。然而需要注意的是这里的“并行”是打引号的。因为实际上CPU的核心只可以顺序执行一系列的机器指令，且在早期的CPU设计中，一个核心同一时刻只可以运行一个线程。&lt;/p>
 &lt;p>Intel在2022年推出了“超线程（Hyper-Threading）技术”，这一技术的出现使得CPU可以实现“单个核心双线程”。简单的理解这个技术就是单线程时代的CPU实际上在单个时间片内是有处理能力冗余的，因此Intel为单个核心额外添加一小部分资源就可以实现同时运行第二个线程。&lt;/p>
 &lt;p>到目前为止我们讨论了的是现代基于分时系统设计的操作系统，然而其实在早期的计算机设计中（例如早期的UNIX,linux 2.4以及更早的版本中），进程（Process）才是程序的基本执行单元。(当然那个时候也还没有线程这个概念)&lt;/p>
@@ -1551,8 +1951,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p>相较于线程这种“抢占式多任务”由操作系统本身决定切换时机，协程则要求运行中的每一个执行单元定期放弃自己的执行权力，同时告知作业系统可以调度下一个执行单元。&lt;/p>
 &lt;p>在实际的应用实现中，线程进程是操作系统提供的接口，而协程更多的是编程语言本身对进程线程调度的优化实现（即线程进程的调度系统是操作系统本身，而协程的调度系统是由编程语言本身依靠操作系统进程线程特性实现的）。例如python以及go语言中对于协程的设计。更加具象化一点说：你可以在操作系统里找到进程ID,线程ID但是找不到协程ID.&lt;/p>
 &lt;blockquote>
-&lt;p>总结: 在现代计算机中，一个程序至少包含一个进程，一个进程又至少包含 一个线程。线程是操作系统的最小执行单元。协程是依靠进程线程特性而设计出的一种调度方法。&lt;/p>
-&lt;/blockquote>
+&lt;p>总结: 在现代计算机中，一个程序至少包含一个进程，一个进程又至少包含 一个线程。线程是操作系统的最小执行单元。协程是依靠进程线程特性而设计出的一种调度方法。&lt;/p>&lt;/blockquote>
 &lt;p>在接下来的文章中为了避免中文语境下的混淆，我们规定进程即Process,线程即Thread, 协程即Coroutine.&lt;/p>
 &lt;h2 id="进程线程之间的关系">&lt;a href="https://yuukisama.cc/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/#进程线程之间的关系" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/#contents:进程线程之间的关系" class="headings">进程线程之间的关系&lt;/a>&lt;/h2>
 &lt;h3 id="生命周期">&lt;a href="https://yuukisama.cc/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/#生命周期" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/#contents:生命周期" class="headings">生命周期&lt;/a>&lt;/h3>
@@ -1738,8 +2137,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p>C++ 在C++11中添加了操作线程的库thread，提供对线程操作的进一步封装，这个库底层使用Pthread, 采用了1：1的线程模型。&lt;/p>
 &lt;h3 id="java">&lt;a href="https://yuukisama.cc/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/#java" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/#contents:java" class="headings">Java&lt;/a>&lt;/h3>
 &lt;blockquote>
-&lt;p>1：1的线程模型最早被称为“绿色线程”&lt;/p>
-&lt;/blockquote>
+&lt;p>1：1的线程模型最早被称为“绿色线程”&lt;/p>&lt;/blockquote>
 &lt;p>在Java中用户态线程完全由JVM去管理，早期JVM中的线程模型采用的是对对一的设计，即多个用户线程对应一个操作系统线程。但随着操作系统对线程的支持性的完善，目前JVM内核线程实现了1：1的对应实现。即一个Java线程对应一个内核线程。但是Java的线程堆栈大小固定，随着线程数量创建的越来越对有可能最终导致内存溢出。于是在Java19的版本中引入了“虚拟线程”的概念，虚拟线程具有一个动态的堆栈， 可以增大和缩小，这就实现了和操作系统多对多的线程模型。&lt;/p>
 &lt;p>一对一的线程模型相对而言维护起来较为简单，但是由于每个线程栈信息固定，不利于创建大量线程，且多线程操作会涉及到频繁的系统调用，上下文切换代价高。&lt;/p>
 &lt;h3 id="python">&lt;a href="https://yuukisama.cc/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/#python" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/#contents:python" class="headings">Python&lt;/a>&lt;/h3>
@@ -1800,8 +2198,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
 &lt;/div>
 &lt;/div>&lt;blockquote>
-&lt;p>--global参数为该设置为全局配置，如果没有该参数，且命令运行在git项目目录环境下，则此次配置仅针对该项目。&lt;/p>
-&lt;/blockquote>
+&lt;p>--global参数为该设置为全局配置，如果没有该参数，且命令运行在git项目目录环境下，则此次配置仅针对该项目。&lt;/p>&lt;/blockquote>
 &lt;p>当然全局代理具有一定的局限性，因为在实际工作中除了Github还会使用很多其他的代码仓库，例如gitlab等等，并不是所有的仓库都需要走代理&lt;del>浪费流量&lt;/del>&lt;/p>
 &lt;p>以下配置是针对Github的HTTP协议走代理&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -1904,8 +2301,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p>尽管挖矿热潮逐渐消退，以太坊等一众主流虚拟货币不再推荐显卡挖矿。但是还是不乏一些恶趣味的黑客秉着“蚊子在小也是肉的原则”在公共网络上扫描网段寻找可用的肉鸡目标。&lt;/p>
 &lt;p>上家公司做私有云相关的业务，机器隔三差五就被日。其中最常见的就是挖矿病毒XMRig&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;a href="https://github.com/xmrig/xmrig" target="_blank" rel="noopener">XMRig&lt;/a> 是一款高性能、开源、跨平台 RandomX、KawPow、CryptoNight 和 GhostRider 统一 CPU/GPU 挖矿程序和 RandomX 基准测试。官方二进制文件适用于 Windows、Linux、macOS 和 FreeBSD。&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;a href="https://github.com/xmrig/xmrig" target="_blank" rel="noopener">XMRig&lt;/a> 是一款高性能、开源、跨平台 RandomX、KawPow、CryptoNight 和 GhostRider 统一 CPU/GPU 挖矿程序和 RandomX 基准测试。官方二进制文件适用于 Windows、Linux、macOS 和 FreeBSD。&lt;/p>&lt;/blockquote>
 &lt;p>简单讲XMRig本身只是单纯的用于&lt;a href="">门罗币Monero&lt;/a>/&lt;a href="">比特币&lt;/a>的挖矿软件，但是常被黑客搭配保活程序作为挖矿病毒使用。&lt;/p>
 &lt;h2 id="first">&lt;a href="https://yuukisama.cc/code/%E8%AE%B0%E4%B8%80%E6%AC%A1xmrig%E6%9C%A8%E9%A9%AC%E6%9F%A5%E6%9D%80/#first" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/%E8%AE%B0%E4%B8%80%E6%AC%A1xmrig%E6%9C%A8%E9%A9%AC%E6%9F%A5%E6%9D%80/#contents:first" class="headings">First&lt;/a>&lt;/h2>
 &lt;p>保活进程解析,我们将进程检索结果中这一大串异常的东西拿出来看看。&lt;/p>
@@ -2113,8 +2509,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p>&lt;code> find / -path &amp;quot;/remote-home&amp;quot; -prune -o -name &amp;quot;updat3&amp;quot; -print&lt;/code>&lt;/p>
 &lt;p>&lt;img src="./2.PNG" alt="" />&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;em>其实这里有个误区，因为当时公司做的是私有云服务，服务器主机中病毒后潜意识的以为病毒程序在宿主机中，但是事实上在容器内，所以一开始各种主机范围内目录的搜索都没有结果，百思不得其解&lt;/em>&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;em>其实这里有个误区，因为当时公司做的是私有云服务，服务器主机中病毒后潜意识的以为病毒程序在宿主机中，但是事实上在容器内，所以一开始各种主机范围内目录的搜索都没有结果，百思不得其解&lt;/em>&lt;/p>&lt;/blockquote>
 &lt;p>定位完成后删除所有相关文件&lt;/p>
 &lt;/li>
 &lt;li>
@@ -2146,8 +2541,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p>&lt;del>得了吧，迄今为止我丝毫没有作为一个女性的自觉,大多数时候...&lt;/del>&lt;/p>
 &lt;p>Anyway, be yourself&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;em>MTF,跨性别是一个与自我与世界获取认同亦或是和解的过程。在这个过程中你可能需要经历女装，学习化妆，美容，服用药物，RLE 乃至到最后 SRS 等等这些步骤。但并不是所有人都需要走完所有这些步骤。在进行到任何一步的时候，如果你已经可以以你认为舒适的样子生活，那就足够了。&lt;/em>&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;em>MTF,跨性别是一个与自我与世界获取认同亦或是和解的过程。在这个过程中你可能需要经历女装，学习化妆，美容，服用药物，RLE 乃至到最后 SRS 等等这些步骤。但并不是所有人都需要走完所有这些步骤。在进行到任何一步的时候，如果你已经可以以你认为舒适的样子生活，那就足够了。&lt;/em>&lt;/p>&lt;/blockquote>
 &lt;h2 id="start">&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#start" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#contents:start" class="headings">Start&lt;/a>&lt;/h2>
 &lt;p>把时间倒退回一年多以前，记忆模糊了。&lt;/p>
 &lt;p>温带季风气候的北京刚从冬天中苏醒过来，樱花匆匆开过，北风依旧时不时掠过，并在暗处伺机而动。所有人还在“大健康 ”时代，核酸，大白，一如既往的常见。&lt;/p>
@@ -2190,8 +2584,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p>当日术前的日子里还需要面见心理医生，以及面见主导医生聊手术方案（语言的话中介会充当翻译，当然如果你英语过硬也可以自己和医生对话一些。或者你泰语过硬...）缴全款之类的。心理医生的话是因为泰国方面手术要求有两位心理医生对你做过心理咨询确认你的手术意愿并出具证明。当日如果你在国内有时间可以找国内的心理咨询医生出具相关证明，这样可以不用在太过花心理医生的钱。不过我手术排期并没有留给我在国内找心理医生的时间，而且光是做一些术前检查的就已经够麻烦了，心理医生都不知道国内哪个医生愿意开这种东西，我可能又要经历一遍被医生轰出来的过程 2333.&lt;/p>
 &lt;p>当然也有一些术前需要买的物品，毕竟术后得在床上躺好一段时间，没法自由活动，有一些必备的护理用品得提前买上。当然不同医院的护理要求不一样，所用到的物品也不一样。我这边的话大概就是：卫生巾（超大夜用款）&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;em>因为你会在接下来的半个月内补上这辈子欠下的姨妈期&lt;/em>&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;em>因为你会在接下来的半个月内补上这辈子欠下的姨妈期&lt;/em>&lt;/p>&lt;/blockquote>
 &lt;p>以及护理垫：因为会侧漏...&lt;/p>
 &lt;p>当然也有的医院的护理会要求用到碘伏和生理盐水，这两样东西用量很大，而且很重，得提前买足。&lt;/p>
 &lt;h3 id="有关泰国的一些有趣的事实">&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#有关泰国的一些有趣的事实" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#contents:有关泰国的一些有趣的事实" class="headings">有关泰国的一些有趣的事实&lt;/a>&lt;/h3>
@@ -2208,15 +2601,13 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;h2 id="two---before-surgery">&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#two---before-surgery" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#contents:two---before-surgery" class="headings">Two - Before surgery&lt;/a>&lt;/h2>
 &lt;p>欢乐的时光总是短暂的，很快就来到了禁食的日子里。&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;em>其实是前两日流食，第三日禁食，只允许和糖水，例如可乐。但是我是个狠人索性，&lt;del>其实是没看清要求&lt;/del>三天全靠糖水度过。同时哪怕禁食了还在四处乱跑着玩&lt;/em>&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;em>其实是前两日流食，第三日禁食，只允许和糖水，例如可乐。但是我是个狠人索性，&lt;del>其实是没看清要求&lt;/del>三天全靠糖水度过。同时哪怕禁食了还在四处乱跑着玩&lt;/em>&lt;/p>&lt;/blockquote>
 &lt;p>最后一天，也是受难日开始的第一天～
 &lt;img src="image-7.png" alt="Alt text" />&lt;/p>
 &lt;p>术前最后一天需要吃泻药，先是药片泻药，再是液体泻药，俗称雪碧？大概是因为包装是绿色的？还是说和雪碧混着喝会能接受一点。&lt;/p>
 &lt;p>药片泻药是开胃小菜几乎没什么感觉，但是到了液体就不一样了。可以说是被焊接在了马桶上...在喷水...喝的同时得保证电解质的摄入，推荐便利店卖的大瓶椰子水（至少我很喜欢，嘟囔）&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;em>题外话，入住的酒店每天提供早餐。术前可以到饭点去餐厅，术后的话每天会给你送到房门口。而且每天会有保洁打扫，每天房间除了提供瓶装矿泉水外还有可乐和雪碧&lt;/em>&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;em>题外话，入住的酒店每天提供早餐。术前可以到饭点去餐厅，术后的话每天会给你送到房门口。而且每天会有保洁打扫，每天房间除了提供瓶装矿泉水外还有可乐和雪碧&lt;/em>&lt;/p>&lt;/blockquote>
 &lt;p>PS： 手术前安排和主刀医生面诊的时候也会给你参观术后病房。私人医疗的配置是真不是盖得，医院的环境可以说是不像医院了233，有专门的前台，会客厅。以及住院病房全部都是单人间带有电动病床(这个床超方便，一个人也可以很方便的实现自理)，电视机，以及单独的浴室和洗漱间，以及一个陪床人员可用的小沙发。&lt;/p>
 &lt;p>电视免费提供网飞账号，所以术后在病房的日子都靠看美剧打发时间了，当然后面休养的时候也是, 不过旅店的电视机上并没有免费的网飞, 需要自己去某宝买个共享账号？&lt;/p>
 &lt;p>对还有超大的落地窗！据说这个医院是主刀医生干了这么多年这几年才自己出资盖好的。所以也可以算是最新落成的所以各种条件设施都是当时比较新的。
@@ -2225,8 +2616,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p>Times fly～&lt;/p>
 &lt;p>终于到了术前第0天！手术是安排在上午&lt;del>还是下午来着...忘了&lt;/del>,反正是在白天，所以早上六点就会有医院的司机接去医院。但是我说过：&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;em>这个司机在后来的日子里都在疯狂放我鸽子...&lt;/em>&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;em>这个司机在后来的日子里都在疯狂放我鸽子...&lt;/em>&lt;/p>&lt;/blockquote>
 &lt;p>也有可能是早高峰的原因，总之司机迟到了一点。&lt;/p>
 &lt;p>到医院之后先是换上病号服（手术服）以及专门的拖鞋，泰国私立医院的病号服甚至还有一点好看，颜色是深褐色搭配紫色的封边，和医院整体颜色设计是挂钩的&lt;del>而且是开档的&lt;/del>.当然我一开始穿反了，病号服是类似大褂一样，但是是反穿的开口在后面.当然我其实听懂了护士说要反着穿的,但是那样觉得好怪异（所有的医护人员都可以和他们英语交流，这一点到后面日常生活中的外卖员，路边小贩，出租车司机等也是），所以出了更衣室后被护士看到了被护士姐姐当场扒了重穿...&lt;/p>
 &lt;p>换好病号服后会带去自己的病房，然后等待护士来给你备皮&lt;del>羞耻时刻&lt;/del>.当然趁着等护士的时间跑去看了看之前比我早来几天的姐妹，比我早来几天也是比我早几天手术。手术后会憔悴好多，不过好在人家是亲妈一起跟来的。当然这位妈妈后面也给了我很多照顾，在这里非常感激干妈～&lt;/p>
@@ -2243,8 +2633,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p>在医院住院的期间也会提供三餐，但是因为还没有拆包（下体现在被裹的严严实实的&lt;del>只留了个屁眼子在外面x&lt;/del>）所以前几天提供的是很清淡以汤和饼干饮料等为主。同时一起送来的还有每餐要吃的药，包括消炎药以及止痛药等。当然吊瓶也是不会停的。说回餐食，除了饼干之外的送的汤其实有几种，但是个人不喜欢西式奶油蘑菇那种浓汤，于是一般喝两口就不吃了。但是在有一次上了一个类似紫菜蛋花汤汤的蔬菜汤我喝完了之后，大概是医院的人以为我更喜欢紫菜蛋花汤，于是接下来的每一餐都是紫菜蛋花汤！！！！于是我过上了顿顿紫菜蛋花汤的日子！！！！暴雨哭泣。当然这也为我后面下地留下了隐患，这样的餐食真的没有多少糖分，然后一下地你就可能低血糖晕倒。所以推荐后面的姐妹在下地当天可以找人买瓶可乐，或者吃点高能量的东西，不然真的会晕。&lt;/p>
 &lt;h2 id="four">&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#four" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#contents:four" class="headings">Four&lt;/a>&lt;/h2>
 &lt;blockquote>
-&lt;p>术后最难受的不是第一天，而是第二天。&lt;/p>
-&lt;/blockquote>
+&lt;p>术后最难受的不是第一天，而是第二天。&lt;/p>&lt;/blockquote>
 &lt;p>因为到了这一天基本上手术的麻药劲就过去了，你可以开始逐渐感知到下体的存在，感知到痛，感知到肿胀感，当你尝试类似坐起的姿势或者上半身角度较大的姿势的时候会感觉到明显的下体的坠痛。&lt;/p>
 &lt;p>这时候会有那么一两个夜晚非常难熬，疼痛，发热会不断折磨你。当然这时候可以和护士说，护士会给你一片额外的止痛药。如果疼痛还是无法缓解会给你上吗啡。&lt;/p>
 &lt;p>但是吗啡其实扎完并没有好受太多，你会依旧感觉到痛苦，不过意识会逐渐变沉，你会很快昏睡过去。所以至少依靠它你可以熬过这样一个难熬的夜晚。&lt;/p>
@@ -2256,8 +2645,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;img src="image-10.png" alt="Alt text" />&lt;/p>
 &lt;p>在术后第三天晚上的时候作死自己尝试下地，差点晕过去，好在快要晕倒之前按下了护士铃。同时以及拔了引流管后就一直在飚血，当时很感叹自己能不能明天出院。&lt;/p>
 &lt;blockquote>
-&lt;p>所以手术其实也是一个非常考验心态的过程。术后休养的日子里，身体的痛苦，行动的不便，血肉模糊的下体都可能让你的心情变得非常糟糕。当时有一度怀疑自己能否活着离开泰国？当然这是夸张的想法，因为会担惊受怕担心留下后遗症等等。所以如果是原先就有心理疾病的姐妹一定要注意调整好自己心理状态做好心理评估再决定手术。&lt;/p>
-&lt;/blockquote>
+&lt;p>所以手术其实也是一个非常考验心态的过程。术后休养的日子里，身体的痛苦，行动的不便，血肉模糊的下体都可能让你的心情变得非常糟糕。当时有一度怀疑自己能否活着离开泰国？当然这是夸张的想法，因为会担惊受怕担心留下后遗症等等。所以如果是原先就有心理疾病的姐妹一定要注意调整好自己心理状态做好心理评估再决定手术。&lt;/p>&lt;/blockquote>
 &lt;p>在手术前医生会询问你现在最近是否有吃什么额外的药物，尤其是治疗心理疾病相关的。一方面是给麻醉等用药做考量，另一方面是为术后恢复做评估。在术后如果你精神状态及其不佳，医院也会提供类似镇静类药物以及安眠类药物等。当然你有一些之前持续服用的精神类药物，在医生考量安全后术后恢复住院的过程中也可以让护士拿给你吃。除此之外每天会有护工安排给你擦拭身体，更换病号服和床单整套之类的。&lt;/p>
 &lt;p>不过即使是拔完引流管后一直飙血的状态下，医生还是安排出院了。这里要吐槽无论你问医生或者护士你啥啥啥情况咋回事他们都只会用英文告诉你：Oh, that's ok. That's normal.某种程度上这也是让人焦虑的原因之一。&lt;/p>
 &lt;p>出院那天，依旧是护士推来轮椅。所以昨天下地差点晕倒的我今天就要坐着轮椅，坐着救护车，对，坐着。在救护车上是坐着的状态经历一路颠簸回到旅馆，这期间全靠双手撑着座椅来给自己下体减少一点压力。当时的面色几乎是可以用惨白来形容。&lt;/p>
@@ -2271,8 +2659,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p>热带的雨季，时不时会伴随着雷暴天气，躺在酒店屋子里的听起来就是纯天然的白噪音很舒适。听着雨滴打在屋顶上，窗户上的声音，隐隐的雷鸣伴随着蛙鸣。当然也会有很大声很吓人的响雷啦，不过我可不是害怕打雷的小孩了。不过一样住在这里的其他几位小姐妹就未必了2333.&lt;/p>
 &lt;p>其实到泰国来做手术后发现，能走到手术这一步并且来到泰国的跨性别者大多数都是很努力亦或者很有天赋能力的一群人。因为天朝的愚蠢规定哪怕成年了手术也需要父母同意，所以能来泰国的大多数都是自己努力过来的。又同时因为出国手术是一笔不菲的费用所以能自己努力过来的又大多很是优秀。例如就认识了一位虽然还是学生，但是已经可以做讲师在外讲课的大佬，亦或是年纪轻轻百万存款的有为青年，还有大学被迫辍学却自学成才高薪收入的大佬。相比较之下我这个失业社畜反而相形见绌。当然也有家长支持过来的，因为觉得泰国的技术毕竟更好一些，但是在这个圈子里家长党真的是少数。更多的是这样一群努力活着的人，也希望更多的人能过上自己 想要的生活。&lt;/p>
 &lt;blockquote>
-&lt;p>不像普通人一样，这个圈子里的孩子们还需要与几乎整个世界为敌，当家庭这种被誉为港湾的地方也演变成吃人不吐骨头的浅礁石岸，唯有只身一人对抗充满暴雨雷霆的大海。&lt;/p>
-&lt;/blockquote>
+&lt;p>不像普通人一样，这个圈子里的孩子们还需要与几乎整个世界为敌，当家庭这种被誉为港湾的地方也演变成吃人不吐骨头的浅礁石岸，唯有只身一人对抗充满暴雨雷霆的大海。&lt;/p>&lt;/blockquote>
 &lt;p>自住院以来其实一直没有机会洗头，所以直到第六天我的毛已经近乎成了鸡毛毽子。于是乎在我绝顶的聪明才知下，我完成了在未拆包情况下一个人给自己洗头的壮举。&lt;/p>
 &lt;p>其实是依靠酒店床尾的躺椅，把它拖到厕所里然后躺在躺椅上用花洒给自己洗头。当然这一番折腾下来我连吹干头发的力气都没有就瘫软在床上了。&lt;/p>
 &lt;p>在酒店的日子早餐以外就得自己的点外卖了。术后医生有叮嘱饮食上不能太过油腻，油炸制品，或者海鲜等不推荐吃，所以kfc是不用想了（当然其实自己也吃了点问题不大，但是警惕还是要遵医嘱，因为有翻车的），同时术后也推荐你使用蛋白粉一类的，也就是说饮食要多补充蛋白质以保证身体恢复，然后医院有推荐一种蛋白粉。但是我想了想与其把钱花在难吃且贵的蛋白粉上（其实据说医院推荐的蛋白粉味道还不错），不如多花点钱在点的外卖上，于是那段时间我就各种牛排的炫。太过也有类似国内的外卖软件，不过有意思的是泰国的外卖员很多都是自行车送餐。当然时效还都可以保证，而且自行车想来他们应该不会像国内美团饿了么那么卷吧。&lt;/p>
@@ -2287,8 +2674,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p>第一次插入的同时会利用模具上的刻度测量深度，护士会告诉你深度是多少，并且以后通模具都要尽力保证到这个深度。当然在教学中有一次护士看我下不去手给我捅的交出来了&lt;del>捂脸&lt;/del>&lt;/p>
 &lt;p>说实话，通模具其实可以说是这个手术最痛苦的部分，当然其实不同医生不同手术的实现效果不同，最后通模具的要求也不同。而我这个的要求则是术后两年内，每日一体三次一次1h,两年后保证一周一次（在有规律性生活的前提下），然后这个几乎要伴随一辈子？说实话这样的要求很难保证，而且模具升级尺寸的过程非常痛苦，有不少人是手术的恢复痛没有掉过一滴眼泪，但是摆在了模具手上。也有不少人在术后不久就放弃了通模这个事情，因为太费时间精力以及痛苦了。当然其实也有相对而言轻松的手术方法，通模要求，但是基本上只要你选择了做人造阴道，那么通模这个过程就不可避免。&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;strong>所以在这里对所有考虑手术的姐妹说上一句，手术并不只是开个刀这么简单，还有后期的护理维护。这些过程你都要作为你是否能将接受考量的部分，深思熟虑，三思而后行。&lt;/strong>&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;strong>所以在这里对所有考虑手术的姐妹说上一句，手术并不只是开个刀这么简单，还有后期的护理维护。这些过程你都要作为你是否能将接受考量的部分，深思熟虑，三思而后行。&lt;/strong>&lt;/p>&lt;/blockquote>
 &lt;p>其实直到真正拆包之后你才真正感觉手术做完了，因为幻肢效应在这之前你会觉得某个惹人厌的东西其实只是被包起来藏在了这对纱布里。直到你真正看到平坦的小腹，看到穿上胖次后再也没有的突起，内心才变得真正如释重负。&lt;/p>
 &lt;p>当然即使拆包的当天我还是没能摘掉导尿管，于是后面的日子里还是要滴溜着导尿管四处溜达（其实也没有四处，基本就在酒店）。拆包之后每天都要垫着卫生巾和护垫，毕竟时不时还是会飙血。与此同时我也体验到了类似姨妈的感觉，你可以在每天起床起身站起来之后感觉到下体“哗啦哗啦”流淌的感觉(这个拟声形容词还是我初中同桌描述过的)，同时也体会到了即使是垫着夜用也会侧漏的结果。这期间还花了点时间弄明白卫生巾哪一边是前面那一边是后面？&lt;/p>
 &lt;p>当然拆包还有另一个好处就是意味着终于可以洗澡了！&lt;/p>
@@ -2309,8 +2695,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p>复诊当天还是那个司机会把你接到医院（对他又迟到了）。再次见到了主导医生，会询问一下基础情况，然后会被带到检查室。&lt;del>在这里人生第一次体验了妇科检查椅子，以及阴道扩张器&lt;/del>&lt;/p>
 &lt;p>在躺上椅子后医生会把两腿放在两边支架上，随后会使用扩张器查看一下内部恢复情况。我选择的这位医生是出了名的会长肉芽。&lt;/p>
 &lt;blockquote>
-&lt;p>肉芽: 顾名思义，是人体在身体内部出现空腔损伤后身体自发修复过程中长出的小肉块。&lt;/p>
-&lt;/blockquote>
+&lt;p>肉芽: 顾名思义，是人体在身体内部出现空腔损伤后身体自发修复过程中长出的小肉块。&lt;/p>&lt;/blockquote>
 &lt;p>如果有肉芽一般会使用电刀帮你切掉（不打麻药的...）当然如果你实在觉得痛可以在给你打麻药，但是好像要另外加钱。除了这些流程之外还会测试阴蒂的敏感程度。~~啊，几乎就是用棒子给电了以下，下意识的就叫出来了！！！~~此外后还会拍照，照片可能会作为后面医院自己宣传使用吧，当然你也以要一份。&lt;/p>
 &lt;p>我个人情况是恢复的ok,也没有肉芽（说是没有但是检查的时候还是感觉医生用了电刀切了什么，因为闻到了烤肉的味道？）&lt;/p>
 &lt;p>到第三十二天护士来把外部的缝合线拆了拆，接下来也就会踏上回国旅途了。当然其实很多线材都是可吸收线，但是因为恢复的很好可吸收线反而成了愈合的阻碍（身体感知到可吸收线这个异物的存在会在缝合处发炎）&lt;/p>
@@ -2323,8 +2708,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p>送完阿姨之后在机场，我接上和我同行回国的小姐妹后，两人一起做完自测核酸试纸就准备登机了。这之中还有个插曲，理论上手术后身体不适合长期步行是可以申请机场轮椅服务的，当然服务需要出具医疗证明。这个证明在出院的时候院方就给出了，但是到我在机场尝试申请轮椅服务时泰航的工作人员却告诉我需要十五日内的证明。然而手术已经是一个前的事情了？！于是无奈又打电话给中介让中介麻烦医院重新给一份电子的证明。但是这个情况之后泰国航空遇到了，在其他航空公司哪怕是国内航司都是只需要口头申请或者电话确认就可以安排，甚至连证明都不需要看。&lt;/p>
 &lt;p>有了轮椅服务之后会有工作人员一路推着到登机口上飞机，而且飞机上的普通经济舱也会帮忙免费升舱到舒适经济舱，同时优先登机免于排队。当然这两位泰航的工作人员还示意要了小费。&lt;/p>
 &lt;blockquote>
-&lt;p>其实之前忘记提了，泰国也是一个有小费文化的国家，当然没有美国那么过分。我个人对于小费的态度是入乡随俗，毕竟多数服务人员真的很辛苦。某个暴雨的夜晚在酒店不小心打碎了可乐瓶（酒店送的可乐是玻璃瓶装的，顺便忘记说了我住的酒店房间是可以赤脚进入的，我一般也会选择赤脚），打电话给酒店前台后一位阿姨披着雨披跑来很细致的清理干净了，于是给了挺多的小费，当然本来这个额外的房间清理服务是免费的。&lt;/p>
-&lt;/blockquote>
+&lt;p>其实之前忘记提了，泰国也是一个有小费文化的国家，当然没有美国那么过分。我个人对于小费的态度是入乡随俗，毕竟多数服务人员真的很辛苦。某个暴雨的夜晚在酒店不小心打碎了可乐瓶（酒店送的可乐是玻璃瓶装的，顺便忘记说了我住的酒店房间是可以赤脚进入的，我一般也会选择赤脚），打电话给酒店前台后一位阿姨披着雨披跑来很细致的清理干净了，于是给了挺多的小费，当然本来这个额外的房间清理服务是免费的。&lt;/p>&lt;/blockquote>
 &lt;h2 id="ten---hongkong">&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#ten---hongkong" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#contents:ten---hongkong" class="headings">Ten - Hongkong&lt;/a>&lt;/h2>
 &lt;p>抵达香港之后同样是会有航司的工作人员带着轮椅在下机口等待。然后一路推着来到香港入境处，临时入境的中国人可以在香港待的时间是有限制的。在入境香港后的入境深圳是需要抽签的，然后我和同行的小姐妹分别抽中了不同的批次，所以我在 送走她之后还可以在香港自己玩两天。&lt;/p>
 &lt;p>在香港的几天一个人玩的很自在，其实在后期我恢复的已经很不错了，相较于同行走几步就不行的小姐妹我基本可以在外头走一天。不过可惜的是没有去香港的本岛，更多的是在九龙一块区域玩，和香港本岛隔海相望。&lt;/p>
@@ -2343,8 +2727,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p>当然在香港入境前还需要每日做核酸检测，当然香港的核酸点其实也多数是为了大陆人服务。香港人自己基本不太做核算了。而且讲道理我们入境之后必须采取自我隔离的态度，不允许去什么公共店铺吃饭之类的，但是依稀记得有个餐馆的老板的态度是去他妈的核酸。&lt;/p>
 &lt;p>一些有关香港有意思的事情，在九龙有很多歌舞厅，这一点香港给人一种还在上个世纪的恍如隔世的感觉，门口招牌上也是宛如上世纪的风格。搭配上复古的灯牌，老香港的味道。同时还有一些有意思的店是会有簧片专卖店？当然没有进去过，似乎是书籍和CD都会卖。甚至路边还会有摆摊卖小玩具的，提到小玩具其实还要说一嘴：&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;strong>在泰国色情玩具和赌博是违法的，如果携带玩具或者是纸牌一类的入境可能要注意？&lt;/strong>&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;strong>在泰国色情玩具和赌博是违法的，如果携带玩具或者是纸牌一类的入境可能要注意？&lt;/strong>&lt;/p>&lt;/blockquote>
 &lt;p>&lt;img src="image-21.png" alt="Alt text" />&lt;/p>
 &lt;p>目前为止，是我旅途最后一段在墙外了，说实话还是比较珍惜这段时光的。世界真的很大，应该多去看看。&lt;/p>
 &lt;h2 id="eleven---back-to-wall">&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#eleven---back-to-wall" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#contents:eleven---back-to-wall" class="headings">Eleven - Back to wall&lt;/a>&lt;/h2>
@@ -4277,7 +4660,7 @@ slurm控制服务，是slurm主节点上所必须存在的服务，用户和其�
 &lt;p>在之后的计算机硬盘，内存等相关的内容中，容量相关概念将会被提及的非常频繁。因此有必要在开始接下来的内容前详尽的科普一下有关计算机存储容量的相关知识点。由于该篇章内容较为重要，因此将会采用独立的文章来讲述此篇幅内容。&lt;/p>
 &lt;ul>
 &lt;li>
-&lt;h3 id="计算机存储单位详解hahahugoshortcode24s0hbhb">&lt;a href="https://yuukisama.cc/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E7%A7%91%E6%99%AE/#计算机存储单位详解hahahugoshortcode24s0hbhb" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E7%A7%91%E6%99%AE/#contents:计算机存储单位详解hahahugoshortcode24s0hbhb" class="headings">&lt;a href="https://yuukisama.cc/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E8%AF%A6%E8%A7%A3/" target="_blank" rel="noopener">计算机存储单位详解&lt;/a>&lt;/a>&lt;/h3>
+&lt;h3 id="计算机存储单位详解">&lt;a href="https://yuukisama.cc/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E7%A7%91%E6%99%AE/#计算机存储单位详解" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86%E7%A7%91%E6%99%AE/#contents:计算机存储单位详解" class="headings">&lt;a href="https://yuukisama.cc/code/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E8%AF%A6%E8%A7%A3/" target="_blank" rel="noopener">计算机存储单位详解&lt;/a>&lt;/a>&lt;/h3>
 &lt;/li>
 &lt;/ul></description><category domain="https://yuukisama.cc/code/">code</category><category domain="https://yuukisama.cc/tags/%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86/">硬件知识</category></item><item><title>2019信安国赛出题经历</title><link>https://yuukisama.cc/code/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/</link><guid isPermaLink="true">https://yuukisama.cc/code/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/</guid><pubDate>Wed, 05 Jun 2019 15:22:45 +0000</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="前言">&lt;a href="https://yuukisama.cc/code/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/#前言" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/2019%E4%BF%A1%E5%AE%89%E5%9B%BD%E8%B5%9B%E5%87%BA%E9%A2%98%E7%BB%8F%E5%8E%86/#contents:前言" class="headings">前言&lt;/a>&lt;/h2>
 &lt;ul>
@@ -5893,8 +6276,7 @@ randomblob()函数生成指定长度的随机字符串。当这个长度足够�
 &lt;li>
 &lt;p>&lt;a href="https://zh.wikipedia.org/wiki/C%E8%AF%AD%E8%A8%80" target="_blank" rel="noopener">维基百科&lt;/a>&lt;/p>
 &lt;blockquote>
-&lt;p>重点&lt;/p>
-&lt;/blockquote>
+&lt;p>重点&lt;/p>&lt;/blockquote>
 &lt;ol>
 &lt;li>C语言是一门&lt;strong>面向过程&lt;/strong>的&lt;strong>高级语言&lt;/strong>&lt;/li>
 &lt;li>C语言仍然保持跨平台特性&lt;/li>
@@ -7745,8 +8127,7 @@ randomblob()函数生成指定长度的随机字符串。当这个长度足够�
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
 &lt;/div>
 &lt;/div>&lt;blockquote>
-&lt;p>&lt;strong>注意：C语言中的数组下标从0开始，这里我们定义了一个长度为100的数组a，但是其下标范围事实上是从0到99&lt;/strong>&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;strong>注意：C语言中的数组下标从0开始，这里我们定义了一个长度为100的数组a，但是其下标范围事实上是从0到99&lt;/strong>&lt;/p>&lt;/blockquote>
 &lt;hr />
 &lt;/li>
 &lt;li>
@@ -8669,8 +9050,7 @@ randomblob()函数生成指定长度的随机字符串。当这个长度足够�
 &lt;p>如果觉得博客有问题，欢迎邮件交流。&lt;/p>
 &lt;/li>
 &lt;/ul></description><category domain="https://yuukisama.cc/code/">code</category><category domain="https://yuukisama.cc/tags/c/c-/">C/C++</category></item><item><title>word2vec词向量训练</title><link>https://yuukisama.cc/code/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/</link><guid isPermaLink="true">https://yuukisama.cc/code/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/</guid><pubDate>Wed, 13 Mar 2019 10:26:22 +0000</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;blockquote>
-&lt;h2 id="概述">&lt;a href="https://yuukisama.cc/code/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/#概述" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/#contents:概述" class="headings">概述&lt;/a>&lt;/h2>
-&lt;/blockquote>
+&lt;h2 id="概述">&lt;a href="https://yuukisama.cc/code/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/#概述" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/#contents:概述" class="headings">概述&lt;/a>&lt;/h2>&lt;/blockquote>
 &lt;ul>
 &lt;li>
 &lt;p>最近踩坑机器学习神经网络中的文本处理,所以有了这篇博客.记录一下基于python word2vec训练中文词向量的方法(英文也同样适用)
@@ -9382,8 +9762,7 @@ randomblob()函数生成指定长度的随机字符串。当这个长度足够�
 &lt;p>本段参考简书 &lt;a href="https://www.jianshu.com/p/be92113116c8" target="_blank" rel="noopener">https://www.jianshu.com/p/be92113116c8&lt;/a>&lt;/p>
 &lt;/li>
 &lt;/ul></description><category domain="https://yuukisama.cc/code/">code</category><category domain="https://yuukisama.cc/tags/python/">Python</category></item><item><title>VC++调用外部exe并获取程序运行输出</title><link>https://yuukisama.cc/code/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/</link><guid isPermaLink="true">https://yuukisama.cc/code/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/</guid><pubDate>Thu, 17 Jan 2019 12:16:36 +0000</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;blockquote>
-&lt;h2 id="摘要">&lt;a href="https://yuukisama.cc/code/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/#摘要" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/#contents:摘要" class="headings">摘要&lt;/a>&lt;/h2>
-&lt;/blockquote>
+&lt;h2 id="摘要">&lt;a href="https://yuukisama.cc/code/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/#摘要" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/#contents:摘要" class="headings">摘要&lt;/a>&lt;/h2>&lt;/blockquote>
 &lt;ul>
 &lt;li>
 &lt;p>最近在采坑某个项目，需要用到调用外部写好的exe运行，项目基于c语言，于是就有了关于&lt;strong>VC++调用外部程序并获取程序命令行运行输出的问题&lt;/strong>&lt;/p>
@@ -10722,7 +11101,7 @@ randomblob()函数生成指定长度的随机字符串。当这个长度足够�
 &lt;/li>
 &lt;/ul>
 &lt;h2 id="数据库连接代码示例">&lt;a href="https://yuukisama.cc/code/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/#数据库连接代码示例" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/#contents:数据库连接代码示例" class="headings">数据库连接代码示例&lt;/a>&lt;/h2>
-&lt;h3 id="请确保已经将mysqlconnector加入项目构建目录参照将jar文件加入你的java项目将jar文件加入你的java项目">&lt;a href="https://yuukisama.cc/code/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/#请确保已经将mysqlconnector加入项目构建目录参照将jar文件加入你的java项目将jar文件加入你的java项目" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/#contents:请确保已经将mysqlconnector加入项目构建目录参照将jar文件加入你的java项目将jar文件加入你的java项目" class="headings">请确保已经将mysqlconnector加入项目构建目录，参照&lt;a href="https://yuukisama.cc/code/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/#%E5%B0%86jar%E6%96%87%E4%BB%B6%E5%8A%A0%E5%85%A5%E4%BD%A0%E7%9A%84java%E9%A1%B9%E7%9B%AE">将jar文件加入你的java项目&lt;/a>&lt;/a>&lt;/h3>
+&lt;h3 id="请确保已经将mysqlconnector加入项目构建目录参照将jar文件加入你的java项目">&lt;a href="https://yuukisama.cc/code/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/#请确保已经将mysqlconnector加入项目构建目录参照将jar文件加入你的java项目" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/#contents:请确保已经将mysqlconnector加入项目构建目录参照将jar文件加入你的java项目" class="headings">请确保已经将mysqlconnector加入项目构建目录，参照&lt;a href="https://yuukisama.cc/code/mysql8%E7%9A%84%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8Ajdbc%E4%BD%BF%E7%94%A8/#%E5%B0%86jar%E6%96%87%E4%BB%B6%E5%8A%A0%E5%85%A5%E4%BD%A0%E7%9A%84java%E9%A1%B9%E7%9B%AE">将jar文件加入你的java项目&lt;/a>&lt;/a>&lt;/h3>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -11467,8 +11846,7 @@ key值中存储图节点，对应value（hashset型）存储与该节点有连�
 &lt;/div>
 &lt;/div>&lt;p>这样可以标识hexo停用ta的渲染，就不会重定向了.&lt;/p>
 &lt;p>之后重新构建发布网站即可&lt;/p></description><category domain="https://yuukisama.cc/code/">code</category><category domain="https://yuukisama.cc/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/">网站搭建</category></item><item><title>Dijkstra算法课设</title><link>https://yuukisama.cc/code/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/</link><guid isPermaLink="true">https://yuukisama.cc/code/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/</guid><pubDate>Thu, 27 Dec 2018 18:35:23 +0000</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;blockquote>
-&lt;h2 id="dijkstra算法课设">&lt;a href="https://yuukisama.cc/code/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/#dijkstra算法课设" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/#contents:dijkstra算法课设" class="headings">Dijkstra算法课设&lt;/a>&lt;/h2>
-&lt;/blockquote>
+&lt;h2 id="dijkstra算法课设">&lt;a href="https://yuukisama.cc/code/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/#dijkstra算法课设" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/#contents:dijkstra算法课设" class="headings">Dijkstra算法课设&lt;/a>&lt;/h2>&lt;/blockquote>
 &lt;p>数据结构课程中的经典算法。我会将一些程序系统设计过程中的一些小细节问题（暂且称之为小细节把，因为我也不知道拿什么次比较准确），并在最后附上程序所有源码。作为一个曾经的苟若的算法狗（现在依旧小垃圾）,很多数据结构在实现的时候没必要照抄《数据结构》书上那套迂腐的东西，那终究是伪代码，而且反人类&lt;del>当然如果你就是十分喜欢结构体的使用的话不拦着你&lt;/del>。&lt;/p>
 &lt;p>&lt;img src="miao.jpg" alt="" />&lt;/p>
 &lt;p>&lt;strong>很多东西是编程的一些编程习惯，多敲，多理解，遇到bug不要第一件事情是想着找别人问。程序员需要的是自己解决问题的能力（当然也不是一味的钻牛角尖，这就是中庸的事情了）&lt;/strong>
