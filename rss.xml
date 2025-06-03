@@ -1,4 +1,116 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Broken Memories</title><link>https://yuukisama.cc/</link><description>Someone write something</description><generator>Hugo 0.147.3 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>chainyuuki@gmail.com (Yuuki)</managingEditor><webMaster>chainyuuki@gmail.com (Yuuki)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Wed, 14 May 2025 07:33:46 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://yuukisama.cc/rss.xml"/><item><title>家庭软路由魔法指北</title><link>https://yuukisama.cc/code/%E5%AE%B6%E5%BA%AD%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8C%87%E5%8C%97/</link><guid isPermaLink="true">https://yuukisama.cc/code/%E5%AE%B6%E5%BA%AD%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8C%87%E5%8C%97/</guid><pubDate>Tue, 13 May 2025 13:31:43 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="start">&lt;a href="https://yuukisama.cc/code/%E5%AE%B6%E5%BA%AD%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8C%87%E5%8C%97/#start" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/%E5%AE%B6%E5%BA%AD%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8C%87%E5%8C%97/#contents:start" class="headings">Start&lt;/a>&lt;/h2>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Broken Memories</title><link>https://yuukisama.cc/</link><description>Someone write something</description><generator>Hugo 0.147.7 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>chainyuuki@gmail.com (Yuuki)</managingEditor><webMaster>chainyuuki@gmail.com (Yuuki)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Tue, 03 Jun 2025 07:06:46 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://yuukisama.cc/rss.xml"/><item><title>Win11重置本地账户密码</title><link>https://yuukisama.cc/code/win11%E9%87%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0%E8%B4%A6%E6%88%B7%E5%AF%86%E7%A0%81/</link><guid isPermaLink="true">https://yuukisama.cc/code/win11%E9%87%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0%E8%B4%A6%E6%88%B7%E5%AF%86%E7%A0%81/</guid><pubDate>Tue, 03 Jun 2025 14:27:45 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="zero">&lt;a href="https://yuukisama.cc/code/win11%E9%87%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0%E8%B4%A6%E6%88%B7%E5%AF%86%E7%A0%81/#zero" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/win11%E9%87%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0%E8%B4%A6%E6%88%B7%E5%AF%86%E7%A0%81/#contents:zero" class="headings">Zero&lt;/a>&lt;/h2>
+&lt;p>最近偶然帮公司重置前离职员工留下的电脑，发现了一种无需重置系统即可重置本地账户密码的方：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://zhuanlan.zhihu.com/p/685629242" target="_blank" rel="noopener">参考文章&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>重要声明：这个方法仅适用于本地账户，且是磁盘未开启 BitLock 加密的情况。&lt;/strong>&lt;/p>
+&lt;p>这个方法通过替换 Win11 登录页面上的辅助工具为 cmd 命令行，从而使得可以在登录页面启动带有系统管理员权限的命令行进而达到重置本地账户密码的操作。&lt;/p>
+&lt;h2 id="first">&lt;a href="https://yuukisama.cc/code/win11%E9%87%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0%E8%B4%A6%E6%88%B7%E5%AF%86%E7%A0%81/#first" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/win11%E9%87%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0%E8%B4%A6%E6%88%B7%E5%AF%86%E7%A0%81/#contents:first" class="headings">First&lt;/a>&lt;/h2>
+&lt;ol>
+&lt;li>
+&lt;p>首先我们需要想办法进入 Windows 恢复页面&lt;/p>
+&lt;p>进入方法也很简单，在登录页面按住 shift 按钮点击右下角的电源键选项中的重新启动按钮，这样系统在重启之后就会自动进入 WinRE 恢复页面。&lt;/p>
+&lt;p>当然也可以通过强制触发两次系统故障的方式让系统强制启动失败然后进而进入 WinRE 界面。两次启动失败后 Windows 会进入自动修复模式，在等待其自动修复未果之后会进入到如下页面。这时候点击&lt;code>高级选项&lt;/code>即可进入步骤 2 的界面。（当然如果你是直接通过重启进入的会直接抵达步骤 2）
+&lt;img src="image.png" alt="0" />&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>进入到恢复页面选项后点击&lt;code>疑难解答&lt;/code> -&amp;gt; &lt;code>高级选项&lt;/code>&lt;/p>
+&lt;p>&lt;img src="image-1.png" alt="1" />
+&lt;img src="image-2.png" alt="2" />
+当然在进入高级选项之前已经可以看到&lt;code>重置此电脑&lt;/code>的选项了，在这里如果这时候不在乎重置之后导致的数据丢失可以直接考虑不保留用户信息进行重置。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>进入到疑难解答的高级选项之后，点击&lt;code>命令提示符&lt;/code>，使用命令提示符进行高级排障。
+&lt;img src="image-3.png" alt="3" />&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在命令提示符内输入如下命令以获取目前电脑上的所有盘符并确定 windows 系统盘位置&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">dispart
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">list volume
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;p>理论上可以看到当前系统上盘符的情况类似如下图。其中使用 &lt;code>Windows-SSD&lt;/code> 一类标记的就是 C 盘。但是笔者在这里实践的情况下遇到了不一样的情况，并没有任何一个盘符标记了 &lt;code>Windows-SSD&lt;/code> 并且其实这里的盘符 C 盘也不是真正的系统盘，真正的系统板是 D 盘的情况。其实这里更推荐 &lt;code>exit&lt;/code> 退出 diskpart，并命令行中使用 &lt;code>dir&lt;/code> 命令罗列各个刚刚出现的各个盘符查看其目录结构，找到包含 windows 目录的盘符，这个就是真正的系统盘所在盘符。
+&lt;img src="image-4.png" alt="4" />&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>假定刚刚找到的系统盘盘符为 C， 使用 &lt;code>exit&lt;/code> 退出 diskpart。输入如下命令备份 &lt;code>Utilman.exe&lt;/code> 到 C 盘根目录。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">copy &lt;/span>&lt;span class="n">C:&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">Windows&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">System32&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">Utilman&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span> &lt;span class="n">C:&lt;/span>&lt;span class="p">\&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>接下来将 &lt;code>C:\Windows\System32\Utilman.exe&lt;/code> 程序覆盖为 &lt;code>cmd.exe&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">del &lt;/span>&lt;span class="n">C:&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">Windows&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">Systme32&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">Utilman&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">copy &lt;/span>&lt;span class="n">C:&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">Windows&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">System32&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">cmd&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span> &lt;span class="n">C:&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">Windows&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">System32&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">Utilman&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">start &lt;/span>&lt;span class="n">C:&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">windows&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">system32&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">Utilman&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>执行完刚刚的覆盖操作后在命令行输入 &lt;code>wpeutil reboot&lt;/code> 命令重启电脑。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>再次会到登录页面的时，右下角“小人”图案代表的辅助系统其实已经变成了 &lt;code>cmd.exe&lt;/code> 的入口，只要点击小人就会启动 cmd 命令行。&lt;/p>
+&lt;p>&lt;img src="image-5.png" alt="5" />&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>接下来开始真正的密码重置部分，在点击小人开启的命令行中输入如下命令：&lt;/p>
+&lt;ol>
+&lt;li>输入 &lt;code>net user&lt;/code> 查看当前系统中所有的用户名称
+&lt;img src="image-6.png" alt="6" />&lt;/li>
+&lt;li>找到你忘记密码的本地用户账户名，假设是 “lenovo” ，使用如下命令将 lenovo 用户密码重置为 123456。&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="n">net&lt;/span> &lt;span class="n">user&lt;/span> &lt;span class="n">lenovo&lt;/span> &lt;span class="mf">123456&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;ol>
+&lt;li>到这里位置你已经可以使用 123456 作为这个被遗忘的本地账户的密码登录到该电脑中了。&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;p>最后一部还原 &lt;code>Utilman.exe&lt;/code> 到本身目录。&lt;/p>
+&lt;p>打开具有管理员权限的命令行，输入以下指令将之前被替换为 cmd.exe 的 Utilman.exe 文件还原为备份的真正的 Utilman.exe&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">del &lt;/span>&lt;span class="n">C:&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">Windows&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">System32&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">Utilman&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">copy &lt;/span>&lt;span class="n">C:&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">Utilman&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span> &lt;span class="n">C:&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">Windows&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">System32&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">Utilman&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">start &lt;/span>&lt;span class="n">C:&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">Windows&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">System32&lt;/span>&lt;span class="p">\&lt;/span>&lt;span class="n">Utilman&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="py">exe&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;p>当第三条 start 命令回车之后点自动弹出 Windows 的设置页面即说明还原成功，这时候即可删除 C 盘根目录下备份的 &lt;code>Utilman.exe&lt;/code> 文件。当然个人感觉这里完全可是使用任务管理器操作，直接复制粘贴即可。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>PS &lt;strong>如果重置密码前你是用的是 Pin 码登录，在重置密码成功之后需要将登录验证方式切换为密码验证，然后使用重置后的密码登录才可以哦。&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;/ol></description><category domain="https://yuukisama.cc/code/">code</category></item><item><title>家庭软路由魔法指北</title><link>https://yuukisama.cc/code/%E5%AE%B6%E5%BA%AD%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8C%87%E5%8C%97/</link><guid isPermaLink="true">https://yuukisama.cc/code/%E5%AE%B6%E5%BA%AD%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8C%87%E5%8C%97/</guid><pubDate>Tue, 13 May 2025 13:31:43 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="start">&lt;a href="https://yuukisama.cc/code/%E5%AE%B6%E5%BA%AD%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8C%87%E5%8C%97/#start" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/%E5%AE%B6%E5%BA%AD%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8C%87%E5%8C%97/#contents:start" class="headings">Start&lt;/a>&lt;/h2>
 &lt;p>家里的软路由设备在一起重启之后炸了。&lt;/p>
 &lt;p>&lt;del>原因大概是因为之前使用一些黑科技魔法将 PVE 安装在了 TF 卡里启动，结果就是导致 PVE 的引导其实并没有完备，重启后引导丢失就 All In One 变成 All In Boom 了，这段划掉&lt;/del>&lt;/p>
 &lt;p>所以说以后服务安装完成设备测试的时候最基础的重启测试要保证，嗯！&lt;/p>
