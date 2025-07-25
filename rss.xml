@@ -1,4 +1,447 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Broken Memories</title><link>https://yuukisama.cc/</link><description>Someone write something</description><generator>Hugo 0.148.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>chainyuuki@gmail.com (Yuuki)</managingEditor><webMaster>chainyuuki@gmail.com (Yuuki)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Wed, 23 Jul 2025 09:30:48 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://yuukisama.cc/rss.xml"/><item><title>K8s部署n8n</title><link>https://yuukisama.cc/code/k8s%E9%83%A8%E7%BD%B2n8n/</link><guid isPermaLink="true">https://yuukisama.cc/code/k8s%E9%83%A8%E7%BD%B2n8n/</guid><pubDate>Tue, 22 Jul 2025 10:18:47 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="zero">&lt;a href="https://yuukisama.cc/code/k8s%E9%83%A8%E7%BD%B2n8n/#zero" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/k8s%E9%83%A8%E7%BD%B2n8n/#contents:zero" class="headings">Zero&lt;/a>&lt;/h2>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Broken Memories</title><link>https://yuukisama.cc/</link><description>Someone write something</description><generator>Hugo 0.148.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>chainyuuki@gmail.com (Yuuki)</managingEditor><webMaster>chainyuuki@gmail.com (Yuuki)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Fri, 25 Jul 2025 06:14:25 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://yuukisama.cc/rss.xml"/><item><title>wav音频文件处理</title><link>https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/</link><guid isPermaLink="true">https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/</guid><pubDate>Fri, 25 Jul 2025 10:44:37 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="zero">&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#zero" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#contents:zero" class="headings">Zero&lt;/a>&lt;/h2>
+&lt;p>工作中需要使用 wav 文件通过 websocket 模拟流式音频发送文件内容，于是恶补了一下 wav 音频文件的数据结构以及各种相关知识点。&lt;/p>
+&lt;h2 id="first---wav-的各种数据结构和参数">&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#first---wav-的各种数据结构和参数" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#contents:first---wav-的各种数据结构和参数" class="headings">First - wav 的各种数据结构和参数&lt;/a>&lt;/h2>
+&lt;h3 id="wav-格式简介">&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#wav-格式简介" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#contents:wav-格式简介" class="headings">wav 格式简介&lt;/a>&lt;/h3>
+&lt;p>wav（Waveform Audio File Format）是一种无损的音频文件格式，由微软与 IBM 在 1991 年开发。其多应用于专业的音频制作（录音室，音乐制作），音频编辑，Windows 系统音效，音频分析等领域。&lt;/p>
+&lt;ul>
+&lt;li>基本特征：
+&lt;ul>
+&lt;li>无损压缩： 文件通常不进行压缩，保持原始音频数据的完整性&lt;/li>
+&lt;li>高质量： 由于不压缩音频损失很小&lt;/li>
+&lt;li>文件较大： 相较于 MP3 等压缩格式文件体积较大&lt;/li>
+&lt;li>编码格式： 采用 PCM （脉冲编码调制）是最常见的编码方式&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="wav-常用术语">&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#wav-常用术语" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#contents:wav-常用术语" class="headings">wav 常用术语&lt;/a>&lt;/h3>
+&lt;p>wav 音频文件的实际引用过程中，我们最常接触到的会是如下几个文件参数术语：&lt;/p>
+&lt;ul>
+&lt;li>采样率（Sample Rate）每秒采集音频信号的次数，单位 Hz 赫兹&lt;/li>
+&lt;li>帧率（Frame Rate）每秒处理的帧的数量，单位 fps（frames per second）&lt;/li>
+&lt;li>位深度（Bit Depth / Sample Width）每个采样点使用多少二进制位标识，决定音频的动态范围，常见值：
+&lt;ul>
+&lt;li>8bit： 256 个量化级别，动态范围 48dB&lt;/li>
+&lt;li>16bit：65,536 个量化级别，动态范围 96dB（CD 标准）&lt;/li>
+&lt;li>24bit：16,777,216 个量化级别，动态范围 144dB&lt;/li>
+&lt;li>32bit：4,294,967,296 个量化级别，动态范围 192dB&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>声道数（Channels）同时播放的独立的音频流数量，常见声道：
+&lt;ul>
+&lt;li>单声道（Mono）：一个声道&lt;/li>
+&lt;li>双声道，立体声（Stereo）：两个声道（左声道+右声道）&lt;/li>
+&lt;li>环绕声：5.1,7.1 等多声道系统&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>帧（Frame）：包含所有声道的一个采样周期数据的单位
+&lt;ul>
+&lt;li>16 位的立体声：1 帧 = 2 声道 x 2 字节 = 4 字节&lt;/li>
+&lt;li>24 位的单声道：1 帧 = 1 声道 x 3 字节 = 3 字节&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>比特率（Bit Rate）每秒传输或处理的比特数量，单位是 bps（bits per second）&lt;/li>
+&lt;/ul>
+&lt;h3 id="术语单位之间的关系">&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#术语单位之间的关系" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#contents:术语单位之间的关系" class="headings">术语单位之间的关系&lt;/a>&lt;/h3>
+&lt;p>仅仅从上述罗列的数据中理解很可能还是有点不够清晰，以我自己为例之前一直对这些术语有一知半解但是完全无法理清楚他们之间的关系，接下来我将尝试用通俗一点的说法去拆解这些术语之间的关系。&lt;/p>
+&lt;ul>
+&lt;li>任何一段 wav 音频文件，都是由&lt;strong>帧（frame）&lt;strong>这个基本单位构成的，一个&lt;/strong>帧（frame）&lt;/strong> 包含采集这一帧瞬间所有的 &lt;strong>声道（channel）&lt;/strong> 的音频数据，这些数据在存储结构上线性排列，多少情况下为小端存储。&lt;/li>
+&lt;li>一音频 &lt;strong>帧（frame）&lt;/strong> 内一个 &lt;strong>声道（channel）&lt;/strong> 所占用的数据大小即位深，因此一个音频 &lt;strong>帧（frame）&lt;/strong> 的大小即等于 &lt;strong>声道数（channels）&lt;/strong> x &lt;strong>位深（bit depth）&lt;/strong>，即一个 8bit 位深双声道音频 1 帧所占的空间是 8 bit * 2 = 16 bit = 2 byte（字节）&lt;/li>
+&lt;li>&lt;strong>采样率（sample rate）&lt;/strong> 是指的每秒采集的音频信号的次数，一次采集的数据即为 1 &lt;strong>帧（frame）&lt;/strong>，8kHz &lt;strong>采样率（sample rate）&lt;/strong> 的 wav 音频其 1s 的时间内即采样 8000 &lt;strong>帧（frame）&lt;/strong>，所以单帧音频的时长就是 1s 除以 &lt;strong>采样率（sample rate）&lt;/strong> 也就是 1/8000s 。&lt;/li>
+&lt;li>&lt;strong>帧率（frame rate）&lt;/strong> 在音频场景下多数时候可以直接理解为一秒内处理 &lt;strong>帧（frame）&lt;/strong> 的数量，因此在 wav 音频格式下&lt;strong>帧率（frame rate）&lt;/strong> 即等于 &lt;strong>采样率（sample rate）&lt;/strong>。&lt;/li>
+&lt;li>&lt;strong>比特率（bit rate）&lt;/strong> 是数据按照计算机字节计算一秒内处理的数据字节数，根据上述关系讲解我们可以简单计算得到一个 8000 Hz 采样率 8 bit 位深的双声道音频其比特率为： 8000 * 2 * 8 = 128，000 bps&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>&lt;strong>不过需要注意的是，以上所有的计算方式都是以 wav pcm 编码下的计算逻辑，其他音频格式例如 MP3 和 AAC 都与之有着不小的差异，其采样率，帧等数据之间的关系并不会同 wav 格式一致，后面如果有机会会单独开文章详解。&lt;/strong>&lt;/p>&lt;/blockquote>
+&lt;h2 id="second---使用-python-解析-wav-文件">&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#second---使用-python-解析-wav-文件" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#contents:second---使用-python-解析-wav-文件" class="headings">Second - 使用 Python 解析 wav 文件&lt;/a>&lt;/h2>
+&lt;p>python 提供了内置的 wave 标准库用以支持 wave 文件的读取写入等操作，本文讨论的代码以 wave 库为基础。&lt;/p>
+&lt;h3 id="获取-wav-文件的各种基本参数">&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#获取-wav-文件的各种基本参数" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#contents:获取-wav-文件的各种基本参数" class="headings">获取 wav 文件的各种基本参数&lt;/a>&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">wave&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">with&lt;/span> &lt;span class="n">wave&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;test.wav&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;rb&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">n_channels&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getnchannels&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="c1"># 声道数&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">n_frames&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getnframes&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="c1"># 总的帧数&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">sample_width&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wave_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getsamplewidth&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="c1"># 位宽 / 位深&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">frame_rate&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wave_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getframerate&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="c1"># 帧率 / 采样率&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">n_channels&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">sampwidth&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">framerate&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">n_frames&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wave_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getparams&lt;/span>&lt;span class="p">()[:&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;h3 id="读取-wav-音频数据">&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#读取-wav-音频数据" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#contents:读取-wav-音频数据" class="headings">读取 wav 音频数据&lt;/a>&lt;/h3>
+&lt;ol>
+&lt;li>读取所有帧数据&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">wave&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">with&lt;/span> &lt;span class="n">wave&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;audio.wav&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;rb&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 获取音频参数&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">n_channels&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getnchannels&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">sample_width&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getsampwidth&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">sample_rate&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getframerate&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">n_frames&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getnframes&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 读取所有帧数据&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">frames_data&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">readframes&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n_frames&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>逐帧读取&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">wave&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">with&lt;/span> &lt;span class="n">wave&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;audio.wav&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;rb&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 逐帧读取&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">while&lt;/span> &lt;span class="kc">True&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">frame_data&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">readframes&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 读取1帧&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">frame_data&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">break&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 处理单帧数据&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">process_frame&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">frame_data&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>流式读取&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">wave&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">struct&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">with&lt;/span> &lt;span class="n">wave&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;audio.wav&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;rb&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">sample_width&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getsampwidth&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">n_channels&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getnchannels&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 每次读取一小块数据&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">chunk_frames&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1000&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">while&lt;/span> &lt;span class="kc">True&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">frames_data&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">readframes&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">chunk_frames&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">frames_data&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">break&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 将字节数据转换为数值&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">sample_width&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="c1"># 16位&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">samples&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">struct&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">unpack&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s1">&amp;#39;&amp;lt;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">frames_data&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s1">h&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">frames_data&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">elif&lt;/span> &lt;span class="n">sample_width&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="c1"># 32位&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">samples&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">struct&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">unpack&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s1">&amp;#39;&amp;lt;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">frames_data&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s1">i&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">frames_data&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;h3 id="分离音频声道">&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#分离音频声道" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#contents:分离音频声道" class="headings">分离音频声道&lt;/a>&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">wave&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">struct&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">numpy&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="nn">np&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">separate_channels&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_file&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">output_prefix&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;channel&amp;#34;&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> 分离音频文件的声道
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> Args:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> input_file: 输入音频文件路径
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> output_prefix: 输出文件前缀
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> &amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">with&lt;/span> &lt;span class="n">wave&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_file&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;rb&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 获取音频参数&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">n_channels&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getnchannels&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">sample_width&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getsampwidth&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">sample_rate&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getframerate&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">n_frames&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getnframes&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;声道数: &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">n_channels&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;采样率: &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">sample_rate&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2"> Hz&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;位深: &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">sample_width&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="mi">8&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2"> bit&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;总帧数: &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">n_frames&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 读取所有音频数据&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">frames_data&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">readframes&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n_frames&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 将字节数据转换为数值数组&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">sample_width&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="c1"># 16位&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">samples&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">struct&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">unpack&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s1">&amp;#39;&amp;lt;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">frames_data&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s1">h&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">frames_data&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">elif&lt;/span> &lt;span class="n">sample_width&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="c1"># 32位&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">samples&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">struct&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">unpack&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s1">&amp;#39;&amp;lt;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">frames_data&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s1">i&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">frames_data&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">raise&lt;/span> &lt;span class="ne">ValueError&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;不支持的位深: &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">sample_width&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="mi">8&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2"> bit&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 重塑数组为 (帧数, 声道数)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">samples_array&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">array&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">samples&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">reshape&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">n_channels&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 分离每个声道&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">channel_idx&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n_channels&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">channel_data&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">samples_array&lt;/span>&lt;span class="p">[:,&lt;/span> &lt;span class="n">channel_idx&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 创建输出文件名&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">output_file&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">output_prefix&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">_&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">channel_idx&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">.wav&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 写入单声道文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">with&lt;/span> &lt;span class="n">wave&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">output_file&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;wb&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">output_wav&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">output_wav&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">setnchannels&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 单声道&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">output_wav&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">setsampwidth&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">sample_width&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 设置位深&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">output_wav&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">setframerate&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">sample_rate&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 设置采样率&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 将数据转换回字节格式&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">sample_width&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">channel_bytes&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">struct&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pack&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s1">&amp;#39;&amp;lt;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">channel_data&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s1">h&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">channel_data&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">elif&lt;/span> &lt;span class="n">sample_width&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">channel_bytes&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">struct&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pack&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s1">&amp;#39;&amp;lt;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">channel_data&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s1">i&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">channel_data&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">output_wav&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">writeframes&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">channel_bytes&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;声道 &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">channel_idx&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2"> 已保存到: &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">output_file&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 使用示例&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="vm">__name__&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s2">&amp;#34;__main__&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 分离立体声音频的左右声道&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">separate_channels&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;stereo_audio.wav&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;separated&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 结果会生成:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># - separated_1.wav (左声道)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># - separated_2.wav (右声道)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;h3 id="更高效的流式声道分离">&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#更高效的流式声道分离" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#contents:更高效的流式声道分离" class="headings">更高效的流式声道分离&lt;/a>&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">wave&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">struct&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">separate_channels_streaming&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_file&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">output_prefix&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;channel&amp;#34;&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> 流式分离音频声道（适用于大文件）
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> &amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">with&lt;/span> &lt;span class="n">wave&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">input_file&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;rb&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">n_channels&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getnchannels&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">sample_width&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getsampwidth&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">sample_rate&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getframerate&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 创建输出文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">output_files&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n_channels&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">output_file&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">output_prefix&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">_&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">i&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">.wav&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">output_wav&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wave&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">output_file&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;wb&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">output_wav&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">setnchannels&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">output_wav&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">setsampwidth&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">sample_width&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">output_wav&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">setframerate&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">sample_rate&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">output_files&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">append&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">output_wav&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 流式读取和处理&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">chunk_frames&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1000&lt;/span> &lt;span class="c1"># 每次处理1000帧&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">while&lt;/span> &lt;span class="kc">True&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">frames_data&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">wav_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">readframes&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">chunk_frames&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">frames_data&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">break&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 解析当前块的数据&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">sample_width&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">samples&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">struct&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">unpack&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s1">&amp;#39;&amp;lt;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">frames_data&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s1">h&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">frames_data&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">elif&lt;/span> &lt;span class="n">sample_width&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">samples&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">struct&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">unpack&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s1">&amp;#39;&amp;lt;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">frames_data&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s1">i&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">frames_data&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 分离声道&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">channel_idx&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n_channels&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">channel_samples&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">samples&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">channel_idx&lt;/span>&lt;span class="p">::&lt;/span>&lt;span class="n">n_channels&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 转换回字节并写入对应文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">sample_width&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">channel_bytes&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">struct&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pack&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s1">&amp;#39;&amp;lt;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">channel_samples&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s1">h&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">channel_samples&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">elif&lt;/span> &lt;span class="n">sample_width&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">channel_bytes&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">struct&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pack&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s1">&amp;#39;&amp;lt;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">channel_samples&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s1">i&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">channel_samples&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">output_files&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">channel_idx&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">writeframes&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">channel_bytes&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 关闭所有输出文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">output_file&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">output_files&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">output_file&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;声道分离完成，生成了 &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">n_channels&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2"> 个单声道文件&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div></description><category domain="https://yuukisama.cc/code/">code</category><category domain="https://yuukisama.cc/tags/python/">Python</category><category domain="https://yuukisama.cc/tags/wav/">wav</category></item><item><title>K8s部署n8n</title><link>https://yuukisama.cc/code/k8s%E9%83%A8%E7%BD%B2n8n/</link><guid isPermaLink="true">https://yuukisama.cc/code/k8s%E9%83%A8%E7%BD%B2n8n/</guid><pubDate>Tue, 22 Jul 2025 10:18:47 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="zero">&lt;a href="https://yuukisama.cc/code/k8s%E9%83%A8%E7%BD%B2n8n/#zero" class="anchor-link">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon">&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/>&lt;/svg>&lt;/a>&lt;a href="https://yuukisama.cc/code/k8s%E9%83%A8%E7%BD%B2n8n/#contents:zero" class="headings">Zero&lt;/a>&lt;/h2>
 &lt;p>&lt;a href="https://n8n.io/" target="_blank" rel="noopener">n8n&lt;/a> 是一个专门为技术团队打造的灵活的 AI 自动化工作流。也是目前最火的几个 AI 工作流工具之一。与其相同的竞品还有 &lt;a href="https://dify.ai/" target="_blank" rel="noopener">Dify&lt;/a> 由中国团队主导开发的工作流产品。&lt;/p>
 &lt;p>不过有意思的是 n8n 这个主要贡献人由外国人组成的项目使用的反而是 Vue 框架外加全套 typescript，而由国人主导开发的 Dify 使用的反而是 Next.js 框架和 python。当然二者均为开源软件，均提供免费的社区版本用于自我部署使用。同时也提供商业版本提供更多的技术支持。本文主要以 n8n 社区版自我部署为主。&lt;/p>
 &lt;p>由于 n8n 官方文档仅提供了有关使用 docker 部署的实践文档，因此基于 k8s 部署仍有一些需要踩坑的地方。本文主要讨论基于 k8s v1.20.14 以及 Kuboard v3.5.2.7 为平台搭建 n8n 工作流平台的过程。&lt;/p>
@@ -75,6 +518,17 @@
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">runAsGroup&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">1000&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">runAsUser&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">1000&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>如果使用上述安全上下文配置依旧无法解决实际的权限问题，服务还是没有办法启动，那就只能去物理机器上寻找实际映射的存储卷目录修改其存储权限。n8n内使用的Linux权限是&lt;code>1000:1000&lt;/code>, 因此直接在容器宿主机上使用修改文件权限将整个映射目录权限修改：&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;div class="table-container">&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">sudo chown -R 1000:1000 ./n8n
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>
 &lt;/div>
 &lt;/div>&lt;ul>
 &lt;li>总体服务的yaml范例&lt;/li>
