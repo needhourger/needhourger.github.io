@@ -1,4 +1,725 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Broken Memories</title><link>https://yuukisama.cc/</link><description>Someone write something</description><generator>Hugo 0.151.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>chainyuuki@gmail.com (Yuuki)</managingEditor><webMaster>chainyuuki@gmail.com (Yuuki)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Sat, 11 Oct 2025 08:08:11 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://yuukisama.cc/rss.xml"/><item><title>GraphRAG与LazyGraphRAG</title><link>https://yuukisama.cc/code/graphrag/</link><guid isPermaLink="true">https://yuukisama.cc/code/graphrag/</guid><pubDate>Fri, 10 Oct 2025 13:36:03 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="zero"&gt;&lt;a href="https://yuukisama.cc/code/graphrag/#zero" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/graphrag/#contents:zero" class="headings"&gt;Zero&lt;/a&gt;&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Broken Memories</title><link>https://yuukisama.cc/</link><description>Someone write something</description><generator>Hugo 0.152.2 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>chainyuuki@gmail.com (Yuuki)</managingEditor><webMaster>chainyuuki@gmail.com (Yuuki)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Wed, 05 Nov 2025 12:11:30 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://yuukisama.cc/rss.xml"/><item><title>ApeRAG架构分析</title><link>https://yuukisama.cc/code/aperag/</link><guid isPermaLink="true">https://yuukisama.cc/code/aperag/</guid><pubDate>Tue, 21 Oct 2025 14:08:55 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="zero---aperag-简介"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#zero---aperag-简介" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:zero---aperag-简介" class="headings"&gt;Zero - ApeRAG 简介&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/apecloud/ApeRAG" target="_blank" rel="noopener"&gt;ApeRAG&lt;/a&gt; 一个号称生产就绪的 GraphRAG 多模态 RAG 引擎。以下是其官网 &lt;a href="https://rag.apecloud.com/" target="_blank" rel="noopener"&gt;https://rag.apecloud.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;目前官方发布了 &lt;a href="https://github.com/apecloud/ApeRAG/releases/tag/v0.5.0-alpha.14" target="_blank" rel="noopener"&gt;ApeRAG v0.5.0-alpha.14&lt;/a&gt; 版本，其结合了传统向量引擎，全文索引，GraphRAG，视觉索引，摘要索引等多个维度全方面的 RAG 混合检索能力，使用 MinerU 集成作为其增强型的文档处理。在部署方面，官方直接提供了生产级部署的能力：最简可通过 docker 完成基础部署，同时提供了 k8s 部署的实践指导。同时集成了 MCP 服务，提供三方 AI 助手和工具无缝集成访问知识库的能力。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;当然截止本文截稿，此项目 Github 大概 800+的 star 数目，目前尚处于开发与 alpha 测试阶段，其很多功能并未完善，例如官方独立提供部署的文档解析服务&lt;a href="https://github.com/apecloud/doc-ray" target="_blank" rel="noopener"&gt;doc-ray&lt;/a&gt;目前并不具备 K8s 下独立部署的能力，以及诸多的 API 功能在后端实现但是现有项目的 Web 端并未提供相关 UI 集成。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="first---生产部署"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#first---生产部署" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:first---生产部署" class="headings"&gt;First - 生产部署&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="docker-部署"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#docker-部署" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:docker-部署" class="headings"&gt;Docker 部署&lt;/a&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;系统最低配置&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;双核 CPU&lt;/li&gt;
+&lt;li&gt;RAM 内存 &amp;gt;= 4 GiB&lt;/li&gt;
+&lt;li&gt;安装有 Docker 以及 Docker compose&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;使用 Git 工具克隆项目，然后使用 docker compose 命令一键启动。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git clone https://github.com/apecloud/ApeRAG.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ApeRAG
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cp envs/env.template .env
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose up -d --pull always
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;部署完成之后可以在浏览器中访问如下链接&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Web 界面: &lt;a href="http://localhost:3000/web/" target="_blank" rel="noopener"&gt;http://localhost:3000/web/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;API 文档：&lt;a href="http://localhost:8000/docs" target="_blank" rel="noopener"&gt;http://localhost:8000/docs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;ApeRAG 默认开启 MCP 集成，启动服务之后使用如下例子配置 MCP 的客户端,提供包括：知识库罗列，混合检索，智能查询等功能。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-json" data-lang="json"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;mcpServers&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;aperag-mcp&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;url&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;https://localhost:8000/mcp/&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;headers&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;Authorization&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Bearer your-api-key-here&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="k8s-集群部署"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#k8s-集群部署" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:k8s-集群部署" class="headings"&gt;K8s 集群部署&lt;/a&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;克隆项目仓库以获得部署文件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git clone https://github.com/apecloud/ApeRAG.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ApeRAG
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;部署数据库服务&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;ApeRAG 需要 PostgreSQL、Redis、Qdrant 以及 Elasticsearch 等数据库，官方指导中提供了两个选择：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用既有数据库，如果生产环境中已经部署有上述数据库，可以基于&lt;code&gt;deploy/aperag/values.yaml&lt;/code&gt;文件以配置数据库连接信息，然后直接进行下一步操作。&lt;/li&gt;
+&lt;li&gt;使用 KubeBlocks 部署数据库 - 使用官方提供的自动化数据库部署，数据库连接均为预设：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; deploy/databases/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bash ./01-prepare.sh &lt;span class="c1"&gt;# 安装 KubeBlocks&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bash ./02-install-database.sh &lt;span class="c1"&gt;# 部署 PostgreSQL、Redis、Qdrant、Elasticsearch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl get pods -n default &lt;span class="c1"&gt;# 检查部署情况&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ../../
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;等待所有数据库 Pod 处于 &lt;code&gt;running&lt;/code&gt; 状态后即可进行下一步&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;部署 ApeRAG 应用本身&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;helm install aperag ./deploy/aperag --namespace default --create-namespace &lt;span class="c1"&gt;# 部署 Ape 服务&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl get pods -n default -l app.kubernetes.io/instance&lt;span class="o"&gt;=&lt;/span&gt;aperag &lt;span class="c1"&gt;# 检查服务状态&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;配置选项&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;资源要求：默认情况下，包括 &lt;a href="https://github.com/apecloud/doc-ray" target="_blank" rel="noopener"&gt;doc-ray 服务(官方提供的可用于独立部署的文档解析服务，但是暂不可用)&lt;/a&gt; 需要至少 4 核 CPU，以及 8GB RAM，当然 Doc-ray 可以在 &lt;code&gt;values.yaml&lt;/code&gt; 中配置&lt;code&gt;docray.enabled: false&lt;/code&gt;禁用。&lt;/li&gt;
+&lt;li&gt;更多高级设置可以查看&lt;code&gt;values.yaml&lt;/code&gt;已修改包括图像，资源，和入口的设置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;访问部署&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在部署完成后即可通过端口转发以访问 ApeRAG&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl port-forward svc/aperag-fronted 3000:3000 -n default
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;kubectl port-forward svc/aperag-api 8000:8000 -n default
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="second---特性简析"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#second---特性简析" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:second---特性简析" class="headings"&gt;Second - 特性简析&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="文档解析"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#文档解析" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:文档解析" class="headings"&gt;文档解析&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;目前其对于上传的文件大致内置了如下几种文档解析方式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MarkItDownParser: 依靠微软的 &lt;a href="https://github.com/microsoft/markitdown" target="_blank" rel="noopener"&gt;MarkitDown&lt;/a&gt; 将文档转换为 Markdown 格式的纯文本文档然后交给其内置实现的 &lt;code&gt;parse_md&lt;/code&gt; 模块去处理，支持&lt;code&gt;.txt&lt;/code&gt;、&lt;code&gt;.md&lt;/code&gt;、&lt;code&gt;.html&lt;/code&gt;、&lt;code&gt;.ipynb&lt;/code&gt;、&lt;code&gt;.pdf&lt;/code&gt;、&lt;code&gt;.epub&lt;/code&gt; 以及 Microsoft Office 文档（&lt;code&gt;.docx&lt;/code&gt;、&lt;code&gt;.doc&lt;/code&gt;、&lt;code&gt;.xlsx&lt;/code&gt;、&lt;code&gt;.xls&lt;/code&gt;、&lt;code&gt;.pptx&lt;/code&gt;、&lt;code&gt;.ppt&lt;/code&gt;）。&lt;/li&gt;
+&lt;li&gt;DocRayParser：是官方提供的另一个独立的微服务&lt;a href="https://github.com/apecloud/doc-ray" target="_blank" rel="noopener"&gt;doc-ray&lt;/a&gt;，用以提供复杂文档解析&lt;code&gt;.pdf&lt;/code&gt;、&lt;code&gt;.docx&lt;/code&gt;、&lt;code&gt;.doc&lt;/code&gt;、&lt;code&gt;.pptx&lt;/code&gt;、&lt;code&gt;.ppt&lt;/code&gt;。，同时支持 GPU 加速功能，需要额外部署并对外提供 HTTP 接口给 ApeRAG 做文档解析。&lt;del&gt;但目前其无法运行在 K8s 中&lt;/del&gt;&lt;/li&gt;
+&lt;li&gt;AudioParser：对音频文件 mp3、wav、ogg 文件的支持，通过外部的 Whisper ASR Web 服务将音频转为文本，需要在 ApeRAG 中配置外部服务地址 &lt;code&gt;settings.WHISPER_HOST&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;ImageParser：从图像中提取文本（OCR 技术），支持&lt;code&gt;.jpg&lt;/code&gt;、&lt;code&gt;.png&lt;/code&gt;、&lt;code&gt;.bmp&lt;/code&gt; 等格式。同样使用了外部服务 PaddleOCR，通过 &lt;code&gt;settings.PADDLEOCR_HOST&lt;/code&gt; 配置开启&lt;/li&gt;
+&lt;li&gt;MinerUParser: 依靠外部 MinerUParser 服务对文档提供高精度的解析服务，需要配置 MinerU API，支持&lt;code&gt;.pdf&lt;/code&gt;,&lt;code&gt;.doc&lt;/code&gt;,&lt;code&gt;.docx&lt;/code&gt;,&lt;code&gt;.ppt&lt;/code&gt;,&lt;code&gt;.pptx&lt;/code&gt;,&lt;code&gt;.png&lt;/code&gt;,&lt;code&gt;.jpg&lt;/code&gt;,&lt;code&gt;.jpeg&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;工作流程&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;文件上传后暂存在临时目录内，将文件路径传递给总的&lt;code&gt;DocParser&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;DocParser&lt;/code&gt;根据配置选项以及文件类型选择合适的解析器，例如&lt;code&gt;MarkItDownParser&lt;/code&gt;或者&lt;code&gt;DocRayParser&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用选定的解析器处理文件&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;文件可能会被转换为 Markdown 格式，例如 &lt;code&gt;MarkItDownParser&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;也可能调用外部的服务进行解析，或者使用 OCR/ASR&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;生成的中间文本交给 &lt;code&gt;parse_md.py&lt;/code&gt; 解析成为 &lt;code&gt;Part&lt;/code&gt; 列表（如果适用），此步骤将会将文档结构化为文本单元，例如段落、标题、代码块、并使用对应的解析器处理嵌入的图像&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;生成的各种类型的 &lt;code&gt;Part&lt;/code&gt; 对象列表传递给后续的 &lt;code&gt;chunking.py&lt;/code&gt; 模块中的 &lt;code&gt;rechunk&lt;/code&gt; 函数&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;rechunk&lt;/code&gt; 智能组合拆分这些部分，依据传入的 &lt;code&gt;chunk_size&lt;/code&gt;、&lt;code&gt;chunk_overlap&lt;/code&gt; 生成符合 token 大小最终文本块，准备好进行嵌入。同时元数据，包括标题层级和源位置将会与每个块关联。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;rechunk 首先会将传入的所有 &lt;code&gt;Part&lt;/code&gt; 分组，按照同层级（类似 H1,H2 这样的分层）或者同级嵌套的合并到统一个组中&lt;/li&gt;
+&lt;li&gt;接下来针对上一步生成的 &lt;code&gt;Groups&lt;/code&gt; 会判断哪些是纯标题组，并将连续的纯标题组合并，并保持层级关系（只合并同级别的标题组，例如同为 H2 的不会合并到 H3 中）&lt;/li&gt;
+&lt;li&gt;最后会尝试合并上一步中合并的标题组的 &lt;code&gt;Part&lt;/code&gt; 们，即将同标题组的内容合并到单一组中返回新合并的组列表&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;接下来进入正式的 Rechunk 环节&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;首先利用栈数据结构处理层级关系，跟踪层级结构&lt;/li&gt;
+&lt;li&gt;计算当前处理的组的 Token 数量，与上一组最后一个 &lt;code&gt;Part&lt;/code&gt; 的层级关系做对比判断是否是父子关系，是的话在满足二者相加小于限制的 &lt;code&gt;chunk_size&lt;/code&gt; 的情况下将上一组内容合并到当前组中。&lt;/li&gt;
+&lt;li&gt;如果当前组无法被合并进上一组中，则直接将上一个 &lt;code&gt;Part&lt;/code&gt; 直接放入结果列表中&lt;/li&gt;
+&lt;li&gt;接着继续处理当前组，遍历当前组所有 &lt;code&gt;Part&lt;/code&gt;，计算每个 &lt;code&gt;Part&lt;/code&gt; 的 Token 数量判断是否大于限制的 &lt;code&gt;chunk_size&lt;/code&gt;,出现大于的情况的话则使用 &lt;code&gt;SimpleSemanticSplitter&lt;/code&gt; 切分当前 &lt;code&gt;Part&lt;/code&gt; 成多个不同的 &lt;code&gt;Part&lt;/code&gt;，并于这些 &lt;code&gt;Part&lt;/code&gt; 的元数据中标记这些切分出来的 &lt;code&gt;Part&lt;/code&gt;：&lt;code&gt;metadata[&amp;quot;splitted&amp;quot;] = True&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;针对上一步切分生成的 &lt;code&gt;Part&lt;/code&gt; 进行一次 Rechunk：
+&lt;ol&gt;
+&lt;li&gt;遍历 &lt;code&gt;Part&lt;/code&gt; 们计算每个 &lt;code&gt;Part&lt;/code&gt; 的 Token 数量进行累加，如果小于 &lt;code&gt;chunk_size&lt;/code&gt; 则合并 &lt;code&gt;Part&lt;/code&gt;；如果大于 &lt;code&gt;chunk_size&lt;/code&gt; 限制则将现有 &lt;code&gt;Part&lt;/code&gt; 存入最终结果。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="多种索引类型"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#多种索引类型" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:多种索引类型" class="headings"&gt;多种索引类型&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;ApeRAG 针对文档实现了多种类型的索引构建，包括传统向量检索，全文检索，GraphRAG(依托 LightRAG)实现，摘要检索，视觉检索。&lt;/p&gt;
+&lt;p&gt;其中向量检索和全文检索是必须开启的，即针对一份文档亦或者是知识库而言，这二者是必选的项目，其他三个 Graph、Summary 以及 Vision 都是可选的。&lt;/p&gt;
+&lt;p&gt;&lt;img src="image.png" alt="alt text" /&gt;&lt;/p&gt;
+&lt;h4 id="向量索引-vector"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#向量索引-vector" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:向量索引-vector" class="headings"&gt;向量索引 (Vector)&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;ApeRAG 目前使用 &lt;a href="https://github.com/qdrant/qdrant" target="_blank" rel="noopener"&gt;Qdrant&lt;/a&gt; 作为其向量数据库，使用&lt;code&gt;collection&lt;/code&gt;（知识库）创建时指定的&lt;code&gt;embedding model&lt;/code&gt;，同时默认使用 &lt;code&gt;cl100k_base&lt;/code&gt; 作为其 &lt;code&gt;tokenizer&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;对于所有的 &lt;code&gt;Part&lt;/code&gt; 列表，选取其中具有 &lt;code&gt;content&lt;/code&gt; 文本内容的部分，为这些 &lt;code&gt;Part&lt;/code&gt; 的元数据添加 &lt;code&gt;indexer&lt;/code&gt; 字段并附加上 &lt;code&gt;embedding&lt;/code&gt; 内容。&lt;/p&gt;
+&lt;h4 id="全文索引-full-text"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#全文索引-full-text" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:全文索引-full-text" class="headings"&gt;全文索引 (Full-Text)&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;全文索引依靠 &lt;a href="https://github.com/elastic/elasticsearch" target="_blank" rel="noopener"&gt;Elasticsearch&lt;/a&gt; 全文检索引擎实现。&lt;/p&gt;
+&lt;p&gt;对于所有传入的 &lt;code&gt;Part&lt;/code&gt; 列表，选取其中具有 &lt;code&gt;content&lt;/code&gt;的文本内容部分。使用 &lt;code&gt;rechunk&lt;/code&gt; 函数重新组合生成待处理的 &lt;code&gt;chunked_parts&lt;/code&gt;, 之后将这些 &lt;code&gt;chunked_parts&lt;/code&gt; 依次配合代入的元数据交给 &lt;code&gt;Elasticsearch&lt;/code&gt; 引擎去做索引。&lt;/p&gt;
+&lt;h4 id="graph-索引-graphrag"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#graph-索引-graphrag" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:graph-索引-graphrag" class="headings"&gt;Graph 索引 (GraphRAG)&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;GraphRAG 功能 ApeRAG 依靠 &lt;a href="https://lightrag.github.io/" target="_blank" rel="noopener"&gt;LightRAG&lt;/a&gt; 实现，并对其做了一系列的优化，包括让其支持生产级的并发处理，分布式任务队列（依靠 Celery/Prefect 实现）和无状态操作。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在其异步创建索引的过程中，首先会检查需要索引的文档以及 &lt;code&gt;collection&lt;/code&gt; 知识库在数据库中的状态，跳过标记删除的部分&lt;/li&gt;
+&lt;li&gt;之后读取上传文件的原始位置，并开启计划任务提交给任务队列。&lt;/li&gt;
+&lt;li&gt;当索引任务进入到执行状态后更新数据库中任务记录的状态。&lt;/li&gt;
+&lt;li&gt;首先会获取目前项目配置的 GraphRAG 所使用的存储配置，默认是 &lt;code&gt;PostgreSQL/PGVector&lt;/code&gt;，同时也支持使用 Oracle 数据库、Neo4j 以及 NetworkX。等待存储初始化完成。&lt;/li&gt;
+&lt;li&gt;接下来使用 LightRAG 构建 LightRAG 实例&lt;/li&gt;
+&lt;li&gt;对于传入的 &lt;code&gt;content&lt;/code&gt; 进行异步插入到 LightRAG 实例中待并等待所有处理操作完成。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="摘要索引-summary-index"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#摘要索引-summary-index" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:摘要索引-summary-index" class="headings"&gt;摘要索引 (Summary Index)&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;摘要索引所使用数据库与向量索引一致，本质就是使用 LLM 对于传入文档纯文本内容 &lt;code&gt;content&lt;/code&gt; 和分割好的 &lt;code&gt;doc_parts&lt;/code&gt; 的内容进行总结，生成 Summary 并附加在元数据中，最后存储在向量数据库中.&lt;/p&gt;
+&lt;p&gt;Summary 时会根据传入的文本是或否是 chunk 亦或者直接就是完整的文档而选择不同的 prompt。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Chunk 所使用的 Prompt：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Summarize this text chunk concisely. Requirements:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;1. Use the same language as the original text for the summary
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2. Keep it within 1-2 sentences
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;3. Extract only the most important core information
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;4. Stay objective and accurate, do not add content not present in the original text
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;5. Output ONLY the summary content, no additional text, explanations, or formatting
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Text content:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;{text}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Summary:
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Document 所使用的 Prompt：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Generate a concise summary of this document. Requirements:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;1. Use the same language as the original text for the summary
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2. Keep it within 2-3 sentences
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;3. Summarize the main topic and key insights of the document
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;4. Stay objective and accurate, do not add content not present in the original text
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;5. If it&amp;#39;s a technical document, highlight the technical points
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;6. Output ONLY the summary content, no additional text, explanations, or formatting
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Document content:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;{text}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Summary:
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;首先，对所有包含 &lt;code&gt;content&lt;/code&gt; 的 &lt;code&gt;doc_part&lt;/code&gt; 进行 Summary，如果这一步没能满足即没有 doc_part 则直接使用 content 进行 Summary&lt;/li&gt;
+&lt;li&gt;对于上一步初步 Summary 好生成的 Summary 结果进行 &lt;code&gt;reduce_summaries&lt;/code&gt;：将上一步初步生成的 Summary 整合在一起之后重新交给 LLM 再做一次总结得到 &lt;code&gt;final_summary&lt;/code&gt;，以下是总结 &lt;code&gt;final_summary&lt;/code&gt; 所使用的 prompt:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Combine these section summaries into a comprehensive final document summary. Requirements:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;1. Use the same language as the original summaries for the final summary
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2. Keep it within 3-4 sentences
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;3. Integrate the core content from all sections into a coherent overall summary
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;4. Highlight the main topic and most important insights of the document
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;5. Maintain logical clarity and avoid repetitive content
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;6. If technical content is involved, maintain accuracy of technical terminology
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;7. Output ONLY the final summary content, no additional text, explanations, or formatting
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Section summaries:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;{combined_summaries}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Final summary:
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id="视觉索引-vision-index"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#视觉索引-vision-index" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:视觉索引-vision-index" class="headings"&gt;视觉索引 (Vision Index)&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;视觉索引默认使用用户添加的多模态模型对 &lt;code&gt;collection&lt;/code&gt; 知识库中的非文本文件进行多模态识别。同时多模态识别具备如下两种方案：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;纯粹的视觉方案，将媒体文件直接转换为向量并附加在元数据中存储向量数据库&lt;/li&gt;
+&lt;li&gt;使用多模态模型的 Vision-to-Text 功能，让大模型去描述媒体文件的内容生成文本，最后将文本向量化存入向量数据库中。以下是其默认使用的提供给大模型做视觉识别的 Prompt:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Analyze the provided image and extract its content with high fidelity. Follow these instructions precisely and use Markdown for formatting your entire response. Do not include any introductory or conversational text.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;1. **Overall Summary:**
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; * Provide a brief, one-paragraph overview of the image&amp;#39;s main subject, setting, and any depicted activities.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2. **Detailed Text Extraction:**
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; * Extract all text from the image, preserving the original language. Do not translate.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; * **Crucially, maintain the visual reading order.** For multi-column layouts, process the text column by column (e.g., left column top-to-bottom, then right column top-to-bottom).
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; * **Exclude headers and footers:** Do not extract repetitive content from the top (headers) or bottom (footers) of the page, such as page numbers, book titles, or chapter names.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; * Replicate the original formatting using Markdown as much as possible (e.g., headings, lists, bold/italic text).
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; * For mathematical formulas or equations, represent them using LaTeX syntax (e.g., `$$...$$` for block equations, `$...$` for inline equations).
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; * For tables, reproduce them accurately using GitHub Flavored Markdown (GFM) table syntax.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;3. **Chart/Graph Analysis:**
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; * If the image contains charts, graphs, or complex tables, identify their type (e.g., bar chart, line graph, pie chart).
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; * Explain the data presented, including axes, labels, and legends.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; * Summarize the key insights, trends, or comparisons revealed by the data.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;4. **Object and Scene Recognition:**
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; * List all significant objects, entities, and scene elements visible in the image.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="混合检索"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#混合检索" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:混合检索" class="headings"&gt;混合检索&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;ApeRAG 的检索流程其实可以近似理解为将现有集成的五种 RAG 引擎编织成一张有向图工作流，设定起点和终点，从起点开始进发到五种 RAG 进行检索召回，并一起进入到下一个节点做 Merge 合并，在合并完成之后再做一次 Rerank，并将最终结果交给 LLM 节点去做大模型回复。借由如上所述的实现方式，其未来期望规划（从代码中的痕迹来看）还将会支持这张图的自定义。其实现了一个图构建器，你可以使用 yaml 格式的文件去构建自定义的 workflow 工作流。&lt;/p&gt;
+&lt;p&gt;针对每一种检索方式，都需要有对应的 &lt;code&gt;Node&lt;/code&gt; 实现，需要规定这个 &lt;code&gt;Node&lt;/code&gt; 的输入和输出参数，以及节点内部的工作。同时这些输入输出会交给后续的节点作为输入，例如在 merge 的步骤中。&lt;/p&gt;
+&lt;p&gt;所有的 workflow 中的图节点，在没有依赖关系的情况下会被并行执行以优化效率，例如所有的 Search 节点。而当节点之间存在依赖关系时则会进行顺序执行的逻辑，例如 Merge 和 Rerank 两个节点二者是相互依赖的关系因此会顺序执行。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PS: 以下所有的 &lt;code&gt;collection_ids&lt;/code&gt; 虽然都是列表，理论上是复数个 collection 知识库的 id，但是实际项目中获取知识库详情时都是使用 &lt;code&gt;collection_ids[0]&lt;/code&gt; 也就是这个列表其实只会使用第一个 id。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id="vector-search-向量检索"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#vector-search-向量检索" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:vector-search-向量检索" class="headings"&gt;Vector Search 向量检索&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;输入结构&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;VectorSearchInput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;top_k&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Number of top results to return&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;similarity_threshold&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Similarity threshold for vector search&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;collection_ids&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;default_factory&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Collection IDs&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;chat_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Chat ID to filter chat documents&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;输出结构&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;VectorSearchOutput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;DocumentWithScore&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;工作流程&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;首先根据传入的 &lt;code&gt;collection_ids&lt;/code&gt; 从常规数据库中拉取数据集详情信息，并依据这些详情信息构建向量数据库实例，同时初始化对应的 embedding 模型。&lt;/li&gt;
+&lt;li&gt;使用 embedding 模型将用户输入转换为 vector 向量，并使用向量数据库实例去查询召回 &lt;code&gt;topK&lt;/code&gt; 个结果。&lt;/li&gt;
+&lt;li&gt;对结果做一下遍历，标记这些结果的召回来源，即标记 &lt;code&gt;metadata.recall_type = &amp;quot;vector_search&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="fulltext-search-全文检索"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#fulltext-search-全文检索" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:fulltext-search-全文检索" class="headings"&gt;Fulltext Search 全文检索&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;输入结构&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;FulltextSearchInput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;User&amp;#39;s question or query&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;top_k&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Number of top results to return&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;collection_ids&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;default_factory&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Collection IDs&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;keywords&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;default_factory&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Custom keywords to use for fulltext search&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;chat_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Chat ID to filter chat documents&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;输出结构&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;FulltextSearchOutput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;DocumentWithScore&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;工作流程&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;根据 &lt;code&gt;collection_ids&lt;/code&gt; 从常规数据库中获取知识库详情信息&lt;/li&gt;
+&lt;li&gt;使用 &lt;code&gt;settings.llm_keyword_extraction_provider&lt;/code&gt; 等配置去使用大模型提取查询内容关键词，当然默认配置缺省使用 &lt;code&gt;IKKeywordExtractor&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;使用关键词去 elasticsearch 数据库进行全文检索，根据召回的结果内附带的 &lt;code&gt;_source&lt;/code&gt; 参数去获取原始的 chunk 段落返回&lt;/li&gt;
+&lt;li&gt;给所有返回结果附加上召回类型 &lt;code&gt;metadata.recall_type = &amp;quot;fulltext_search&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="summary-search-摘要检索"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#summary-search-摘要检索" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:summary-search-摘要检索" class="headings"&gt;Summary Search 摘要检索&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;输入结构&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SummarySearchInput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;top_k&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Number of top results to return&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;similarity_threshold&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Similarity threshold for summary search&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;collection_ids&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;default_factory&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Collection IDs&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;输出结构&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SummarySearchOutput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;DocumentWithScore&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;工作流程&lt;/p&gt;
+&lt;p&gt;因为摘要检索本质其实还是一种向量检索，只是检索的内容是通过 LLM 大模型根据原文 Chunk 生成的摘要，因此这里的检索步骤其实和之前的向量检索大同小异&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;根据 &lt;code&gt;collection_ids&lt;/code&gt; 从传统数据库召回知识库详情信息。&lt;/li&gt;
+&lt;li&gt;依靠 collection 信息初始化好 embedding model 和向量数据库句柄。&lt;/li&gt;
+&lt;li&gt;将传入的查询文本使用对应的 embedding model 转换为查询向量。&lt;/li&gt;
+&lt;li&gt;使用句柄进行向量检索并对所有返回结果附加上召回类别 &lt;code&gt;metadata.recall_type = &amp;quot;summary_search&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="graphrag-检索"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#graphrag-检索" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:graphrag-检索" class="headings"&gt;GraphRAG 检索&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;输入结构&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;GraphSearchInput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;top_k&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Number of top results to return&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;collection_ids&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;default_factory&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Collection IDs&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;输出结构&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;GraphSearchOutput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;DocumentWithScore&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;工作流程&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;根据 &lt;code&gt;collection_ids&lt;/code&gt; 从传统数据库获取知识库详情&lt;/li&gt;
+&lt;li&gt;对该知识库是否开启图检索做一次校验，如果没有开启则直接返回空列表&lt;/li&gt;
+&lt;li&gt;根据知识库 &lt;code&gt;collection&lt;/code&gt; 的详情配置初始化 &lt;code&gt;LightRAG&lt;/code&gt; 实例，这里的实例实际上启动的是一个 ApeRAG 二次封装过的 LightRAG 实例，这个实例的改进了 LightRAG 的检索使之支持并行，同时优化了 LightRAG 的存储使之可以支持 PG 等数据库。&lt;/li&gt;
+&lt;li&gt;使用 LightRAG 的 hybrid 进行混合检索召回 &lt;code&gt;topK&lt;/code&gt; 个结果&lt;/li&gt;
+&lt;li&gt;将返回结果附加上召回类别 &lt;code&gt;metadata.recall_type = &amp;quot;graph_search&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="vision-search-视觉检索"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#vision-search-视觉检索" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:vision-search-视觉检索" class="headings"&gt;Vision Search 视觉检索&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;输入结构&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;VisionSearchInput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;top_k&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Number of top results to return&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;similarity_threshold&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Similarity threshold for vision search&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;collection_ids&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;default_factory&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Collection IDs&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;输出结构&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;VisionSearchOutput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;DocumentWithScore&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;工作流程&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;根据 &lt;code&gt;collection_ids&lt;/code&gt; 获取传统数据库存储的知识库详情&lt;/li&gt;
+&lt;li&gt;依据知识库配置初始化向量数据库句柄以及 embedding model&lt;/li&gt;
+&lt;li&gt;针对用户输入使用对应的 embedding model 向量化处理&lt;/li&gt;
+&lt;li&gt;将输入内容在向量数据库中做查询。到这里会发现其实这一步和向量检索几乎没有区别，所以作者为了防止这一步和向量检索重复，因此这里作者召回数量其实是 2 * topK 两倍的 topK 以确保召回了之前存储的视觉相关内容&lt;/li&gt;
+&lt;li&gt;对返回结果附加上召回类型 &lt;code&gt;metadata.recall_type = &amp;quot;vision_search&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="merge-节点"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#merge-节点" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:merge-节点" class="headings"&gt;Merge 节点&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;输入结构&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MergeInput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;merge_strategy&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;union&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;How to merge results&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;deduplicate&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;bool&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Whether to deduplicate merged results&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;vector_search_docs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;DocumentWithScore&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;default_factory&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Vector search docs&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;fulltext_search_docs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;DocumentWithScore&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;default_factory&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Fulltext search docs&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;graph_search_docs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;DocumentWithScore&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;default_factory&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Graph search docs&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;summary_search_docs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;DocumentWithScore&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;default_factory&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Summary search docs&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;vision_search_docs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;DocumentWithScore&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;default_factory&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Vision search docs&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;qa_search_docs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;DocumentWithScore&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;default_factory&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Q&amp;amp;A search docs&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;输出结构&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MergeOutput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;DocumentWithScore&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;工作流程&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;merge 并没有什么复杂的流程，目前只做了一个简单的使用 python 的 Set 集合结构依据召回内容的 text 文本对所有召回文档进行去重。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="rerank-节点"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#rerank-节点" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:rerank-节点" class="headings"&gt;Rerank 节点&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;输入结构&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;RerankInput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;use_rerank_service&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;bool&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Whether to use rerank service or fallback strategy&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Rerank model name&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;model_service_provider&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Model service provider&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;custom_llm_provider&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Optional&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Field&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Custom LLM provider (e.g., &amp;#39;jina_ai&amp;#39;, &amp;#39;openai&amp;#39;)&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;DocumentWithScore&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;输出结构&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;RerankOutput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;DocumentWithScore&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;工作流程&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;根据传入参数 &lt;code&gt;use_rerank_service&lt;/code&gt; 决定是否使用三方的 rerank 服务（例如 openai 以及其他大模型供应商提供的 rerank 服务接口），如果不使用则使用默认逻辑：GraphRAG 结果放在前面，剩余的各种向量检索结果按照 Score 得分从高到低排列。&lt;/li&gt;
+&lt;li&gt;如果 rerank 配置的参数不合法则也会使用默认策略&lt;/li&gt;
+&lt;li&gt;根据配置的 rerank 服务执行 rerank&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description><category domain="https://yuukisama.cc/code/">code</category></item><item><title>GraphRAG与LazyGraphRAG</title><link>https://yuukisama.cc/code/graphrag/</link><guid isPermaLink="true">https://yuukisama.cc/code/graphrag/</guid><pubDate>Fri, 10 Oct 2025 13:36:03 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="zero"&gt;&lt;a href="https://yuukisama.cc/code/graphrag/#zero" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/graphrag/#contents:zero" class="headings"&gt;Zero&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;大模型时代，受限于模型上下文限制，模型能同时聚焦的信息量有限，于是 RAG 应运而生。&lt;/p&gt;
 &lt;p&gt;RAG 即一种让 AI 模型能“引经据典”的技术。相较于传统语言模型这能基于模型训练时的静态数据生成回答，RAG 通过如下方式增强了模型的能力：&lt;/p&gt;
 &lt;ol&gt;
@@ -29,7 +750,8 @@
 &lt;p&gt;之前版本的 GraphRAG 简单点在 Index 索引阶段需要将文档所有内容切片然后交给大模型，然后进行实体，关系，社区的抽取，基本差不多是整篇文档需要走多遍 LLM 因此成本极高。而 LazyGraphRAG 在初始 Index 索引时使用 NLP 自然语言处理以及关键词提取等方法来提取层次化的图谱结构，所有有关索引的汇总工作将全部“偷懒”到查询时期，以这样的方式大幅度降低索引和检索的成本。&lt;/p&gt;
 &lt;p&gt;LazyGraphRAG 使用传统 GraphRAG 0.1%的索引成本（与向量 RAG 基本相同），和 1/700 的检索查询成本，依靠 GraphRAG 4%的成本可以得到“显著超越所有竞争方法”（以上为官方数据）&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;LazyGraphRAG 并不是一个独立的项目，其直接包含于原始的 GraphRAG 项目，作为其索引器的可选方案之一。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;LazyGraphRAG 并不是一个独立的项目，其直接包含于原始的 GraphRAG 项目，作为其索引器的可选方案之一。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;二者的具体对比表格：&lt;/p&gt;
 &lt;div class="table-container"&gt;&lt;table&gt;
 &lt;thead&gt;
@@ -133,7 +855,8 @@
 &lt;/div&gt;&lt;ol&gt;
 &lt;li&gt;LazyGraphRAG 模式下官方内置的 NLP 模型默认对英文的兼容性更好，因此如果需要索引中文文档需要修改&lt;code&gt;settings.yaml&lt;/code&gt;中&lt;code&gt;extract_graph_nlp&lt;/code&gt;相关的内容如下, 修改&lt;code&gt;extractor_type&lt;/code&gt;为&lt;code&gt;cfg&lt;/code&gt;，添加&lt;code&gt;model_name&lt;/code&gt;参数数值为&lt;code&gt;zh_core_web_sm&lt;/code&gt;
 &lt;blockquote&gt;
-&lt;p&gt;如果使用的是英文文档则无需配置此步骤。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;如果使用的是英文文档则无需配置此步骤。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -724,7 +1447,8 @@
 &lt;li&gt;&lt;strong&gt;比特率（bit rate）&lt;/strong&gt; 是数据按照计算机字节计算一秒内处理的数据字节数，根据上述关系讲解我们可以简单计算得到一个 8000 Hz 采样率 8 bit 位深的双声道音频其比特率为： 8000 * 2 * 8 = 128,000 bps&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;不过需要注意的是，以上所有的计算方式都是以 wav pcm 编码下的计算逻辑，其他音频格式例如 MP3 和 AAC 都与之有着不小的差异，其采样率，帧等数据之间的关系并不会同 wav 格式一致，后面如果有机会会单独开文章详解。&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;不过需要注意的是，以上所有的计算方式都是以 wav pcm 编码下的计算逻辑，其他音频格式例如 MP3 和 AAC 都与之有着不小的差异，其采样率，帧等数据之间的关系并不会同 wav 格式一致，后面如果有机会会单独开文章详解。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id="second---使用-python-解析-wav-文件"&gt;&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#second---使用-python-解析-wav-文件" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#contents:second---使用-python-解析-wav-文件" class="headings"&gt;Second - 使用 Python 解析 wav 文件&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;python 提供了内置的 wave 标准库用以支持 wave 文件的读取写入等操作，本文讨论的代码以 wave 库为基础。&lt;/p&gt;
 &lt;h3 id="获取-wav-文件的各种基本参数"&gt;&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#获取-wav-文件的各种基本参数" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/wav%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#contents:获取-wav-文件的各种基本参数" class="headings"&gt;获取 wav 文件的各种基本参数&lt;/a&gt;&lt;/h3&gt;
@@ -2318,7 +3042,8 @@
 &lt;p&gt;当然推荐 ImmortalWrt 的主要原因是其拥有活跃的社区，硬件支持广泛，以及提供“中国特色工具”的同时保证了本身的精简性。本文内任何没有明说 openwrt 分支的情况下均默认为 ImmortalWrt。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;题外话：
-&lt;del&gt;可恶，怎么喜欢折腾软路由啊，这么中年油腻大叔的爱好，泪目&lt;/del&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;del&gt;可恶，怎么喜欢折腾软路由啊，这么中年油腻大叔的爱好，泪目&lt;/del&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;有关 PVE 环境的安装这里就不多赘述了，因为本身比较简单，&lt;del&gt;不要学习我之前搞骚操作在 TF 卡里安装 PVE 的话&lt;/del&gt;直接在 U 盘 中刷写好 PVE 的安装镜像，引导进入安装程序后按照提示步骤来即可，google 有很多文章讲这个。&lt;/p&gt;
 &lt;h2 id="openwrt-镜像选择"&gt;&lt;a href="https://yuukisama.cc/code/%E5%AE%B6%E5%BA%AD%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8C%87%E5%8C%97/#openwrt-镜像选择" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/%E5%AE%B6%E5%BA%AD%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8C%87%E5%8C%97/#contents:openwrt-镜像选择" class="headings"&gt;Openwrt 镜像选择&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;首先从 &lt;a href="https://downloads.immortalwrt.org/" target="_blank" rel="noopener"&gt;ImmortalWrt 官方下载网站&lt;/a&gt; 根据硬件情况选择合适的镜像。由于这里使用的是 PVE 支持的虚拟机做软路由，因此仅需要使用默认的 x86/64 版本即可。&lt;/p&gt;
@@ -2438,13 +3163,15 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;del&gt;别问我“192.168.31.2”在哪里，那是 PVE 的静态地址&lt;/del&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;del&gt;别问我“192.168.31.2”在哪里，那是 PVE 的静态地址&lt;/del&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;由主路由负责局域网的 DHCP 服务，并将 DHCP 下发的给客户端的 DNS 服务器和网管配置为旁路由地址： 192.168.31.3。因为考虑如果 DHCP 位于软路由上，一但软路由 GG 了局域网 DHCP 服务也就没了。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
 &lt;p&gt;但是也有人会说：“即使 DHCP 位于主路由，在旁路由模式下下发给客户端的 DNS， 网关都是旁路由，客户端不也是无法上网。”
-但是其实这里好办，真的出现状况了只需要客户端强制指定网络 DNS 和网管到主路由即可恢复临时通讯，亦或者是修改主路由上的 DHCP 服务下发的 DNS 和网关回默认即可临时恢复网络 &lt;del&gt;别问我自己为什么不选择后者，因为 TMD 小米路由器修改个 DHCP 都要重启。&lt;/del&gt;&lt;/p&gt;&lt;/blockquote&gt;
+但是其实这里好办，真的出现状况了只需要客户端强制指定网络 DNS 和网管到主路由即可恢复临时通讯，亦或者是修改主路由上的 DHCP 服务下发的 DNS 和网关回默认即可临时恢复网络 &lt;del&gt;别问我自己为什么不选择后者，因为 TMD 小米路由器修改个 DHCP 都要重启。&lt;/del&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;同时 DHCP 配置分配范围从 192.168.31.64 到 192.168.31.254。因为前 1-63 位考虑到全部交给静态分配。这一步可缺省。&lt;/p&gt;
@@ -2496,7 +3223,8 @@
 &lt;img src="image-16.png" alt="16" /&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;这里也不准配置 IPv6 部分，v6 下的旁路由开启后出现了网页静态资源加载变慢的问题。以及由于是桥接路由器拨号，所以客户端设备经常会收到运营商下发的 IPv6 DNS，导致魔法破功，无法从软路由侧屏蔽这个运营商下发的 v6 DNS 同时 windows11 电脑又会默认优先 v6 总之导致了很多加载变慢乃至打不开网页的问题，总之别轻易碰国内的 v6 会变得不幸。
-同时刚刚上面主路由配置的 v6 模式是 Native 原生，所以哪怕旁路由不配置 v6 相关的东西其他客户端依然可以分配到主路由下发的 v6 地址，一定程度上并不影响就其他设备的 v6.&lt;/p&gt;&lt;/blockquote&gt;
+同时刚刚上面主路由配置的 v6 模式是 Native 原生，所以哪怕旁路由不配置 v6 相关的东西其他客户端依然可以分配到主路由下发的 v6 地址，一定程度上并不影响就其他设备的 v6.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;高级设置&lt;/code&gt;下设定&lt;code&gt;使用自定义的DNS服务器&lt;/code&gt;为 114.114.114.114，先让旁路由成功联网，后面会改成旁路由本身。
@@ -2838,13 +3566,15 @@
 &lt;p&gt;当然还有一些后话/感慨/亦或者是碎碎念：&lt;/p&gt;
 &lt;p&gt;软路由这个&lt;del&gt;中年男性爱好&lt;/del&gt;的特殊属性，外加其在天朝互联网下的特殊性，以此导致了很多中国特供质量良莠不齐 Openwrt 分支，外加“中年男性爱好”这个属性，导致玩这个圈子的人很大部分并不是专业的网络管理人员，于是中文语境下的资料变得鱼龙混杂，但同时很多中文运用场景例如魔法等又是中国特色导致外文文档社区根本没有相关资料，最终以上种种原因导致“软路由，Openwrt”变成了一种“克苏鲁状态”：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;如同克苏鲁一样不可名状，不可被认知，不可被掌握和正确修改...&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;如同克苏鲁一样不可名状，不可被认知，不可被掌握和正确修改...&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;同时也导致很多小白萌新入坑失败，在坑内一顿拷打，几乎是头破血流。（毕竟这次炸网我自己也修了接近 3 天，同时还熬了 1.5 个通宵）。&lt;/p&gt;
 &lt;p&gt;软路由圈子里似乎还有一个言论就是“旁路由是一种错误的实践方式”，为此甚至有些帖子下面，你问在旁路由拓扑下的一些问题，一些“大佬”就会直接甩出暴论：“全是旁路由模式的锅，你直接抛弃掉旁路由模式什么问题都没有”......诸如此类的言论。&lt;/p&gt;
 &lt;p&gt;在我看来，至少从我目前了解的认知里，旁路由是一种“因地制宜”的模式，并且在实践层面是可行的，当然其会有种种问题亦或者缺陷，但是模式本身并没有对错。网络拓扑，路由跳转在旁路由下都是可以成功的，那么本身这就是人类对于网络设计的一种实践方式，哪来的对错。&lt;del&gt;当然或许哪天我发现什么无敌的缺陷抛弃这种模式也说不定&lt;/del&gt;。现在的软路由设备本身可能并不具备无线网卡，外加 Openwrt 对于无线的支持似乎一直有一些或多或少的问题，因此将无线交给另一个专门的传统路由是一个非常正确的选择。同时如果不适用旁路由，而是主干路由直接上 Openwrt，本来就是个爱折腾的东西，一旦折腾崩了整个局域网都会 G。秉承着这样的考量下，旁路由模式，主路由负责 DHCP 以及外网沟通，旁路由负责魔法以及其他额外服务，这样即使旁路由爆炸，客户端修改网关和 DNS 到默认的主路由，网络就可以临时恢复，比主路由一炸整个链路就无法使用相比感觉上更好一些。&lt;/p&gt;</description><category domain="https://yuukisama.cc/code/">code</category></item><item><title>Milvus数据迁移</title><link>https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/</link><guid isPermaLink="true">https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/</guid><pubDate>Wed, 16 Apr 2025 15:51:19 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="zero"&gt;&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#zero" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#contents:zero" class="headings"&gt;Zero&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;目前厂子在降本增效，小组里唯一的一台开发用服务器也将要被裁撤，所以需要将其上所有的开发项目迁移到别的服务器上，其中就有 Milvus 2.x 的数据库。因为是使用 docker 容器化部署的所以一开始觉得只需要把外挂文件 down 下来再上传到新的服务器上即可，但是现实是顶着 1MB/s 的速度上传十几 G 压缩包上去之后，重新启用服务挂载目录后并没有任何卵用，数据并没有被正确的识别，翻阅官方有关迁移数据库的文档后才知道需要使用官方提供的工具.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href="https://milvus.io/docs/zh/migrate_overview.md" target="_blank" rel="noopener"&gt;milvus 数据库迁移 https://milvus.io/docs/zh/migrate_overview.md&lt;/a&gt; &amp;gt; &lt;a href="https://milvus.io/docs/zh/from-m2x.md" target="_blank" rel="noopener"&gt;从 Milvus 2.3.x 迁移数据&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://milvus.io/docs/zh/migrate_overview.md" target="_blank" rel="noopener"&gt;milvus 数据库迁移 https://milvus.io/docs/zh/migrate_overview.md&lt;/a&gt; &amp;gt; &lt;a href="https://milvus.io/docs/zh/from-m2x.md" target="_blank" rel="noopener"&gt;从 Milvus 2.3.x 迁移数据&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;本文以 milvus 2.x 的版本为例讲述非升级时迁移 milvus 数据库文件的方案&lt;/p&gt;
 &lt;h2 id="使用官方的备份工具-milvus_backup"&gt;&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#使用官方的备份工具-milvus_backup" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#contents:使用官方的备份工具-milvus_backup" class="headings"&gt;使用官方的备份工具 milvus_backup&lt;/a&gt;&lt;/h2&gt;
 &lt;h3 id="获取备份工具"&gt;&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#获取备份工具" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#contents:获取备份工具" class="headings"&gt;获取备份工具&lt;/a&gt;&lt;/h3&gt;
@@ -2888,7 +3618,8 @@
 &lt;h3 id="创建备份配置"&gt;&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#创建备份配置" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#contents:创建备份配置" class="headings"&gt;创建备份配置&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;在&lt;code&gt;milvus-backup&lt;/code&gt;工具同级目录创建文件夹&lt;code&gt;configs&lt;/code&gt;，并在其中创建备份配置文件&lt;code&gt;backup.yaml&lt;/code&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href="https://raw.githubusercontent.com/zilliztech/milvus-backup/master/configs/backup.yaml" target="_blank" rel="noopener"&gt;官方配置示例文件 backup.yaml&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://raw.githubusercontent.com/zilliztech/milvus-backup/master/configs/backup.yaml" target="_blank" rel="noopener"&gt;官方配置示例文件 backup.yaml&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -3479,7 +4210,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;/div&gt;
 &lt;/div&gt;</description><category domain="https://yuukisama.cc/code/">code</category></item><item><title>初识Agentic RAG</title><link>https://yuukisama.cc/code/%E5%88%9D%E8%AF%86agentic-rag/</link><guid isPermaLink="true">https://yuukisama.cc/code/%E5%88%9D%E8%AF%86agentic-rag/</guid><pubDate>Tue, 03 Sep 2024 10:45:00 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="what-is-agentic-rag"&gt;&lt;a href="https://yuukisama.cc/code/%E5%88%9D%E8%AF%86agentic-rag/#what-is-agentic-rag" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/%E5%88%9D%E8%AF%86agentic-rag/#contents:what-is-agentic-rag" class="headings"&gt;What is Agentic RAG&lt;/a&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Agentic RAG(Agentic Retrieval-Augmented Generation)被誉为一种新的革命性的处理信息方式，其核心在与给RAG框架注入智能以及自主性，使其能够做出自己的决定并采取行动以实现特定目标的Agent.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Agentic RAG(Agentic Retrieval-Augmented Generation)被誉为一种新的革命性的处理信息方式，其核心在与给RAG框架注入智能以及自主性，使其能够做出自己的决定并采取行动以实现特定目标的Agent.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;这样说或许非常的模糊，但是其实可以将Agentic RAG所做的事情分解开来来解释ta究竟与传统RAG的差别。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -3519,7 +4251,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p&gt;综上所述，Agentic RAG是又一次针对传统RAG的一次改进，对传统RAG以及各类知识库应用的一次组装应用，从而再度提升AI智能的能力。&lt;/p&gt;
 &lt;h2 id="agentic-rag实现langgraph"&gt;&lt;a href="https://yuukisama.cc/code/%E5%88%9D%E8%AF%86agentic-rag/#agentic-rag实现langgraph" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/%E5%88%9D%E8%AF%86agentic-rag/#contents:agentic-rag实现langgraph" class="headings"&gt;Agentic RAG实现——LangGraph&lt;/a&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Building language agents as graphs&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Building language agents as graphs&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;LangGraph是langchain推出的用于构建多状态多参与者的大模型应用程序。从“Building language agents as graphs”这句话可以看出其作用，将语言大模型的Agents构建成一个graphs. 有点类似计算机理论中的图论中的知识点：&lt;/p&gt;
 &lt;p&gt;将所有的工具，特定领域模型的Agent定义为这样一张图（工作流，Graph）中的节点，而节点之间的边则有决策函数决定工作流的下一步调用。&lt;/p&gt;
 &lt;p&gt;LangGraph目前有的Features：&lt;/p&gt;
@@ -3715,14 +4448,16 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p&gt;当然这种习惯也一定程度上延伸到了日常的代码习惯中。譬如在工作中完全无法忍受别人代码里混乱的缩进（例如javascript中一会以4空格缩进，一会以2空格缩进，或者干脆没有缩进规范），亦或是某些十分随性的变量命名函数命名，又或者一个冗长到几千行的单一函数...在我看来所有的代码至少都应当遵循某种规范做到统一以方便阅读，同时统一且能言简意赅的简单明了。&lt;/p&gt;
 &lt;p&gt;当然其实也有人说混乱的代码书写习惯其实是一种“防御性编程”——为了让下一个接替你干活的程序员焦头烂额以提升自身在公司工作中的不可替代性。诚然这似乎有点道理，毕竟谁不喜欢离职之后公司求你回去接手烂摊子的爽文呢？不过爽文归爽文，简洁而优雅的代码应当是每个程序员的追求。就像“生活不只有眼前的苟且，还有诗和远方”。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;防御性编程是眼前的苟且，优雅的代码才是诗和远方&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;防御性编程是眼前的苟且，优雅的代码才是诗和远方&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id="有意义的命名"&gt;&lt;a href="https://yuukisama.cc/code/%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E7%AE%80%E6%B4%81%E4%B9%8B%E9%81%93i/#有意义的命名" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E7%AE%80%E6%B4%81%E4%B9%8B%E9%81%93i/#contents:有意义的命名" class="headings"&gt;有意义的命名&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;名副其实&lt;/p&gt;
 &lt;p&gt;变量，函数亦或者是类名应当直截了当的能揭示他为什么存在，做什么事情，应该做怎么用。如果一个变量需要用注释来描述补充其含义，那其就不算名副其实。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;例如表示“过去的天数”，不应当直接使用&lt;code&gt;int days;&lt;/code&gt;之类的名称，而是应当使用&lt;code&gt;int daysSinceCreation;&lt;/code&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;例如表示“过去的天数”，不应当直接使用&lt;code&gt;int days;&lt;/code&gt;之类的名称，而是应当使用&lt;code&gt;int daysSinceCreation;&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;避免误导&lt;/p&gt;
@@ -3789,7 +4524,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;li&gt;
 &lt;p&gt;使用描述性的名称&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;如果每个例程都让你感到深合己意，那就是整洁的代码&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;如果每个例程都让你感到深合己意，那就是整洁的代码&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;不必在意函数名长短，描述清楚函数做的事情例如“includeSetupAndTeardownPages”同时和保证命名方法的一致性，例如“includeSetupPages”&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -3801,7 +4537,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;li&gt;
 &lt;p&gt;尽量避免标识的参数使用&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;例如参数内有个Boolean类型，在true的时候做一件事情，在false的时候做另一件事情(&lt;del&gt;草，个人很喜欢这么写&lt;/del&gt;)&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;例如参数内有个Boolean类型，在true的时候做一件事情，在false的时候做另一件事情(&lt;del&gt;草，个人很喜欢这么写&lt;/del&gt;)&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;如何函数具有两个三个或者三个以上的函数，那么或许ta应该被封装成类&lt;/p&gt;
@@ -3867,7 +4604,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;blockquote&gt;
 &lt;p&gt;注释的恰当用法是弥补我们在用代码表达意图时遭遇的失败。
 代码在变动，在演化，从这里移动到那里，彼此分离，重构之后又合到一起，然而很不幸注释并不会随之变动。
-唯一真正的注释是你想办法不去写注释&lt;/p&gt;&lt;/blockquote&gt;
+唯一真正的注释是你想办法不去写注释&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;尽量使用代码本身来阐述程序行为而不是注释&lt;/li&gt;
 &lt;li&gt;注释里可以存在法律信息这类的&lt;/li&gt;
@@ -3889,17 +4627,20 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;li&gt;在水平空间上，代码的宽度应该尽量保持在一屏的宽度内。（当然目前屏幕宽度五花八门，这个规则一定程度上不是那么严格，但是谁也不喜欢需要拖着滚动条到天荒地老的代码。）&lt;/li&gt;
 &lt;li&gt;水平方向上也应当有何时的区隔和靠近，例如在赋值操作符和运算操作符周围加上空格以强调分割。
 &lt;blockquote&gt;
-&lt;p&gt;在乘法因子之间不加空格，因为他们具有较高的优先级，在加减法之间则增加空格，因为加减法的优先级更低.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;在乘法因子之间不加空格，因为他们具有较高的优先级，在加减法之间则增加空格，因为加减法的优先级更低.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;水平对齐不是必须的&lt;/li&gt;
 &lt;li&gt;尊崇团队的规则，如果你在某个开发团队工作。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="对象和数据结构"&gt;&lt;a href="https://yuukisama.cc/code/%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E7%AE%80%E6%B4%81%E4%B9%8B%E9%81%93i/#对象和数据结构" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E7%AE%80%E6%B4%81%E4%B9%8B%E9%81%93i/#contents:对象和数据结构" class="headings"&gt;对象和数据结构&lt;/a&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;将变量设置为“私有”的一个里有：我们不希望其他人以来这些变量，使得我们能在心血来潮时修改其类型或者实现。那么为什么还是有很多程序员给自己的似有对象自动添加赋值器，取值器呢，将私有变量公之于众，如同他们他们根本就是共有变量一般呢？&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;将变量设置为“私有”的一个里有：我们不希望其他人以来这些变量，使得我们能在心血来潮时修改其类型或者实现。那么为什么还是有很多程序员给自己的似有对象自动添加赋值器，取值器呢，将私有变量公之于众，如同他们他们根本就是共有变量一般呢？&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;del&gt;暴露了绿帽奴本质&lt;/del&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;隐藏实现并非仅仅只是在变量之间放上一个函数层这么简单。隐藏实现关乎抽象！类并不是简单的用取值器和赋值器将其变量向外推，而是暴露抽象接口以便用户无需了解数据的实现就可以操作数据的本体。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;隐藏实现并非仅仅只是在变量之间放上一个函数层这么简单。隐藏实现关乎抽象！类并不是简单的用取值器和赋值器将其变量向外推，而是暴露抽象接口以便用户无需了解数据的实现就可以操作数据的本体。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id="数据对象的反对称性"&gt;&lt;a href="https://yuukisama.cc/code/%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E7%AE%80%E6%B4%81%E4%B9%8B%E9%81%93i/#数据对象的反对称性" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E7%AE%80%E6%B4%81%E4%B9%8B%E9%81%93i/#contents:数据对象的反对称性" class="headings"&gt;数据，对象的反对称性&lt;/a&gt;&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;数据
@@ -3932,7 +4673,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;li&gt;该对象的方法参数&lt;/li&gt;
 &lt;li&gt;由该对象创造的局部对象&lt;/li&gt;
 &lt;li&gt;全局变量（尽管现代编程中尽量避免使用）&lt;/li&gt;
-&lt;/ul&gt;&lt;/blockquote&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -4079,7 +4821,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;ul&gt;
 &lt;li&gt;对扩展开放（Open for extension）&lt;/li&gt;
 &lt;li&gt;对修改关闭（Closed for modification）&lt;/li&gt;
-&lt;/ul&gt;&lt;/blockquote&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;给出异常发生的环境说明&lt;/li&gt;
 &lt;li&gt;依据调用者的需要定义异常类，确保返回统一的异常类型方便定位问题归类异常。&lt;/li&gt;
@@ -4226,7 +4969,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;h2 id="并发编程"&gt;&lt;a href="https://yuukisama.cc/code/%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E7%AE%80%E6%B4%81%E4%B9%8B%E9%81%93i/#并发编程" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E7%AE%80%E6%B4%81%E4%B9%8B%E9%81%93i/#contents:并发编程" class="headings"&gt;并发编程&lt;/a&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;对象是过程的抽象。线程是调度的抽象 ——James O Coplien
-并发是一种解耦策略，帮助我们将目的和时机分离开来。在单线程中，目的和时机紧密耦合。解耦目的与时机可以显著改进程序的吞吐量和结构。&lt;/p&gt;&lt;/blockquote&gt;
+并发是一种解耦策略，帮助我们将目的和时机分离开来。在单线程中，目的和时机紧密耦合。解耦目的与时机可以显著改进程序的吞吐量和结构。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;并发并不总是能改进性能，只有当多个线程与处理器之间分享大量的等待时间是才是管用的。&lt;/p&gt;
@@ -4387,7 +5131,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;blockquote&gt;
 &lt;p&gt;联排表达式即超长的链式调用result = data.filter().map().reduce().append()&lt;/p&gt;
 &lt;p&gt;匈牙利语标记法：以特定前缀来标记变量类型：strUsername,strPassword&lt;/p&gt;
-&lt;p&gt;魔术数：代码中直接出现的而没有被专门声明具备常量类型的数字常量&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;魔术数：代码中直接出现的而没有被专门声明具备常量类型的数字常量&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;位置错误的权责: 最小惊异原则，代码应当被放在读者自然而然期待的地方。&lt;/p&gt;
@@ -4784,7 +5529,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;h2 id="基础概念"&gt;&lt;a href="https://yuukisama.cc/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/#基础概念" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/#contents:基础概念" class="headings"&gt;基础概念&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;在现代操作系统中（例如windows，linux等基于分时系统设计的操作系统），常有的观念是&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;一个程序至少包含一个进程，而一个进程又至少包含一个线程。线程是程序真正的执行单元。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;一个程序至少包含一个进程，而一个进程又至少包含一个线程。线程是程序真正的执行单元。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;线程与进程的调度控制由操作系统决定。在现如今的多核CPU情况下，多数时候是一个核心可以同时“并行”两个线程。因此常可以听到类似“这个cpu是双核四线程”这种描述。然而需要注意的是这里的“并行”是打引号的。因为实际上CPU的核心只可以顺序执行一系列的机器指令，且在早期的CPU设计中，一个核心同一时刻只可以运行一个线程。&lt;/p&gt;
 &lt;p&gt;Intel在2022年推出了“超线程（Hyper-Threading）技术”，这一技术的出现使得CPU可以实现“单个核心双线程”。简单的理解这个技术就是单线程时代的CPU实际上在单个时间片内是有处理能力冗余的，因此Intel为单个核心额外添加一小部分资源就可以实现同时运行第二个线程。&lt;/p&gt;
 &lt;p&gt;到目前为止我们讨论了的是现代基于分时系统设计的操作系统，然而其实在早期的计算机设计中（例如早期的UNIX,linux 2.4以及更早的版本中），进程（Process）才是程序的基本执行单元。(当然那个时候也还没有线程这个概念)&lt;/p&gt;
@@ -4794,7 +5540,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p&gt;相较于线程这种“抢占式多任务”由操作系统本身决定切换时机，协程则要求运行中的每一个执行单元定期放弃自己的执行权力，同时告知作业系统可以调度下一个执行单元。&lt;/p&gt;
 &lt;p&gt;在实际的应用实现中，线程进程是操作系统提供的接口，而协程更多的是编程语言本身对进程线程调度的优化实现（即线程进程的调度系统是操作系统本身，而协程的调度系统是由编程语言本身依靠操作系统进程线程特性实现的）。例如python以及go语言中对于协程的设计。更加具象化一点说：你可以在操作系统里找到进程ID,线程ID但是找不到协程ID.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;总结: 在现代计算机中，一个程序至少包含一个进程，一个进程又至少包含 一个线程。线程是操作系统的最小执行单元。协程是依靠进程线程特性而设计出的一种调度方法。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;总结: 在现代计算机中，一个程序至少包含一个进程，一个进程又至少包含 一个线程。线程是操作系统的最小执行单元。协程是依靠进程线程特性而设计出的一种调度方法。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;在接下来的文章中为了避免中文语境下的混淆，我们规定进程即Process,线程即Thread, 协程即Coroutine.&lt;/p&gt;
 &lt;h2 id="进程线程之间的关系"&gt;&lt;a href="https://yuukisama.cc/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/#进程线程之间的关系" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/#contents:进程线程之间的关系" class="headings"&gt;进程线程之间的关系&lt;/a&gt;&lt;/h2&gt;
 &lt;h3 id="生命周期"&gt;&lt;a href="https://yuukisama.cc/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/#生命周期" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/#contents:生命周期" class="headings"&gt;生命周期&lt;/a&gt;&lt;/h3&gt;
@@ -4980,7 +5727,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p&gt;C++ 在C++11中添加了操作线程的库thread，提供对线程操作的进一步封装，这个库底层使用Pthread, 采用了1：1的线程模型。&lt;/p&gt;
 &lt;h3 id="java"&gt;&lt;a href="https://yuukisama.cc/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/#java" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/#contents:java" class="headings"&gt;Java&lt;/a&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;1：1的线程模型最早被称为“绿色线程”&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;1：1的线程模型最早被称为“绿色线程”&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;在Java中用户态线程完全由JVM去管理，早期JVM中的线程模型采用的是对对一的设计，即多个用户线程对应一个操作系统线程。但随着操作系统对线程的支持性的完善，目前JVM内核线程实现了1：1的对应实现。即一个Java线程对应一个内核线程。但是Java的线程堆栈大小固定，随着线程数量创建的越来越对有可能最终导致内存溢出。于是在Java19的版本中引入了“虚拟线程”的概念，虚拟线程具有一个动态的堆栈， 可以增大和缩小，这就实现了和操作系统多对多的线程模型。&lt;/p&gt;
 &lt;p&gt;一对一的线程模型相对而言维护起来较为简单，但是由于每个线程栈信息固定，不利于创建大量线程，且多线程操作会涉及到频繁的系统调用，上下文切换代价高。&lt;/p&gt;
 &lt;h3 id="python"&gt;&lt;a href="https://yuukisama.cc/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/#python" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%8F%E7%A8%8B/#contents:python" class="headings"&gt;Python&lt;/a&gt;&lt;/h3&gt;
@@ -5041,7 +5789,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;--global参数为该设置为全局配置，如果没有该参数，且命令运行在git项目目录环境下，则此次配置仅针对该项目。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;--global参数为该设置为全局配置，如果没有该参数，且命令运行在git项目目录环境下，则此次配置仅针对该项目。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;当然全局代理具有一定的局限性，因为在实际工作中除了Github还会使用很多其他的代码仓库，例如gitlab等等，并不是所有的仓库都需要走代理&lt;del&gt;浪费流量&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;以下配置是针对Github的HTTP协议走代理&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -5144,7 +5893,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p&gt;尽管挖矿热潮逐渐消退，以太坊等一众主流虚拟货币不再推荐显卡挖矿。但是还是不乏一些恶趣味的黑客秉着“蚊子在小也是肉的原则”在公共网络上扫描网段寻找可用的肉鸡目标。&lt;/p&gt;
 &lt;p&gt;上家公司做私有云相关的业务，机器隔三差五就被日。其中最常见的就是挖矿病毒XMRig&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href="https://github.com/xmrig/xmrig" target="_blank" rel="noopener"&gt;XMRig&lt;/a&gt; 是一款高性能、开源、跨平台 RandomX、KawPow、CryptoNight 和 GhostRider 统一 CPU/GPU 挖矿程序和 RandomX 基准测试。官方二进制文件适用于 Windows、Linux、macOS 和 FreeBSD。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/xmrig/xmrig" target="_blank" rel="noopener"&gt;XMRig&lt;/a&gt; 是一款高性能、开源、跨平台 RandomX、KawPow、CryptoNight 和 GhostRider 统一 CPU/GPU 挖矿程序和 RandomX 基准测试。官方二进制文件适用于 Windows、Linux、macOS 和 FreeBSD。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;简单讲XMRig本身只是单纯的用于&lt;a href=""&gt;门罗币Monero&lt;/a&gt;/&lt;a href=""&gt;比特币&lt;/a&gt;的挖矿软件，但是常被黑客搭配保活程序作为挖矿病毒使用。&lt;/p&gt;
 &lt;h2 id="first"&gt;&lt;a href="https://yuukisama.cc/code/%E8%AE%B0%E4%B8%80%E6%AC%A1xmrig%E6%9C%A8%E9%A9%AC%E6%9F%A5%E6%9D%80/#first" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/%E8%AE%B0%E4%B8%80%E6%AC%A1xmrig%E6%9C%A8%E9%A9%AC%E6%9F%A5%E6%9D%80/#contents:first" class="headings"&gt;First&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;保活进程解析,我们将进程检索结果中这一大串异常的东西拿出来看看。&lt;/p&gt;
@@ -5352,7 +6102,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p&gt;&lt;code&gt; find / -path &amp;quot;/remote-home&amp;quot; -prune -o -name &amp;quot;updat3&amp;quot; -print&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src="./2.PNG" alt="" /&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;其实这里有个误区，因为当时公司做的是私有云服务，服务器主机中病毒后潜意识的以为病毒程序在宿主机中，但是事实上在容器内，所以一开始各种主机范围内目录的搜索都没有结果，百思不得其解&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;其实这里有个误区，因为当时公司做的是私有云服务，服务器主机中病毒后潜意识的以为病毒程序在宿主机中，但是事实上在容器内，所以一开始各种主机范围内目录的搜索都没有结果，百思不得其解&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;定位完成后删除所有相关文件&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -5384,7 +6135,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p&gt;&lt;del&gt;得了吧，迄今为止我丝毫没有作为一个女性的自觉,大多数时候...&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;Anyway, be yourself&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;MTF,跨性别是一个与自我与世界获取认同亦或是和解的过程。在这个过程中你可能需要经历女装，学习化妆，美容，服用药物，RLE 乃至到最后 SRS 等等这些步骤。但并不是所有人都需要走完所有这些步骤。在进行到任何一步的时候，如果你已经可以以你认为舒适的样子生活，那就足够了。&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;MTF,跨性别是一个与自我与世界获取认同亦或是和解的过程。在这个过程中你可能需要经历女装，学习化妆，美容，服用药物，RLE 乃至到最后 SRS 等等这些步骤。但并不是所有人都需要走完所有这些步骤。在进行到任何一步的时候，如果你已经可以以你认为舒适的样子生活，那就足够了。&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id="start"&gt;&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#start" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#contents:start" class="headings"&gt;Start&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;把时间倒退回一年多以前，记忆模糊了。&lt;/p&gt;
 &lt;p&gt;温带季风气候的北京刚从冬天中苏醒过来，樱花匆匆开过，北风依旧时不时掠过，并在暗处伺机而动。所有人还在“大健康 ”时代，核酸，大白，一如既往的常见。&lt;/p&gt;
@@ -5427,7 +6179,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p&gt;当日术前的日子里还需要面见心理医生，以及面见主导医生聊手术方案（语言的话中介会充当翻译，当然如果你英语过硬也可以自己和医生对话一些。或者你泰语过硬...）缴全款之类的。心理医生的话是因为泰国方面手术要求有两位心理医生对你做过心理咨询确认你的手术意愿并出具证明。当日如果你在国内有时间可以找国内的心理咨询医生出具相关证明，这样可以不用在太过花心理医生的钱。不过我手术排期并没有留给我在国内找心理医生的时间，而且光是做一些术前检查的就已经够麻烦了，心理医生都不知道国内哪个医生愿意开这种东西，我可能又要经历一遍被医生轰出来的过程 2333.&lt;/p&gt;
 &lt;p&gt;当然也有一些术前需要买的物品，毕竟术后得在床上躺好一段时间，没法自由活动，有一些必备的护理用品得提前买上。当然不同医院的护理要求不一样，所用到的物品也不一样。我这边的话大概就是：卫生巾（超大夜用款）&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;因为你会在接下来的半个月内补上这辈子欠下的姨妈期&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;因为你会在接下来的半个月内补上这辈子欠下的姨妈期&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;以及护理垫：因为会侧漏...&lt;/p&gt;
 &lt;p&gt;当然也有的医院的护理会要求用到碘伏和生理盐水，这两样东西用量很大，而且很重，得提前买足。&lt;/p&gt;
 &lt;h3 id="有关泰国的一些有趣的事实"&gt;&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#有关泰国的一些有趣的事实" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#contents:有关泰国的一些有趣的事实" class="headings"&gt;有关泰国的一些有趣的事实&lt;/a&gt;&lt;/h3&gt;
@@ -5444,13 +6197,15 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;h2 id="two---before-surgery"&gt;&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#two---before-surgery" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#contents:two---before-surgery" class="headings"&gt;Two - Before surgery&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;欢乐的时光总是短暂的，很快就来到了禁食的日子里。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;其实是前两日流食，第三日禁食，只允许和糖水，例如可乐。但是我是个狠人索性，&lt;del&gt;其实是没看清要求&lt;/del&gt;三天全靠糖水度过。同时哪怕禁食了还在四处乱跑着玩&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;其实是前两日流食，第三日禁食，只允许和糖水，例如可乐。但是我是个狠人索性，&lt;del&gt;其实是没看清要求&lt;/del&gt;三天全靠糖水度过。同时哪怕禁食了还在四处乱跑着玩&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;最后一天，也是受难日开始的第一天～
 &lt;img src="image-7.png" alt="Alt text" /&gt;&lt;/p&gt;
 &lt;p&gt;术前最后一天需要吃泻药，先是药片泻药，再是液体泻药，俗称雪碧？大概是因为包装是绿色的？还是说和雪碧混着喝会能接受一点。&lt;/p&gt;
 &lt;p&gt;药片泻药是开胃小菜几乎没什么感觉，但是到了液体就不一样了。可以说是被焊接在了马桶上...在喷水...喝的同时得保证电解质的摄入，推荐便利店卖的大瓶椰子水（至少我很喜欢，嘟囔）&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;题外话，入住的酒店每天提供早餐。术前可以到饭点去餐厅，术后的话每天会给你送到房门口。而且每天会有保洁打扫，每天房间除了提供瓶装矿泉水外还有可乐和雪碧&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;题外话，入住的酒店每天提供早餐。术前可以到饭点去餐厅，术后的话每天会给你送到房门口。而且每天会有保洁打扫，每天房间除了提供瓶装矿泉水外还有可乐和雪碧&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;PS： 手术前安排和主刀医生面诊的时候也会给你参观术后病房。私人医疗的配置是真不是盖得，医院的环境可以说是不像医院了233，有专门的前台，会客厅。以及住院病房全部都是单人间带有电动病床(这个床超方便，一个人也可以很方便的实现自理)，电视机，以及单独的浴室和洗漱间，以及一个陪床人员可用的小沙发。&lt;/p&gt;
 &lt;p&gt;电视免费提供网飞账号，所以术后在病房的日子都靠看美剧打发时间了，当然后面休养的时候也是, 不过旅店的电视机上并没有免费的网飞, 需要自己去某宝买个共享账号？&lt;/p&gt;
 &lt;p&gt;对还有超大的落地窗！据说这个医院是主刀医生干了这么多年这几年才自己出资盖好的。所以也可以算是最新落成的所以各种条件设施都是当时比较新的。
@@ -5459,7 +6214,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p&gt;Times fly～&lt;/p&gt;
 &lt;p&gt;终于到了术前第0天！手术是安排在上午&lt;del&gt;还是下午来着...忘了&lt;/del&gt;,反正是在白天，所以早上六点就会有医院的司机接去医院。但是我说过：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;这个司机在后来的日子里都在疯狂放我鸽子...&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;这个司机在后来的日子里都在疯狂放我鸽子...&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;也有可能是早高峰的原因，总之司机迟到了一点。&lt;/p&gt;
 &lt;p&gt;到医院之后先是换上病号服（手术服）以及专门的拖鞋，泰国私立医院的病号服甚至还有一点好看，颜色是深褐色搭配紫色的封边，和医院整体颜色设计是挂钩的&lt;del&gt;而且是开档的&lt;/del&gt;.当然我一开始穿反了，病号服是类似大褂一样，但是是反穿的开口在后面.当然我其实听懂了护士说要反着穿的,但是那样觉得好怪异（所有的医护人员都可以和他们英语交流，这一点到后面日常生活中的外卖员，路边小贩，出租车司机等也是），所以出了更衣室后被护士看到了被护士姐姐当场扒了重穿...&lt;/p&gt;
 &lt;p&gt;换好病号服后会带去自己的病房，然后等待护士来给你备皮&lt;del&gt;羞耻时刻&lt;/del&gt;.当然趁着等护士的时间跑去看了看之前比我早来几天的姐妹，比我早来几天也是比我早几天手术。手术后会憔悴好多，不过好在人家是亲妈一起跟来的。当然这位妈妈后面也给了我很多照顾，在这里非常感激干妈～&lt;/p&gt;
@@ -5476,7 +6232,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p&gt;在医院住院的期间也会提供三餐，但是因为还没有拆包（下体现在被裹的严严实实的&lt;del&gt;只留了个屁眼子在外面x&lt;/del&gt;）所以前几天提供的是很清淡以汤和饼干饮料等为主。同时一起送来的还有每餐要吃的药，包括消炎药以及止痛药等。当然吊瓶也是不会停的。说回餐食，除了饼干之外的送的汤其实有几种，但是个人不喜欢西式奶油蘑菇那种浓汤，于是一般喝两口就不吃了。但是在有一次上了一个类似紫菜蛋花汤汤的蔬菜汤我喝完了之后，大概是医院的人以为我更喜欢紫菜蛋花汤，于是接下来的每一餐都是紫菜蛋花汤！！！！于是我过上了顿顿紫菜蛋花汤的日子！！！！暴雨哭泣。当然这也为我后面下地留下了隐患，这样的餐食真的没有多少糖分，然后一下地你就可能低血糖晕倒。所以推荐后面的姐妹在下地当天可以找人买瓶可乐，或者吃点高能量的东西，不然真的会晕。&lt;/p&gt;
 &lt;h2 id="four"&gt;&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#four" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#contents:four" class="headings"&gt;Four&lt;/a&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;术后最难受的不是第一天，而是第二天。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;术后最难受的不是第一天，而是第二天。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;因为到了这一天基本上手术的麻药劲就过去了，你可以开始逐渐感知到下体的存在，感知到痛，感知到肿胀感，当你尝试类似坐起的姿势或者上半身角度较大的姿势的时候会感觉到明显的下体的坠痛。&lt;/p&gt;
 &lt;p&gt;这时候会有那么一两个夜晚非常难熬，疼痛，发热会不断折磨你。当然这时候可以和护士说，护士会给你一片额外的止痛药。如果疼痛还是无法缓解会给你上吗啡。&lt;/p&gt;
 &lt;p&gt;但是吗啡其实扎完并没有好受太多，你会依旧感觉到痛苦，不过意识会逐渐变沉，你会很快昏睡过去。所以至少依靠它你可以熬过这样一个难熬的夜晚。&lt;/p&gt;
@@ -5488,7 +6245,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;img src="image-10.png" alt="Alt text" /&gt;&lt;/p&gt;
 &lt;p&gt;在术后第三天晚上的时候作死自己尝试下地，差点晕过去，好在快要晕倒之前按下了护士铃。同时以及拔了引流管后就一直在飚血，当时很感叹自己能不能明天出院。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;所以手术其实也是一个非常考验心态的过程。术后休养的日子里，身体的痛苦，行动的不便，血肉模糊的下体都可能让你的心情变得非常糟糕。当时有一度怀疑自己能否活着离开泰国？当然这是夸张的想法，因为会担惊受怕担心留下后遗症等等。所以如果是原先就有心理疾病的姐妹一定要注意调整好自己心理状态做好心理评估再决定手术。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;所以手术其实也是一个非常考验心态的过程。术后休养的日子里，身体的痛苦，行动的不便，血肉模糊的下体都可能让你的心情变得非常糟糕。当时有一度怀疑自己能否活着离开泰国？当然这是夸张的想法，因为会担惊受怕担心留下后遗症等等。所以如果是原先就有心理疾病的姐妹一定要注意调整好自己心理状态做好心理评估再决定手术。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;在手术前医生会询问你现在最近是否有吃什么额外的药物，尤其是治疗心理疾病相关的。一方面是给麻醉等用药做考量，另一方面是为术后恢复做评估。在术后如果你精神状态及其不佳，医院也会提供类似镇静类药物以及安眠类药物等。当然你有一些之前持续服用的精神类药物，在医生考量安全后术后恢复住院的过程中也可以让护士拿给你吃。除此之外每天会有护工安排给你擦拭身体，更换病号服和床单整套之类的。&lt;/p&gt;
 &lt;p&gt;不过即使是拔完引流管后一直飙血的状态下，医生还是安排出院了。这里要吐槽无论你问医生或者护士你啥啥啥情况咋回事他们都只会用英文告诉你：Oh, that's ok. That's normal.某种程度上这也是让人焦虑的原因之一。&lt;/p&gt;
 &lt;p&gt;出院那天，依旧是护士推来轮椅。所以昨天下地差点晕倒的我今天就要坐着轮椅，坐着救护车，对，坐着。在救护车上是坐着的状态经历一路颠簸回到旅馆，这期间全靠双手撑着座椅来给自己下体减少一点压力。当时的面色几乎是可以用惨白来形容。&lt;/p&gt;
@@ -5502,7 +6260,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p&gt;热带的雨季，时不时会伴随着雷暴天气，躺在酒店屋子里的听起来就是纯天然的白噪音很舒适。听着雨滴打在屋顶上，窗户上的声音，隐隐的雷鸣伴随着蛙鸣。当然也会有很大声很吓人的响雷啦，不过我可不是害怕打雷的小孩了。不过一样住在这里的其他几位小姐妹就未必了2333.&lt;/p&gt;
 &lt;p&gt;其实到泰国来做手术后发现，能走到手术这一步并且来到泰国的跨性别者大多数都是很努力亦或者很有天赋能力的一群人。因为天朝的愚蠢规定哪怕成年了手术也需要父母同意，所以能来泰国的大多数都是自己努力过来的。又同时因为出国手术是一笔不菲的费用所以能自己努力过来的又大多很是优秀。例如就认识了一位虽然还是学生，但是已经可以做讲师在外讲课的大佬，亦或是年纪轻轻百万存款的有为青年，还有大学被迫辍学却自学成才高薪收入的大佬。相比较之下我这个失业社畜反而相形见绌。当然也有家长支持过来的，因为觉得泰国的技术毕竟更好一些，但是在这个圈子里家长党真的是少数。更多的是这样一群努力活着的人，也希望更多的人能过上自己 想要的生活。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;不像普通人一样，这个圈子里的孩子们还需要与几乎整个世界为敌，当家庭这种被誉为港湾的地方也演变成吃人不吐骨头的浅礁石岸，唯有只身一人对抗充满暴雨雷霆的大海。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;不像普通人一样，这个圈子里的孩子们还需要与几乎整个世界为敌，当家庭这种被誉为港湾的地方也演变成吃人不吐骨头的浅礁石岸，唯有只身一人对抗充满暴雨雷霆的大海。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;自住院以来其实一直没有机会洗头，所以直到第六天我的毛已经近乎成了鸡毛毽子。于是乎在我绝顶的聪明才知下，我完成了在未拆包情况下一个人给自己洗头的壮举。&lt;/p&gt;
 &lt;p&gt;其实是依靠酒店床尾的躺椅，把它拖到厕所里然后躺在躺椅上用花洒给自己洗头。当然这一番折腾下来我连吹干头发的力气都没有就瘫软在床上了。&lt;/p&gt;
 &lt;p&gt;在酒店的日子早餐以外就得自己的点外卖了。术后医生有叮嘱饮食上不能太过油腻，油炸制品，或者海鲜等不推荐吃，所以kfc是不用想了（当然其实自己也吃了点问题不大，但是警惕还是要遵医嘱，因为有翻车的），同时术后也推荐你使用蛋白粉一类的，也就是说饮食要多补充蛋白质以保证身体恢复，然后医院有推荐一种蛋白粉。但是我想了想与其把钱花在难吃且贵的蛋白粉上（其实据说医院推荐的蛋白粉味道还不错），不如多花点钱在点的外卖上，于是那段时间我就各种牛排的炫。太过也有类似国内的外卖软件，不过有意思的是泰国的外卖员很多都是自行车送餐。当然时效还都可以保证，而且自行车想来他们应该不会像国内美团饿了么那么卷吧。&lt;/p&gt;
@@ -5517,7 +6276,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p&gt;第一次插入的同时会利用模具上的刻度测量深度，护士会告诉你深度是多少，并且以后通模具都要尽力保证到这个深度。当然在教学中有一次护士看我下不去手给我捅的交出来了&lt;del&gt;捂脸&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;说实话，通模具其实可以说是这个手术最痛苦的部分，当然其实不同医生不同手术的实现效果不同，最后通模具的要求也不同。而我这个的要求则是术后两年内，每日一体三次一次1h,两年后保证一周一次（在有规律性生活的前提下），然后这个几乎要伴随一辈子？说实话这样的要求很难保证，而且模具升级尺寸的过程非常痛苦，有不少人是手术的恢复痛没有掉过一滴眼泪，但是摆在了模具手上。也有不少人在术后不久就放弃了通模这个事情，因为太费时间精力以及痛苦了。当然其实也有相对而言轻松的手术方法，通模要求，但是基本上只要你选择了做人造阴道，那么通模这个过程就不可避免。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;所以在这里对所有考虑手术的姐妹说上一句，手术并不只是开个刀这么简单，还有后期的护理维护。这些过程你都要作为你是否能将接受考量的部分，深思熟虑，三思而后行。&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;所以在这里对所有考虑手术的姐妹说上一句，手术并不只是开个刀这么简单，还有后期的护理维护。这些过程你都要作为你是否能将接受考量的部分，深思熟虑，三思而后行。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;其实直到真正拆包之后你才真正感觉手术做完了，因为幻肢效应在这之前你会觉得某个惹人厌的东西其实只是被包起来藏在了这对纱布里。直到你真正看到平坦的小腹，看到穿上胖次后再也没有的突起，内心才变得真正如释重负。&lt;/p&gt;
 &lt;p&gt;当然即使拆包的当天我还是没能摘掉导尿管，于是后面的日子里还是要滴溜着导尿管四处溜达（其实也没有四处，基本就在酒店）。拆包之后每天都要垫着卫生巾和护垫，毕竟时不时还是会飙血。与此同时我也体验到了类似姨妈的感觉，你可以在每天起床起身站起来之后感觉到下体“哗啦哗啦”流淌的感觉(这个拟声形容词还是我初中同桌描述过的)，同时也体会到了即使是垫着夜用也会侧漏的结果。这期间还花了点时间弄明白卫生巾哪一边是前面那一边是后面？&lt;/p&gt;
 &lt;p&gt;当然拆包还有另一个好处就是意味着终于可以洗澡了！&lt;/p&gt;
@@ -5538,7 +6298,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p&gt;复诊当天还是那个司机会把你接到医院（对他又迟到了）。再次见到了主导医生，会询问一下基础情况，然后会被带到检查室。&lt;del&gt;在这里人生第一次体验了妇科检查椅子，以及阴道扩张器&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;在躺上椅子后医生会把两腿放在两边支架上，随后会使用扩张器查看一下内部恢复情况。我选择的这位医生是出了名的会长肉芽。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;肉芽: 顾名思义，是人体在身体内部出现空腔损伤后身体自发修复过程中长出的小肉块。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;肉芽: 顾名思义，是人体在身体内部出现空腔损伤后身体自发修复过程中长出的小肉块。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;如果有肉芽一般会使用电刀帮你切掉（不打麻药的...）当然如果你实在觉得痛可以在给你打麻药，但是好像要另外加钱。除了这些流程之外还会测试阴蒂的敏感程度。~~啊，几乎就是用棒子给电了以下，下意识的就叫出来了！！！~~此外后还会拍照，照片可能会作为后面医院自己宣传使用吧，当然你也以要一份。&lt;/p&gt;
 &lt;p&gt;我个人情况是恢复的ok,也没有肉芽（说是没有但是检查的时候还是感觉医生用了电刀切了什么，因为闻到了烤肉的味道？）&lt;/p&gt;
 &lt;p&gt;到第三十二天护士来把外部的缝合线拆了拆，接下来也就会踏上回国旅途了。当然其实很多线材都是可吸收线，但是因为恢复的很好可吸收线反而成了愈合的阻碍（身体感知到可吸收线这个异物的存在会在缝合处发炎）&lt;/p&gt;
@@ -5551,7 +6312,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p&gt;送完阿姨之后在机场，我接上和我同行回国的小姐妹后，两人一起做完自测核酸试纸就准备登机了。这之中还有个插曲，理论上手术后身体不适合长期步行是可以申请机场轮椅服务的，当然服务需要出具医疗证明。这个证明在出院的时候院方就给出了，但是到我在机场尝试申请轮椅服务时泰航的工作人员却告诉我需要十五日内的证明。然而手术已经是一个前的事情了？！于是无奈又打电话给中介让中介麻烦医院重新给一份电子的证明。但是这个情况之后泰国航空遇到了，在其他航空公司哪怕是国内航司都是只需要口头申请或者电话确认就可以安排，甚至连证明都不需要看。&lt;/p&gt;
 &lt;p&gt;有了轮椅服务之后会有工作人员一路推着到登机口上飞机，而且飞机上的普通经济舱也会帮忙免费升舱到舒适经济舱，同时优先登机免于排队。当然这两位泰航的工作人员还示意要了小费。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;其实之前忘记提了，泰国也是一个有小费文化的国家，当然没有美国那么过分。我个人对于小费的态度是入乡随俗，毕竟多数服务人员真的很辛苦。某个暴雨的夜晚在酒店不小心打碎了可乐瓶（酒店送的可乐是玻璃瓶装的，顺便忘记说了我住的酒店房间是可以赤脚进入的，我一般也会选择赤脚），打电话给酒店前台后一位阿姨披着雨披跑来很细致的清理干净了，于是给了挺多的小费，当然本来这个额外的房间清理服务是免费的。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;其实之前忘记提了，泰国也是一个有小费文化的国家，当然没有美国那么过分。我个人对于小费的态度是入乡随俗，毕竟多数服务人员真的很辛苦。某个暴雨的夜晚在酒店不小心打碎了可乐瓶（酒店送的可乐是玻璃瓶装的，顺便忘记说了我住的酒店房间是可以赤脚进入的，我一般也会选择赤脚），打电话给酒店前台后一位阿姨披着雨披跑来很细致的清理干净了，于是给了挺多的小费，当然本来这个额外的房间清理服务是免费的。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id="ten---hongkong"&gt;&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#ten---hongkong" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#contents:ten---hongkong" class="headings"&gt;Ten - Hongkong&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;抵达香港之后同样是会有航司的工作人员带着轮椅在下机口等待。然后一路推着来到香港入境处，临时入境的中国人可以在香港待的时间是有限制的。在入境香港后的入境深圳是需要抽签的，然后我和同行的小姐妹分别抽中了不同的批次，所以我在 送走她之后还可以在香港自己玩两天。&lt;/p&gt;
 &lt;p&gt;在香港的几天一个人玩的很自在，其实在后期我恢复的已经很不错了，相较于同行走几步就不行的小姐妹我基本可以在外头走一天。不过可惜的是没有去香港的本岛，更多的是在九龙一块区域玩，和香港本岛隔海相望。&lt;/p&gt;
@@ -5570,7 +6332,8 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p&gt;当然在香港入境前还需要每日做核酸检测，当然香港的核酸点其实也多数是为了大陆人服务。香港人自己基本不太做核算了。而且讲道理我们入境之后必须采取自我隔离的态度，不允许去什么公共店铺吃饭之类的，但是依稀记得有个餐馆的老板的态度是去他妈的核酸。&lt;/p&gt;
 &lt;p&gt;一些有关香港有意思的事情，在九龙有很多歌舞厅，这一点香港给人一种还在上个世纪的恍如隔世的感觉，门口招牌上也是宛如上世纪的风格。搭配上复古的灯牌，老香港的味道。同时还有一些有意思的店是会有簧片专卖店？当然没有进去过，似乎是书籍和CD都会卖。甚至路边还会有摆摊卖小玩具的，提到小玩具其实还要说一嘴：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;在泰国色情玩具和赌博是违法的，如果携带玩具或者是纸牌一类的入境可能要注意？&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;在泰国色情玩具和赌博是违法的，如果携带玩具或者是纸牌一类的入境可能要注意？&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;img src="image-21.png" alt="Alt text" /&gt;&lt;/p&gt;
 &lt;p&gt;目前为止，是我旅途最后一段在墙外了，说实话还是比较珍惜这段时光的。世界真的很大，应该多去看看。&lt;/p&gt;
 &lt;h2 id="eleven---back-to-wall"&gt;&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#eleven---back-to-wall" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/life/%E8%AE%B0%E4%B8%80%E5%9C%BA%E6%97%85%E8%A1%8C/#contents:eleven---back-to-wall" class="headings"&gt;Eleven - Back to wall&lt;/a&gt;&lt;/h2&gt;
@@ -9119,7 +9882,8 @@ randomblob()函数生成指定长度的随机字符串。当这个长度足够�
 &lt;li&gt;
 &lt;p&gt;&lt;a href="https://zh.wikipedia.org/wiki/C%E8%AF%AD%E8%A8%80" target="_blank" rel="noopener"&gt;维基百科&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;重点&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;重点&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;C语言是一门&lt;strong&gt;面向过程&lt;/strong&gt;的&lt;strong&gt;高级语言&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;C语言仍然保持跨平台特性&lt;/li&gt;
@@ -10970,7 +11734,8 @@ randomblob()函数生成指定长度的随机字符串。当这个长度足够�
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;注意：C语言中的数组下标从0开始，这里我们定义了一个长度为100的数组a，但是其下标范围事实上是从0到99&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;注意：C语言中的数组下标从0开始，这里我们定义了一个长度为100的数组a，但是其下标范围事实上是从0到99&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;hr /&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -11893,7 +12658,8 @@ randomblob()函数生成指定长度的随机字符串。当这个长度足够�
 &lt;p&gt;如果觉得博客有问题，欢迎邮件交流。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</description><category domain="https://yuukisama.cc/code/">code</category><category domain="https://yuukisama.cc/tags/c/c-/">C/C++</category></item><item><title>word2vec词向量训练</title><link>https://yuukisama.cc/code/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/</link><guid isPermaLink="true">https://yuukisama.cc/code/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/</guid><pubDate>Wed, 13 Mar 2019 10:26:22 +0000</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;blockquote&gt;
-&lt;h2 id="概述"&gt;&lt;a href="https://yuukisama.cc/code/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/#概述" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/#contents:概述" class="headings"&gt;概述&lt;/a&gt;&lt;/h2&gt;&lt;/blockquote&gt;
+&lt;h2 id="概述"&gt;&lt;a href="https://yuukisama.cc/code/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/#概述" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/word2vec%E8%AF%8D%E5%90%91%E9%87%8F%E8%AE%AD%E7%BB%83/#contents:概述" class="headings"&gt;概述&lt;/a&gt;&lt;/h2&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;最近踩坑机器学习神经网络中的文本处理,所以有了这篇博客.记录一下基于python word2vec训练中文词向量的方法(英文也同样适用)
@@ -12605,7 +13371,8 @@ randomblob()函数生成指定长度的随机字符串。当这个长度足够�
 &lt;p&gt;本段参考简书 &lt;a href="https://www.jianshu.com/p/be92113116c8" target="_blank" rel="noopener"&gt;https://www.jianshu.com/p/be92113116c8&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</description><category domain="https://yuukisama.cc/code/">code</category><category domain="https://yuukisama.cc/tags/python/">Python</category></item><item><title>VC++调用外部exe并获取程序运行输出</title><link>https://yuukisama.cc/code/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/</link><guid isPermaLink="true">https://yuukisama.cc/code/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/</guid><pubDate>Thu, 17 Jan 2019 12:16:36 +0000</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;blockquote&gt;
-&lt;h2 id="摘要"&gt;&lt;a href="https://yuukisama.cc/code/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/#摘要" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/#contents:摘要" class="headings"&gt;摘要&lt;/a&gt;&lt;/h2&gt;&lt;/blockquote&gt;
+&lt;h2 id="摘要"&gt;&lt;a href="https://yuukisama.cc/code/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/#摘要" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/vc-%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8exe%E5%B9%B6%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BE%93%E5%87%BA/#contents:摘要" class="headings"&gt;摘要&lt;/a&gt;&lt;/h2&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;最近在采坑某个项目，需要用到调用外部写好的exe运行，项目基于c语言，于是就有了关于&lt;strong&gt;VC++调用外部程序并获取程序命令行运行输出的问题&lt;/strong&gt;&lt;/p&gt;
@@ -14689,7 +15456,8 @@ key值中存储图节点，对应value（hashset型）存储与该节点有连�
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;这样可以标识hexo停用ta的渲染，就不会重定向了.&lt;/p&gt;
 &lt;p&gt;之后重新构建发布网站即可&lt;/p&gt;</description><category domain="https://yuukisama.cc/code/">code</category><category domain="https://yuukisama.cc/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/">网站搭建</category></item><item><title>Dijkstra算法课设</title><link>https://yuukisama.cc/code/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/</link><guid isPermaLink="true">https://yuukisama.cc/code/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/</guid><pubDate>Thu, 27 Dec 2018 18:35:23 +0000</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;blockquote&gt;
-&lt;h2 id="dijkstra算法课设"&gt;&lt;a href="https://yuukisama.cc/code/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/#dijkstra算法课设" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/#contents:dijkstra算法课设" class="headings"&gt;Dijkstra算法课设&lt;/a&gt;&lt;/h2&gt;&lt;/blockquote&gt;
+&lt;h2 id="dijkstra算法课设"&gt;&lt;a href="https://yuukisama.cc/code/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/#dijkstra算法课设" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/dijkstra%E7%AE%97%E6%B3%95%E8%AF%BE%E8%AE%BE/#contents:dijkstra算法课设" class="headings"&gt;Dijkstra算法课设&lt;/a&gt;&lt;/h2&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;数据结构课程中的经典算法。我会将一些程序系统设计过程中的一些小细节问题（暂且称之为小细节把，因为我也不知道拿什么次比较准确），并在最后附上程序所有源码。作为一个曾经的苟若的算法狗（现在依旧小垃圾）,很多数据结构在实现的时候没必要照抄《数据结构》书上那套迂腐的东西，那终究是伪代码，而且反人类&lt;del&gt;当然如果你就是十分喜欢结构体的使用的话不拦着你&lt;/del&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;img src="miao.jpg" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;很多东西是编程的一些编程习惯，多敲，多理解，遇到bug不要第一件事情是想着找别人问。程序员需要的是自己解决问题的能力（当然也不是一味的钻牛角尖，这就是中庸的事情了）&lt;/strong&gt;
