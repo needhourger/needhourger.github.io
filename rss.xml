@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Broken Memories</title><link>https://yuukisama.cc/</link><description>Someone write something</description><generator>Hugo 0.152.2 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>chainyuuki@gmail.com (Yuuki)</managingEditor><webMaster>chainyuuki@gmail.com (Yuuki)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Wed, 05 Nov 2025 12:11:30 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://yuukisama.cc/rss.xml"/><item><title>ApeRAG架构分析</title><link>https://yuukisama.cc/code/aperag/</link><guid isPermaLink="true">https://yuukisama.cc/code/aperag/</guid><pubDate>Tue, 21 Oct 2025 14:08:55 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="zero---aperag-简介"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#zero---aperag-简介" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:zero---aperag-简介" class="headings"&gt;Zero - ApeRAG 简介&lt;/a&gt;&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Broken Memories</title><link>https://yuukisama.cc/</link><description>Someone write something</description><generator>Hugo 0.152.2 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>chainyuuki@gmail.com (Yuuki)</managingEditor><webMaster>chainyuuki@gmail.com (Yuuki)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Wed, 05 Nov 2025 12:19:44 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://yuukisama.cc/rss.xml"/><item><title>ApeRAG架构分析</title><link>https://yuukisama.cc/code/aperag/</link><guid isPermaLink="true">https://yuukisama.cc/code/aperag/</guid><pubDate>Tue, 21 Oct 2025 14:08:55 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="zero---aperag-简介"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#zero---aperag-简介" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:zero---aperag-简介" class="headings"&gt;Zero - ApeRAG 简介&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://github.com/apecloud/ApeRAG" target="_blank" rel="noopener"&gt;ApeRAG&lt;/a&gt; 一个号称生产就绪的 GraphRAG 多模态 RAG 引擎。以下是其官网 &lt;a href="https://rag.apecloud.com/" target="_blank" rel="noopener"&gt;https://rag.apecloud.com/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;目前官方发布了 &lt;a href="https://github.com/apecloud/ApeRAG/releases/tag/v0.5.0-alpha.14" target="_blank" rel="noopener"&gt;ApeRAG v0.5.0-alpha.14&lt;/a&gt; 版本，其结合了传统向量引擎，全文索引，GraphRAG，视觉索引，摘要索引等多个维度全方面的 RAG 混合检索能力，使用 MinerU 集成作为其增强型的文档处理。在部署方面，官方直接提供了生产级部署的能力：最简可通过 docker 完成基础部署，同时提供了 k8s 部署的实践指导。同时集成了 MCP 服务，提供三方 AI 助手和工具无缝集成访问知识库的能力。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -724,7 +724,7 @@
 &lt;p&gt;RAG 即一种让 AI 模型能“引经据典”的技术。相较于传统语言模型这能基于模型训练时的静态数据生成回答，RAG 通过如下方式增强了模型的能力：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;检索阶段（Retrieval）：当用户提问时，系统首先分析问题，从外部的知识库（文档，数据库，网页等）中检索相关信息，找到与查询最相关的片段&lt;/li&gt;
-&lt;li&gt;生成截断（Generation）： 将用户检索的问题和检索到的内容一起输入给语言模型，模型基于减缩到的真实信息生成回答。&lt;/li&gt;
+&lt;li&gt;生成阶段（Generation）： 将用户检索的问题和检索到的内容一起输入给语言模型，模型基于检索到的真实信息生成回答。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;传统 RAG 通常采用向量数据库作为底层设计，依靠将需要检索的资料（文档，图片，视频等）转变为向量数据，通过基于向量相似度（例如余弦相似度）来直接查找最相关的文档。然而这样带来的缺陷也就导致检索结果往往过于聚焦在某些片面的点上，而忽略好多内容之间的关联性。于是微软于 2024 年 7 月份推出了 GraphRAG 并在 Github 上开源，开创了 GraphRAG 这一新的 RAG 模式。&lt;/p&gt;
 &lt;p&gt;GraphRAG 通过引入图结构化知识标识，显著增强了传统 RAG 系统的能力，特别适合需要深度结合上下文理解和复杂关系分析的任务，让 AI 不仅能够找到相关信息，同时还能理解相关信息之间的复杂关系。&lt;/p&gt;
@@ -820,7 +820,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;ol&gt;
-&lt;li&gt;使用如下命令初始化 GraphRAG 项目，以下命令将会常见出&lt;code&gt;.env&lt;/code&gt;文件和&lt;code&gt;settings.yaml&lt;/code&gt;文件在&lt;code&gt;./guimizhizhu&lt;/code&gt;文件夹中。&lt;/li&gt;
+&lt;li&gt;使用如下命令初始化 GraphRAG 项目，以下命令将会创建出&lt;code&gt;.env&lt;/code&gt;文件和&lt;code&gt;settings.yaml&lt;/code&gt;文件在&lt;code&gt;./guimizhizhu&lt;/code&gt;文件夹中。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -2950,11 +2950,11 @@
 &lt;/span&gt;&lt;span class="lnt"&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;dispart
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;diskpart
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;list volume
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;理论上可以看到当前系统上盘符的情况类似如下图。其中使用 &lt;code&gt;Windows-SSD&lt;/code&gt; 一类标记的就是 C 盘。但是笔者在这里实践的情况下遇到了不一样的情况，并没有任何一个盘符标记了 &lt;code&gt;Windows-SSD&lt;/code&gt; 并且其实这里的盘符 C 盘也不是真正的系统盘，真正的系统板是 D 盘的情况。其实这里更推荐 &lt;code&gt;exit&lt;/code&gt; 退出 diskpart，并命令行中使用 &lt;code&gt;dir&lt;/code&gt; 命令罗列各个刚刚出现的各个盘符查看其目录结构，找到包含 windows 目录的盘符，这个就是真正的系统盘所在盘符。
+&lt;/div&gt;&lt;p&gt;理论上可以看到当前系统上盘符的情况类似如下图。其中使用 &lt;code&gt;Windows-SSD&lt;/code&gt; 一类标记的就是 C 盘。但是笔者在这里实践的情况下遇到了不一样的情况，并没有任何一个盘符标记了 &lt;code&gt;Windows-SSD&lt;/code&gt; 并且其实这里的盘符 C 盘也不是真正的系统盘，真正的系统盘是 D 盘的情况。其实这里更推荐 &lt;code&gt;exit&lt;/code&gt; 退出 diskpart，并命令行中使用 &lt;code&gt;dir&lt;/code&gt; 命令罗列各个刚刚出现的各个盘符查看其目录结构，找到包含 windows 目录的盘符，这个就是真正的系统盘所在盘符。
 &lt;img src="image-4.png" alt="4" /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -2977,7 +2977,7 @@
 &lt;/span&gt;&lt;span class="lnt"&gt;3
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-powershell" data-lang="powershell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;del &lt;/span&gt;&lt;span class="n"&gt;C:&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;Windows&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;Systme32&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;Utilman&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="py"&gt;exe&lt;/span&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-powershell" data-lang="powershell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;del &lt;/span&gt;&lt;span class="n"&gt;C:&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;Windows&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;System32&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;Utilman&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="py"&gt;exe&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;copy &lt;/span&gt;&lt;span class="n"&gt;C:&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;Windows&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;System32&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;cmd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="py"&gt;exe&lt;/span&gt; &lt;span class="n"&gt;C:&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;Windows&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;System32&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;Utilman&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="py"&gt;exe&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;start &lt;/span&gt;&lt;span class="n"&gt;C:&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;windows&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;system32&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;Utilman&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="py"&gt;exe&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
@@ -2987,7 +2987,7 @@
 &lt;p&gt;执行完刚刚的覆盖操作后在命令行输入 &lt;code&gt;wpeutil reboot&lt;/code&gt; 命令重启电脑。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;再次会到登录页面的时，右下角“小人”图案代表的辅助系统其实已经变成了 &lt;code&gt;cmd.exe&lt;/code&gt; 的入口，只要点击小人就会启动 cmd 命令行。&lt;/p&gt;
+&lt;p&gt;再次回到登录页面的时候，右下角&amp;quot;小人&amp;quot;图案代表的辅助系统其实已经变成了 &lt;code&gt;cmd.exe&lt;/code&gt; 的入口，只要点击小人就会启动 cmd 命令行。&lt;/p&gt;
 &lt;p&gt;&lt;img src="image-5.png" alt="5" /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -3010,7 +3010,7 @@
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;最后一部还原 &lt;code&gt;Utilman.exe&lt;/code&gt; 到本身目录。&lt;/p&gt;
+&lt;p&gt;最后一步还原 &lt;code&gt;Utilman.exe&lt;/code&gt; 到本身目录。&lt;/p&gt;
 &lt;p&gt;打开具有管理员权限的命令行，输入以下指令将之前被替换为 cmd.exe 的 Utilman.exe 文件还原为备份的真正的 Utilman.exe&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -3024,7 +3024,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;start &lt;/span&gt;&lt;span class="n"&gt;C:&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;Windows&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;System32&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;Utilman&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="py"&gt;exe&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;当第三条 start 命令回车之后点自动弹出 Windows 的设置页面即说明还原成功，这时候即可删除 C 盘根目录下备份的 &lt;code&gt;Utilman.exe&lt;/code&gt; 文件。当然个人感觉这里完全可是使用任务管理器操作，直接复制粘贴即可。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;当第三条 start 命令回车之后会自动弹出 Windows 的设置页面即说明还原成功，这时候即可删除 C 盘根目录下备份的 &lt;code&gt;Utilman.exe&lt;/code&gt; 文件。当然个人感觉这里完全可是使用任务管理器操作，直接复制粘贴即可。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;PS &lt;strong&gt;如果重置密码前你是用的是 Pin 码登录，在重置密码成功之后需要将登录验证方式切换为密码验证，然后使用重置后的密码登录才可以哦。&lt;/strong&gt;&lt;/p&gt;
@@ -3140,7 +3140,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;导入完成后会到虚拟机配置，选择“硬件”可以看到又多了个“未使用的磁盘 0”，双击 ta 添加这个磁盘到虚拟机中。参数选项保持默认即可。
+&lt;p&gt;导入完成后回到虚拟机配置，选择&amp;quot;硬件&amp;quot;可以看到又多了个&amp;quot;未使用的磁盘 0&amp;quot;，双击 ta 添加这个磁盘到虚拟机中。参数选项保持默认即可。
 &lt;img src="image-12.png" alt="12" /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -3608,7 +3608,7 @@
 &lt;td&gt;v0.3.0 and above&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;v2.2.0 to v2.2.8I&lt;/td&gt;
+&lt;td&gt;v2.2.0 to v2.2.8&lt;/td&gt;
 &lt;td&gt;v0.1.0 to v0.2.2&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
@@ -4240,10 +4240,10 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="agentic-rga架构"&gt;&lt;a href="https://yuukisama.cc/code/%E5%88%9D%E8%AF%86agentic-rag/#agentic-rga架构" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/%E5%88%9D%E8%AF%86agentic-rag/#contents:agentic-rga架构" class="headings"&gt;Agentic RGA架构&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;在了解完什么手机Agentic RAG后我们开始介绍其具体采用的架构。Agentic RAG是一个只能协调者，ta接受用户的输入查询，并自主决定何时的处理方式。同时配备了一系列成套的工具，每个工具都负责特定的领域和文档数据源。这些工具作为专业化的智能体或者是作为函数而被Agentic RAG检索，调用并最终生成信息。&lt;/p&gt;
+&lt;p&gt;在了解完什么是 Agentic RAG 后我们开始介绍其具体采用的架构。Agentic RAG是一个智能协调者，ta接受用户的输入查询，并自主决定合适的处理方式。同时配备了一系列成套的工具，每个工具都负责特定的领域和文档数据源。这些工具作为专业化的智能体或者是作为函数而被Agentic RAG检索，调用并最终生成信息。&lt;/p&gt;
 &lt;p&gt;例如我们现在有“工具A”是用来专门负责处理财务报表，“工具B”用来处理消费者数据。Agentic RAG就可以基于用户给出的查询动态的选择和组合工具使得他可以综合多个数据源给出明确的回答。同时这些工具，数据源头也可以是多种多样的，他们可能是结构化的也可能是非结构化的，可能是数据库也可能是基于文本文档知识库，亦或者是多媒体性质的知识库。&lt;/p&gt;
-&lt;p&gt;所以当用户给出一个复杂的问题跨越多个领域或者是数据来源时，Agentic RAG会协调整个过程，决定什么工具去使用，去召回相关的信息文档，并生成一个最终生成一个量身定制的恢复。在这个过程中，Agent利用只能推理，上下文感知，以及检测后生成去确保输出结果。&lt;/p&gt;
-&lt;p&gt;当然，Agentic RAG也有更简单的表述，在实际应用上，Agentic RAG的实现可能涉及到许多额外的组成，列入语言模型，知识库，以及其他支持系统，这具体取决于实际的应用常见以及需求。&lt;/p&gt;
+&lt;p&gt;所以当用户给出一个复杂的问题跨越多个领域或者是数据来源时，Agentic RAG会协调整个过程，决定什么工具去使用，去召回相关的信息文档，并生成一个最终生成一个量身定制的回答。在这个过程中，Agent 利用智能推理，上下文感知，以及检测后生成去确保输出结果。&lt;/p&gt;
+&lt;p&gt;当然，Agentic RAG 也有更简单的表述，在实际应用上，Agentic RAG 的实现可能涉及到许多额外的组成，例如语言模型，知识库，以及其他支持系统，这具体取决于实际的应用场景以及需求。&lt;/p&gt;
 &lt;h2 id="agentic-rag-碎碎念"&gt;&lt;a href="https://yuukisama.cc/code/%E5%88%9D%E8%AF%86agentic-rag/#agentic-rag-碎碎念" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/%E5%88%9D%E8%AF%86agentic-rag/#contents:agentic-rag-碎碎念" class="headings"&gt;Agentic RAG 碎碎念&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;之前的那些基本上是一些现有文档的翻译陈述来解释Agentic RAG的概念架构，而从个人理解而言，Agentic RAG就是对“传统RAG的一种套娃实现”。当然或许不应该这么草率的说是套娃，但是套娃似乎可以算得上是一种实现形式。&lt;/p&gt;
 &lt;p&gt;在传统RAG中，AI大模型根据用户的输入，依照给定的输入去知识库或者是别的什么数据源中召回资料，并结合资料给出回答。而对于Agentic RAG而言，ta将这个“从给定知识库召回资料”的过程变成了从特定Agent召回输出，并综合这些输出给出一个更加综合而全面的答案。也就是把传统RAG中的知识库换成一个独立的AI Agent,这个Agent可能有自己专门负责的相关知识库或者其他工具。非常类似于“再套一层”，把这种知识库，数据来源，工具AI化，Agent化，即“Agentic”。&lt;/p&gt;
@@ -5118,7 +5118,7 @@ Appid 是Chrome浏览器用以鉴别区分插件的唯一参数, 需确保插件
 &lt;p&gt;混淆视听：移除一切无用的东西保持源文件整洁。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;人为耦合：不互相依赖的东西不该耦合，在何时的地方声明函数，变量，常量，不要随意放置后面置之不理。&lt;/p&gt;
+&lt;p&gt;人为耦合：不互相依赖的东西不该耦合，在合适的地方声明函数，变量，常量，不要随意放置后面置之不理。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;特性依恋：类的方法只应该对其类所属的变量函数感兴趣。不应该垂青于其他的类中的变量和函数。&lt;/p&gt;
@@ -16340,7 +16340,7 @@ key值中存储图节点，对应value（hashset型）存储与该节点有连�
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;坑：以上两步必不可缺，否则会产生缺少依赖问题，列入不生成静态文件（如x.html）的问题&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;坑：以上两步必不可缺，否则会产生缺少依赖问题，例如不生成静态文件（如x.html）的问题&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;配置你的站点：&lt;/p&gt;
