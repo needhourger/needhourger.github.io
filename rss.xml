@@ -1,4 +1,776 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Broken Memories</title><link>https://yuukisama.cc/</link><description>Someone write something</description><generator>Hugo 0.152.2 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>chainyuuki@gmail.com (Yuuki)</managingEditor><webMaster>chainyuuki@gmail.com (Yuuki)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Wed, 05 Nov 2025 12:19:44 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://yuukisama.cc/rss.xml"/><item><title>ApeRAG架构分析</title><link>https://yuukisama.cc/code/aperag/</link><guid isPermaLink="true">https://yuukisama.cc/code/aperag/</guid><pubDate>Tue, 21 Oct 2025 14:08:55 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="zero---aperag-简介"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#zero---aperag-简介" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:zero---aperag-简介" class="headings"&gt;Zero - ApeRAG 简介&lt;/a&gt;&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Broken Memories</title><link>https://yuukisama.cc/</link><description>Someone write something</description><generator>Hugo 0.152.2 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>chainyuuki@gmail.com (Yuuki)</managingEditor><webMaster>chainyuuki@gmail.com (Yuuki)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Mon, 10 Nov 2025 09:46:15 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://yuukisama.cc/rss.xml"/><item><title>plurai-ai/intellagent 调研</title><link>https://yuukisama.cc/code/plurai-ai-intellagent/</link><guid isPermaLink="true">https://yuukisama.cc/code/plurai-ai-intellagent/</guid><pubDate>Mon, 10 Nov 2025 15:51:19 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="简介"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#简介" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:简介" class="headings"&gt;简介&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;IntellAgent 是一个用于评估和优化对话式 AI 系统的多智能体框架。它通过生成数千个真实、具有挑战性的交互来对智能体进行压力测试，从而发现隐藏的失败点，提升智能体的性能、可靠性和用户体验。&lt;/p&gt;
+&lt;h2 id="安装"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#安装" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:安装" class="headings"&gt;安装&lt;/a&gt;&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Intellagnet 需要 python &amp;gt;= 3.9&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="下载项目源码"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#下载项目源码" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:下载项目源码" class="headings"&gt;下载项目源码&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git clone git@github.com:plurai-ai/intellagent.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; intellagent
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="安装依赖"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#安装依赖" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:安装依赖" class="headings"&gt;安装依赖&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pip install -r requirements.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="配置设置"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#配置设置" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:配置设置" class="headings"&gt;配置设置&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;编辑 &lt;code&gt;config/llm_env.yaml&lt;/code&gt; 文件设置 LLM 配置&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;openai&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;OPENA_PI_KEY&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;your-api-key&amp;#34;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果需要修改 IntellAgent 系统或者调教的 chatbot 的默认 LLM 供应商，也可以修改 &lt;code&gt;config/config_education.yaml&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;llm_intellagent&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;azure&amp;#34;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;&lt;/span&gt;&lt;span class="nt"&gt;llm_chat&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;azure&amp;#34;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果需要修改数据库中的样本数量，则修改 &lt;code&gt;num_samples&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;dataset&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;num_samples&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;30&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="运行模拟器"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#运行模拟器" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:运行模拟器" class="headings"&gt;运行模拟器&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;如果使用 Azure 提供的 openai 服务用于 &lt;code&gt;llm_intellagent&lt;/code&gt; 则需要确保在运行模拟器之前&lt;strong&gt;禁用&lt;/strong&gt;默认的越狱筛选器，具体参见微软 Azure 官方的有关内容过滤器的文档&lt;a href="https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/content-filters" target="_blank" rel="noopener"&gt;https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/content-filters&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对于没有配置数据库的简单环境，使用如下命令运行：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python run.py --output_path results/education --config_path ./config/config_education.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对于使用数据库的复杂场景，则使用如下命令（当然运行速度也会变慢）:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;python run.py --output_path results/airline --config_path ./config/config_airline.yaml
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;故障排除&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;限制消息频率&lt;/strong&gt;：通过配置 &lt;code&gt;config_default&lt;/code&gt; 的 &lt;code&gt;num_workers&lt;/code&gt; 参数以限制消息频率。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;频繁超时问题&lt;/strong&gt;：增加 &lt;code&gt;config_default&lt;/code&gt; 文件中的 &lt;code&gt;timeout&lt;/code&gt; 参数以延长超时阈值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="查看结果"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#查看结果" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:查看结果" class="headings"&gt;查看结果&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;使用 &lt;code&gt;streamlit&lt;/code&gt; 可视化模拟结果：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;streamlit run simulator/visualization/Simulator_Visualizer.py
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="工作原理"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#工作原理" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:工作原理" class="headings"&gt;工作原理&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="原理简析"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#原理简析" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:原理简析" class="headings"&gt;原理简析&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;根据用户给定输入的 prompt, 例如如下官方给出的几个 prompt 样例，生成一个 &lt;code&gt;Policies Graph&lt;/code&gt; 策略图.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;系统会将 prompt 分解为策略图&lt;/li&gt;
+&lt;li&gt;依据策略图在实际对话分布中中的并发情况对策略子集进行采样。&lt;/li&gt;
+&lt;li&gt;之后生成用户与聊天机器人的交出场景，有需要存储进数据库中，并决定所选定的策略子集&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;模拟一个用户 agent 去伪装成真实用户去与聊天机器人交互&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;最后评判聊天内容并给予反馈。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;You are an educational chatbot designed to assist children with their homework.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Your purpose is to guide students toward understanding and solving problems on their own, rather than providing direct answers. Maintain a friendly, encouraging, and patient tone at all times to create a supportive learning environment.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;You should follow the guidelines:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;1. **Encourage Critical Thinking**: Always ask follow-up questions to help children explore the problem and think critically about possible solutions.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2. **Promote Step-by-Step Learning**: Break down complex problems into smaller, manageable steps and guide the child through them one at a time.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;3. **Provide Hints, Not Answers**: Offer helpful hints or explain concepts without directly giving the answer.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;4. **Adapt to the Child&amp;#39;s Level**: Use age-appropriate language and explanations tailored to the child’s grade level and understanding.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;5. **Be Positive and Encouraging**: Celebrate effort and progress, even if the answer isn’t correct, to build the child’s confidence.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;6. **Encourage Problem-Solving Strategies**: Suggest general strategies like drawing diagrams, using examples, or rephrasing the question to help children approach the problem differently.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;7. **Reinforce Key Concepts**: Provide explanations of relevant concepts or skills needed to solve the problem if the child appears to struggle with them.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;8. **Foster Independence**: Encourage the child to think through their reasoning and double-check their work, fostering self-reliance in learning.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="原理深入"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#原理深入" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:原理深入" class="headings"&gt;原理深入&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;参考官方连接&lt;a href="https://intellagent-doc.plurai.ai/How_it_Works/how-it-works/#1-input-context-analysis" target="_blank" rel="noopener"&gt;https://intellagent-doc.plurai.ai/How_it_Works/how-it-works/#1-input-context-analysis&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id="input-context-analysis---输入上下文分析"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#input-context-analysis---输入上下文分析" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:input-context-analysis---输入上下文分析" class="headings"&gt;Input Context Analysis - 输入上下文分析&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;框架的核心是分析待测试目标 Agent 的核心输入，包括但不限于：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;聊天代理系统的 prompt 以及各种文档&lt;/li&gt;
+&lt;li&gt;工具，聊天系统 Agent 可使用的各种工具列表，例如 calcuate, get_user_detail&lt;/li&gt;
+&lt;li&gt;数据库模式（可选），底层通过数据结构定义的数据表字段关系模式等，可以通过自定义验证函数来判断数据正确性。&lt;/li&gt;
+&lt;li&gt;任务描述（可选）：默认可以从系统 Prompt 中自动推断。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;依据上述内容构成了了解代理功能和约束的基准。&lt;/p&gt;
+&lt;h4 id="工作流和策略生成---flow-and-policies-genration"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#工作流和策略生成---flow-and-policies-genration" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:工作流和策略生成---flow-and-policies-genration" class="headings"&gt;工作流和策略生成 - Flow and Policies Genration&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;系统将会自动将主要人物分解为若干主要流程，并针对每个流程提取相关策略，类别，挑战和分数，以下是一个基于航空公司航班相关的 Agent 为例子：&lt;/p&gt;
+&lt;div class="table-container"&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;工作流&lt;/th&gt;
+&lt;th&gt;策略样例&lt;/th&gt;
+&lt;th&gt;类别&lt;/th&gt;
+&lt;th&gt;挑战分数&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;预订航班&lt;/td&gt;
+&lt;td&gt;每次预订最多可以使用一张旅行券，一张信用卡三张礼品卡&lt;/td&gt;
+&lt;td&gt;付款处理/财务&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;预订航班&lt;/td&gt;
+&lt;td&gt;除非购买旅行保险，否则出发前七天内预订的航班不可退款&lt;/td&gt;
+&lt;td&gt;政策实施/限制&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;改签&lt;/td&gt;
+&lt;td&gt;基本的经济舱航班不允许改签，其他预订可以在不更改出发地以及行程的情况下进行修改&lt;/td&gt;
+&lt;td&gt;政策实施/限制&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;改签&lt;/td&gt;
+&lt;td&gt;在起飞前 24h 内进行的修改将想每位旅客收取 75$费用&lt;/td&gt;
+&lt;td&gt;费用政策/追加销售处理&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;航班取消&lt;/td&gt;
+&lt;td&gt;所有预订均可在预订后 24h 内取消，或者如果航空公司自身问题取消航班&lt;/td&gt;
+&lt;td&gt;政策实施/限制&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;航班取消&lt;/td&gt;
+&lt;td&gt;24h 后取消将会获得为期一年的旅行积分&lt;/td&gt;
+&lt;td&gt;退款处理/信用政策&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;退款&lt;/td&gt;
+&lt;td&gt;退款将会在 5-7 个工作日内一原始付款方式原路返回&lt;/td&gt;
+&lt;td&gt;付款处理/财务&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;退款&lt;/td&gt;
+&lt;td&gt;只有当航空公司自身取消航班时才能进行退款&lt;/td&gt;
+&lt;td&gt;政策实施/限制&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;h4 id="策略图生成---policies-graph-generation"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#策略图生成---policies-graph-generation" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:策略图生成---policies-graph-generation" class="headings"&gt;策略图生成 - Policies Graph Generation&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;IntellAgent 会创建一个加权图结构，其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;节点代表但个策略，每个策略分配了一个权重，该权重反应其相关策略的复杂性&lt;/li&gt;
+&lt;li&gt;边的权重（1-10 个等级）则表示哦两个策略在对话中同时出现的可能性
+通过这样一张图将会有助于创建涵盖不同复杂度的各种自然用户请求。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="image.png" alt="Polices Graph" /&gt;&lt;/p&gt;
+&lt;h4 id="数据集时间生成---dataset-event-generation"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#数据集时间生成---dataset-event-generation" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:数据集时间生成---dataset-event-generation" class="headings"&gt;数据集时间生成 - Dataset Event Generation&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;系统会生成全民啊的测试场景，包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;场景内容：特定场景的用户交互案例&lt;/li&gt;
+&lt;li&gt;预期行为：给予策略的所需要的 Agent 的行为&lt;/li&gt;
+&lt;li&gt;数据获取：所需要是护具哭记录以及各种状态先决条件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每个场景都分配了不同的挑战分数，以确保在复杂场景下进行全面的测试&lt;/p&gt;
+&lt;p&gt;&lt;img src="image-1.png" alt="Dataset Event" /&gt;&lt;/p&gt;
+&lt;h4 id="对话模拟---dialog-simulation"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#对话模拟---dialog-simulation" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:对话模拟---dialog-simulation" class="headings"&gt;对话模拟 - Dialog Simulation&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;对话模拟的过程将会涉及多个不同组件之间的复杂交互，一彻底测试 Agent 的相关功能。&lt;/p&gt;
+&lt;h5 id="用户与-agent-交互"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#用户与-agent-交互" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:用户与-agent-交互" class="headings"&gt;用户与 Agent 交互&lt;/a&gt;&lt;/h5&gt;
+&lt;p&gt;对于数据库中的每个事件，IntellAgent 会在一下内容之间编排动态对话：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;模拟用户行为的用户代理及&lt;/li&gt;
+&lt;li&gt;正在评估的目标聊天机器人&lt;/li&gt;
+&lt;li&gt;监控交互的对话评判组件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;模拟的过程遵循如下步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;用户 Agent 将会受到如下内容：
+&lt;ul&gt;
+&lt;li&gt;事件描述和上下文&lt;/li&gt;
+&lt;li&gt;数据库的状态信息&lt;/li&gt;
+&lt;li&gt;给予策略要求的预期的聊天机器人的行为&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;交互逐步进行，用户代理根据聊天机器人的相应做出决策&lt;/li&gt;
+&lt;li&gt;在以下任何一种情况下，用户代理可以种植对话：
+&lt;ul&gt;
+&lt;li&gt;任务顺利完成&lt;/li&gt;
+&lt;li&gt;聊天机器人出现违反政策或者偏离目标预期的新闻&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="对话评判与综合评价---dialog-critique-system--comprehensive-evaluation"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#对话评判与综合评价---dialog-critique-system--comprehensive-evaluation" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:对话评判与综合评价---dialog-critique-system--comprehensive-evaluation" class="headings"&gt;对话评判与综合评价 - Dialog Critique System &amp;amp; Comprehensive Evaluation&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;评判组件追寻能够实施的监控和对话完成之后的分析&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;实时的对话监控
+&lt;ul&gt;
+&lt;li&gt;实时的对话流和策略合规性&lt;/li&gt;
+&lt;li&gt;根据定义的策略验证每个交互&lt;/li&gt;
+&lt;li&gt;标记潜在问题并立刻进行干预&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;政策分析
+&lt;ul&gt;
+&lt;li&gt;确定对话期间主动测试了那些事件策略&lt;/li&gt;
+&lt;li&gt;记录任何违反策略或者偏离预期行为的行为&lt;/li&gt;
+&lt;li&gt;生成详细的合规性报告&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;性能指标
+&lt;ul&gt;
+&lt;li&gt;计算定量的指标，例如：成功率，完成时间，覆盖范围&lt;/li&gt;
+&lt;li&gt;评估定性方向：对话流程，用户满意度&lt;/li&gt;
+&lt;li&gt;识别成功与失败交互中的模式&lt;/li&gt;
+&lt;li&gt;提供可用的改进建议&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;系统生成主要如下两种类型的分析&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基于类别的分析：不同政策类型的成功率和常见问题&lt;/li&gt;
+&lt;li&gt;给予复杂性的分析：不同挑战级别的性能指标&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="架构"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#架构" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:架构" class="headings"&gt;架构&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;IntellAgent 主要包含三个主要组件：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;事件生成器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;输入： 数据库模式和：
+&lt;ul&gt;
+&lt;li&gt;聊天机器人的系统提示或者&lt;/li&gt;
+&lt;li&gt;公司政策问答都能够&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;输出：
+&lt;ul&gt;
+&lt;li&gt;策略图&lt;/li&gt;
+&lt;li&gt;生成的事件以及不同的复杂级别
+&lt;ul&gt;
+&lt;li&gt;方案描述&lt;/li&gt;
+&lt;li&gt;用户请求&lt;/li&gt;
+&lt;li&gt;初始数据库状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;对话模拟器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;输入：生成的事件和配置的 Agent&lt;/li&gt;
+&lt;li&gt;输出：
+&lt;ul&gt;
+&lt;li&gt;完整的对话记录&lt;/li&gt;
+&lt;li&gt;工具的使用记录&lt;/li&gt;
+&lt;li&gt;Agent 推理跟踪&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;细粒度分析&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;输入：对话记录和策略要求&lt;/li&gt;
+&lt;li&gt;输出：
+&lt;ul&gt;
+&lt;li&gt;详细的性能指标&lt;/li&gt;
+&lt;li&gt;策略合规性分析&lt;/li&gt;
+&lt;li&gt;给予复杂性的评估报告&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;IntellAgent 中所有的 Agent 均使用 &lt;a href="https://langchain-ai.github.io/langgraph/" target="_blank" rel="noopener"&gt;LangGraph framework&lt;/a&gt; 搭建&lt;/p&gt;
+&lt;h4 id="事件生成"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#事件生成" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:事件生成" class="headings"&gt;事件生成&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;IntellAgent 事件生成器通过多个阶段的 Pipline 构建出逼真的聊天机器人交互，将高级策略转换为具有相应数据库状态的具体应用场景。该过程主要有三部分组成：&lt;/p&gt;
+&lt;h5 id="策略分析与图谱构建"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#策略分析与图谱构建" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:策略分析与图谱构建" class="headings"&gt;策略分析与图谱构建&lt;/a&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;DescriptionGenerator&lt;/code&gt; 类通过如下步骤进行初始的策略分析：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;工作流抽取：将 System Prompt 分解为不同的工作流&lt;/li&gt;
+&lt;li&gt;策略提取：分析每个流程一识别但个策略并生成对应的复杂性分数&lt;/li&gt;
+&lt;li&gt;图构建：创建一个加权图，其中：
+&lt;ul&gt;
+&lt;li&gt;节点：具有复杂性分数的但个策略&lt;/li&gt;
+&lt;li&gt;边：加权连接（1-10），指代两个策略在同一个任务中同时出现的可能性。&lt;/li&gt;
+&lt;li&gt;边的权重通过 LLM 对政策的评估来决定&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id="事件生成管道"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#事件生成管道" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:事件生成管道" class="headings"&gt;事件生成管道&lt;/a&gt;&lt;/h5&gt;
+&lt;p&gt;系统通过以下方式生成时间描述：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;基于目标复杂性的采样策略：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;从随机的策略节点开始&lt;/li&gt;
+&lt;li&gt;根据边权重加权随机游走&lt;/li&gt;
+&lt;li&gt;继续直到达到所需要的复杂性阈值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将选定的策略转换为自然语言方案&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;生成预期的聊天机器人行为&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;（可选）通过反馈迭代完成预期行为&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id="符号表示"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#符号表示" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:符号表示" class="headings"&gt;符号表示&lt;/a&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;EventsGenerator&lt;/code&gt; 类通过以下方式将描述转换为具体事件&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;创建实体与关系的符号表示&lt;/li&gt;
+&lt;li&gt;给予策略定义数据库约束&lt;/li&gt;
+&lt;li&gt;通过以下方式将符号表示转换为实际的数据库状态：
+&lt;ul&gt;
+&lt;li&gt;特定的表格插入工具&lt;/li&gt;
+&lt;li&gt;应用完整性验证&lt;/li&gt;
+&lt;li&gt;并行处理多个事件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="对话仿真架构"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#对话仿真架构" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:对话仿真架构" class="headings"&gt;对话仿真架构&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;对话模拟系统协调模拟用户和聊天机器人之间对话，该系统主要包含两个主要组件：对话图和对话管理器&lt;/p&gt;
+&lt;h5 id="对话图---dialog-graph"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#对话图---dialog-graph" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:对话图---dialog-graph" class="headings"&gt;对话图 - Dialog Graph&lt;/a&gt;&lt;/h5&gt;
+&lt;p&gt;对话图实现了一个状态机，用户管理模拟用户和聊天机器人之间的对话流，主要功能包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;状态管理： 使用 &lt;code&gt;DialogState&lt;/code&gt; 进行跟踪：
+&lt;ul&gt;
+&lt;li&gt;用户与聊天机器人的消息历史记录&lt;/li&gt;
+&lt;li&gt;用户的想法和推理&lt;/li&gt;
+&lt;li&gt;评价和反馈&lt;/li&gt;
+&lt;li&gt;对话终止信号&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;节点类型：
+&lt;ul&gt;
+&lt;li&gt;用户节点： 模拟用户响应并跟踪与推理&lt;/li&gt;
+&lt;li&gt;聊天机器人节点：处理聊天机器人的响应与工具交互&lt;/li&gt;
+&lt;li&gt;评判节点：评估对话对策略的遵守情况&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;流量控制
+&lt;ul&gt;
+&lt;li&gt;管理参与者之间的消息传递&lt;/li&gt;
+&lt;li&gt;处理终止对话条件&lt;/li&gt;
+&lt;li&gt;通过评判评估支持对话的反馈循环&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id="对话管理器---dialog-manager"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#对话管理器---dialog-manager" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:对话管理器---dialog-manager" class="headings"&gt;对话管理器 - Dialog Manager&lt;/a&gt;&lt;/h5&gt;
+&lt;p&gt;对话管理器控制对话的进行，并未运行评判提供基础的结构支持，主要功能包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;配置管理
+&lt;ul&gt;
+&lt;li&gt;为用户，聊天机器人和评测代理 LLM 模型提供配置&lt;/li&gt;
+&lt;li&gt;设置的环境工具和架构&lt;/li&gt;
+&lt;li&gt;管理 Prompt 模板和解析功能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;执行模式
+&lt;ul&gt;
+&lt;li&gt;同步运行&lt;/li&gt;
+&lt;li&gt;异步运行&lt;/li&gt;
+&lt;li&gt;多个事件的批处理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;内存管理
+&lt;ul&gt;
+&lt;li&gt;基于 SQLite 的对话存储&lt;/li&gt;
+&lt;li&gt;跟踪工具调用以及输出&lt;/li&gt;
+&lt;li&gt;维护对话的历史记录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id="仿真模拟流程"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#仿真模拟流程" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:仿真模拟流程" class="headings"&gt;仿真模拟流程&lt;/a&gt;&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;对话管理器初始化环境和 Agent&lt;/li&gt;
+&lt;li&gt;对于每个事件：
+&lt;ul&gt;
+&lt;li&gt;用户 Agent 接收事件详情信息和预期行为&lt;/li&gt;
+&lt;li&gt;用户与聊天机器人之间的对话交替&lt;/li&gt;
+&lt;li&gt;根据政策评估 Agent 的响应&lt;/li&gt;
+&lt;li&gt;对话将会继续进行，知道成功或者违反策略&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id="主要特点"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#主要特点" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:主要特点" class="headings"&gt;主要特点&lt;/a&gt;&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;政策执行：内置的评价系统，用于评估聊天机器人对于定义的政策的遵守情况&lt;/li&gt;
+&lt;li&gt;并行处理：支持并行执行多个会话&lt;/li&gt;
+&lt;li&gt;可扩展架构：模块化设计允许自定义 LLM、工具和评估标准&lt;/li&gt;
+&lt;li&gt;全面的日志记录：详细的跟踪对话、工具使用情况和代理推理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="颗粒度分析"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#颗粒度分析" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:颗粒度分析" class="headings"&gt;颗粒度分析&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;对话评测组件通过分析一下内容对对话内容进行详尽的评估：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用户聊天机器人对话历史记录&lt;/li&gt;
+&lt;li&gt;聊天机器人的 System prompt&lt;/li&gt;
+&lt;li&gt;用户代理终止的最终原因&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;评判过程遵循如下步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;终止验证: 验证所述的对话终止原因是否正确
+&lt;ul&gt;
+&lt;li&gt;如果不正确： 通过 &lt;code&gt;critique_feedback&lt;/code&gt; 提供反馈并继续对话&lt;/li&gt;
+&lt;li&gt;如果正确：继续进行策略分析。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;多层次覆盖率分析：
+&lt;ul&gt;
+&lt;li&gt;确定在对话期间测试了那些时间策略&lt;/li&gt;
+&lt;li&gt;确定违反了哪些策略如果有的话&lt;/li&gt;
+&lt;li&gt;评估不同复杂性级别的策略，从简单的人物到高难度复杂和细微的边缘情况场景&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;报告生成：根据上述分析创建详细的细嫩能够评估，并按照策略和复杂性对见解进行分类&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="源码简析"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#源码简析" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:源码简析" class="headings"&gt;源码简析&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Intellagent 入口为一个 &lt;code&gt;run.py&lt;/code&gt; 文件，使用 &lt;code&gt;argparse&lt;/code&gt; 生命定义处理传入参数。&lt;/p&gt;
+&lt;p&gt;程序的主要入口是 &lt;code&gt;simulator.simulator_executor.SimulatorExecutor&lt;/code&gt; 类，类在通过传入设置和输出目录 &lt;code&gt;output_path&lt;/code&gt; 完成初始化，之后通过 &lt;code&gt;run_simulation&lt;/code&gt; 运行主要流程。&lt;/p&gt;
+&lt;p&gt;项目启动配置文件中的很多&lt;code&gt;prompt&lt;/code&gt; 字段有的是使用类似如下的内容表示&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;flow_config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;prompt&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;prompt_hub_name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;eladlev/flows_extraction&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这是使用了 &lt;code&gt;langchain.hub&lt;/code&gt; 模块，这些 hub_name 作为 langchain 在线 hub 服务的关键词去线上拉取对应的 prompt&lt;/p&gt;
+&lt;h3 id="simulatorexecutor-初始化"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#simulatorexecutor-初始化" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:simulatorexecutor-初始化" class="headings"&gt;SimulatorExecutor 初始化&lt;/a&gt;&lt;/h3&gt;
+&lt;h4 id="初始化输出文件夹"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#初始化输出文件夹" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:初始化输出文件夹" class="headings"&gt;初始化输出文件夹&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;初始化构成首先会创建好对应输出文件和文件夹：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;policies_graph&lt;/code&gt; 存储策略图&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;datasets&lt;/code&gt; 生成的数据集&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;experiments&lt;/code&gt; 每次评测结果的存储位置&lt;/li&gt;
+&lt;li&gt;用于存储策图生成器的序列化文件的 &lt;code&gt;descriptions_generator.pickle&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="初始化-descriptiongenerator"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#初始化-descriptiongenerator" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:初始化-descriptiongenerator" class="headings"&gt;初始化 &lt;code&gt;DescriptionGenerator&lt;/code&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;初始化生成 &lt;code&gt;DescriptionGenerator&lt;/code&gt; 用于生成策略图&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;如果原始的策略图文件存在则直接装载序列化好的 &lt;code&gt;DescriptionGenerator&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;否则进行初始化 &lt;code&gt;DescriptionGenerator&lt;/code&gt; 的参数配置包括 prompt, 所使用的 LLM 等&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;初始化完整之后开始构建生成策略图&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;首先根据传入目标抽取工作流 &lt;code&gt;extract_flows&lt;/code&gt;, prompt 如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;span class="lnt"&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Assistant is a language model designed to break down every chatbot system prompt into flows. You are provided with a chatbot prompt, with multiple policies and guidelines. Your task is to break down the prompt into multiple different flows of conversation.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ### Guidelines
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - Each flow should be a standalone family of interaction of chatbot-user
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (e.g. change order, tracking order, etc.). Do not provide partial interaction and sub-flows such as user authentication.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - The flow should be a family of interactions. You must cluster together different, similar types of conversation. For example, if the user can ask for different types of information, cluster it all into one flow of &amp;#39;providing information&amp;#39;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - The flows **must** be extracted from the provided prompt, do not add any flow that is not explicitly part of the provided prompt
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; If the prompt is simple and there is a single flow with no natural splitting, return a list with one element (conversation flow): [&amp;#39;conversation&amp;#39;]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;之后尝试抽取政策 &lt;code&gt;extract_policies&lt;/code&gt;, Prompt 如下&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;span class="lnt"&gt;32
+&lt;/span&gt;&lt;span class="lnt"&gt;33
+&lt;/span&gt;&lt;span class="lnt"&gt;34
+&lt;/span&gt;&lt;span class="lnt"&gt;35
+&lt;/span&gt;&lt;span class="lnt"&gt;36
+&lt;/span&gt;&lt;span class="lnt"&gt;37
+&lt;/span&gt;&lt;span class="lnt"&gt;38
+&lt;/span&gt;&lt;span class="lnt"&gt;39
+&lt;/span&gt;&lt;span class="lnt"&gt;40
+&lt;/span&gt;&lt;span class="lnt"&gt;41
+&lt;/span&gt;&lt;span class="lnt"&gt;42
+&lt;/span&gt;&lt;span class="lnt"&gt;43
+&lt;/span&gt;&lt;span class="lnt"&gt;44
+&lt;/span&gt;&lt;span class="lnt"&gt;45
+&lt;/span&gt;&lt;span class="lnt"&gt;46
+&lt;/span&gt;&lt;span class="lnt"&gt;47
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Assistant is a language model designed to extract guidelines and policies from any chatbot system prompt.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; You are provided with a chatbot system prompt and a specific user flow. Your task is to provide a comprehensive list of all the policies and guidelines that are directly relevant to the specific flow.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; For each policy, you should provide the following details:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 1. The policy itself with all the details.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 2. The policy challenge score, which should be:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - **Challenge Score (1–5)**:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - 1 = Very straightforward
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - 3 = Moderately challenging
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - 5 = Highly complex or intricate
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 3. The category of the policy which **must** be one of the following:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - **Authentication / Access Control**
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (e.g., verifying user identity, ensuring the user has authorization)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - **Data Privacy / User Data Handling**
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (e.g., No disclosure of personal data, data retention rules)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - **Legal / Compliance**
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (e.g., GDPR, regulatory restrictions)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - **Payment Handling / Financial**
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (e.g., restrictions on payment methods, refunds)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - **Tool Usage / API Calls**
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (e.g., how/when to call internal or external APIs)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - **Logical / Numerical Reasoning**
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (e.g., how to perform calculations or show reasoning)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - **Response Formatting**
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (e.g., how to structure or style the chatbot’s response)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - **Knowledge Extraction**
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (e.g., how to retrieve and present relevant information)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - **User Consent / Acknowledgment**
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (e.g., obtain explicit user confirmation before database updates)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - **Escalation / Handoff**
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (e.g., transferring users to a human agent)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - ** Policy Enforcement / Restriction**
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (e.g., denying user requests that violate policy)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - **Offensive / Hate Content**
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (e.g., handling hate speech or discriminatory content)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - **Sexual / NSFW Content**
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (e.g., handling explicit or adult content)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - **Harassment / Bullying**
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (e.g., responding to abusive or threatening language)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - **Fraud / Malicious Use**
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (e.g., preventing unlawful or fraudulent usage)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - **Misinformation / Disallowed Content**
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (e.g., factual accuracy, avoiding disallowed topics)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - **Company Policy** *(use **only** if you cannot place it under any of the above)*
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; (e.g., broad internal guidelines that don’t fit the above)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - **Other**
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; # The Chatbot system prompt:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; {user_prompt}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --------
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; # The provided flow:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; {flow}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; The policy **must** be self-contained with the full relevant context. For example: Do not provide policies such as: &amp;#34;You should deny user requests that are against this policy&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;最后生成图 &lt;code&gt;extract_graph&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;div class="table-container"&gt;&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;You are provided with two company policies that are fed as instructions for a customer service chatbot.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;You should determine what is the likelihood that the **two** policies will be **both** relevant to the **same** conversation. The rank scale should be between 0 to 10, where 10 is in case they must always appear together and 0 if they can never be relevant to the same conversation.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;- For example:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Suppose one policy deals with booking a flight to a gold member and the second policy deals with cancelling a flight to a gold member, then the rank should be 4.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;This is because there might be a user who asks to cancel a booking and then order a new one. However, this does not happen frequently.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;除此之外还有个额外的 &lt;code&gt;description&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;初始化 &lt;code&gt;EventGenerator&lt;/code&gt; 事件生成器。事件生成器中包含两部分 LLM：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;symbolic_enrichment&lt;/code&gt; 符号增强 LLM&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;symbolic_constraint&lt;/code&gt; 符号约束 LLM&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;初始化 &lt;code&gt;DialogManager&lt;/code&gt; 对话管理器&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;初始化 &lt;code&gt;Dataset&lt;/code&gt; 数据集&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="run_simulation-过程"&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#run_simulation-过程" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/plurai-ai-intellagent/#contents:run_simulation-过程" class="headings"&gt;&lt;code&gt;run_simulation&lt;/code&gt; 过程&lt;/a&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;装载 &lt;code&gt;dataset&lt;/code&gt; 数据集
+&lt;ol&gt;
+&lt;li&gt;确认是否存在最新的数据集文件，不存在则创建并更新日志信息&lt;/li&gt;
+&lt;li&gt;根据配置的运行要求的样本数量，和现有的 &lt;code&gt;records&lt;/code&gt; 样本数量计算需要额外生成的样本数&lt;/li&gt;
+&lt;li&gt;根据需要生成的样本数量以及有关任务复杂度范围配置（&lt;code&gt;min_difficult_level&lt;/code&gt;,&lt;code&gt;max_difficult_level&lt;/code&gt;）生成一个目标复杂度。&lt;/li&gt;
+&lt;li&gt;遍历各个复杂度总值范围内的所有复杂度去从 Policies Graph 抽取对应复杂度的 Policies,并利用大模型抽取 Policies 的描述 description&lt;/li&gt;
+&lt;li&gt;利用上一步的 Policies 和 Description 去生成最终的测试用 Event。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;创建对应的运行结果存储目录 &lt;code&gt;experiment_dir&lt;/code&gt;并更新 &lt;code&gt;experiment.log&lt;/code&gt; 日志记录&lt;/li&gt;
+&lt;li&gt;保存本次实验所使用的 prompt 到 &lt;code&gt;prompt.txt&lt;/code&gt; 以及运行配置到 &lt;code&gt;config.yaml&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;传入本次实验的输出文件夹 &lt;code&gt;experiment_dir&lt;/code&gt; 给 &lt;code&gt;dialog_manager&lt;/code&gt; 初始化 dialog&lt;/li&gt;
+&lt;li&gt;正式进行批跑轮次前确认是否存在之前批跑的记录 &lt;code&gt;res_dump.pickle&lt;/code&gt;，如果有的话序列化装载恢复上次批跑起始位置。&lt;/li&gt;
+&lt;li&gt;读取剩余的轮次并开始进行批跑测试&lt;/li&gt;
+&lt;li&gt;批跑过程中有参数 &lt;code&gt;cost_limit&lt;/code&gt; 用于确保运行过程中消耗的 token 不会超过限制。&lt;/li&gt;
+&lt;li&gt;每轮批跑的结果都会序列化存入 &lt;code&gt;res_dump.pickle&lt;/code&gt; 中以实现断点重跑功能。&lt;/li&gt;
+&lt;li&gt;确保所有 Event 测试完成后调用 &lt;code&gt;analyze_results&lt;/code&gt; 分析运行结果
+&lt;ol&gt;
+&lt;li&gt;获取所有的运行结果进行遍历&lt;/li&gt;
+&lt;li&gt;获取每个结果的 &lt;code&gt;event_id&lt;/code&gt;、 &lt;code&gt;user_messages&lt;/code&gt;、&lt;code&gt;stop_signal&lt;/code&gt; 三者对比得出得分。并将最终结果写入 csv 文件中。&lt;/li&gt;
+&lt;li&gt;针对所有测试评测结果使用 pandas 计算错误率，并计算得分平均值。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description><category domain="https://yuukisama.cc/code/">code</category><category domain="https://yuukisama.cc/tags/ai/">AI</category><category domain="https://yuukisama.cc/tags/llm/">LLM</category></item><item><title>ApeRAG架构分析</title><link>https://yuukisama.cc/code/aperag/</link><guid isPermaLink="true">https://yuukisama.cc/code/aperag/</guid><pubDate>Tue, 21 Oct 2025 14:08:55 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="zero---aperag-简介"&gt;&lt;a href="https://yuukisama.cc/code/aperag/#zero---aperag-简介" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/aperag/#contents:zero---aperag-简介" class="headings"&gt;Zero - ApeRAG 简介&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://github.com/apecloud/ApeRAG" target="_blank" rel="noopener"&gt;ApeRAG&lt;/a&gt; 一个号称生产就绪的 GraphRAG 多模态 RAG 引擎。以下是其官网 &lt;a href="https://rag.apecloud.com/" target="_blank" rel="noopener"&gt;https://rag.apecloud.com/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;目前官方发布了 &lt;a href="https://github.com/apecloud/ApeRAG/releases/tag/v0.5.0-alpha.14" target="_blank" rel="noopener"&gt;ApeRAG v0.5.0-alpha.14&lt;/a&gt; 版本，其结合了传统向量引擎，全文索引，GraphRAG，视觉索引，摘要索引等多个维度全方面的 RAG 混合检索能力，使用 MinerU 集成作为其增强型的文档处理。在部署方面，官方直接提供了生产级部署的能力：最简可通过 docker 完成基础部署，同时提供了 k8s 部署的实践指导。同时集成了 MCP 服务，提供三方 AI 助手和工具无缝集成访问知识库的能力。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -719,7 +1491,7 @@
 &lt;li&gt;根据配置的 rerank 服务执行 rerank&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</description><category domain="https://yuukisama.cc/code/">code</category></item><item><title>GraphRAG与LazyGraphRAG</title><link>https://yuukisama.cc/code/graphrag/</link><guid isPermaLink="true">https://yuukisama.cc/code/graphrag/</guid><pubDate>Fri, 10 Oct 2025 13:36:03 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="zero"&gt;&lt;a href="https://yuukisama.cc/code/graphrag/#zero" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/graphrag/#contents:zero" class="headings"&gt;Zero&lt;/a&gt;&lt;/h2&gt;
+&lt;/ul&gt;</description><category domain="https://yuukisama.cc/code/">code</category><category domain="https://yuukisama.cc/tags/ai/">AI</category><category domain="https://yuukisama.cc/tags/llm/">LLM</category></item><item><title>GraphRAG与LazyGraphRAG</title><link>https://yuukisama.cc/code/graphrag/</link><guid isPermaLink="true">https://yuukisama.cc/code/graphrag/</guid><pubDate>Fri, 10 Oct 2025 13:36:03 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="zero"&gt;&lt;a href="https://yuukisama.cc/code/graphrag/#zero" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/graphrag/#contents:zero" class="headings"&gt;Zero&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;大模型时代，受限于模型上下文限制，模型能同时聚焦的信息量有限，于是 RAG 应运而生。&lt;/p&gt;
 &lt;p&gt;RAG 即一种让 AI 模型能“引经据典”的技术。相较于传统语言模型这能基于模型训练时的静态数据生成回答，RAG 通过如下方式增强了模型的能力：&lt;/p&gt;
 &lt;ol&gt;
@@ -3987,7 +4759,7 @@
 &lt;/div&gt;&lt;h3 id="后记"&gt;&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#后记" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#contents:后记" class="headings"&gt;后记&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;这个方法是官方提供的升级迁移数据，附带了数据筛选功能，以及具有的限制是源头服务器和目标服务器以及操作者本身的设备三者之间必须能够互相通讯。如果不满足上述条件或者只是单纯需要备份数据，可以使用 backup 工具&lt;/p&gt;
 &lt;h2 id="end"&gt;&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#end" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/code/milvus%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/#contents:end" class="headings"&gt;End&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;所以最后看来上述两种备份工具的原理基本都属于模拟所有历史数据变更，将历史数据变更重新在新数据库上演绎一遍,属于“重放日志”式的备份恢复？这里仅仅是个人通过对备份文件大致结构以及备份还原过程观察得出的结论，若有纰漏还望指正。&lt;/p&gt;</description><category domain="https://yuukisama.cc/code/">code</category></item><item><title>life is struggle</title><link>https://yuukisama.cc/life/life-is-struggle/</link><guid isPermaLink="true">https://yuukisama.cc/life/life-is-struggle/</guid><pubDate>Thu, 28 Nov 2024 10:40:04 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h1 id="life-is-struggle"&gt;&lt;a href="https://yuukisama.cc/life/life-is-struggle/#life-is-struggle" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/life/life-is-struggle/#contents:life-is-struggle" class="headings"&gt;Life is Struggle&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;所以最后看来上述两种备份工具的原理基本都属于模拟所有历史数据变更，将历史数据变更重新在新数据库上演绎一遍,属于“重放日志”式的备份恢复？这里仅仅是个人通过对备份文件大致结构以及备份还原过程观察得出的结论，若有纰漏还望指正。&lt;/p&gt;</description><category domain="https://yuukisama.cc/code/">code</category><category domain="https://yuukisama.cc/tags/ai/">AI</category><category domain="https://yuukisama.cc/tags/llm/">LLM</category><category domain="https://yuukisama.cc/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</category></item><item><title>life is struggle</title><link>https://yuukisama.cc/life/life-is-struggle/</link><guid isPermaLink="true">https://yuukisama.cc/life/life-is-struggle/</guid><pubDate>Thu, 28 Nov 2024 10:40:04 +0800</pubDate><author>chainyuuki@gmail.com (Yuuki)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h1 id="life-is-struggle"&gt;&lt;a href="https://yuukisama.cc/life/life-is-struggle/#life-is-struggle" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/life/life-is-struggle/#contents:life-is-struggle" class="headings"&gt;Life is Struggle&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;不出意外的, 这又是一篇有关生活碎碎念的文章, 如果真的有读者, 或许在你看到这段话的时候还来得及离开, 去另一个分类看看兴许会有你真正需要的东西. &lt;del&gt;哦,得了吧你其他的技术文章也写得稀烂诶&lt;/del&gt;&lt;/p&gt;
 &lt;h2 id="zero"&gt;&lt;a href="https://yuukisama.cc/life/life-is-struggle/#zero" class="anchor-link"&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"&gt;&lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a href="https://yuukisama.cc/life/life-is-struggle/#contents:zero" class="headings"&gt;Zero&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;今天是2024年11月28日, 一个普通的工作日, 我的同事兼leader在一旁努力的自我提升刷着leetcode, 而我在这里摸鱼写下这篇碎碎念的文章.&lt;/p&gt;
